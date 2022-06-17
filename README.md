@@ -1,3 +1,3 @@
 # Frontend Web IFELSE 2022
 
-Menggunakan reactjs
+Repository frontend IF ELSE 2022
