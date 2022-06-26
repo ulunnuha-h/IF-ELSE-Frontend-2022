@@ -1,0 +1,72 @@
+.nav-text{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row !important;
+}
+
+.btn-navlogin{
+    background-color: lightblue;
+    padding : 2px 20px;
+    border-width: 0px;
+    border-radius: 100px;
+}
+
+.mobile-button{
+    display: none;
+    background-color: lightblue;
+    padding : 2px 40px;
+    border-radius: 100px;
+    border: 0px;
+}
+
+.checkbtn{
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+@media(max-width : 600px){
+
+    nav ul{
+        position: fixed;
+        background-color: red;
+        width: 100vw;
+        height: 100vh;
+        top: 75px;
+        left: 100vw;
+        flex-direction: column !important;
+        align-items: center;
+        justify-content:center;
+        padding-bottom: 100px;
+    }
+
+    .nav-text{
+        font-size: 8vw;
+    }
+
+    nav .btn-navlogin{
+        display: none;
+        position: absolute;
+    }
+    .checkbtn{
+        display: block;
+        float: right;
+    }
+    #check:checked ~ ul{
+        left: 0;
+    }
+
+    .mobile-button{
+        display: block !important;
+        font-size: 5vw;
+        margin: 0px;
+    } 
+}

@@ -1,11 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import Nav from './Components/Nav/Nav.js';
+import {Outlet} from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      Hello Guys
-    </div>
+    <>
+      <Nav/>
+      <Outlet/>
+    </>
+    
   );
 }
 
