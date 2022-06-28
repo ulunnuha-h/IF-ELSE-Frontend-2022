@@ -1,11 +1,11 @@
 import React from "react";
-import UserCard from "../../Components/UserCard/UserCard";
+import FriendCard from "../../Components/FriendCard/FriendCard";
 
 const Home = () => {
     return(
         <>
             <h1>This is Home</h1>
-            <UserCard/>
+            <FriendCard/>
             <div style={{"height":"200vh"}}>Hello</div>
         </>
     );
