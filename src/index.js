@@ -7,6 +7,7 @@ import News from './Pages/News/News';
 import FAQ from './Pages/FAQ/FAQ';
 import Presence from './Pages/Presence/Presence';
 import Tasks from './Pages/Tasks/Tasks';
+import Error404 from './Pages/404/404';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,6 +22,7 @@ root.render(
             <Route path="tasks" element={<Tasks />} />
             <Route path='presence' element={<Presence/>}/>
           </Route>
+          <Route path='*' element={<Error404/>}/>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>
