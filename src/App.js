@@ -7,6 +7,7 @@ function App() {
     <>
       <Nav/>
       <Outlet/>
+      <Footer/>
     </>
     
   );

@@ -2,4 +2,5 @@
 *{
     font-family: 'Poppins', sans-serif;
     transition-duration: 300ms;
+    /* box-sizing: border-box */
 }

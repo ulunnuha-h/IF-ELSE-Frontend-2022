@@ -1,0 +1,34 @@
+.link-icon{
+    font-size: 24px;
+}
+
+.link-icon i{
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.link-icon i:hover{
+    color: red;
+}
+
+.footer-link{
+    color: black;
+}
+
+@media(max-width : 576px){
+    .footer{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer .col{
+        margin-bottom: 32px;
+    }
+
+    .footer .icon-ifelse{
+        justify-content: center;
+    }
+}

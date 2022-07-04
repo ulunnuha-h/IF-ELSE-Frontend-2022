@@ -33,7 +33,7 @@ nav ul{
     display: none;
 }
 
-@media(max-width : 600px){
+@media(max-width : 576px){
 
     nav ul{
         position: fixed;
@@ -52,9 +52,9 @@ nav ul{
         font-size: 8vw;
     }
 
-    nav .btn-navlogin{
+    nav .link-tag{
+        background-color: red;
         display: none;
-        position: absolute;
     }
     .checkbtn{
         display: block;

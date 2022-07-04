@@ -4,7 +4,7 @@ import './Nav.css'
 
 const Nav = () => {
     return(
-        <nav className="navbar py-2 px-5 bg-primary" style={{"height":"76px"}}>
+        <nav className="navbar py-2 px-5 bg-primary" style={{"height":"76px","zIndex":"100"}}>
             <Link className="navbar-brand h-50 p-0 m-0" style={{"width":"60px"}} to="/">
                 <div className="p-0 m-0">Logo</div>
             </Link>
@@ -24,8 +24,8 @@ const Nav = () => {
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
-                    <Link className="nav-link" to="tasks">
-                        <span className="nav-text">Tasks</span>
+                    <Link className="nav-link" to="task">
+                        <span className="nav-text">Task</span>
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
@@ -37,7 +37,7 @@ const Nav = () => {
                     <button className="mobile-button">Login</button>
                 </li>
             </ul>
-            <button className="btn-navlogin">Login</button>
+            <Link className="link-tag" to="/login"><button className="btn-navlogin">Login</button></Link>
         </nav>
     );
 }
