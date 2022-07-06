@@ -4,7 +4,7 @@ import './Nav.css'
 
 const Nav = () => {
     return(
-        <nav className="navbar py-2 px-5 bg-primary" style={{"height":"76px","zIndex":"100"}}>
+        <nav className="navbar py-3 px-5 bg-primary">
             <Link className="navbar-brand h-50 p-0 m-0" style={{"width":"60px"}} to="/">
                 <div className="p-0 m-0">Logo</div>
             </Link>

@@ -9,6 +9,10 @@ import Presence from './Pages/Presence/Presence';
 import Tasks from './Pages/Tasks/Tasks';
 import Error404 from './Pages/404/404';
 import Login from './Pages/Login/Login';
+import User from './Pages/User/User';
+import UserGroup from './Pages/User/Menu/User-Group';
+import UserProfile from './Pages/User/Menu/User-Profile';
+import UserGrade from './Pages/User/Menu/User-Grade';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +27,11 @@ root.render(
             <Route path="task" element={<Tasks />} />
             <Route path='presence' element={<Presence/>}/>
             <Route path='login' element={<Login/>}/>
+            <Route path='user' element={<User/>}>
+                <Route index element={<UserProfile/>}/>
+                <Route path='group' element={<UserGroup/>}/>
+                <Route path='grade' element={<UserGrade/>}/>
+            </Route>
           </Route>
           <Route path='*' element={<Error404/>}/>
         </Routes>

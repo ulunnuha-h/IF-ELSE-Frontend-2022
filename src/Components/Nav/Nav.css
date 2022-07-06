@@ -7,7 +7,6 @@ nav ul{
     display: flex;
     flex-direction: row !important;
 }
-
 .btn-navlogin{
     background-color: lightblue;
     padding : 2px 20px;

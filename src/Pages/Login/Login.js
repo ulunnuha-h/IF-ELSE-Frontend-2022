@@ -1,7 +1,12 @@
-import React from "react";
+import React , { useState } from "react";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import './Login.css';
 
 const Login = () => {
+    const [email,setEmail] = useState('');
+    const [pass,setPass] = useState('');
+
     return(
         <div className="login-page row m-auto container-lg">
             <div className="col-md-7 col-12 login-image d-flex align-items-center justify-content-center">
@@ -17,22 +22,37 @@ const Login = () => {
                             </div>
                         </section>
                         <h1 className="mb-4">Welcome !</h1>
-                        <label for="login-email" className="form-label h5 mx-3">Email</label>
-                        <div class="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Email" id="login-email"/>
-                            <span class="input-group-text">
+                        <Form.Label htmlFor="email" className="h5 mx-4">Email</Form.Label>
+                        <InputGroup className="mb-3">                
+                            <Form.Control
+                                id="email"
+                                value={email}
+                                placeholder="Email"
+                                aria-label="Email"
+                                aria-describedby="basic-addon1"
+                                onChange={(e)=> setEmail(e.target.value)}
+                            />
+                            <InputGroup.Text id="basic-addon1">
                                 <i class="fa-solid fa-at"></i>
-                            </span>
-                        </div>
+                            </InputGroup.Text>
+                        </InputGroup>
 
-                        <label for="login-email" className="form-label h5 mx-3">Password</label>
-                        <div class="input-group mb-3">
-                            <input type="password" className="form-control" placeholder="Password"/>
-                            <span class="input-group-text">
+                        <Form.Label htmlFor="pass" className="h5 mx-4">Password</Form.Label>
+                        <InputGroup className="mb-3">
+                            <Form.Control
+                                id="pass"
+                                value={pass}
+                                onChange={(e)=>setPass(e.target.value)}
+                                placeholder="password"
+                                aria-label="password"
+                                aria-describedby="basic-addon1"
+                                type="password"
+                            />
+                            <InputGroup.Text id="basic-addon1">
                                 <i class="fa-solid fa-lock"></i>
-                            </span>
-                        </div>
-                        <button type="button" class="btn btn-primary">Login</button>
+                            </InputGroup.Text>
+                        </InputGroup>
+                        <button type="button" className="btn btn-primary">Login</button>
                 </div>
             </div>
         </div>

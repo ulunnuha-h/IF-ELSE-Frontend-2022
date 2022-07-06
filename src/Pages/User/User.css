@@ -1,0 +1,22 @@
+.btn-toggle{
+    background-color: gray;
+    width: 30%;
+    border-radius: 100px;
+}
+
+.user-profile section{
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 24px;
+    border: 0px;
+    background-color: lightgray;
+}
+
+.user-profile input,textarea{
+    border: solid 2px gray;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 24px;
+}
