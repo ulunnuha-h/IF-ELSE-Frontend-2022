@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 // const user = {
 //     name : "Hanif Ulunnuha Hidayat",
@@ -12,50 +12,44 @@ import React, { useState } from "react"
 
 const Auth = React.createContext();
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
+  const [log, setLog] = useState(false);
+  const [token, setAuthToken] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
-    const [log,setLog] = useState(false);
-    const [token,setAuthToken] = useState('');
-    const [errMsg,setErrMsg] = useState('');
-
-    const login = (email,pass) =>{
-        if(email === 'admin' && pass === 'admin'){
-            setAuthToken('token');
-            localStorage.setItem('token','token');
-            setErrMsg('');
-            cekLokal();
-        }
-        else{
-            setErrMsg('Email atau Password tidak ditemukan !');
-        }
+  const login = (email, pass) => {
+    if (email === "admin" && pass === "admin") {
+      setAuthToken("token");
+      localStorage.setItem("token", "token");
+      setErrMsg("");
+      cekLokal();
+    } else {
+      setErrMsg("Email atau Password tidak ditemukan !");
     }
+  };
 
-    const cekLokal = () => {
-        setAuthToken(localStorage.getItem('token'));
-        if(token === '') setLog(false);
-        else setLog(true);
-    }
+  const cekLokal = () => {
+    setAuthToken(localStorage.getItem("token"));
+    if (token === "") setLog(false);
+    else setLog(true);
+  };
 
-    const logout = () => {
-        setAuthToken('');
-        localStorage.setItem('token','');
-        cekLokal();
-    }
+  const logout = () => {
+    setAuthToken("");
+    localStorage.setItem("token", "");
+    cekLokal();
+  };
 
-    const isLogged = () => {
-        return log;
-    }
+  const isLogged = () => {
+    return log;
+  };
 
-    const getUserData = () => {
-        const data = localStorage.getItem('user');
-        return JSON.parse(data);
-    }
+  const getUserData = () => {
+    const data = localStorage.getItem("user");
+    return JSON.parse(data);
+  };
 
-    return(
-        <Auth.Provider value={{isLogged,login,logout,errMsg,cekLokal,getUserData}}>
-            {children}
-        </Auth.Provider>
-    );
-}
+  return <Auth.Provider value={{ isLogged, login, logout, errMsg, cekLokal, getUserData }}>{children}</Auth.Provider>;
+};
 
-export {Auth,AuthProvider};
+export { Auth, AuthProvider };
