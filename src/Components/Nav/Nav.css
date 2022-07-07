@@ -1,3 +1,28 @@
+nav{
+    background-color: var(--color-3);
+    color: var(--color-font);
+    width: 100vw;
+    top: 0;
+}
+
+.nav-user-icon{
+    width: 50px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.nav-user-icon img:hover{
+    transform: scale(1.2);
+}
+
+.nav-brand{
+    cursor: pointer;
+}
+
+nav span{
+    font-family : 'Montserrat', sans-serif;
+}
+
 .nav-text{
     font-size: 18px;
     font-weight: 500;
@@ -8,38 +33,35 @@ nav ul{
     flex-direction: row !important;
 }
 .btn-navlogin{
-    background-color: lightblue;
-    padding : 2px 20px;
+    color: white;
+    background: var(--color-4);
+    padding : 3px 20px;
     border-width: 0px;
     border-radius: 100px;
 }
 
+.btn-navlogin:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: scale(1.05);
+}
+
 .mobile-button{
     display: none;
-    background-color: lightblue;
-    padding : 2px 40px;
+    background: var(--color-4);
+    padding : 1px 50px;
     border-radius: 100px;
     border: 0px;
-}
-
-.checkbtn{
-    font-size: 24px;
-    cursor: pointer;
-    display: none;
-}
-
-#check{
-    display: none;
+    color: white;
 }
 
 @media(max-width : 576px){
 
     nav ul{
         position: fixed;
-        background-color: red;
+        background-color: var(--color-3);
         width: 100vw;
         height: 100vh;
-        top: 75px;
+        top: 74px;
         left: 100vw;
         flex-direction: column !important;
         align-items: center;
@@ -48,24 +70,10 @@ nav ul{
     }
 
     .nav-text{
-        font-size: 8vw;
+        font-size: 7vw;
     }
 
-    nav .link-tag{
-        background-color: red;
-        display: none;
-    }
-    .checkbtn{
-        display: block;
-        float: right;
-    }
     #check:checked ~ ul{
         left: 0;
     }
-
-    .mobile-button{
-        display: block !important;
-        font-size: 5vw;
-        margin: 0px;
-    } 
 }

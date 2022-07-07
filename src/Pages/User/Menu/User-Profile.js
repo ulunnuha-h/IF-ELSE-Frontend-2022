@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Auth } from "../../../Config/Auth";
 
 const UserProfile = () => {
+    const userData = useContext(Auth).getUserData();
+
+    console.log(userData);
 
     const edit = true;
 
@@ -8,17 +12,17 @@ const UserProfile = () => {
         <>{edit ?
         <div className="mx-3 my-4 user-profile">
             <h5>Name</h5>
-            <section className="mb-3">Hanif Ulunnuha Hidayat</section>
+            <section className="mb-3">{userData.name}</section>
             <h5>NickName</h5>
-            <section className="mb-3">Hanif</section>
+            <section className="mb-3">{userData.nickName}</section>
             <h5>NIM</h5>
-            <section className="mb-3">215150200111019</section>
+            <section className="mb-3">{userData.NIM}</section>
             <h5>Address</h5>
-            <section className="mb-3">Sumenep, Jawa Timur</section>
+            <section className="mb-3">{userData.address}</section>
             <h5>ID Line</h5>
-            <section className="mb-3">hanifulunnuha</section>
+            <section className="mb-3">{userData.idLine}</section>
             <h5>Group Name</h5>
-            <section className="mb-3">Debian Edu</section>
+            <section className="mb-3">{userData.group}</section>
         </div>:
         <div className="mx-3 my-4 user-profile">
             <h5>NickName</h5>

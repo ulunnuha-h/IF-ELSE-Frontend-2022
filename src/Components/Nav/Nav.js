@@ -1,15 +1,27 @@
-import React from "react";
-import {Link} from 'react-router-dom'
+import React, { useContext, useEffect } from "react";
+import {Link, useNavigate} from 'react-router-dom'
 import './Nav.css'
+import pic from '../../Assets/Logo/logo-ifelse.png';
+import { Auth } from "../../Config/Auth";
 
 const Nav = () => {
+    const nav = useNavigate();
+    const auth = useContext(Auth);
+    useEffect(()=>{
+        auth.cekLokal();
+    });
+
     return(
-        <nav className="navbar py-3 px-5 bg-primary">
-            <Link className="navbar-brand h-50 p-0 m-0" style={{"width":"60px"}} to="/">
-                <div className="p-0 m-0">Logo</div>
-            </Link>
-            <input type="checkbox" id="check"></input>
-            <label htmlFor="check" className="checkbtn">
+        <nav className="navbar px-4 py-1" style={{"height":"76px","position":"sticky"}}>
+            <div className="nav-brand h-100 d-flex" onClick={()=>nav('/')}>
+                <img src={pic} alt='logo ifelse' className="h-100"></img>
+                <section className="d-flex flex-column justify-content-center">
+                    <span className="m-0 mt-1 p-0 h5" style={{"fontWeight":"700"}}>IF ELSE</span>
+                    <span className="m-0 p-0 h4" style={{"fontWeight":"700"}}>2022</span>
+                </section>
+            </div>
+            <input type="checkbox" id="check" className="d-none"></input>
+            <label htmlFor="check" className="d-block d-sm-none" style={{"cursor":"pointer"}}>
                 <i className="fas fa-bars"></i>
             </label>
             <ul className="navbar-nav">
@@ -33,11 +45,32 @@ const Nav = () => {
                         <span className="nav-text">Presence</span>
                     </Link>
                 </li>
-                <li>
-                    <button className="mobile-button">Login</button>
+                <li className="nav-item mt-4 d-block d-sm-none">
+                    {
+                        auth.getToken ==='' ? 
+                            <Link className="nav-link mobile-button d-block d-sm-none" to="login">
+                                <span className="nav-text">Login</span>
+                            </Link> :
+                            <Link className="nav-link mobile-button d-block d-sm-none" to="user">
+                                <span className="nav-text">Profile</span>
+                            </Link>
+
+                    }
+                    
                 </li>
+                <footer style={{"position":"absolute","bottom":"100px","textAlign":"center"}}>
+                    Developep by IT x DDM IF ELSE &#169; 2022
+                </footer>
             </ul>
-            <Link className="link-tag" to="/login"><button className="btn-navlogin">Login</button></Link>
+            {!auth.isLogged() ? 
+            <Link className="d-none d-sm-block" to="login"><button className="btn-navlogin">Login</button></Link> :
+            <Link className="d-none d-sm-block" to="user">
+                <div className="nav-user-icon">
+                    <img src={auth.getUserData().img} alt="propic" className="img-fluid"></img>
+                </div>
+            </Link>
+            }
+            
         </nav>
     );
 }

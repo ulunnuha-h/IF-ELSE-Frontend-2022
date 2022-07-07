@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 *{
     font-family: 'Poppins', sans-serif;
     transition-duration: 300ms;
-    /* box-sizing: border-box */
 }
 
 nav{
@@ -15,7 +16,7 @@ nav{
     --color-1-s:#FF730C;
     --color-2-s:#FFA42E;
     --color-3:#FFE3C7;
-    --color-4:linear-gradient(90deg, #521737 0%, #732648 14.9%, #92373B 29.48%, #AD462F 48.23%, #C15127 67.5%, #D55C1E 83.65%, #FF730C 95.1%, #FFA42E 100%);
+    --color-4: linear-gradient(90deg, #521737 0%, #AD462F 50%, #FFA42E 100%);
     --color-bg:#FCF4F5;
     --color-font:#462E2E;
 }

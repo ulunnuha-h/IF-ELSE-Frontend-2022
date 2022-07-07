@@ -1,5 +1,4 @@
 import React from "react";
-import pic from '../../Assets/me.jpeg';
 
 const FriendCardBig = (props) => {
     return(
@@ -13,7 +12,7 @@ const FriendCardBig = (props) => {
                 <div className="position-fixed w-75 h-75"></div>
                 <div className="row m-1">
                     <div className="col-md-5">
-                        <img className="img-fluid rounded" src={pic} alt='profilepic'></img>
+                        {/* <img className="img-fluid rounded" src={pic} alt='profilepic'></img> */}
                     </div>
                     <div className="col-md-7 p-4 ">
                         <h5 className="d-md-block d-none">Name</h5>

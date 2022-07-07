@@ -10,14 +10,6 @@ const UserGroup = () => {
             <h3 className="mt-4">Group Members</h3>
             <div className="row row-cols-2 row-cols-sm-3 justify-content-center">
                 <FriendCard/>
-                <FriendCard/>
-                <FriendCard/>
-                <FriendCard/>
-                <FriendCard/>
-                <FriendCard/>
-                <FriendCard/>
-                <FriendCard/>
-                <FriendCard/>
             </div>
         </div>
     );

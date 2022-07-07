@@ -1,13 +1,28 @@
-import React , { useState } from "react";
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import React , { useContext, useState } from "react";
 import './Login.css';
+import { Auth } from "../../Config/Auth";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
     const [email,setEmail] = useState('');
     const [pass,setPass] = useState('');
 
-    return(
+    const [errorMsg,setErrorMsg] = useState('');
+
+    const auth = useContext(Auth);
+
+    const login = () => {
+        if(email !== '' && pass !== ''){
+            auth.login(email,pass);
+            setErrorMsg(auth.errMsg);
+        }else{
+            setErrorMsg('Lho kok kolomnya kosong ? kaya hati aku :(');
+        }
+    }
+    if(auth.isLogged()){
+        return <Navigate to='/user'></Navigate>
+    }
+    else return(
         <div className="login-page row m-auto container-lg">
             <div className="col-md-7 col-12 login-image d-flex align-items-center justify-content-center">
                 <div>this is image</div>
@@ -22,37 +37,41 @@ const Login = () => {
                             </div>
                         </section>
                         <h1 className="mb-4">Welcome !</h1>
-                        <Form.Label htmlFor="email" className="h5 mx-4">Email</Form.Label>
-                        <InputGroup className="mb-3">                
-                            <Form.Control
+                        {errorMsg === '' ? null : 
+                        <div className="alert alert-danger" role="alert">
+                            {errorMsg}
+                        </div>
+                        }
+                        
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <div className="input-group mb-3">
+                            <input 
                                 id="email"
-                                value={email}
-                                placeholder="Email"
-                                aria-label="Email"
-                                aria-describedby="basic-addon1"
-                                onChange={(e)=> setEmail(e.target.value)}
-                            />
-                            <InputGroup.Text id="basic-addon1">
-                                <i class="fa-solid fa-at"></i>
-                            </InputGroup.Text>
-                        </InputGroup>
+                                onChange={(e)=> setEmail(e.target.value)} 
+                                type="text" 
+                                className="form-control" 
+                                placeholder="Email" 
+                                required />
+                            <span className="input-group-text" id="basic-addon1">
+                                <i className="fa-solid fa-at"></i>
+                            </span>
+                        </div>
 
-                        <Form.Label htmlFor="pass" className="h5 mx-4">Password</Form.Label>
-                        <InputGroup className="mb-3">
-                            <Form.Control
+                        <label htmlFor="pass" className="form-label">Password</label>
+                        <div className="input-group mb-3">
+                            <input 
                                 id="pass"
-                                value={pass}
-                                onChange={(e)=>setPass(e.target.value)}
-                                placeholder="password"
-                                aria-label="password"
-                                aria-describedby="basic-addon1"
-                                type="password"
-                            />
-                            <InputGroup.Text id="basic-addon1">
-                                <i class="fa-solid fa-lock"></i>
-                            </InputGroup.Text>
-                        </InputGroup>
-                        <button type="button" className="btn btn-primary">Login</button>
+                                onChange={(e)=> setPass(e.target.value)} 
+                                type="password" 
+                                className="form-control" 
+                                placeholder="Password" 
+                                required/>
+                            <span className="input-group-text" id="basic-addon1">
+                                <i className="fa-solid fa-lock"></i>
+                            </span>
+                        </div>
+                        <button type="button" className="btn btn-primary" onClick={login}>Login</button>
+                        
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 .user-card{
-    background-color: lightgray;
+    background-color: var(--color-1-p);
+    color: white;
     width: 357px;
     height: 435px;
     border-radius: 24px;
@@ -19,7 +20,7 @@
 }
 
 .user-image{
-    background-color: gray;
+    overflow: hidden;
     height: 160px;
     width: 160px;
     border-radius: 100px;

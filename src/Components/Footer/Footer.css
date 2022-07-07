@@ -1,3 +1,21 @@
+.footer{
+    background-color: var(--color-3);
+    color: var(--color-font);
+    border-top: solid var(--color-4) 5px;
+}
+
+.footer-link{
+    cursor: pointer;
+}
+
+.footer-link:hover{
+    text-decoration: underline;
+}
+
+.footer span{
+    font-family : 'Montserrat', sans-serif;
+}
+
 .link-icon{
     font-size: 24px;
 }
@@ -5,14 +23,7 @@
 .link-icon i{
     margin-right: 12px;
     cursor: pointer;
-}
-
-.link-icon i:hover{
-    color: red;
-}
-
-.footer-link{
-    color: black;
+    background-color:var(--color-4) ;
 }
 
 @media(max-width : 576px){
