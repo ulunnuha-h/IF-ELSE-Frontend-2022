@@ -1,18 +1,20 @@
 nav{
     background-color: var(--color-3);
     color: var(--color-font);
-    width: 100vw;
     top: 0;
 }
 
 .nav-user-icon{
     width: 50px;
+    height: 50px;
     border-radius: 100px;
     overflow: hidden;
+    background-color: var(--color-1-p);
 }
 
 .nav-user-icon img:hover{
     transform: scale(1.2);
+    filter: brightness(90%);
 }
 
 .nav-brand{

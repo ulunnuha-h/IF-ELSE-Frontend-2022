@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 
-// const user = {
-//     name : "Hanif Ulunnuha Hidayat",
-//     nickName : "Hanif",
-//     address : "Sumenep, Jawa Timur",
-//     idLine : "hanifulunnuha",
-//     group : "Debian Edu",
-//     img : "https://drive.google.com/uc?export=view&id=1WPQoiaPabvw2sN-t53iT0mKpODmR03my",
-//     aboutMe : "I am a programmer"
-// }
+const getExampleData = () => {
+    const user = {
+            name : "Hanif Ulunnuha Hidayat",
+            nickName : "Hanif",
+            address : "Sumenep, Jawa Timur",
+            idLine : "hanifulunnuha",
+            group : "Debian Edu",
+            img : "https://drive.google.com/uc?export=view&id=1WPQoiaPabvw2sN-t53iT0mKpODmR03my",
+            aboutMe : "I am a programmer",
+            nim : 215150200111019
+        } 
+
+    return user;
+}
 
 const Auth = React.createContext();
 
@@ -28,11 +33,12 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const cekLokal = () => {
-    setAuthToken(localStorage.getItem("token"));
-    if (token === "") setLog(false);
-    else setLog(true);
-  };
+    const cekLokal = () => {
+        if(localStorage.getItem('token') === null) localStorage.setItem('token','');
+        else setAuthToken(localStorage.getItem('token'));
+        if(token === '') setLog(false);
+        else setLog(true);
+    }
 
   const logout = () => {
     setAuthToken("");
@@ -44,10 +50,10 @@ const AuthProvider = ({ children }) => {
     return log;
   };
 
-  const getUserData = () => {
-    const data = localStorage.getItem("user");
-    return JSON.parse(data);
-  };
+    const getUserData = () => {
+        const data = getExampleData();
+        return data;
+    }
 
   return <Auth.Provider value={{ isLogged, login, logout, errMsg, cekLokal, getUserData }}>{children}</Auth.Provider>;
 };

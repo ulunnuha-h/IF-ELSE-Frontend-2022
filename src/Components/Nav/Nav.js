@@ -47,7 +47,7 @@ const Nav = () => {
                 </li>
                 <li className="nav-item mt-4 d-block d-sm-none">
                     {
-                        auth.getToken ==='' ? 
+                        !auth.isLogged() ? 
                             <Link className="nav-link mobile-button d-block d-sm-none" to="login">
                                 <span className="nav-text">Login</span>
                             </Link> :
