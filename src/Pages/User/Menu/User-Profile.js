@@ -4,8 +4,6 @@ import { Auth } from "../../../Config/Auth";
 const UserProfile = () => {
     const userData = useContext(Auth).getUserData();
 
-    console.log(userData);
-
     const edit = true;
 
     return(
@@ -16,7 +14,7 @@ const UserProfile = () => {
             <h5>NickName</h5>
             <section className="mb-3">{userData.nickName}</section>
             <h5>NIM</h5>
-            <section className="mb-3">{userData.NIM}</section>
+            <section className="mb-3">{userData.nim}</section>
             <h5>Address</h5>
             <section className="mb-3">{userData.address}</section>
             <h5>ID Line</h5>
