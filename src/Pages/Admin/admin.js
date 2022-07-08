@@ -1,20 +1,19 @@
 import React from "react";
-import './Admin.css'
+import { Outlet } from "react-router-dom";
+import AdminLogin from "./Admin-login";
+
 const Admin = () => {
-  return (
-    <div className="row ">
-      <div className="sidebargw col-sm-2 border border-2 d-flex flex-column bg-dark bg-gradient text-white">
-        <span className="d-flex justify-content-center">JUDUL</span>
-        <span>JUDUL</span>
-        <span>JUDUL</span>
-        <span>JUDUL</span>
+    const login = true;
 
-      </div>
-      <div className="col-sm-10 border border-2">
-
-      </div>
-    </div>
-  );
-};
+    if(!login) return <AdminLogin/>;
+    else{
+        return(
+            <div>
+                <nav></nav>
+                <Outlet/>
+            </div>
+        );
+    }
+}
 
 export default Admin;
