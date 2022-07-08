@@ -59,7 +59,7 @@ const Nav = () => {
                     
                 </li>
                 <footer style={{"position":"absolute","bottom":"100px","textAlign":"center"}}>
-                    Developep by IT x DDM IF ELSE &#169; 2022
+                    Developed by IT x DDM IF ELSE &#169; 2022
                 </footer>
             </ul>
             {!auth.isLogged() ? 

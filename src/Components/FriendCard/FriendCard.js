@@ -15,7 +15,6 @@ const FriendCard = () => {
             <div className="card-base" onClick={toggle}>
                 <div className="front d-flex flex-column align-items-center justify-content-center">
                     <div className="profile-pic">
-                        <img src="https://drive.google.com/uc?export=view&id=1WPQoiaPabvw2sN-t53iT0mKpODmR03my" className="h-100" alt='profilpic'></img>
                     </div>
                     <h3>Hanif</h3>
                 </div>
