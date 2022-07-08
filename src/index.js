@@ -15,6 +15,7 @@ import UserProfile from './Pages/User/Menu/User-Profile';
 import UserGrade from './Pages/User/Menu/User-Grade';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Admin from './Pages/Admin/Admin';
+import AdminDashboard from './Pages/Admin/Components/Admin-dashboard';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,7 +36,9 @@ root.render(
             </Route>
           </Route>
           <Route path='*' element={<Error404/>}/>
-          <Route path='admin' element={<Admin/>}/>
+          <Route path='/admin' element={<Admin/>}>
+            <Route index element={<AdminDashboard/>}/>
+          </Route>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>

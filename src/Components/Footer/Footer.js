@@ -19,7 +19,7 @@ const Footer = () => {
                                 <h2 style={{"fontFamily":"'Montserrat', sans-serif","fontWeight":"bold"}}>2022</h2>
                             </div>
                         </section>
-                        <span className="text-center">Developep by IT x DDM IF ELSE &#169; 2022</span>
+                        <span className="text-center">Developed by IT x DDM IF ELSE &#169; 2022</span>
                     </div>
                     <div className="col d-flex justify-content-center">
                         <section>
