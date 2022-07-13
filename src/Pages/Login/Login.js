@@ -2,6 +2,7 @@ import React , { useContext, useState } from "react";
 import './Login.css';
 import { Auth } from "../../Config/Auth";
 import { Navigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Login = () => {
     const [email,setEmail] = useState('');
@@ -23,7 +24,7 @@ const Login = () => {
         return <Navigate to='/user'></Navigate>
     }
     else return(
-        <div className="login-page row m-auto container-lg">
+        <motion.div initial={{scale:1.1,opacity:0}} animate={{scale:1,opacity:1}} className="login-page row m-auto container-lg">
             <div className="col-md-7 col-12 login-image d-flex align-items-center justify-content-center">
                 <div>this is image</div>
             </div>
@@ -74,7 +75,7 @@ const Login = () => {
                         
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

@@ -4,6 +4,7 @@ import UserCard from "../../Components/UserCard/UserCard";
 import { useNavigate } from "react-router-dom";
 import './User.css';
 import { Auth } from "../../Config/Auth";
+import { motion } from "framer-motion";
 
 const User = () => {
     const nav = useNavigate();
@@ -11,7 +12,7 @@ const User = () => {
 
     if(auth.isLogged())
     return(
-        <div>
+        <motion.div initial={{scale:1.1,opacity:0}} animate={{scale:1,opacity:1}} >
             <header className="bg-secondary" style={{"height":"120px"}}>This is the header</header>
             <div className="container-lg">
                 <div className="row">
@@ -33,7 +34,7 @@ const User = () => {
                     </section>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
     else{
         return <Navigate to='/login'/>

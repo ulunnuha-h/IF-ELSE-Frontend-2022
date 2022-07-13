@@ -1,27 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import AdminLogin from "./Admin-login";
 import pic from '../../Assets/Logo/logo-ifelse.png';
 import './Admin.css';
 
 const Admin = () => {
-    const login = false;
+    const [log,setLog] = useState(false);
     
+    const login = () => {
+        setLog(!log);
+    }
+
     const toggle = () => {
         const side = document.getElementById("sidebar");
         if(side.classList.contains("aktif")) side.classList.remove("aktif");
         else side.classList.add("aktif");
-        console.log(side);
     }
 
-    if(!login) return <AdminLogin/>;
+    if(!log) return <AdminLogin login={login}/>;
     else{
         return(
             <main className="admin row w-100 m-0" style={{"height":"100vh"}}>
-                <div 
-                    id="sidebar"
-                    className="col-md-3 col-12 p-0 h-100 aktif bg-warning" 
-                    >
+                <div id="sidebar" className="col-md-3 col-12 p-0 h-100 aktif bg-warning" >
                     <div className="d-flex justify-content-between align-items-center">
                         <span className="w-25">
                             <img src={pic} className="my-3 img-fluid" alt="logo"></img>
@@ -50,7 +50,7 @@ const Admin = () => {
                         <span className="d-none d-md-block">
                             Halo, Admin !
                         </span>
-                        <span className="logout">
+                        <span className="logout" onClick={()=>login()}>
                             <i className="fa-solid fa-right-from-bracket me-1"></i>
                             Logout
                         </span>

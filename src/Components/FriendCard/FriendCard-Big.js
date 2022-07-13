@@ -1,8 +1,9 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const FriendCardBig = (props) => {
     return(
-        <div className="d-flex justify-content-center" id="friend-card-modal">
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} className="d-flex justify-content-center" id="friend-card-modal">
             <div className="friend-card-content m-auto">
                 <div className="d-flex justify-content-between mx-3 mt-1 ">
                     <h2>Hanif Ulunnuha Hidayat</h2>
@@ -28,7 +29,7 @@ const FriendCardBig = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
