@@ -1,0 +1,50 @@
+.admin a{
+    text-decoration: none;
+    background-color: red;
+}
+
+.admin #sidebar{
+    position: relative;
+}
+
+.admin .logout{
+    cursor: pointer;
+}
+
+#sidebar .nav-item:hover{
+    background-color: aliceblue;
+    cursor: pointer;
+    color: red;
+}
+
+#sidebar .nav-item:active{
+    background-color: red;
+}
+
+#admin-content{
+    overflow-y: auto;
+    height: 100vh;
+}
+
+#admin-content nav{
+    position:sticky;
+    top: 0;
+}
+
+@media(max-width : 768px){
+    .admin #sidebar{
+        overflow-y: auto;
+        height: 100vh;
+        position: fixed;
+        z-index: 100;
+    }
+
+    .aktif{
+        margin-left: -100vw;
+    }
+
+    #admin-content nav{
+        position:relative;
+        z-index: 0;
+    }
+}

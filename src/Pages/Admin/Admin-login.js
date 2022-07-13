@@ -3,8 +3,8 @@ import { Card,Form,Button } from "react-bootstrap";
 
 const AdminLogin = () => {
     return(
-        <div className="d-flex align-items-center bg-dark" style={{"height":"100vh"}}>
-            <Card className="m-auto w-75">
+        <div className="d-flex align-items-center justify-content-center bg-dark" style={{"height":"100vh"}}>
+            <Card style={{ width: '36rem' }} className="mx-3">
                 <Card.Header className="p-4">
                     <h3 className="m-0">Login</h3>
                     <span>Sign In to your account</span>
