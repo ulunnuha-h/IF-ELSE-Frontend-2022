@@ -1,6 +1,6 @@
 nav{
-    background-color: var(--color-3);
-    color: var(--color-font);
+    /* background-color: var(--color-3); */
+    /* color: var(--color-font); */
     top: 0;
 }
 
@@ -10,11 +10,6 @@ nav{
     border-radius: 100px;
     overflow: hidden;
     background-color: var(--color-1-p);
-}
-
-.nav-user-icon img:hover{
-    transform: scale(1.2);
-    filter: brightness(90%);
 }
 
 .nav-brand{
@@ -40,11 +35,6 @@ nav ul{
     padding : 3px 20px;
     border-width: 0px;
     border-radius: 100px;
-}
-
-.btn-navlogin:hover{
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    transform: scale(1.05);
 }
 
 .mobile-button{

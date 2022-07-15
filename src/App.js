@@ -4,6 +4,7 @@ import {Outlet} from 'react-router-dom'
 import Footer from './Components/Footer/Footer.js';
 import { AuthProvider } from './Config/Auth.js';
 
+
 function App() {
   return (
     <>

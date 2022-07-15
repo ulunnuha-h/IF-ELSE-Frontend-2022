@@ -4,7 +4,8 @@ import UserCard from "../../Components/UserCard/UserCard";
 import { useNavigate } from "react-router-dom";
 import './User.css';
 import { Auth } from "../../Config/Auth";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import bg from "../../Assets/user-bg.jpg";
 
 const User = () => {
     const nav = useNavigate();
@@ -12,8 +13,9 @@ const User = () => {
 
     if(auth.isLogged())
     return(
-        <motion.div initial={{scale:1.1,opacity:0}} animate={{scale:1,opacity:1}} >
-            <header className="bg-secondary" style={{"height":"120px"}}>This is the header</header>
+        <AnimatePresence>
+        <motion.div initial={{scale:1.1,opacity:0}} animate={{scale:1,opacity:1}} exit={{opacity:0}}>
+            <header className="user-bg" style={{"height":"200px","backgroundImage":`url(${bg})`}}></header>
             <div className="container-lg">
                 <div className="row">
                     <section 
@@ -35,6 +37,7 @@ const User = () => {
                 </div>
             </div>
         </motion.div>
+        </AnimatePresence>
     );
     else{
         return <Navigate to='/login'/>

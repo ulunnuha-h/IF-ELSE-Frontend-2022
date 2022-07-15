@@ -24,14 +24,14 @@ const AuthProvider = ({children}) => {
     const [errMsg,setErrMsg] = useState('');
 
     const login = (email,pass) =>{
-        if(email === 'admin' && pass === 'admin'){
+        if(email === 'admin@admin' && pass === 'admin'){
             setAuthToken('token');
             localStorage.setItem('token','token');
             setErrMsg('');
             cekLokal();
         }
         else{
-            setErrMsg('Email atau Password tidak ditemukan !');
+            setErrMsg('Email atau Password salah !');
         }
     }
 

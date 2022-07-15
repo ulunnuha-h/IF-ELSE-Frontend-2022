@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 
 const FriendCardBig = (props) => {
     return(
-        <motion.div initial={{opacity:0}} animate={{opacity:1}} className="d-flex justify-content-center" id="friend-card-modal">
-            <div className="friend-card-content m-auto">
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="d-flex justify-content-center" id="friend-card-modal">
+            <motion.div initial={{scale:0.8,y:100}} animate={{scale:1,y:0}} className="friend-card-content m-auto">
                 <div className="d-flex justify-content-between mx-3 mt-1 ">
                     <h2>Hanif Ulunnuha Hidayat</h2>
                     <i className="fa-solid fa-x h2" style={{"cursor":"pointer"}} onClick={props.toggle}></i>
@@ -28,7 +28,7 @@ const FriendCardBig = (props) => {
                         <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium. </span>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </motion.div>
     );
 }

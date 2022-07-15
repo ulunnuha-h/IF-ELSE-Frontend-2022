@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './FriendCard.css';
 import FriendCardBig from "./FriendCard-Big";
+import { AnimatePresence } from "framer-motion";
 
 const FriendCard = () => {
 
@@ -24,7 +25,9 @@ const FriendCard = () => {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.</p>
                 </div>
             </div>
-            {pop ? null : <FriendCardBig toggle = {toggle}/>}
+            <AnimatePresence>
+                {pop ? null : <FriendCardBig toggle = {toggle}/>}
+            </AnimatePresence>
         </div>
     );
 }

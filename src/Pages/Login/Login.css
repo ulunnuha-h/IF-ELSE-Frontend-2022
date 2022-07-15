@@ -1,21 +1,62 @@
 .login-page{
+    box-sizing: content-box;
     height: calc(100vh - 76px);
-}
-
-.login-image div{
-    background-color: lightgrey;
-    height: 90%;
+    padding-bottom: 50vh;
     width: 90%;
-    border-radius: 24px;
 }
 
-@media(max-width : 576px){
-    .login-image div{
-        margin-top: 30px;
-    }
+.login-page h1{
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
-    .login-logo{
-        visibility: hidden;
-        position: absolute;
-    }
+.login-input::placeholder{
+    color: white;
+}
+
+.login-input {
+    background-color: var(--color-1-p);
+    border: 0px;
+    color: white;
+}
+
+.login-form label{
+    color: var(--color-1-p);
+}
+
+.login-bg{
+    background-size: cover;
+    background-position: center;
+    left: 0;
+    position: absolute;
+    height: calc(150vh - 76px);
+    width: 100%;
+    padding: 0;
+    z-index: -2;
+}
+
+.login-btn{
+    background-color: var(--color-3);
+    border: 0px;
+    border-radius: 100px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.login-light{
+    height:1000px;
+    width: 1000px;
+    /* background-color: red; */
+    /* filter: brightness(0.9); */
+    filter: opacity(0.6);
+    background: radial-gradient(var(--color-3),transparent 70%);
+    position: absolute; 
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.login-btn h5{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    background: linear-gradient(90deg, #521737 0%, #AD462F 50%, #FFA42E 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
