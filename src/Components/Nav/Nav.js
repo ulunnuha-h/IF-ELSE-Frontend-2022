@@ -12,8 +12,9 @@ const Nav = () => {
     const loc = useLocation();
 
     const navStyle = {
+        "transition":"100ms",
         "height":"76px",
-        "position":(trans ? "fixed":"sticky"),
+        "position":(loc.pathname.indexOf("user") !== -1? "fixed" : "sticky"),
         "backgroundColor":(trans ? "":"var(--color-3)"),
         "color":(trans ? "white":"var(--color-font)")
     }
@@ -28,11 +29,18 @@ const Nav = () => {
         "color" : (trans ? "white":"var(--color-font)")
     }
 
+    const cekNav = () => {
+        if(loc.pathname.indexOf("user") !== -1 && window.scrollY < 172 && window.innerWidth > 576) setTrans(true);
+        else setTrans(false);
+    }
+
+    window.addEventListener("scroll",()=>{
+        cekNav();
+    });
+
     useEffect(()=>{
         auth.cekLokal();
-        if(loc.pathname.indexOf("user") !== -1) setTrans(true);
-        else setTrans(false);
-        console.log(trans);
+        cekNav();
     },[auth,trans,loc]);
 
     return(

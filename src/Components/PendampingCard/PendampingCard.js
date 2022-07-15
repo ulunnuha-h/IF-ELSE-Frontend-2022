@@ -1,18 +1,21 @@
+import { motion } from "framer-motion";
 import React from "react";
+import './PendampingCard.css';
 
 const PendampingCard = () => {
     return(
         <div
-            className="bg-primary row p-3" 
-            style={{"width": "90%","borderRadius":"24px"}}>
-            <div className="col-md-3 bg-warning" style={{"height":"200px","borderRadius":"12px"}}>
+            className="pendamping-card row p-3" 
+            style={{"width": "90%","borderRadius":"12px"}}>
+            <div className="pendamping-img col-md-3 p-0 align-self-start rounded">
+                <img className="img-fluid" src="https://drive.google.com/uc?export=view&id=1WPQoiaPabvw2sN-t53iT0mKpODmR03my" alt="gambarPendamping"></img>
             </div>
             <div className="col-md-9 d-flex flex-column" >
                 <h5 className="mt-3">Name</h5>
-                <span className="h4 mx-3">Hanif Ulunnuha Hidayat</span>
+                <span className="mx-3">Hanif Ulunnuha Hidayat</span>
                 <h5 className="mt-3">ID Line</h5>
-                <span className="h4 mx-3">hanifulunnuha</span>
-                <button className="btn btn-warning align-self-end mt-3">Link Grup</button>
+                <span className="mx-3">hanifulunnuha</span>
+                <motion.button whileHover={{scale:1.05}} className="btn-pendamping align-self-end mt-3 px-4 py-2">Link Grup</motion.button>
             </div>
         </div>
     );

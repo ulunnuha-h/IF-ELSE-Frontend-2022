@@ -7,7 +7,7 @@ const UserCard = () => {
     const userData = useContext(Auth).getUserData();
 
     return(
-        <motion.div initial={{y:-1000,opacity:0}} animate={{y:0,opacity:1}} whileHover={{scale:1.02}} transition={{type:"spring",stiffness:30}} className="user-card d-flex flex-column align-items-center justify-content-between">
+        <motion.div initial={{y:-1000,opacity:0}} animate={{y:0,opacity:1}} whileHover={{scale:1.02}} transition={{type:"spring",duration:0.5}} className="user-card d-flex flex-column align-items-center justify-content-between w-100">
             <div className="user-image">
                 <img src={userData.img} alt="profilepicture" className="img-fluid"></img>
             </div>

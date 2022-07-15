@@ -33,6 +33,7 @@ nav span{
 nav ul{
     display: flex;
     flex-direction: row !important;
+    transition: 300ms;
 }
 .btn-navlogin{
     color: white;

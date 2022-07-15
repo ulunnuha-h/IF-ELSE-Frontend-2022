@@ -29,20 +29,19 @@ const Login = () => {
             initial={{opacity:0}} 
             className="login-page row m-auto container-lg">
             <div className="col-md-6 col-12 login-image d-flex align-items-center">
-                <div className="px-5 align-self-center m-3">
+                <div className="px-5 align-self-center m-4">
                     <img src={logo} alt="logoifelse" className="img-fluid" style={{"borderRadius":"50%","backgroundColor":"var(--color-3)"}}></img>
                 </div>
-                {/* <div className="login-light"></div> */}
             </div>
             <div className="col-md-6 col-12 m-auto">
                 <div className=" d-flex h-100 flex-column ">
-                        <h1 className="display-1 mx-3" style={{"fontFamily": "'Bebas Neue', cursive","color":"var(--color-1-p)"}}>Welcome !</h1>
+                        <h1 className="display-1 mx-4" style={{"fontFamily": "'Bebas Neue', cursive","color":"var(--color-1-p)"}}>Welcome !</h1>
                         {errorMsg === '' ? null : 
                         <div className="alert alert-danger" role="alert">
                             <i className="fa-solid fa-triangle-exclamation me-3"></i>
                             {errorMsg}
                         </div>}
-                        <form className="login-form mx-3">
+                        <form className="login-form mx-4">
                             <div className="mb-3">
                                 <label htmlFor="inputEmail" className="form-label ms-3 h5">Email</label>
                                 <div className="input-group flex-nowrap">

@@ -1,12 +1,18 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const UserGrade = () => {
     return(
-        <div className="py-5 px-3">
-            <table className="table">
-                <thead className="bg-primary">
+        <motion.div 
+            initial={{y:50,opacity:0}} 
+            animate={{y:0,opacity:1}} 
+            transition={{type:"tween"}}
+            className="p-4 mx-3 rounded"
+            style={{"backgroundColor":"var(--color-1-p)","color":"white"}}>
+            <table className="user-grade w-100">
+                <thead style={{"borderBottom":"solid white 1px"}}>
                     <tr>
-                        <th scope="col-1">No</th>
+                        <th scope="col-1">No.</th>
                         <th scope="col-12">Task Name</th>
                         <th scope="col-1">Grade</th>
                     </tr>
@@ -24,7 +30,7 @@ const UserGrade = () => {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </motion.div>
     );
 }
 

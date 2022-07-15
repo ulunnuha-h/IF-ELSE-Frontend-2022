@@ -1,0 +1,16 @@
+.pendamping-card{
+    background-color: var(--color-1-p);
+    color: white;
+}
+
+.pendamping-img{
+    background-color: var(--color-2-p);
+    overflow: hidden;
+}
+
+.btn-pendamping{
+    background-color: var(--color-2-s);
+    border: 0px;
+    border-radius: 24px;
+    color: var(--color-font);
+}
