@@ -1,6 +1,6 @@
 import React from 'react';
-import IMAGES from 'C:/Fajri/IF ELSE 2022/IF-ELSE-Frontend-2022//src/Pages/News/Data.json'
-import Test from 'C:/Fajri/IF ELSE 2022/IF-ELSE-Frontend-2022//src/Pages/News/Images/Test.jpg'
+import IMAGES from '../Data.json'
+import Test from '../Images/Test.jpg'
 import Slider from "react-slick";
 import {Link} from 'react-router-dom'
 import "./Recent.css"

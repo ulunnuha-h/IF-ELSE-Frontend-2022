@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './Search.css'
-import data from 'C:/Fajri/IF ELSE 2022/IF-ELSE-Frontend-2022//src/Pages/News/Data.json'
-import Test from 'C:/Fajri/IF ELSE 2022/IF-ELSE-Frontend-2022//src/Pages/News/Images/Test.jpg'
+import data from '../Data.json'
+import Test from '../Images/Test.jpg'
 import {Link} from 'react-router-dom'
 import {BiSearch} from "react-icons/bi"
 
