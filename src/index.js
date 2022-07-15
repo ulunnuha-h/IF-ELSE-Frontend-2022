@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Home from './Pages/Home/Home';
-import News from './Pages/News/News';
+import {News} from './Pages/News/News';
 import FAQ from './Pages/FAQ/FAQ';
 import Presence from './Pages/Presence/Presence';
 import Tasks from './Pages/Tasks/Tasks';
