@@ -1,11 +1,14 @@
 import React from "react";
+import Recent from "./Recent/Recent.js"
+import Search from "./Search/Search.js"
 
 const News = () => {
     return(
         <>
-            <h1>This is the News</h1>
+            <Recent></Recent>
+            <Search></Search>
         </>
     );
 }
 
-export default News;
+export {News};

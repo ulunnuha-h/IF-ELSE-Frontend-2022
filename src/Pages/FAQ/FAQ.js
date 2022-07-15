@@ -1,10 +1,13 @@
 import React from "react";
+import Display from "./Display/Display.js"
+import Contact from "./Contact/Contact.js"
 
 const FAQ = () => {
-    return(
-        <>
-            <h1>This is the FAQ</h1>
-        </>
+    return (
+        <div>
+            <Contact></Contact>
+            <Display></Display>
+        </div>
     );
 }
 
