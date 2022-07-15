@@ -5,8 +5,8 @@ import Gambar from './Gambar.png'
 
 function Contact() {
     return (
-        <div class="table">
-            <img src={Gambar} className="image" alt=""></img>
+        <div class="faq-table">
+            <img src={Gambar} className="faw-image" alt=""></img>
             <div class="another">
                 <p>Have another questions?</p>
             </div>

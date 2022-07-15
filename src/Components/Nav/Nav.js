@@ -3,7 +3,6 @@ import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Nav.css'
 import pic from '../../Assets/Logo/logo-ifelse.png';
 import { Auth } from "../../Config/Auth";
-import { motion } from "framer-motion";
 
 const Nav = () => {
     const nav = useNavigate();
@@ -23,6 +22,10 @@ const Nav = () => {
         "borderRadius":"50%",
         "backgroundColor":"var(--color-3)",
         "margin":"0px 5px"
+    }
+
+    const navTextStyle = {
+        "color" : (trans ? "white":"var(--color-font)")
     }
 
     useEffect(()=>{
@@ -48,22 +51,22 @@ const Nav = () => {
             <ul className="navbar-nav">
                 <li className="nav-item mx-3">
                     <Link className="nav-link" to="news">
-                        <span className="nav-text">News</span>
+                        <span className="nav-text" style={navTextStyle}>News</span>
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
                     <Link className="nav-link" to="faq">
-                        <span className="nav-text">FAQ</span>
+                        <span className="nav-text" style={navTextStyle}>FAQ</span>
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
                     <Link className="nav-link" to="task">
-                        <span className="nav-text">Task</span>
+                        <span className="nav-text" style={navTextStyle}>Task</span>
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
                     <Link className="nav-link" to="presence">
-                        <span className="nav-text">Presence</span>
+                        <span className="nav-text" style={navTextStyle}>Presence</span>
                     </Link>
                 </li>
                 <li className="nav-item mt-4 d-block d-sm-none">
@@ -75,7 +78,6 @@ const Nav = () => {
                             <Link className="nav-link mobile-button d-block d-sm-none" to="user">
                                 <span className="nav-text">Profile</span>
                             </Link>
-
                     }
                     
                 </li>
@@ -85,11 +87,11 @@ const Nav = () => {
             </ul>
             {!auth.isLogged() ? 
             <Link className="d-none d-sm-block" to="login">
-                <motion.button whileHover={{scale:1.05}} className="btn-navlogin">Login</motion.button>
+                <button className="btn-navlogin">Login</button>
             </Link> :
             <Link className="d-none d-sm-block" to="user">
                 <div className="nav-user-icon">
-                    <motion.img whileHover={{scale:1.2, opacity:0.8}} src={auth.getUserData().img} alt="propic" className="img-fluid"></motion.img>
+                    <img src={auth.getUserData().img} alt="propic" className="img-fluid"></img>
                 </div>
             </Link>
             }

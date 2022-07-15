@@ -3,7 +3,7 @@ import React from "react";
 const UserGrade = () => {
     return(
         <div className="py-5 px-3">
-            <table className="table table-hover">
+            <table className="table">
                 <thead className="bg-primary">
                     <tr>
                         <th scope="col-1">No</th>
