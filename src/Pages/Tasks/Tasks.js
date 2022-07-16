@@ -9,7 +9,7 @@ export default function Tasks() {
         {...item}
     />)
     return(
-        <div className='container-fluid row row-cols-auto'>
+        <div className='container-fluid row justify-content-center'>
             {task}
         </div>
     )
