@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useContext } from "react";
 import { Auth } from "../../../Config/Auth";
 
@@ -8,7 +9,7 @@ const UserProfile = () => {
 
     return(
         <>{edit ?
-        <div className="mx-3 my-4 user-profile">
+        <motion.div initial={{y:50,opacity:0}} animate={{y:0,opacity:1}} transition={{type:"tween"}} className="mx-3 mb-5 user-profile">
             <h5>Name</h5>
             <section className="mb-3">{userData.name}</section>
             <h5>NickName</h5>
@@ -21,8 +22,8 @@ const UserProfile = () => {
             <section className="mb-3">{userData.idLine}</section>
             <h5>Group Name</h5>
             <section className="mb-3">{userData.group}</section>
-        </div>:
-        <div className="mx-3 my-4 user-profile">
+        </motion.div>:
+        <div className="mx-3 my-5 user-profile">
             <h5>NickName</h5>
             <input type="text" placeholder="NickName" className="mb-3"/>
             <h5>Address</h5>

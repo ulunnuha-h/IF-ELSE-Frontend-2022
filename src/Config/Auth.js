@@ -8,7 +8,7 @@ const getExampleData = () => {
             idLine : "hanifulunnuha",
             group : "Debian Edu",
             img : "https://drive.google.com/uc?export=view&id=1WPQoiaPabvw2sN-t53iT0mKpODmR03my",
-            aboutMe : "I am a programmer",
+            aboutMe : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
             nim : 215150200111019
         } 
 

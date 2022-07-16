@@ -5,9 +5,9 @@ import Gambar from './Gambar.png'
 
 function Contact() {
     return (
-        <div class="table">
+        <div className="table">
             <img src={Gambar} className="image" alt=""></img>
-            <div class="text-contact">
+            <div className="text-contact">
                 <p>Have another questions?</p>
             </div>
             <Link to="" className="button-contact">

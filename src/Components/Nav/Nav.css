@@ -23,11 +23,17 @@ nav span{
 .nav-text{
     font-size: 18px;
     font-weight: 500;
+    transition: 300ms;
+}
+
+.nav-text:hover{
+    font-weight: bolder;
 }
 
 nav ul{
     display: flex;
     flex-direction: row !important;
+    transition: 300ms;
 }
 .btn-navlogin{
     color: white;

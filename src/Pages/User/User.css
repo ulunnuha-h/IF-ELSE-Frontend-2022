@@ -1,7 +1,36 @@
 .btn-toggle{
-    background-color: gray;
+    background-color: var(--color-1-p);
+    color: white;
     width: 30%;
     border-radius: 100px;
+    border: 0px;
+    transition: 300ms;
+}
+
+.btn-toggle:hover{
+    background-color: var(--color-2-p);
+}
+
+.btn-toggle:disabled{
+    background: linear-gradient(90deg, var(--color-1-p) 5%,gray 5%);
+    color: lightgray;
+}
+
+.btn-logout{
+    border-radius: 100px;
+    background-color: transparent;
+    border: solid 1px var(--color-1-p);
+    color: var(--color-1-p);
+}
+
+.btn-logout:hover{
+    transition: 300ms;
+    background-color: var(--color-1-p);
+    color: white;
+}
+
+.user-profile h5{
+    color: var(--color-1-p);
 }
 
 .user-profile section{
@@ -10,7 +39,8 @@
     padding: 12px 20px;
     border-radius: 24px;
     border: 0px;
-    background-color: lightgray;
+    background-color: var(--color-1-p);
+    color: white;
 }
 
 .user-profile input,textarea{
@@ -23,4 +53,9 @@
 
 .user-bg{
     background-size: cover;
+}
+
+.user-grade th{
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
