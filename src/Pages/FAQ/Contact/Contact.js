@@ -7,10 +7,11 @@ function Contact() {
     return (
         <div class="table">
             <img src={Gambar} className="image" alt=""></img>
-            <div class="another">
+            <div class="text-contact">
                 <p>Have another questions?</p>
             </div>
-            <Link to="" className="contact">
+            <Link to="" className="button-contact">
+                <div className="p-contact"></div>
                 <p>Contact Us</p>
             </Link>
         </div>

@@ -9,13 +9,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 function Recent() {
     const settings = {
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 1.3,
         slidesToScroll: 1,
         initialSlide: 0,
         autoplay: true,
-        autoplaySpeed: 5000,
+        autoplaySpeed: 4000,
         pauseOnHover: true,
         responsive: [
           {

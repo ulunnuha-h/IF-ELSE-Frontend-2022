@@ -17,7 +17,7 @@ function Display() {
     }
 
     return (
-        <div className="wrapper">
+        <div className="display-wrapper">
             <div className="accordion">
                 {
                 Tanya && Tanya.map((item, i) => (
