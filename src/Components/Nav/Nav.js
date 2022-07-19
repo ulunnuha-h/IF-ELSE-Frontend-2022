@@ -8,6 +8,7 @@ const Nav = () => {
     const nav = useNavigate();
     const auth = useContext(Auth);
     const [trans,setTrans] = useState(false);
+    const [res,setRes] = useState(false);
 
     const loc = useLocation();
 
@@ -15,8 +16,8 @@ const Nav = () => {
         "transition":"100ms",
         "height":"76px",
         "position":(loc.pathname.indexOf("user") !== -1? "fixed" : "sticky"),
-        "backgroundColor":(trans ? "":"var(--color-3)"),
-        "color":(trans ? "white":"var(--color-font)")
+        "backgroundColor":(trans && !res ? "":"var(--color-3)"),
+        "color":(trans && !res ? "white":"var(--color-font)")
     }
 
     const logoStyle = {
@@ -26,11 +27,11 @@ const Nav = () => {
     }
 
     const navTextStyle = {
-        "color" : (trans ? "white":"var(--color-font)")
+        "color" : (trans && !res? "white":"var(--color-font)")
     }
 
     const cekNav = () => {
-        if(loc.pathname.indexOf("user") !== -1 && window.scrollY < 172 && window.innerWidth > 576) setTrans(true);
+        if(loc.pathname.indexOf("user") !== -1 && window.scrollY < 172) setTrans(true);
         else setTrans(false);
     }
 
@@ -40,8 +41,11 @@ const Nav = () => {
 
     useEffect(()=>{
         auth.cekLokal();
-        cekNav();
-    },[auth,trans,loc]);
+        if(loc.pathname.indexOf("user") !== -1 && window.scrollY < 172) setTrans(true);
+        else setTrans(false);
+        if(window.innerWidth < 576) setRes(true);
+        else setRes(false);
+    },[auth,loc.pathname]);
 
     return(
         <nav className="navbar px-4 py-1 w-100" style={navStyle}>
@@ -99,7 +103,7 @@ const Nav = () => {
             </Link> :
             <Link className="d-none d-sm-block" to="user">
                 <div className="nav-user-icon">
-                    <img src={auth.getUserData().img} alt="propic" className="img-fluid"></img>
+                    <img src={auth.getUserData().img} alt="propic" className="img-fluid" style={{"transition":"300ms"}}></img>
                 </div>
             </Link>
             }

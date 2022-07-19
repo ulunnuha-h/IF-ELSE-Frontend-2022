@@ -1,24 +1,27 @@
 .admin a{
     text-decoration: none;
-    background-color: red;
 }
 
 .admin #sidebar{
     position: relative;
+    transition: 300ms;
 }
 
 .admin .logout{
     cursor: pointer;
 }
 
+#sidebar .nav-item{
+    transition: 300ms;
+}
+
 #sidebar .nav-item:hover{
-    background-color: aliceblue;
     cursor: pointer;
-    color: red;
+    background-color: darkgray;
 }
 
 #sidebar .nav-item:active{
-    background-color: red;
+    color: var(--color-2-p);
 }
 
 #admin-content{

@@ -1,6 +1,4 @@
 nav{
-    /* background-color: var(--color-3); */
-    /* color: var(--color-font); */
     top: 0;
 }
 
@@ -10,6 +8,11 @@ nav{
     border-radius: 100px;
     overflow: hidden;
     background-color: var(--color-1-p);
+}
+
+.nav-user-icon:hover img{
+    transform: scale(1.1);
+    filter: brightness(0.8);
 }
 
 .nav-brand{
@@ -37,10 +40,17 @@ nav ul{
 }
 .btn-navlogin{
     color: white;
-    background: var(--color-4);
+    background: linear-gradient(90deg, #521737 30%, #AD462F 50%, #FFA42E 70%);
+    background-position: -50px;
+    background-size: 200px;
     padding : 3px 20px;
     border-width: 0px;
     border-radius: 100px;
+    transition: 300ms;
+}
+
+.btn-navlogin:hover{
+    background-position: 0px;
 }
 
 .mobile-button{

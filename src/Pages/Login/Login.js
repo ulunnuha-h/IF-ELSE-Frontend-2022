@@ -30,7 +30,7 @@ const Login = () => {
             className="login-page row m-auto container-lg">
             <div className="col-md-6 col-12 login-image d-flex align-items-center">
                 <div className="px-5 align-self-center m-4">
-                    <img src={logo} alt="logoifelse" className="img-fluid" style={{"borderRadius":"50%","backgroundColor":"var(--color-3)"}}></img>
+                    <motion.img initial={{scale:0.7}} animate={{scale:1}} transition={{type:"tween"}} src={logo} alt="logoifelse" className="img-fluid" style={{"borderRadius":"50%","backgroundColor":"var(--color-3)"}}></motion.img>
                 </div>
             </div>
             <div className="col-md-6 col-12 m-auto">
@@ -81,7 +81,7 @@ const Login = () => {
                             </div>                              
                             <div className="w-100 d-flex justify-content-center">
                                 <button type="submit" className="login-btn mt-3 px-5 py-2" onClick={(e)=>login(e)}>
-                                    <motion.h5 whileHover={{scale:1.1}} className="m-0">LOGIN</motion.h5>
+                                    <h5 className="m-0">LOGIN</h5>
                                 </button>
                             </div>
                             

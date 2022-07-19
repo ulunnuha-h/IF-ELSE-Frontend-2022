@@ -16,6 +16,12 @@ import UserGrade from './Pages/User/Menu/User-Grade';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/Components/Admin-dashboard';
+import AdminKelompok from './Pages/Admin/Components/Admin-kelompok/Admin-kelompok';
+import AdminBerita from './Pages/Admin/Components/Admin-berita';
+import AdminPenugasan from './Pages/Admin/Components/Admin-penugasan';
+import AdminRangkaian from './Pages/Admin/Components/Admin-rangkaian';
+import KelompokDetail from './Pages/Admin/Components/Admin-kelompok/Admin-kelompok-detail';
+import MahasiswaDetail from './Pages/Admin/Components/Admin-kelompok/Admin-mahasiswa-detail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -38,6 +44,12 @@ root.render(
           <Route path='*' element={<Error404/>}/>
           <Route path='/admin' element={<Admin/>}>
             <Route index element={<AdminDashboard/>}/>
+            <Route path='kelompok' element={<AdminKelompok/>}/>
+            <Route path='kelompok/:kelompokId' element={<KelompokDetail/>}/>
+            <Route path='kelompok/:kelompokId/:userId' element={<MahasiswaDetail/>}/>
+            <Route path='rangkaian' element={<AdminRangkaian/>}/>
+            <Route path='berita' element={<AdminBerita/>}/>
+            <Route path='penugasan' element={<AdminPenugasan/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
