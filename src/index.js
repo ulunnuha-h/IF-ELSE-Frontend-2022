@@ -7,6 +7,7 @@ import {News} from './Pages/News/News';
 import FAQ from './Pages/FAQ/FAQ';
 import Presence from './Pages/Presence/Presence';
 import Tasks from './Pages/Tasks/Tasks';
+import TasksDetail from './Pages/Tasks/Task-detail/Tasks-Detail'
 import Error404 from './Pages/404/404';
 import Login from './Pages/Login/Login';
 import User from './Pages/User/User';
@@ -26,7 +27,8 @@ root.render(
             <Route index element={<Home />} />
             <Route path="news" element={<News />} />
             <Route path="faq" element={<FAQ />} />
-            <Route path="task" element={<Tasks />} />
+            <Route path="task" element={<Tasks />}/>
+            <Route path = "task/:id" element={<TasksDetail/>}/>
             <Route path='presence' element={<Presence/>}/>
             <Route path='login' element={<Login/>}/>
             <Route path='user' element={<User/>}>
