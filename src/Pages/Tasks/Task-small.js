@@ -1,8 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Task(props) {
+    const nav = useNavigate();
     return(
-            <div className="taskS d-flex flex-row my-3 mx-0">
+            <div className="taskS d-flex flex-row my-3 mx-0" onClick={()=>nav(`${props.id}`)}>
                 <div className="taskS--jilid d-flex flex-column position-relative">
                     <div className="taskS--elipse"></div>
                     <div className="taskS--elipse"></div>
