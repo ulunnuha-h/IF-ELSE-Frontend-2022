@@ -61,6 +61,11 @@
     transition: 0.2s ease;
 }
 
+.taskD--inputan button:active {
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
 @media (max-width: 767.98px) {
     .taskD--elipse {
         display: none;

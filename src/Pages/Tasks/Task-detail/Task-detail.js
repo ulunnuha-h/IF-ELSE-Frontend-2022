@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Detail(props){
+    const [isMarked , setIsMarked] = useState(false);
+    const handleClick = () => {
+        setIsMarked(current => !current)
+    };
+
+    // const submit = ()=> {
+    //     document.getElementById('btn-mark').removeAttribute("disabled");
+    // }
+
     return(
         <div className="taskD d-flex flex-row my-5 me-5 ms-3 w-auto h-auto">
             <div className="taskD--jilid d-flex flex-column position-relative">
@@ -21,7 +30,7 @@ export default function Detail(props){
                         </div>
                         <div className='star-icon position relative col-md-1 col-lg-2 justify-content-end' style={{width: "60px"}}>
                             <input type="checkbox" className='position-absolute'></input>
-                            <img src={require("./images/Star.png")} alt="star1" style={{width: "50px",color: "#B4B4B4",marginBottom:"40px"}}className="star col-md-1 col-lg-2 justify-content-end" id="bintang"/>
+                            <img src={require("./images/Star.png")} alt="star1" style={{filter : isMarked? 'none':'',width: "50px",color: "#B4B4B4",marginBottom:"40px"}}className="star col-md-1 col-lg-2 justify-content-end" id="bintang"/>
                         </div>
                     </header>
                     <div className="taskD--isi">
@@ -38,8 +47,8 @@ export default function Detail(props){
                             <h4>Input URL:</h4>
                         <div className="taskD--inputan row gap-1">
                             <input type="link" name="Username" className="rounded col-md-7 col-12 border-0 ms-2 col-sm-1" placeholder="Masukkan URL Tugas" style={{backgroundColor: "#FCF4F5"}}/>
-                            <button className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5", color: "black"}}>Submit</button>
-                            <button className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5",color: "black"}} onClick={() => {document.getElementById('bintang').style.filter="none"}}>Mark as done</button>
+                            <button id="btn-submit" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5", color: "black"}}>Submit</button>
+                            <button id="btn-mark" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5",color: "black"}} onClick={handleClick}>Mark as done</button>
                         </div>
                     </div>
                 </article>
