@@ -9,6 +9,15 @@
     width: 340px !important;
     color: #FCF4F5;
     cursor: pointer;
+    transition: transform 500ms ease;
+}
+
+.taskS:hover {
+    transform: scale(1.05);
+}
+
+.content--task--small:hover {
+    box-shadow: gray 0px 3px 8px;;
 }
 
 #taskS--title {
@@ -27,7 +36,6 @@
     height: 145px;
     text-align: justify;
 }
-
 
 .taskS--date {
     height: 25px;
