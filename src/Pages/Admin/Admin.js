@@ -22,8 +22,8 @@ const Admin = () => {
     if(!log) return <AdminLogin login={login}/>;
     else{
         return(
-            <motion.main initial={{opacity:0,scale:1.2}} animate={{opacity:1,scale:1}} className="admin row w-100 m-0" style={{"height":"100vh"}}>
-                <div id="sidebar" className="col-md-3 col-12 p-0 h-100 aktif bg-dark text-light" >
+            <main className="admin row w-100 m-0 bg-secondary" style={{"height":"100vh"}}>
+                <motion.div animate={{x:0}} initial={{x:-500}} transition={{type:"tween",ease:"circOut"}} id="sidebar" className="col-md-3 col-12 p-0 h-100 aktif bg-dark text-light" >
                     <div className="d-flex justify-content-between align-items-center">
                     <div className="w-100 d-flex align-items-center">
                         <span style={{"width":"20%"}}>
@@ -46,28 +46,28 @@ const Admin = () => {
                         <span className="px-2 d-flex align-items-center">Pendamping<hr className="mx-3 w-100"></hr></span>
                         <li className="nav-item p-3" onClick={()=>nav('kelompok')}><i className="fa-solid fa-people-group me-2"></i>Kelompok</li>
                     </ul>
-                </div>
+                </motion.div>
                 <div
                     id="admin-content" 
                     className="col-md-9 col-12 p-0 bg-secondary">
-                    <nav className="w-100 m-0 p-3 d-flex justify-content-between bg-dark text-light">
+                    <motion.nav animate={{y:0}} initial={{y:-200}} transition={{type:"tween",ease:"circOut"}} className="w-100 m-0 p-3 d-flex justify-content-between bg-dark text-light">
                         <span className="d-block d-md-none">
                             <i className="fa-solid fa-burger" onClick={()=>toggle()}></i>
                         </span>
                         <span className="d-none d-md-block">
                             Halo, Admin !
                         </span>
-                        <span className="logout" onClick={()=>login()}>
+                        <span className="logout" onClick={()=>{nav('');login();}}>
                             <i className="fa-solid fa-right-from-bracket me-1"></i>
                             Logout
                         </span>
-                    </nav>
+                    </motion.nav>
                     <Outlet/>
-                    <footer className="p-3 text-center bg-warning">
+                    <footer className="p-3 text-center bg-dark text-light">
                         Developed by IT x DDM IF ELSE © 2022
                     </footer>
                 </div>
-            </motion.main>
+            </main>
         );
     }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Table from "react-bootstrap/esm/Table";
+import Perizinan from "./Admin-rangkaian/Admin-perizinan";
+import Pendataan from "./Admin-rangkaian/Admin-pendataan";
 
 const AdminRangkaian = () => {
     const [toggle,setToggle] = useState(true);
@@ -29,43 +30,9 @@ const AdminRangkaian = () => {
             </div>
             
             {toggle ?
-            <Table striped bordered hover responsive variant="dark">
-                  <thead>
-                    <tr>  
-                      <th>ID</th>
-                      <th>Nama Kelompok</th>
-                      <th>Pendamping</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                  </tbody>
-            </Table>
+            <Perizinan/>
             :
-            <Table striped bordered hover responsive variant="dark">
-                  <thead>
-                    <tr>  
-                      <th>ID</th>
-                      <th>Nama Kelompok</th>
-                      <th>Pendamping</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>2</td>
-                      <td>Zuckerberg</td>
-                      <td>Matt</td>
-                      <td>@awaw</td>
-                    </tr>
-                  </tbody>
-            </Table>
+            <Pendataan/>
             }
         </div>
     );

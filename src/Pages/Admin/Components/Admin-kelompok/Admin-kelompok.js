@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Table from "react-bootstrap/esm/Table";
-import getAllMahasiswa from "../../Data/DataMahasiswa";
+import getAllMahasiswa from "../../Data/Mahasiswa";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
 

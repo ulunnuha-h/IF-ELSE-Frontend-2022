@@ -16,17 +16,17 @@ const UserProfile = () => {
         <>{!edit ?
         <motion.div initial={{y:50,opacity:0}} animate={{y:0,opacity:1}} transition={{type:"tween"}} className="mx-3 mb-5 user-profile">
             <h5>Name</h5>
-            <section className="mb-3">{userData.name}</section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.name}</motion.section>
             <h5>NickName</h5>
-            <section className="mb-3">{userData.nickName}</section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.nickName}</motion.section>
             <h5>NIM</h5>
-            <section className="mb-3">{userData.nim}</section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.nim}</motion.section>
             <h5>Address</h5>
-            <section className="mb-3">{userData.address}</section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.address}</motion.section>
             <h5>ID Line</h5>
-            <section className="mb-3">{userData.idLine}</section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.idLine}</motion.section>
             <h5>Group Name</h5>
-            <section className="mb-3">{userData.group}</section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.group}</motion.section>
         </motion.div>:
         <motion.div initial={{opacity:0}} animate={{opacity:1}} className="mx-3 my-5 user-profile">
             <h5>NickName</h5>

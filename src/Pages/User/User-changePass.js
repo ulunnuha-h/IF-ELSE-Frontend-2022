@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 
 const UserChangePass = (props) => {
     return(
-        <Modal show={props.show} onHide={props.handleClose} centered backdrop="static">
+        <Modal show={props.show} onHide={props.handleClose} centered backdrop="static" style={{"backdropFilter":"blur(10px)"}}>
         <Modal.Header style={{"backgroundColor":"var(--color-1-p)","color":"white"}}>
           <Modal.Title>Change Password</Modal.Title>
         </Modal.Header>
