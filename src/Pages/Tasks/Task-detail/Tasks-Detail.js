@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Data from './DataDetailTask'
+import Data from '../DataTask'
 import DetailTask from './Task-detail'
 import "./tdstyle.css"
 import { Navigate } from 'react-router-dom'
