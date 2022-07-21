@@ -86,21 +86,21 @@
         font-size: 10px;
     }
 
-    article {
+    .taskD--content article {
         margin-left: 10px !important;
     }
 
-    input {
+    .taskD--inputan input {
         font-size: 10px;
         height: 30px !important;
         width: 260px !important;
     }
 
-    button:first-of-type {
+    .taskD--inputan button:first-of-type {
         margin-left: 10px;
     }
 
-    button {
+    .taskD--inputan button {
         margin-bottom: 20px;
         margin-left: 10px;
         font-size: 13px !important;
@@ -112,15 +112,15 @@
 }
 
 @media (max-width: 350px) {
-    button:first-of-type {
+    .taskD--inputan button:first-of-type {
         margin-left: 10px;
     }
 
-    button:last-of-type {
+    .taskD--inputan button:last-of-type {
         margin-left: -5px;
     }
 
-    button {
+    .taskD--inputan button {
         margin-bottom: 20px;
         font-size: 13px !important;
         justify-content: center;
