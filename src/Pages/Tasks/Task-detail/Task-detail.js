@@ -1,14 +1,27 @@
 import React, { useState } from 'react'
+import { taskToggle } from '../DataTask';
 
 export default function Detail(props){
-    const [isMarked , setIsMarked] = useState(false);
+    const [isMarked , setIsMarked] = useState(props.isCompleted);
     const handleClick = () => {
         setIsMarked(current => !current)
+        taskToggle(props.id)
     };
 
-    // const submit = ()=> {
-    //     document.getElementById('btn-mark').removeAttribute("disabled");
-    // }
+    const [isDisabled, setIsDisabled] = useState(true);
+    const submit = ()=> {
+        setIsDisabled(false);
+    }
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const submitted = ()=> {
+        setIsSubmitted(true);
+    }
+
+    const[message, setMessage] = useState('')
+    const handleChange = event => {
+        setMessage(event.target.value);
+    };
 
     return(
         <div className="taskD d-flex flex-row my-5 me-5 ms-3 w-auto h-auto">
@@ -43,14 +56,18 @@ export default function Detail(props){
                             <p>{props.requirement}</p>
                         </div>
                     </div>
-                    <div className="taskD--formUser d-flex flex-column">
-                            <h4>Input URL:</h4>
+                    <form onSubmit={e=> {e.preventDefault();submit();submitted()}} className="taskD--formUser d-flex flex-column">
+                        <h4>Input URL:</h4>
                         <div className="taskD--inputan row gap-1">
-                            <input type="link" name="Username" className="rounded col-md-7 col-12 border-0 ms-2 col-sm-1" placeholder="Masukkan URL Tugas" style={{backgroundColor: "#FCF4F5"}}/>
-                            <button id="btn-submit" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5", color: "black"}}>Submit</button>
-                            <button id="btn-mark" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5",color: "black"}} onClick={handleClick}>Mark as done</button>
+                            <input value={message} onChange={handleChange} name="Username" className="rounded col-md-7 col-12 border-0 ms-2 col-sm-1" required placeholder="Masukkan URL Tugas" style={{backgroundColor: "#FCF4F5"}}/>
+                            <button id="btn-submit" type="submit" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5", color: "black"}} >Submit</button>
+                            <button id="btn-mark" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5",color: "black"}} onClick={handleClick} disabled={isDisabled} >Mark as done</button>
                         </div>
-                    </div>
+                        <span className='mt-2 mb-2'>
+                            <h4 className='submitted-url mt-1' id='result' style={{display: isSubmitted? "inline":"none"}}>Submitted URL: </h4>
+                            <p style={{display: isSubmitted? "inline":"none"}}>{message}</p>
+                        </span>
+                    </form>
                 </article>
             </div>
         </div>

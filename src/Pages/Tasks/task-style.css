@@ -9,7 +9,7 @@
     width: 340px !important;
     color: #FCF4F5;
     cursor: pointer;
-    transition: transform 500ms ease;
+    transition: transform 200ms ease;
 }
 
 .taskS:hover {
