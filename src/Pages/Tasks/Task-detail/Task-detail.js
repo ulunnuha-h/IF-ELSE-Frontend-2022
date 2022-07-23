@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { taskToggle } from '../DataTask';
 
 export default function Detail(props){
+    const [isMarked , setIsMarked] = useState(props.isCompleted);
+    const handleClick = () => {
+        setIsMarked(current => !current)
+        taskToggle(props.id)
+    };
+
+    const [isDisabled, setIsDisabled] = useState(true);
+    const submit = ()=> {
+        setIsDisabled(false);
+    }
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const submitted = ()=> {
+        setIsSubmitted(true);
+    }
+
+    const[message, setMessage] = useState('')
+    const handleChange = event => {
+        setMessage(event.target.value);
+    };
+
     return(
         <div className="taskD d-flex flex-row my-5 me-5 ms-3 w-auto h-auto">
             <div className="taskD--jilid d-flex flex-column position-relative">
@@ -21,7 +43,7 @@ export default function Detail(props){
                         </div>
                         <div className='star-icon position relative col-md-1 col-lg-2 justify-content-end' style={{width: "60px"}}>
                             <input type="checkbox" className='position-absolute'></input>
-                            <img src={require("./images/Star.png")} alt="star1" style={{width: "50px",color: "#B4B4B4",marginBottom:"40px"}}className="star col-md-1 col-lg-2 justify-content-end" id="bintang"/>
+                            <img src={require("./images/Star.png")} alt="star1" style={{filter : isMarked? 'none':'',width: "50px",color: "#B4B4B4",marginBottom:"40px"}}className="star col-md-1 col-lg-2 justify-content-end" id="bintang"/>
                         </div>
                     </header>
                     <div className="taskD--isi">
@@ -34,14 +56,18 @@ export default function Detail(props){
                             <p>{props.requirement}</p>
                         </div>
                     </div>
-                    <div className="taskD--formUser d-flex flex-column">
-                            <h4>Input URL:</h4>
+                    <form onSubmit={e=> {e.preventDefault();submit();submitted()}} className="taskD--formUser d-flex flex-column">
+                        <h4>Input URL:</h4>
                         <div className="taskD--inputan row gap-1">
-                            <input type="link" name="Username" className="rounded col-md-7 col-12 border-0 ms-2 col-sm-1" placeholder="Masukkan URL Tugas" style={{backgroundColor: "#FCF4F5"}}/>
-                            <button className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5", color: "black"}}>Submit</button>
-                            <button className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5",color: "black"}} onClick={() => {document.getElementById('bintang').style.filter="none"}}>Mark as done</button>
+                            <input value={message} onChange={handleChange} name="Username" className="rounded col-md-7 col-12 border-0 ms-2 col-sm-1" required placeholder="Masukkan URL Tugas" style={{backgroundColor: "#FCF4F5"}}/>
+                            <button id="btn-submit" type="submit" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5", color: "black"}} >Submit</button>
+                            <button id="btn-mark" className="btn btn-secondary col-md-2 col-5 border-0" style={{backgroundColor: "#FCF4F5",color: "black"}} onClick={handleClick} disabled={isDisabled} >Mark as done</button>
                         </div>
-                    </div>
+                        <span className='mt-2 mb-2'>
+                            <h4 className='submitted-url mt-1' id='result' style={{display: isSubmitted? "inline":"none"}}>Submitted URL: </h4>
+                            <p style={{display: isSubmitted? "inline":"none"}}>{message}</p>
+                        </span>
+                    </form>
                 </article>
             </div>
         </div>
