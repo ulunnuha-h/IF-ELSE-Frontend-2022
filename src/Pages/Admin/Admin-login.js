@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card,Form,Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const AdminLogin = (props) => {
 
@@ -49,6 +50,7 @@ const AdminLogin = (props) => {
                     </Form>
                 </Card.Body>
             </Card>
+            <Link to="/">To homepage</Link>
         </div>
     );
 }

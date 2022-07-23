@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { getPendataanDay } from "../../Data/Pendataan";
+import { getPendataanDay } from "../../../../Data/Pendataan";
 import { PendataanDetail } from "./Admin-pendataan-detail";
 
 const Pendataan = () => {

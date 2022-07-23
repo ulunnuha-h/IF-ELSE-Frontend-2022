@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/esm/Table";
-import { getAllTugas } from "../Data/Penugasan";
+import { getAllTugas } from "../../../Data/Penugasan";
 import TambahTugasModal from "./Admin-penugasan/Admin-penugasan-tambah";
 import EditTugas from "./Admin-penugasan/Admin-penugasan-edit";
 

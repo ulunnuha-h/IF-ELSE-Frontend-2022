@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { Auth } from "../../Config/Auth";
 import './UserCard.css'
 import { motion } from "framer-motion";
+import { getMahasiswaByNIM } from "../../Data/Mahasiswa";
+import { Auth } from "../../Config/Auth";
 
 const UserCard = () => {
-    const userData = useContext(Auth).getUserData();
+    const nim = parseInt(useContext(Auth).getNim());
+    const userData = (getMahasiswaByNIM(nim) ? getMahasiswaByNIM(nim):{nickName : "tidak ada",aboutMe :"tidak ada", img : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"} );
 
     return(
         <motion.div 

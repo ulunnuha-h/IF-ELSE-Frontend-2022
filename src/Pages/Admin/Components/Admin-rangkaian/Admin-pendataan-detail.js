@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPendataanDayDetail } from '../../Data/Pendataan';
+import { getPendataanDayDetail } from '../../../../Data/Pendataan';
 import Modal from 'react-bootstrap/Modal';
 
 function PendataanDetail(props) {

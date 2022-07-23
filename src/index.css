@@ -10,6 +10,17 @@ nav{
     z-index: 100;
 }
 
+pre{
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
 :root{
     --color-1-p:#521737;
     --color-2-p:#732648;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button,Modal,Form } from "react-bootstrap";
-import { addTugas } from "../../Data/Penugasan";
+import { addTugas } from "../../../../Data/Penugasan";
 
 const TambahTugasModal = (props) =>{
     const [judul,setJudul] = useState('');

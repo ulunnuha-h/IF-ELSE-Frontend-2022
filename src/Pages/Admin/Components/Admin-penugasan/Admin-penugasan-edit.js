@@ -2,8 +2,7 @@ import moment from "moment";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Modal,Form,Button } from "react-bootstrap";
-import { getTugasId } from "../../Data/Penugasan";
-import { editTugas } from "../../Data/Penugasan";
+import { getTugasId,editTugas } from "../../../../Data/Penugasan";
 
 const EditTugas = (props) => {
     const tugas = getTugasId(props.id);

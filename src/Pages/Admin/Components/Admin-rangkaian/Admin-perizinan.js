@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { getPerizinanDay } from "../../Data/Perizinan";
+import { getPerizinanDay } from "../../../../Data/Perizinan";
 import {PerizinanDetail} from "./Admin-perizinan-detail";
 
 const Perizinan = () => {

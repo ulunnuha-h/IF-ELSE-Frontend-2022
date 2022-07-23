@@ -1,6 +1,6 @@
 import React from 'react';
-import { getPerizinanDayDetail } from '../../Data/Perizinan';
 import Modal from 'react-bootstrap/Modal';
+import { getPerizinanDayDetail } from '../../../../Data/Perizinan';
 
 function PerizinanDetail(props) {
     const data = getPerizinanDayDetail(props.rangkaian,props.id);

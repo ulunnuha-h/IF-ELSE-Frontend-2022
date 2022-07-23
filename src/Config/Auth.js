@@ -1,50 +1,54 @@
+import axios from "axios";
 import React, { useState } from "react"
-
-const getExampleData = () => {
-    const user = {
-            name : "Hanif Ulunnuha Hidayat",
-            nickName : "Hanif",
-            address : "Sumenep, Jawa Timur",
-            idLine : "hanifulunnuha",
-            group : "Debian Edu",
-            img : "https://drive.google.com/uc?export=view&id=1WPQoiaPabvw2sN-t53iT0mKpODmR03my",
-            aboutMe : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
-            nim : 215150200111019
-        } 
-
-    return user;
-}
+import { checkEmailPass } from "../Data/Mahasiswa";
 
 const Auth = React.createContext();
 
 const AuthProvider = ({children}) => {
-
     const [log,setLog] = useState(false);
-    const [token,setAuthToken] = useState('');
-    const [errMsg,setErrMsg] = useState('');
+    const [token,setToken] = useState('');
+    const [nim,setNim] = useState('');
 
-    const login = (email,pass) =>{
-        if(email === 'admin@admin' && pass === 'admin'){
-            setAuthToken('token');
+    const userLogin = (email,pass) =>{
+        const respons = checkEmailPass(email,pass);
+        if(respons.success){
+            setToken('token');
+            setNim(respons?.id);
             localStorage.setItem('token','token');
-            setErrMsg('');
+            localStorage.setItem('nim',respons?.id);
             cekLokal();
+            return '';
         }
         else{
-            setErrMsg('Email atau Password salah !');
+            return 'Email atau Password tidak ditemukan !'
+        }
+    }
+
+    const signIn = async (nim,pass) => {
+        let respons;
+        try {
+            respons = await axios.post("http://beb0-116-206-40-78.ngrok.io/login",{
+            "nim":nim,
+            "password":pass            
+        })  
+        console.log(respons.data); 
+        } catch (error) {
+            console.log(error.message);
         }
     }
 
     const cekLokal = () => {
-        if(localStorage.getItem('token') === null) localStorage.setItem('token','');
-        else setAuthToken(localStorage.getItem('token'));
+        if(localStorage.getItem('token') !== null) setToken(localStorage.getItem('token'));
+        if(localStorage.getItem('nim') !== null) setNim(localStorage.getItem('nim'));
         if(token === '') setLog(false);
         else setLog(true);
     }
 
-    const logout = () => {
-        setAuthToken('');
-        localStorage.setItem('token','');
+    const userLogout = () => {
+        setToken('');
+        setNim('');
+        localStorage.removeItem('token');
+        localStorage.removeItem('nim');
         cekLokal();
     }
 
@@ -52,13 +56,12 @@ const AuthProvider = ({children}) => {
         return log;
     }
 
-    const getUserData = () => {
-        const data = getExampleData();
-        return data;
+    const getNim = () => {
+        return nim;
     }
 
     return(
-        <Auth.Provider value={{isLogged,login,logout,errMsg,cekLokal,getUserData}}>
+        <Auth.Provider value={{isLogged,userLogin,userLogout,cekLokal,signIn,getNim}}>
             {children}
         </Auth.Provider>
     );

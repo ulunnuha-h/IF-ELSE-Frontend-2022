@@ -32,6 +32,13 @@
 
 .btn-cancel{
     color: var(--color-1-p);
+    border: solid transparent 1px;
+    transition: 300ms;
+}
+
+.btn-cancel:hover{
+    border: solid var(--color-1-p) 1px;
+    border-radius: 100px;
 }
 
 .btn-save{
