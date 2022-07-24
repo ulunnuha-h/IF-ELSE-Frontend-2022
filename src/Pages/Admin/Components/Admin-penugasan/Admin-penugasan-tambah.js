@@ -39,7 +39,7 @@ const TambahTugasModal = (props) =>{
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Ketentuan</Form.Label>
-                    <Form.Control as="textarea" rows={3} placeholder="Masukkan Deskripsi" value={ketentuan} onChange={(e)=>setKetentuan(e.target.value)} required/>
+                    <Form.Control as="textarea" rows={3} placeholder="Masukkan Ketentuan" value={ketentuan} onChange={(e)=>setKetentuan(e.target.value)} required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Deadline</Form.Label>

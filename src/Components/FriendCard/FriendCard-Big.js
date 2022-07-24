@@ -14,7 +14,7 @@ const FriendCardBig = (props) => {
                 <hr></hr>
                 <div className="position-fixed w-75 h-75"></div>
                 <div className="row m-1">
-                    <div className="col-md-5 p-0 p-md-4 bg-dark rounded" style={{backgroundImage:`url(${data.img})`,backgroundSize:"cover"}}>
+                    <div className="col-md-5 p-0 p-md-4 bg-dark rounded" style={{backgroundImage:`url(${data.img})`,backgroundSize:"cover",aspectRatio:"1/1"}}>
                     </div>
                     <div className="col-md-7 p-0 p-md-4">
                         <h5 className="d-md-block d-none">Name</h5>

@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { Form,Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBeritaById,editBerita } from "../../../../Data/Berita";
+import { getBeritaById,editBerita,deleteBerita } from "../../../../Data/Berita";
 
 const EditBerita = () => {
     const params = useParams();
@@ -12,10 +12,12 @@ const EditBerita = () => {
     const nav = useNavigate();
 
     return(
-        <div className="bg-dark m-4 p-4 text-light">
-            <h3>Tambah Berita Baru</h3>
+        <>
+        <i className="fa-solid fa-arrow-left ms-4 mt-4 text-dark" onClick={()=>nav(-1)} style={{"cursor":"pointer"}}></i>
+        <div className="bg-dark m-2 p-3 m-md-4 p-md-4 text-light">
+            <h3>Edit Baru</h3>
             <hr></hr>
-            <Form className="px-5" onSubmit={e=>{
+            <Form className="px-0 px-md-5" onSubmit={e=>{
                 e.preventDefault();
                 editBerita(params.id,{judul,img,caption});
                 setJudul('');
@@ -38,13 +40,15 @@ const EditBerita = () => {
                     <Form.Label>Caption</Form.Label>
                     <Form.Control as="textarea" rows={28} placeholder="Masukkan kepsyen..." value={caption} onChange={e=>setCaption(e.target.value)} required/>
                 </Form.Group>
-                <section className="d-flex justify-content-end">
-                    <Button className="mx-2" variant="secondary" onClick={()=>nav('/admin$/berita')}>Gajadi :(</Button>
-                    <Button className="mx-2">Preview</Button>
-                    <Button className="mx-2" type="submit">Simpan</Button>
+                <section className="justify-content-center justify-content-md-end row">
+                    <Button className="m-2 col-5 col-md-2" variant="danger" onClick={()=>{nav(-1);deleteBerita(params.id)}}>Hapus</Button>
+                    <Button className="m-2 col-5 col-md-2" variant="secondary" onClick={()=>nav('/admin$/berita')}>Gajadi :(</Button>
+                    <Button className="m-2 col-5 col-md-2">Preview</Button>
+                    <Button className="m-2 col-5 col-md-2" type="submit">Simpan</Button>
                 </section>
             </Form>
         </div>
+        </>
     );
 }
 

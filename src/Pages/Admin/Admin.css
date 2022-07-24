@@ -4,6 +4,7 @@
 
 .admin #sidebar{
     position: relative;
+    transition: 300ms;
 }
 
 .admin .logout{

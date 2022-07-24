@@ -32,7 +32,7 @@ const AdminKelompok = () => {
     return(
         <>
         <TambahKelompok tambah={tambah} setTambah={setTambah}/>
-        <div className="m-4 p-4 bg-dark text-light">
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
             <section className="d-flex justify-content-between mb-3">
                 <h3>List Kelompok</h3>
                 <button className="btn btn-primary" onClick={()=>setTambah(true)}>Tambah Kelompok</button>
@@ -58,10 +58,10 @@ const AdminKelompok = () => {
                 </tbody>
             </Table>
         </div>
-        <div className="m-4 p-4 bg-dark text-light">  
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">  
             <h3>List Semua Maba imut</h3>
             <section className="mb-3 d-flex align-items-center">
-                <input className="w-50" placeholder="Cari berdasarkan nim atau nama..." value={key} onChange={e=>setKey(e.target.value)}></input>
+                <input className="w-100" placeholder="Cari berdasarkan nim atau nama..." value={key} onChange={e=>setKey(e.target.value)}></input>
                 <i className="fa-solid fa-magnifying-glass mx-2"></i>
             </section>            
             <Table striped bordered hover responsive variant="dark">

@@ -1,4 +1,4 @@
-const Tugas = [
+let Tugas = [
 ]
 
 const getAllTugas = () => {
@@ -11,7 +11,12 @@ const getTugasId = (id) => {
 }
 
 const addTugas = (tugasBaru) => {
-    Tugas.push({id:Tugas.length + 1, ...tugasBaru});
+    Tugas.push({id:Date.now(), ...tugasBaru});
+}
+
+const deleteTugas = (id) => {
+    const idx = Tugas.findIndex(tgs => tgs.id === id);
+    Tugas.splice(idx,1);
 }
 
 const editTugas = (editedTugas) => {
@@ -19,4 +24,4 @@ const editTugas = (editedTugas) => {
     Tugas[idx] = editedTugas;
 }
 
-export {getAllTugas,getTugasId,addTugas,editTugas};
+export {getAllTugas,getTugasId,addTugas,editTugas,deleteTugas};

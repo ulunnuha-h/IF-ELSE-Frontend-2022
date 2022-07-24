@@ -19,9 +19,9 @@ const AdminPenugasan = () => {
     }
 
     return(
-        <div className="m-4 p-4 bg-dark text-light h-100">
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light h-100">
             <TambahTugasModal show={tambah} handleClose={handleTambah}/>
-            {id ? <EditTugas show={edit} handleClose={handleEdit} id={id}></EditTugas> : null}
+            {edit ? <EditTugas show={edit} handleClose={handleEdit} id={id}/> : null}
             <div className="d-flex justify-content-between mb-3">
                 <h3 className="m-0">List Penugasan</h3>
                 <button className="btn btn-primary" onClick={()=>setTambah(true)}>Tambah tugas</button>

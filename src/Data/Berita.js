@@ -1,7 +1,12 @@
-const Berita = []
+let Berita = []
 
 const addBerita = (newBerita) => {
-    Berita.push({id : Berita.length + 1 , ...newBerita});
+    Berita.push({id : Date.now() , ...newBerita});
+}
+
+const deleteBerita = (id) => {
+    const idx = Berita.findIndex(berita=>berita.id === id);
+    Berita.splice(idx,1);
 }
 
 const getBeritaById = (id) => {
@@ -18,4 +23,4 @@ const getAllBerita = () => {
     return Berita;
 }
 
-export {addBerita,getAllBerita,getBeritaById,editBerita};
+export {addBerita,getAllBerita,getBeritaById,editBerita,deleteBerita};

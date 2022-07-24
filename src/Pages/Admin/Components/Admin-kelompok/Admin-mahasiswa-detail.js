@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMahasiswaByNIM,updateMahasiswaGroup } from "../../../../Data/Mahasiswa";
@@ -14,7 +14,7 @@ const MahasiswaDetail = () => {
     return(
         <>
             <i className="fa-solid fa-arrow-left ms-4 mt-4 text-dark" onClick={()=>nav(-1)} style={{"cursor":"pointer"}}></i>
-            <div className="p-4 m-4 bg-dark text-light row d-flex flex-lg-row flex-column-reverse">        
+            <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light row d-flex flex-lg-row flex-column-reverse">        
                 <div className="col-lg-9 col-12">
                     <h3>Profil mahasiswa</h3>
                     <hr></hr>
@@ -42,11 +42,12 @@ const MahasiswaDetail = () => {
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Kelompok</span>
                             <div className="dropdown col-lg-9 col-12 p-0">
-                                <button className="btn btn-secondary dropdown-toggle py-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button className="btn btn-secondary dropdown-toggle py-1 w-100 justify-content-between d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {namaKel}
                                 </button>
-                                <ul className="dropdown-menu">
+                                <ul className="dropdown-menu w-100">
                                     {allKelompok.map((kelompok,idx) => <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup(kelompok.id,data.nim))} key={idx}>{kelompok.kelompok}</li>)}
+                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup('',data.nim))}>Mengkosong</li>
                                 </ul>
                             </div>
                         </section>
@@ -62,7 +63,7 @@ const MahasiswaDetail = () => {
                     </div>
                 </div>
             </div>
-            <div className="m-4 p-4 bg-dark text-light">
+            <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
                 <h3>Tugas Mahasiswa Terkait</h3>
                 <hr></hr>
                 <Table striped bordered hover responsive variant="dark">

@@ -1,26 +1,15 @@
 import moment from "moment";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { Modal,Form,Button } from "react-bootstrap";
-import { getTugasId,editTugas } from "../../../../Data/Penugasan";
+import { getTugasId,editTugas,deleteTugas } from "../../../../Data/Penugasan";
 
 const EditTugas = (props) => {
     const tugas = getTugasId(props.id);
-    const [judul,setJudul] = useState('');
-    const [deskripsi,setDeskripsi] = useState('');
-    const [ketentuan,setKetentuan] = useState('');
-    const [deadline,setDeadline] = useState('');
-
-    useEffect(()=>{
-        setJudul(tugas.judul);
-        setDeskripsi(tugas.deskripsi);
-        setKetentuan(tugas.ketentuan);
-        setDeadline(tugas.deadline);
-    },[tugas]);
-
-    const ubahTugas = () => {
-        editTugas({id : props.id,judul,deskripsi,ketentuan,deadline});
-    }
+    const [judul,setJudul] = useState(tugas.judul);
+    const [deskripsi,setDeskripsi] = useState(tugas.deskripsi);
+    const [ketentuan,setKetentuan] = useState(tugas.ketentuan);
+    const [deadline,setDeadline] = useState(tugas.deadline);
 
     return(
         <Modal show={props.show} onHide={props.handleClose} backdrop="static" centered size="lg">
@@ -29,7 +18,7 @@ const EditTugas = (props) => {
         </Modal.Header>
         <Form onSubmit={e=>{
             e.preventDefault();
-            ubahTugas();
+            editTugas({id : props.id,judul,deskripsi,ketentuan,deadline});
             props.handleClose();
         }}>
         <Modal.Body>
@@ -43,7 +32,7 @@ const EditTugas = (props) => {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Ketentuan</Form.Label>
-                    <Form.Control as="textarea" rows={3} placeholder="Masukkan Deskripsi" value={ketentuan} onChange={(e)=>setKetentuan(e.target.value)} required/>
+                    <Form.Control as="textarea" rows={3} placeholder="Masukkan Ketentuan" value={ketentuan} onChange={(e)=>setKetentuan(e.target.value)} required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Deadline</Form.Label>
@@ -51,6 +40,7 @@ const EditTugas = (props) => {
                 </Form.Group>
         </Modal.Body>
         <Modal.Footer>
+            <Button variant="danger" onClick={()=>{props.handleClose();deleteTugas(props.id)}}>Hapus</Button>
             <Button variant="secondary" onClick={props.handleClose}>Gajadi :(</Button>
             <Button type="submit" variant="primary" >Simpan</Button>
         </Modal.Footer>

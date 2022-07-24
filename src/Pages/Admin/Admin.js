@@ -37,14 +37,14 @@ const Admin = () => {
                         <i className="fa-solid fa-x px-4 display-4 d-block d-md-none" onClick={()=>toggle()}></i>
                     </div>                    
                     <ul className="navbar-nav w-100">
-                        <li className="nav-item p-3" onClick={()=>nav('')}><i className="fa-solid fa-gauge me-2"></i>Dashboard</li>
+                        <li className="nav-item p-3" onClick={()=>{nav('');toggle()}}><i className="fa-solid fa-gauge me-2"></i>Dashboard</li>
                         <span className="px-2 d-flex align-items-center">Humas<hr className="mx-3 w-100"></hr></span>
-                        <li className="nav-item  p-3" onClick={()=>nav('berita')}><i className="fa-solid fa-newspaper me-2"></i>Berita</li>
+                        <li className="nav-item  p-3" onClick={()=>{nav('berita');toggle()}}><i className="fa-solid fa-newspaper me-2"></i>Berita</li>
                         <span className="px-2 d-flex align-items-center">QE<hr className="mx-3 w-100"></hr></span>
-                        <li className="nav-item p-3" onClick={()=>nav('rangkaian')}><i className="fa-solid fa-calendar me-2"></i>Rangkaian</li>
-                        <li className="nav-item p-3" onClick={()=>nav('penugasan')}><i className="fa-solid fa-thumbtack me-2"></i>Penugasan</li>
+                        <li className="nav-item p-3" onClick={()=>{nav('rangkaian/perizinan/1');toggle()}}><i className="fa-solid fa-calendar me-2"></i>Rangkaian</li>
+                        <li className="nav-item p-3" onClick={()=>{nav('penugasan');toggle()}}><i className="fa-solid fa-thumbtack me-2"></i>Penugasan</li>
                         <span className="px-2 d-flex align-items-center">Pendamping<hr className="mx-3 w-100"></hr></span>
-                        <li className="nav-item p-3" onClick={()=>nav('kelompok')}><i className="fa-solid fa-people-group me-2"></i>Kelompok</li>
+                        <li className="nav-item p-3" onClick={()=>{nav('kelompok');toggle()}}><i className="fa-solid fa-people-group me-2"></i>Kelompok</li>
                     </ul>
                 </motion.div>
                 <div

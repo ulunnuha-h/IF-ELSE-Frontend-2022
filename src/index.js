@@ -25,6 +25,10 @@ import MahasiswaDetail from './Pages/Admin/Components/Admin-kelompok/Admin-mahas
 import TambahBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-tambah';
 import { ProtectedUser,ProtectedLogin } from './Config/Protected';
 import EditBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-edit';
+import ListPerizinan from './Pages/Admin/Components/Admin-rangkaian/Admin-perizinan-list';
+import ListPendataan from './Pages/Admin/Components/Admin-rangkaian/Admin-pendataan-list';
+import Perizinan from './Pages/Admin/Components/Admin-rangkaian/Admin-perizinan';
+import Pendataan from './Pages/Admin/Components/Admin-rangkaian/Admin-pendataan';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -51,7 +55,14 @@ root.render(
             <Route path='kelompok' element={<AdminKelompok/>}/>
             <Route path='kelompok/:kelompokId' element={<KelompokDetail/>}/>
             <Route path='kelompok/mahasiswa/:nim' element={<MahasiswaDetail/>}/>
-            <Route path='rangkaian' element={<AdminRangkaian/>}/>
+            <Route path='rangkaian' element={<AdminRangkaian/>}>
+              <Route path='perizinan' element={<Perizinan/>}>
+                <Route path=':rangkaian' element={<ListPerizinan/>}/>
+              </Route>      
+              <Route path='pendataan' element={<Pendataan/>}>
+                <Route path=':rangkaian' element={<ListPendataan/>}/>
+              </Route>
+            </Route>
             <Route path='berita' element={<AdminBerita/>}/>
             <Route path='berita/baru' element={<TambahBerita/>}/>
             <Route path='berita/edit/:id' element={<EditBerita/>}/>

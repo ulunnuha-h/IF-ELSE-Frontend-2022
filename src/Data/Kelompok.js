@@ -1,21 +1,26 @@
 const Kelompok = [{
-    id : 1,
+    id : 998212986,
     kelompok : 'SevenWind',
     link : "ikusoooo.com",
     pendamping : "Hatake Kakashi",
     line : "hehe",
-    img : "wa.me"
+    img : "https://placekitten.com/680/715"
 }]
 
 const addKelompok = (kelompok,link,pendamping,line,img) => {
     Kelompok.push({
-        id : Kelompok.length + 1,
+        id : Date.now(),
         kelompok,
         link,
         pendamping,
         line,
         img
     })
+}
+
+const deleteKelompok = (id) => {
+    const idx = Kelompok.findIndex(klmpk => klmpk.id === id);
+    Kelompok.splice(idx,1);
 }
 
 const updateKelompok = (id,newKelompok) => {
@@ -39,4 +44,4 @@ const getKelompokNameById = (id) => {
     else return data.kelompok;
 }
 
-export {addKelompok,getAllKelompok,getKelompokById,getKelompokNameById,updateKelompok};
+export {addKelompok,getAllKelompok,getKelompokById,getKelompokNameById,updateKelompok,deleteKelompok};

@@ -14,6 +14,11 @@ const Nav = () => {
 
     const loc = useLocation();
 
+    const closeSidebar = () => {
+        const sidebar = document.getElementById('check');
+        sidebar.checked = false;
+    }
+
     const navStyle = {
         "transition":"100ms",
         "height":"76px",
@@ -51,7 +56,7 @@ const Nav = () => {
 
     return(
         <nav className="navbar px-4 py-1 w-100" style={navStyle}>
-            <div className="nav-brand h-100 d-flex" onClick={()=>nav('/')}>
+            <div className="nav-brand h-100 d-flex" onClick={()=>{nav('/');closeSidebar()}}>
                 <img src={pic} alt='logo ifelse' className="h-100" style={logoStyle}></img>
                 <section className="d-flex flex-column justify-content-center">
                     <span className="m-0 mt-1 p-0 h5" style={{"fontWeight":"700"}}>IF ELSE</span>
@@ -64,26 +69,26 @@ const Nav = () => {
             </label>
             <ul className="navbar-nav">
                 <li className="nav-item mx-3">
-                    <Link className="nav-link" to="news">
+                    <Link className="nav-link" to="news" onClick={closeSidebar}>
                         <span className="nav-text" style={navTextStyle}>News</span>
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
-                    <Link className="nav-link" to="faq">
+                    <Link className="nav-link" to="faq" onClick={closeSidebar}>
                         <span className="nav-text" style={navTextStyle}>FAQ</span>
                     </Link>
                 </li>
-                <li className="nav-item mx-3">
+                <li className="nav-item mx-3" onClick={closeSidebar}>
                     <Link className="nav-link" to="task">
                         <span className="nav-text" style={navTextStyle}>Task</span>
                     </Link>
                 </li>
-                <li className="nav-item mx-3">
+                <li className="nav-item mx-3" onClick={closeSidebar}>
                     <Link className="nav-link" to="presence">
                         <span className="nav-text" style={navTextStyle}>Presence</span>
                     </Link>
                 </li>
-                <li className="nav-item mt-4 d-block d-sm-none">
+                <li className="nav-item mt-4 d-block d-sm-none" onClick={closeSidebar}>
                     {
                         !auth.isLogged() ? 
                             <Link className="nav-link mobile-button d-block d-sm-none" to="login">
@@ -104,9 +109,7 @@ const Nav = () => {
                 <button className="btn-navlogin">Login</button>
             </Link> :
             <Link className="d-none d-sm-block" to="user">
-                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.img})`}}>
-                    
-                </div>
+                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.img})`}}/>
             </Link>
             }
             
