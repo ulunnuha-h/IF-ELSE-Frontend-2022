@@ -7,15 +7,15 @@ const Auth = React.createContext();
 const AuthProvider = ({children}) => {
     const [log,setLog] = useState(false);
     const [token,setToken] = useState('');
-    const [nim,setNim] = useState('');
+    const [userId,setUserId] = useState('');
 
     const userLogin = (email,pass) =>{
         const respons = checkEmailPass(email,pass);
         if(respons.success){
             setToken('token');
-            setNim(respons?.id);
+            setUserId(respons.id);
             localStorage.setItem('token','token');
-            localStorage.setItem('nim',respons?.id);
+            localStorage.setItem('UserId',respons.id);
             cekLokal();
             return '';
         }
@@ -39,16 +39,16 @@ const AuthProvider = ({children}) => {
 
     const cekLokal = () => {
         if(localStorage.getItem('token') !== null) setToken(localStorage.getItem('token'));
-        if(localStorage.getItem('nim') !== null) setNim(localStorage.getItem('nim'));
-        if(token === '') setLog(false);
+        if(localStorage.getItem('UserId') !== null) setUserId(localStorage.getItem('UserId'));
+        if(token === '' || userId === '') setLog(false);
         else setLog(true);
     }
 
     const userLogout = () => {
         setToken('');
-        setNim('');
+        setUserId('');
         localStorage.removeItem('token');
-        localStorage.removeItem('nim');
+        localStorage.removeItem('UserId');
         cekLokal();
     }
 
@@ -56,12 +56,12 @@ const AuthProvider = ({children}) => {
         return log;
     }
 
-    const getNim = () => {
-        return nim;
+    const getUserId = () => {
+        return userId;
     }
 
     return(
-        <Auth.Provider value={{isLogged,userLogin,userLogout,cekLokal,signIn,getNim}}>
+        <Auth.Provider value={{isLogged,userLogin,userLogout,cekLokal,signIn,getUserId}}>
             {children}
         </Auth.Provider>
     );

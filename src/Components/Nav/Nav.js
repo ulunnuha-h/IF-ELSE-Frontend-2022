@@ -3,12 +3,12 @@ import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Nav.css'
 import pic from '../../Assets/Logo/logo-ifelse.png';
 import { Auth } from "../../Config/Auth";
-import { getMahasiswaByNIM } from "../../Data/Mahasiswa";
+import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
 
 const Nav = () => {
     const nav = useNavigate();
     const auth = useContext(Auth);
-    const mhsData = getMahasiswaByNIM(parseInt(auth.getNim())) ? getMahasiswaByNIM(parseInt(auth.getNim())) : {img : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'};
+    const mhsData = getMahasiswaByUserId(parseInt(auth.getUserId())) ? getMahasiswaByUserId(parseInt(auth.getUserId())) : {Avatar : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'};
     const [trans,setTrans] = useState(false);
     const [res,setRes] = useState(false);
 
@@ -109,7 +109,7 @@ const Nav = () => {
                 <button className="btn-navlogin">Login</button>
             </Link> :
             <Link className="d-none d-sm-block" to="user">
-                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.img})`}}/>
+                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.Avatar})`}}/>
             </Link>
             }
             

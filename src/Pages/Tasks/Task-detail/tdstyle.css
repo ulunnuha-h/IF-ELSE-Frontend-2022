@@ -1,28 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-* {
+.taskD--content {
+    background-color: var(--color-2-p);
+    border-radius: 12px;
+    color: var(--color-bg);
     font-family: 'Montserrat', sans-serif;
 }
 
-.taskD--content {
-    background-color: #732648;
-    border-radius: 24px;
-    color: #FCF4F5;
+.taskD--inputan button,.taskD--inputan input {
+    box-sizing: border-box !important;
 }
 
 .taskD--content h1 {
     font-family: 'Bebas Neue';
-    font-weight: 700;
-    font-size: 96px;
-    padding-bottom: 10px;
+    font-weight: 500;
+    font-size: 3.2rem;
 }
 
 .taskD--jilid {
-    margin-top: 85px;
-    gap: 15px;
+    gap: 6%;
     left: 28px;
 }
 .taskD--elipse {
-    background-color: #521737;
+    background-color: var(--color-1-p);
     border-radius: 40px;
     width: 60px;
     height: 30px;
@@ -30,12 +28,10 @@
 
 .taskD--isi p {
     text-align: justify;
-    width: 97%;
 }
 
 #bintang {
     filter: brightness(0) saturate(100%) invert(92%) sepia(10%) saturate(120%) hue-rotate(306deg) brightness(104%) contrast(98%);
-    width: 50px;
 }
 
 .taskD--content h4 {
@@ -43,30 +39,12 @@
     font-weight: 600;
 }
 
-.star-icon input {
-    margin-top: 0px;
-    width: 50px;
-    height: 50px;
-    opacity: 0%;
-    z-index: 1;
-    cursor: pointer;
-}
-
-.star-icon input:checked ~ #bintang {
-    filter: none !important;
-}
-
-.star-icon input:active ~ #bintang {
-    transform: scale(0.8);
-    transition: 0.2s ease;
-}
-
 .taskD--inputan button:active {
     transform: scale(0.8);
     transition: transform 0.3s ease;
 }
 
-@media (max-width: 767.98px) {
+/* @media (max-width: 767.98px) {
     .taskD--elipse {
         display: none;
     }
@@ -96,9 +74,9 @@
     }
 
     .taskD--inputan input {
+        box-sizing: border-box;
         font-size: 10px;
-        height: 30px !important;
-        width: 260px !important;
+        height: 30px ;
     }
 
     .taskD--inputan button:first-of-type {
@@ -133,4 +111,4 @@
         height: 30px;
         width: 120px !important;
     }
-}
+} */

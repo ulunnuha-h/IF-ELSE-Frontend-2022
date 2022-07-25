@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { getMahasiswaByNIM,updateMahasiswaGroup } from "../../../../Data/Mahasiswa";
+import { getMahasiswaByUserId,updateMahasiswaGroup } from "../../../../Data/Mahasiswa";
 import { getAllKelompok,getKelompokNameById} from "../../../../Data/Kelompok";
 
 const MahasiswaDetail = () => {
     const params = useParams();
-    const data = getMahasiswaByNIM(parseInt(params.nim))
+    const data = getMahasiswaByUserId(parseInt(params.id))
     const allKelompok = getAllKelompok();
-    const [namaKel, setNamaKel] = useState(getKelompokNameById(data.groupId));
+    const [namaKel, setNamaKel] = useState(getKelompokNameById(data.GroupId));
     const nav = useNavigate('');
 
     return(
@@ -21,23 +21,23 @@ const MahasiswaDetail = () => {
                     <section className="d-flex flex-column">
                         <section className="row my-2">
                             <span className="col-lg-3 col-12">Nama</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.name}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Name}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Nama Panggilan</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.nickName}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Nickname}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">NIM</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.nim}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.NIM}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Alamat</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.address}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Address}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Whatsapp</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.wa}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Whatsapp}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Kelompok</span>
@@ -47,7 +47,7 @@ const MahasiswaDetail = () => {
                                 </button>
                                 <ul className="dropdown-menu w-100">
                                     {allKelompok.map((kelompok,idx) => <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup(kelompok.id,data.nim))} key={idx}>{kelompok.kelompok}</li>)}
-                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup('',data.nim))}>Mengkosong</li>
+                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup('',data.NIM))}>Mengkosong</li>
                                 </ul>
                             </div>
                         </section>

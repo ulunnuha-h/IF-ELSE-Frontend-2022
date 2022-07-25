@@ -4,14 +4,14 @@ import { Auth } from "../../Config/Auth";
 import { updateMahasiswaPass } from "../../Data/Mahasiswa";
 
 const UserChangePass = (props) => {
-    const nim = parseInt(useContext(Auth).getNim());
+    const userId = parseInt(useContext(Auth).getUserId());
     const [old,setOld] = useState('');
     const [new1,setNew1] = useState('');
     const [new2,setNew2] = useState('');
     const [msg,setMsg] = useState('');
 
     const handleChange = () => {
-        setMsg(updateMahasiswaPass(nim,old,new1,new2));
+        setMsg(updateMahasiswaPass(userId,old,new1,new2));
     }
 
     return(

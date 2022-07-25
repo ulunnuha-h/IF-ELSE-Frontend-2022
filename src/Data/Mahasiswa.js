@@ -2,92 +2,97 @@ import { getKelompokNameById } from "./Kelompok";
 
 const Mahasiswa = [
     {
-        name : "Hanif Ulunnuha Hidayat",
-        nickName : "Hanif",
-        address : "Sumenep, Jawa Timur",
-        idLine : "hanifulunnuha",
-        groupId : null,
-        img : "https://placekitten.com/1200/1590",
-        aboutMe : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
-        wa : '082215209344',
-        nim : 215150200111019,
-        email : 'admin@admin',
-        pass : 'admin'},
+        Name : "Hanif Ulunnuha Hidayat",
+        Nickname : "Hanif",
+        Address : "Sumenep, Jawa Timur",
+        Line : "hanifulunnuha",
+        GroupId : null,
+        UserId : 1,
+        Avatar : "https://placekitten.com/1200/1590",
+        About : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
+        Whatsapp : '082215209344',
+        NIM : 215150200111019,
+        Email : 'admin@admin',
+        Password : 'admin'},
     {
-        name : "Buggy Maulana",
-        nickName : "Bul",
-        address : "Northeast Blue, Jakarta",
-        idLine : "bebegege78",
-        groupId : null,
-        img : "https://placekitten.com/200/300",
-        aboutMe : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
-        wa : '082215746112',
-        nim : 215150200111018,
-        email : 'buggy@admin',
-        pass : 'admin'},
+        Name : "Buggy Maulana",
+        Nickname : "Bul",
+        Address : "Northeast Blue, Jakarta",
+        Line : "bebegege78",
+        GroupId : null,
+        UserId : 2,
+        Avatar : "https://placekitten.com/200/300",
+        About : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
+        Whatsapp : '082215746112',
+        NIM : 215150200111018,
+        Email : 'buggy@admin',
+        Password : 'admin'},
     {
-        name : "Steven Mantep",
-        nickName : "Stif",
-        address : "Hogwarts, Jawa Tenggara",
-        idLine : "Steveben",
-        groupId : null,
-        img : "https://placekitten.com/300/300",
-        aboutMe : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
-        wa : '081992878312',
-        nim : 215150200111020,
-        email : 'steven@admin',
-        pass : 'admin'},
+        Name : "Steven Mantep",
+        Nickname : "Stif",
+        Address : "Hogwarts, Jawa Tenggara",
+        Line : "Steveben",
+        GroupId : null,
+        UserId : 3,
+        Avatar : "https://placekitten.com/300/300",
+        About : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
+        Whatsapp : '081992878312',
+        NIM : 215150200111020,
+        Email : 'steven@admin',
+        Password : 'admin'},
     {
-        name : "Horse D. Muffin",
-        nickName : "Hos",
-        address : "Fuji, Jawa Depan",
-        idLine : "horsemuff00",
-        groupId : null,
-        img : "https://placekitten.com/300/400",
-        aboutMe : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
-        wa : '088198223714',
-        nim : 215150200111022,
-        email : 'muffin@admin',
-        pass : 'admin'},
+        Name : "Horse D. Muffin",
+        Nickname : "Hos",
+        Address : "Fuji, Jawa Depan",
+        Line : "horsemuff00",
+        GroupId : null,
+        UserId : 4,
+        Avatar : "https://placekitten.com/300/400",
+        About : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
+        Whatsapp : '088198223714',
+        NIM : 215150200111022,
+        Email : 'muffin@admin',
+        Password : 'admin'},
     {
-        name : "Golemunaroh McRahmat",
-        nickName : "Mamat",
-        address : "London, England",
-        idLine : "thegolem8",
-        groupId : null,
-        img : "https://placekitten.com/600/500",
-        aboutMe : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
-        wa : '087817223976',
-        nim : 215150200111034,
-        email : 'golem@admin',
-        pass : 'admin'
+        Name : "Golemunaroh McRahmat",
+        Nickname : "Mamat",
+        Address : "London, England",
+        Line : "thegolem8",
+        GroupId : null,
+        UserId : 5,
+        Avatar : "https://placekitten.com/600/500",
+        About : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim vitae diam pellentesque aliquet. Cras porttitor dictum lorem in pretium.",
+        Whatsapp : '087817223976',
+        NIM : 215150200111034,
+        Email : 'golem@admin',
+        Password : 'admin'
     }
 ]
 
 const getAllMahasiswa = (key) => {
     
     const filtered = Mahasiswa.filter(mhs => {
-        if(isNaN(parseInt(key))) return mhs.name.toLowerCase().indexOf(key.toLowerCase()) !== -1;
-        else return mhs.nim.toString().indexOf(key) !== -1;
+        if(isNaN(parseInt(key))) return mhs.Name.toLowerCase().indexOf(key.toLowerCase()) !== -1;
+        else return mhs.NIM.toString().indexOf(key) !== -1;
     });
     return filtered;
 }
 
-const getMahasiswaByNIM = (NIM) => {
-    const data = Mahasiswa.find(mahasiswa => mahasiswa.nim === NIM);
+const getMahasiswaByUserId = (UserId) => {
+    const data = Mahasiswa.find(mahasiswa => mahasiswa.UserId === UserId);
     return data;
 }
 
 const getAllMahasiswaByGroup = (id) => {
-    const data = Mahasiswa.filter(mahasiswa => mahasiswa.groupId === id);
+    const data = Mahasiswa.filter(mahasiswa => mahasiswa.GroupId === id);
     return data;
 }
 
 const updateMahasiswaGroup = (id,nim) => {
     let name = "Tidak Ada Kelompok";
     for (let i = 0; i < Mahasiswa.length; i++) {
-        if(Mahasiswa[i].nim === nim) {
-            Mahasiswa[i].groupId = id
+        if(Mahasiswa[i].NIM === nim) {
+            Mahasiswa[i].GroupId = id
             name = getKelompokNameById(id);
         };
     }
@@ -95,19 +100,19 @@ const updateMahasiswaGroup = (id,nim) => {
 }
 
 const updateMahasiswaData = (nim,newData) => {
-    const idx = Mahasiswa.findIndex(mhs => mhs.nim === nim);
-    Mahasiswa[idx].nickName = newData.nickName;
-    Mahasiswa[idx].address = newData.address;
-    Mahasiswa[idx].idLine = newData.idLine;
-    Mahasiswa[idx].aboutMe = newData.aboutMe;
+    const idx = Mahasiswa.findIndex(mhs => mhs.NIM === nim);
+    Mahasiswa[idx].Nickname = newData.nickName;
+    Mahasiswa[idx].Address = newData.address;
+    Mahasiswa[idx].Line = newData.idLine;
+    Mahasiswa[idx].About = newData.aboutMe;
 }
 
 const updateMahasiswaPass = (nim,old,new1,new2) => {
-    const idx = Mahasiswa.findIndex(mhs => mhs.nim === nim);
+    const idx = Mahasiswa.findIndex(mhs => mhs.NIM === nim);
 
-    if(old === Mahasiswa[idx].pass){
+    if(old === Mahasiswa[idx].Password){
         if(new1 === new2){
-            Mahasiswa[idx].pass = new1;
+            Mahasiswa[idx].Password = new1;
             return 'sukses';
         }
         else return "Password yang baru keduanya tidak sama"
@@ -116,9 +121,9 @@ const updateMahasiswaPass = (nim,old,new1,new2) => {
 }
 
 const checkEmailPass = (email,pass) => {
-    let data = Mahasiswa.find(mhs => mhs.email === email && mhs.pass === pass);
-    if(data) return {success : true , id:data.nim}
+    let data = Mahasiswa.find(mhs => mhs.Email === email && mhs.Password === pass);
+    if(data) return {success : true , id:data.UserId}
     else return {success : false};
 }
 
-export {getAllMahasiswa,getMahasiswaByNIM,updateMahasiswaGroup,getAllMahasiswaByGroup,checkEmailPass,updateMahasiswaData,updateMahasiswaPass};
+export {getAllMahasiswa,getMahasiswaByUserId,updateMahasiswaGroup,getAllMahasiswaByGroup,checkEmailPass,updateMahasiswaData,updateMahasiswaPass};

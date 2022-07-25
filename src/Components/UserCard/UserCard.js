@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import './UserCard.css'
 import { motion } from "framer-motion";
-import { getMahasiswaByNIM } from "../../Data/Mahasiswa";
+import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
 import { Auth } from "../../Config/Auth";
 
 const UserCard = () => {
-    const nim = parseInt(useContext(Auth).getNim());
-    const userData = (getMahasiswaByNIM(nim) ? getMahasiswaByNIM(nim):{nickName : "tidak ada",aboutMe :"tidak ada", img : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"} );
+    const userId = parseInt(useContext(Auth).getUserId());
+    const userData = (getMahasiswaByUserId(userId) ? getMahasiswaByUserId(userId):{nickName : "tidak ada",aboutMe :"tidak ada", img : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"} );
 
     return(
         <motion.div 
@@ -15,9 +15,9 @@ const UserCard = () => {
             whileHover={{scale:1.02}} 
             transition={{type:"tween",duration:0.5,ease:"circOut"}} 
             className="user-card d-flex flex-column align-items-center justify-content-between">
-            <div className="user-image" style={{backgroundImage:`url(${userData.img})`,backgroundSize:"cover"}}/>
-            <h2 className="mt-2">Hi, {userData.nickName}!</h2>
-            <p style={{"fontSize":"0.9rem"}}>{userData.aboutMe}</p>
+            <div className="user-image" style={{backgroundImage:`url(${userData.Avatar})`,backgroundSize:"cover"}}/>
+            <h2 className="mt-2">Hi, {userData.Nickname}!</h2>
+            <p style={{"fontSize":"0.9rem"}}>{userData.About}</p>
         </motion.div>
     );
 }

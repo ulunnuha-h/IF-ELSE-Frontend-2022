@@ -3,11 +3,11 @@ import PendampingCard from "../../../Components/PendampingCard/PendampingCard";
 import FriendCard from "../../../Components/FriendCard/FriendCard";
 import { motion } from "framer-motion";
 import { Auth } from "../../../Config/Auth";
-import { getMahasiswaByNIM,getAllMahasiswaByGroup } from "../../../Data/Mahasiswa";
+import { getMahasiswaByUserId,getAllMahasiswaByGroup } from "../../../Data/Mahasiswa";
 
 const UserGroup = () => {
-    const nim = parseInt(useContext(Auth).getNim());
-    const groupId = getMahasiswaByNIM(nim).groupId;
+    const userId = parseInt(useContext(Auth).getUserId());
+    const groupId = getMahasiswaByUserId(userId).GroupId;
     const allMhs = (groupId ? getAllMahasiswaByGroup(groupId) : []);
 
     return(

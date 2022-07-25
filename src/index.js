@@ -39,8 +39,9 @@ root.render(
             <Route index element={<Home />} />
             <Route path="news" element={<News />} />
             <Route path="faq" element={<FAQ />} />
-            <Route path="task" element={<Tasks />}/>
-            <Route path = "task/:id" element={<TasksDetail/>}/>
+            <Route path="task" element={<Tasks />}>
+              <Route path = ":id" element={<TasksDetail/>}/>
+            </Route>
             <Route path='presence' element={<Presence/>}/>
             <Route path='login' element={<ProtectedLogin/>}/>
             <Route path='user' element={<ProtectedUser/>}>
@@ -54,7 +55,7 @@ root.render(
             <Route index element={<AdminDashboard/>}/>
             <Route path='kelompok' element={<AdminKelompok/>}/>
             <Route path='kelompok/:kelompokId' element={<KelompokDetail/>}/>
-            <Route path='kelompok/mahasiswa/:nim' element={<MahasiswaDetail/>}/>
+            <Route path='kelompok/mahasiswa/:id' element={<MahasiswaDetail/>}/>
             <Route path='rangkaian' element={<AdminRangkaian/>}>
               <Route path='perizinan' element={<Perizinan/>}>
                 <Route path=':rangkaian' element={<ListPerizinan/>}/>

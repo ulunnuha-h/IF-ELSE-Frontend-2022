@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import React, { useContext } from "react";
 import './PendampingCard.css';
 import { Auth } from "../../Config/Auth";
-import { getMahasiswaByNIM } from "../../Data/Mahasiswa";
+import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
 import { getKelompokById } from "../../Data/Kelompok";
 
 const PendampingCard = () => {
-    const nim = parseInt(useContext(Auth).getNim());
-    const  mhs = getMahasiswaByNIM(nim);
-    const kelompok = (mhs.groupId ? getKelompokById(mhs.groupId) : {pendamping : "tidak ada",line:"tidak ada",link : "#",img:""})
+    const userId = parseInt(useContext(Auth).getUserId());
+    const mhs = getMahasiswaByUserId(userId);
+    const kelompok = (mhs.GroupId ? getKelompokById(mhs.GroupId) : {pendamping : "tidak ada",line:"tidak ada",link : "#",img:""})
     return(
         <motion.div
             className="pendamping-card row p-3" 
