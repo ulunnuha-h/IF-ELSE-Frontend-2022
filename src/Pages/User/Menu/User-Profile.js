@@ -9,30 +9,30 @@ const UserProfile = () => {
     const UserId = parseInt(useContext(Auth).getUserId());
     const userData = getMahasiswaByUserId(UserId);
     const [editProfile,toggleEditProfile] = useOutletContext();
-    const [nick,setNick] = useState(userData.Nickname);
-    const [address,setAddress] = useState(userData.Address);
-    const [line,setLine] = useState(userData.Line);
-    const [about,setAbout] = useState(userData.About);    
+    const [nick,setNick] = useState(userData.nickname);
+    const [address,setAddress] = useState(userData.address);
+    const [line,setLine] = useState(userData.line);
+    const [about,setAbout] = useState(userData.about);    
 
     const editUser = () => {
-        updateMahasiswaData(userData.NIM,{nickName : nick, address,idLine : line, aboutMe : about});
+        updateMahasiswaData(userData.user_id,{nickName : nick, address,idLine : line, aboutMe : about});
     }
 
     return(
         <>{!editProfile ?
         <div className="mx-3 mb-5 user-profile">
             <h5>Name</h5>
-            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.Name}</motion.section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.nama}</motion.section>
             <h5>NickName</h5>
-            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.Nickname}</motion.section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.nickname}</motion.section>
             <h5>NIM</h5>
-            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.NIM}</motion.section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.nim}</motion.section>
             <h5>Address</h5>
-            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.Address}</motion.section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.address}</motion.section>
             <h5>ID Line</h5>
-            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.Line}</motion.section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.line}</motion.section>
             <h5>Group Name</h5>
-            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{getKelompokNameById(userData.GroupId)}</motion.section>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{getKelompokNameById(userData.group_id)}</motion.section>
         </div>:
         <div className="mx-3 my-0 user-profile">
             <h5>NickName</h5>

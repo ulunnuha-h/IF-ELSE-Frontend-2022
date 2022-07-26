@@ -8,7 +8,7 @@ import { getKelompokById } from "../../Data/Kelompok";
 const PendampingCard = () => {
     const userId = parseInt(useContext(Auth).getUserId());
     const mhs = getMahasiswaByUserId(userId);
-    const kelompok = (mhs.GroupId ? getKelompokById(mhs.GroupId) : {pendamping : "tidak ada",line:"tidak ada",link : "#",img:""})
+    const kelompok = (mhs.group_id ? getKelompokById(mhs.group_id) : {pendamping : "tidak ada",line:"tidak ada",link : "#",img:""})
     return(
         <motion.div
             className="pendamping-card row p-3" 

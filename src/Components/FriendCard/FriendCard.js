@@ -20,14 +20,14 @@ const FriendCard = (props) => {
         <div className="card-container" >
             <div className="card-base" onClick={toggle}>
                 <div className="front d-flex flex-column align-items-center justify-content-center">
-                    <div className="profile-pic" style={{backgroundImage:`url(${data.Avatar})`,backgroundSize:"cover"}}>
+                    <div className="profile-pic" style={{backgroundImage:`url(${data.avatar})`,backgroundSize:"cover"}}>
                     </div>
-                    <h3>{data.Nickname}</h3>
+                    <h3>{data.nickname}</h3>
                 </div>
                 <div className="back d-flex flex-column justify-content-center">
-                    <h6>{data.Name}</h6>
-                    <strong className="my-2">ID LINE : {data.Line}</strong>
-                    <p>{data.About}</p>
+                    <h6>{data.nama}</h6>
+                    <strong className="my-2">ID LINE : {data.line}</strong>
+                    <p>{data.about}</p>
                 </div>
             </div>
             <AnimatePresence>

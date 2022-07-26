@@ -7,7 +7,7 @@ import { getMahasiswaByUserId,getAllMahasiswaByGroup } from "../../../Data/Mahas
 
 const UserGroup = () => {
     const userId = parseInt(useContext(Auth).getUserId());
-    const groupId = getMahasiswaByUserId(userId).GroupId;
+    const groupId = getMahasiswaByUserId(userId).group_id;
     const allMhs = (groupId ? getAllMahasiswaByGroup(groupId) : []);
 
     return(

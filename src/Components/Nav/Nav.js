@@ -109,7 +109,7 @@ const Nav = () => {
                 <button className="btn-navlogin">Login</button>
             </Link> :
             <Link className="d-none d-sm-block" to="user">
-                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.Avatar})`}}/>
+                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.avatar})`}}/>
             </Link>
             }
             

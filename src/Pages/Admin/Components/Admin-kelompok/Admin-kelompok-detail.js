@@ -27,9 +27,9 @@ const KelompokDetail = () => {
             return(
                 <tr key={idx}>
                     <td className="py-3 col-1">{dataMhs.nim}</td>
-                    <td className="py-3">{dataMhs.name}</td>
-                    <td className="py-3">{getKelompokNameById(dataMhs.groupId)}</td>
-                    <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`../kelompok/mahasiswa/${dataMhs.nim}`)}>Detail</button></td>
+                    <td className="py-3">{dataMhs.nama}</td>
+                    <td className="py-3">{getKelompokNameById(dataMhs.group_id)}</td>
+                    <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`../kelompok/mahasiswa/${dataMhs.user_id}`)}>Detail</button></td>
                 </tr>
             );
         });

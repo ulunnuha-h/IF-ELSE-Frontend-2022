@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 import { getAllMahasiswa } from "../../../Data/Mahasiswa";
 import ReactPaginate from "react-paginate";
@@ -18,13 +18,17 @@ const AdminKelompok = () => {
         setPageNum(selected);
     }
 
+    useEffect(()=>{
+        setPageNum(0);
+    },[key]);
+
     const showListMahasiswa = DataMahasiswa.slice(pageNum*10,(pageNum*10)+10).map((data,idx)=>{
         return(
             <tr key={idx}>
                 <td className="py-3 col-1">{data.nim}</td>
-                <td className="py-3">{data.name}</td>
-                <td className="py-3">{getKelompokNameById(data.groupId)}</td>
-                <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`mahasiswa/${data.nim}`)}>Detail</button></td>
+                <td className="py-3">{data.nama}</td>
+                <td className="py-3">{getKelompokNameById(data.group_id)}</td>
+                <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`mahasiswa/${data.user_id}`)}>Detail</button></td>
             </tr>
         );
     });

@@ -8,7 +8,7 @@ const MahasiswaDetail = () => {
     const params = useParams();
     const data = getMahasiswaByUserId(parseInt(params.id))
     const allKelompok = getAllKelompok();
-    const [namaKel, setNamaKel] = useState(getKelompokNameById(data.GroupId));
+    const [namaKel, setNamaKel] = useState(getKelompokNameById(data.group_id));
     const nav = useNavigate('');
 
     return(
@@ -21,23 +21,23 @@ const MahasiswaDetail = () => {
                     <section className="d-flex flex-column">
                         <section className="row my-2">
                             <span className="col-lg-3 col-12">Nama</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Name}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.nama}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Nama Panggilan</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Nickname}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.nickname}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">NIM</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.NIM}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.nim}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Alamat</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Address}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.address}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Whatsapp</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.Whatsapp}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.whatsapp}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Kelompok</span>
@@ -46,20 +46,19 @@ const MahasiswaDetail = () => {
                                     {namaKel}
                                 </button>
                                 <ul className="dropdown-menu w-100">
-                                    {allKelompok.map((kelompok,idx) => <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup(kelompok.id,data.nim))} key={idx}>{kelompok.kelompok}</li>)}
-                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup('',data.NIM))}>Mengkosong</li>
+                                    {allKelompok.map((kelompok,idx) => <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup(kelompok.id,data.user_id))} key={idx}>{kelompok.kelompok}</li>)}
+                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup('',data.user_id))}>Mengkosong</li>
                                 </ul>
                             </div>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">About Me</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.aboutMe}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.about}</span>
                         </section>
                     </section>
                 </div>
                 <div className="col-lg-3 col-12 p-5 p-lg-4">
-                    <div className="bg-secondary m-auto" style={{"aspectRatio":"1/1","borderRadius":"50%","overflow":"hidden"}}>
-                        <img src={data.img} className="img-fluid" alt="profilpic"></img>
+                    <div className="bg-secondary m-auto" style={{"aspectRatio":"1/1","borderRadius":"50%","overflow":"hidden",backgroundImage:`url(${data.avatar})`,backgroundSize:"cover"}}>
                     </div>
                 </div>
             </div>
