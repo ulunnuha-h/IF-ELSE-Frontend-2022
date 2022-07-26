@@ -5,7 +5,6 @@ import { checkEmailPass } from "../Data/Mahasiswa";
 const Auth = React.createContext();
 
 const AuthProvider = ({children}) => {
-    const [log,setLog] = useState(false);
     const [token,setToken] = useState('');
     const [userId,setUserId] = useState('');
 
@@ -40,8 +39,6 @@ const AuthProvider = ({children}) => {
     const cekLokal = () => {
         if(localStorage.getItem('token') !== null) setToken(localStorage.getItem('token'));
         if(localStorage.getItem('UserId') !== null) setUserId(localStorage.getItem('UserId'));
-        if(token === '' || userId === '') setLog(false);
-        else setLog(true);
     }
 
     const userLogout = () => {
@@ -52,16 +49,12 @@ const AuthProvider = ({children}) => {
         cekLokal();
     }
 
-    const isLogged = () => {
-        return log;
-    }
-
     const getUserId = () => {
         return userId;
     }
 
     return(
-        <Auth.Provider value={{isLogged,userLogin,userLogout,cekLokal,signIn,getUserId}}>
+        <Auth.Provider value={{userLogin,userLogout,cekLokal,signIn,getUserId}}>
             {children}
         </Auth.Provider>
     );

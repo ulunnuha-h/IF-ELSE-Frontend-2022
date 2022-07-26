@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import { useOutletContext } from "react-router-dom";
-import { Auth } from "../../../Config/Auth";
 import { getMahasiswaByUserId,updateMahasiswaData } from "../../../Data/Mahasiswa";
 import { getKelompokNameById } from "../../../Data/Kelompok";
 
 const UserProfile = () => {
-    const UserId = parseInt(useContext(Auth).getUserId());
-    const userData = getMahasiswaByUserId(UserId);
+    const UserId = parseInt(localStorage.getItem('UserId'));
+    const userData = getMahasiswaByUserId(UserId) ? getMahasiswaByUserId(UserId) : {};
     const [editProfile,toggleEditProfile] = useOutletContext();
     const [nick,setNick] = useState(userData.nickname);
     const [address,setAddress] = useState(userData.address);

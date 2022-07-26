@@ -24,7 +24,7 @@ const Nav = () => {
         "transition":"100ms",
         "height":"76px",
         "position":((isHome || isProfile)? "fixed" : "sticky"),
-        "backgroundColor":((isMobile || (isTop && (isHome || isProfile)) )? "":"var(--color-3)"),
+        "backgroundColor":((!isMobile && (isTop && (isHome || isProfile)) )? "":"var(--color-3)"),
         "color":((isTop && isProfile) ? "white":"var(--color-font)")
     }   
 
@@ -79,7 +79,7 @@ const Nav = () => {
                 </li>
                 <li className="nav-item mt-4 d-block d-sm-none" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     {
-                        !auth.isLogged() ? 
+                        !localStorage.getItem('UserId') ? 
                             <Link className="nav-link mobile-button d-block d-sm-none" to="login" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                                 <span className="nav-text">Login</span>
                             </Link> :
@@ -93,7 +93,7 @@ const Nav = () => {
                     Developed by IT x DDM IF ELSE &#169; 2022
                 </footer>
             </ul>
-            {!auth.isLogged() ? 
+            {!localStorage.getItem('UserId') ? 
             <Link className="d-none d-sm-block" to="login" onClick={()=>{window.scrollTo(0,0)}}>
                 <button className="btn-navlogin">Login</button>
             </Link> :

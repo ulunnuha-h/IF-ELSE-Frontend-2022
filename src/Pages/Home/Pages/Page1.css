@@ -7,11 +7,27 @@
     top : -350%;
 }
 
+.parallax-cover-4 {
+    top : -400%;
+}
+
+.parallax-cover-5 {
+    height:100vh;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
 @media (max-width: 768px){
     .parallax-wrapper {
         height:100vh;
     }
     .parallax-cover {
-        top : -280%;
+        top : -300%;
+    }
+    .parallax-cover-4 {
+        top : -430%;
+    }
+    .parallax-cover-5 {
+        background-color:#df7200;
     }
 }

@@ -11,21 +11,11 @@ import El8 from '../../../Assets/Parallax/8.webp'
 import './Page1.css';
 import {ReactComponent as Logo} from '../../../Assets/Logo/logohome.svg'
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
-import { useParallaxController } from 'react-scroll-parallax';
-import {useLocation} from 'react-router-dom'
 
 const Page1 = () => {
     let isMobile = (window.innerWidth < 768);
     const layerClass = 'position-absolute w-100 d-flex justify-content-center';
     const layerStyle = {zIndex:'-2',overflowX:'hidden'};
-
-    const location = useLocation();
-    const parallaxController = useParallaxController();
-  
-    useEffect(() => {
-      parallaxController.update();
-    }, [location.pathname,parallaxController]);
 
     const pEffect = (start,end) =>{
         return ({
@@ -38,14 +28,14 @@ const Page1 = () => {
     return(
         <div>        
         <div className='d-flex align-items-end justify-content-center parallax-wrapper'>
-            <div ref={useParallax(pEffect(0,800)).ref} className={layerClass} style={layerStyle} >
-                <img style={{minWidth:'1280px'}} src={El1} alt='imgparallax' onLoad={()=>parallaxController.update()}></img>
+            <div ref={useParallax(pEffect(-10,750)).ref} className={layerClass} style={layerStyle} >
+                <img style={{minWidth:'1280px'}} src={El1} alt='imgparallax' ></img>
             </div>
             <div ref={useParallax(pEffect(0,700)).ref} className={layerClass} style={layerStyle} >
-                <img style={{minWidth:'1280px'}} src={El2} alt='imgparallax' onLoad={()=>parallaxController.update()}></img>
+                <img style={{minWidth:'1280px'}} src={El2} alt='imgparallax' ></img>
             </div>
             <div ref={useParallax(pEffect(0,600)).ref} className={layerClass} style={layerStyle} >
-                <img style={{minWidth:'1280px'}} src={El3} alt='imgparallax' onLoad={()=>parallaxController.update()}></img>
+                <img style={{minWidth:'1280px'}} src={El3} alt='imgparallax' ></img>
             </div>
             <motion.div 
                 initial={{opacity:0,scale:1.2}} 
@@ -54,23 +44,24 @@ const Page1 = () => {
                 className="align-self-start mx-lg-0 mx-5" 
                 ref={useParallax({...pEffect(0,700),scale:[1,0.7],opacity:[1,0]}).ref} 
                 style={{marginTop:'15vh',zIndex:'-2'}} 
-                onLoad={()=>parallaxController.update()}>
+                
+                >
                 <Logo className="w-100"/>
             </motion.div>
             <div ref={useParallax(pEffect(0,500)).ref} className={layerClass} style={layerStyle} >
-                <img style={{minWidth:'1280px'}} src={El4} alt='imgparallax' onLoad={()=>parallaxController.update()}></img>
+                <img style={{minWidth:'1280px'}} src={El4} alt='imgparallax' ></img>
             </div>
             <div ref={useParallax(pEffect(0,350)).ref} className={layerClass} style={layerStyle} >
-                <img style={{minWidth:'1280px'}} src={El5} alt='imgparallax' onLoad={()=>parallaxController.update()}></img>
+                <img style={{minWidth:'1280px'}} src={El5} alt='imgparallax' ></img>
             </div>
             <div ref={useParallax(pEffect(0,200)).ref} className={layerClass} style={layerStyle} >
-                <img style={{minWidth:'1280px'}} src={El6} alt='imgparallax' onLoad={()=>parallaxController.update()}></img>
+                <img style={{minWidth:'1280px'}} src={El6} alt='imgparallax' ></img>
             </div>
             <div ref={useParallax(pEffect(0,100)).ref} className={layerClass} style={layerStyle} >
-                <img style={{minWidth:'1280px'}} src={El7} alt='imgparallax' onLoad={()=>parallaxController.update()}></img>
+                <img style={{minWidth:'1280px'}} src={El7} alt='imgparallax' ></img>
             </div>
         </div>        
-        <div style={{height:'30vh',zIndex:'2'}}>
+        <div style={{height:'28vh',zIndex:'2'}}>
             <div className={'position-relative w-100 d-flex justify-content-center parallax-cover'} style={layerStyle} >
                 <img style={{minWidth:'1280px'}} src={El8} alt='imgparallax'></img>
             </div>
