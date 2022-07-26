@@ -2,7 +2,7 @@ import React , { useContext, useState } from "react";
 import './Login.css';
 import { Auth } from "../../Config/Auth";
 import { motion } from "framer-motion";
-import bg from "../../Assets/login-bg.jpg";
+import bg from "../../Assets/background.svg";
 import logo from "../../Assets/Logo/logo-ifelse.png"
 import {Form, InputGroup } from "react-bootstrap";
 

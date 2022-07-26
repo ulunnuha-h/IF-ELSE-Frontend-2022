@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Nav.css'
 import pic from '../../Assets/Logo/logo-ifelse.png';
@@ -7,12 +7,13 @@ import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
 
 const Nav = () => {
     const nav = useNavigate();
+    const loc = useLocation();
     const auth = useContext(Auth);
     const mhsData = getMahasiswaByUserId(parseInt(auth.getUserId())) ? getMahasiswaByUserId(parseInt(auth.getUserId())) : {Avatar : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'};
-    const [trans,setTrans] = useState(false);
-    const [res,setRes] = useState(false);
-
-    const loc = useLocation();
+    let isMobile = (window.innerWidth < 576);
+    let isHome = (loc.pathname.indexOf("home") !== -1 );
+    let isProfile = (loc.pathname.indexOf("user") !== -1 );
+    let [isTop,setIsTop] = useState(true);
 
     const closeSidebar = () => {
         const sidebar = document.getElementById('check');
@@ -22,10 +23,10 @@ const Nav = () => {
     const navStyle = {
         "transition":"100ms",
         "height":"76px",
-        "position":(loc.pathname.indexOf("user") !== -1? "fixed" : "sticky"),
-        "backgroundColor":(trans && !res ? "":"var(--color-3)"),
-        "color":(trans && !res ? "white":"var(--color-font)")
-    }
+        "position":((isHome || isProfile)? "fixed" : "sticky"),
+        "backgroundColor":((isMobile || (isTop && (isHome || isProfile)) )? "":"var(--color-3)"),
+        "color":((isTop && isProfile) ? "white":"var(--color-font)")
+    }   
 
     const logoStyle = {
         "borderRadius":"50%",
@@ -34,25 +35,13 @@ const Nav = () => {
     }
 
     const navTextStyle = {
-        "color" : (trans && !res? "white":"var(--color-font)")
-    }
-
-    const cekNav = () => {
-        if(loc.pathname.indexOf("user") !== -1 && window.scrollY < 172) setTrans(true);
-        else setTrans(false);
+        "color" : ((isTop && isProfile) ? "white":"var(--color-font)")
     }
 
     window.addEventListener("scroll",()=>{
-        cekNav();
+        if(window.scrollY < 172) setIsTop(true);
+        else setIsTop(false);
     });
-
-    useEffect(()=>{
-        auth.cekLokal();
-        if(loc.pathname.indexOf("user") !== -1 && window.scrollY < 172) setTrans(true);
-        else setTrans(false);
-        if(window.innerWidth < 576) setRes(true);
-        else setRes(false);
-    },[auth,loc.pathname]);
 
     return(
         <nav className="navbar px-4 py-1 w-100" style={navStyle}>
@@ -69,32 +58,32 @@ const Nav = () => {
             </label>
             <ul className="navbar-nav">
                 <li className="nav-item mx-3">
-                    <Link className="nav-link" to="news" onClick={closeSidebar}>
+                    <Link className="nav-link" to="news" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                         <span className="nav-text" style={navTextStyle}>News</span>
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
-                    <Link className="nav-link" to="faq" onClick={closeSidebar}>
+                    <Link className="nav-link" to="faq" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                         <span className="nav-text" style={navTextStyle}>FAQ</span>
                     </Link>
                 </li>
-                <li className="nav-item mx-3" onClick={closeSidebar}>
+                <li className="nav-item mx-3" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     <Link className="nav-link" to="task">
                         <span className="nav-text" style={navTextStyle}>Task</span>
                     </Link>
                 </li>
-                <li className="nav-item mx-3" onClick={closeSidebar}>
+                <li className="nav-item mx-3" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     <Link className="nav-link" to="presence">
                         <span className="nav-text" style={navTextStyle}>Presence</span>
                     </Link>
                 </li>
-                <li className="nav-item mt-4 d-block d-sm-none" onClick={closeSidebar}>
+                <li className="nav-item mt-4 d-block d-sm-none" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     {
                         !auth.isLogged() ? 
-                            <Link className="nav-link mobile-button d-block d-sm-none" to="login">
+                            <Link className="nav-link mobile-button d-block d-sm-none" to="login" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                                 <span className="nav-text">Login</span>
                             </Link> :
-                            <Link className="nav-link mobile-button d-block d-sm-none" to="user">
+                            <Link className="nav-link mobile-button d-block d-sm-none" to="user" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                                 <span className="nav-text">Profile</span>
                             </Link>
                     }
@@ -105,11 +94,11 @@ const Nav = () => {
                 </footer>
             </ul>
             {!auth.isLogged() ? 
-            <Link className="d-none d-sm-block" to="login">
+            <Link className="d-none d-sm-block" to="login" onClick={()=>{window.scrollTo(0,0)}}>
                 <button className="btn-navlogin">Login</button>
             </Link> :
-            <Link className="d-none d-sm-block" to="user">
-                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.avatar})`}}/>
+            <Link className="d-none d-sm-block" to="user" onClick={()=>{window.scrollTo(0,0)}}>
+                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.avatar})`}} />
             </Link>
             }
             

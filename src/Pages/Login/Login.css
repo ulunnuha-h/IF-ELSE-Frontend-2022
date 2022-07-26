@@ -1,7 +1,7 @@
 .login-page{
     box-sizing: content-box;
     height: calc(100vh - 76px);
-    padding-bottom: 50vh;
+    padding-bottom: 45vh;
     width: 90%;
 }
 

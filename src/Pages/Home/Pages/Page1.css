@@ -1,0 +1,17 @@
+.parallax-wrapper {
+    height:135vh;
+    box-sizing: border-box;
+}
+
+.parallax-cover {
+    top : -350%;
+}
+
+@media (max-width: 768px){
+    .parallax-wrapper {
+        height:100vh;
+    }
+    .parallax-cover {
+        top : -280%;
+    }
+}

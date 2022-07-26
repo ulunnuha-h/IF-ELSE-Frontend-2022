@@ -13,7 +13,7 @@ export default function Tasks() {
     const arrayTask = getAllTask();
 
     return(
-        <div className='container-fluid row mx-0 px-0' style={{minHeight:'100vh'}}>
+        <div className='container-fluid row mx-0 px-0' style={{minHeight:'100vh',backgroundColor:'var(--color-font)'}}>
             <div className={side ? (detailStyle + ' d-block') : (detailStyle + ' d-none')} id='detail'>
                 <div className='position-sticky' style={{top:"76px",height:"calc(100vh - 76px)"}}>
                     <section className='h-100' style={{overflowY:"auto"}}>
