@@ -1,0 +1,27 @@
+/*About*/
+.aboutUs {
+    position: relative;
+    z-index: 5;
+    width: 1185px;
+    height: 345px;
+    background-color: rgba(115, 38, 72, 0.5);
+    border-radius: 24px;
+    text-align: justify;
+    padding: 50px 60px;
+    align-self: center;
+  }
+  
+  .aboutUs p {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+  }
+  
+  .judul {
+    font-family: 'Bebas Neue';
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 96px;
+    color: #451400;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
+  }

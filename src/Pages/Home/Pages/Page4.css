@@ -1,0 +1,61 @@
+.judul {
+    font-family: 'Bebas Neue';
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 96px;
+    color: #451400;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
+}
+
+/*logoP*/
+.the-filosofi {
+    justify-content: space-evenly;
+    padding-left: 150px;
+}
+  
+.the-filosofi > img {
+    align-self: center;
+    margin-top: -250px;
+    width: 800px;
+}
+
+.filosofi {
+    width: 628px;
+    height: 518px;
+    background: rgba(115, 38, 72, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 25px 31px;
+    text-align: justify;
+  }
+  
+  .filosofi img {
+    width: 150px;
+  }
+  
+  .filosofi h2 {
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 44px;
+    text-align: center;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .filosofi p {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 29px;
+  }
+  
+  .carousel-control-next, .carousel-control-prev {
+    margin-bottom:500px;
+  }
+  
+  .carousel {
+    position: relative;
+    z-index: 5;
+  }
+  
+  .carousel-indicators {
+    margin-top: -40px;
+  }

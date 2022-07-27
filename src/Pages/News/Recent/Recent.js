@@ -1,52 +1,77 @@
-import React from 'react';
-import IMAGES from '../Data.json'
+import React, {useState} from 'react';
+import data from '../Data.js'
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
 import Test from '../Images/Test.jpg'
 import Slider from "react-slick";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import "./Recent.css"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-function Recent() {
+const ImageSlider = ({ slides }) => {
+    const [current, setCurrent] = useState(0)
+    const length = slides.length
+
+    const nextSlide = () => {
+        setCurrent(current === length - 1 ? 0 : current + 1)
+    }
+
+    const prevSlide = () => {
+        setCurrent(current === 0 ? length - 1 : current - 1)
+    }
+
+    console.log(current);
+
+    if (!Array.isArray(slides) || slides.length <= 0) {
+        return null;
+    }
+}
+
+function Recent() { 
     const settings = {
+        dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1.3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 0,
         autoplay: true,
         autoplaySpeed: 4000,
         pauseOnHover: true,
-        responsive: [
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-            }
-          }
-        ]
-      };
+    };
+
     return (
-        <>
-            <Slider {...settings}>
-                {
-                    IMAGES && IMAGES.map((val) =>
-                        <div key = {val.id} className="contentt">
-                            <div className="frame">
-                                <img src = {Test} className="gambar" alt=""></img>
-                                <h1>{val.judul}</h1>
-                                <p className="detailRecent">{val.detail}</p>
-                                <p className="tanggalRecent">{val.tanggal}</p>
-                                <Link to={'/val/${val._id}'} className="linkRecent">
-                                    <p className="readRecent">Read more {'>'}</p>
-                                </Link>
+        <div className="container-fluid recent">
+            <div className="row">
+                <Slider {...settings}>
+                    {
+                        data.map((val) =>
+                            <div className="news-recent" key={val.id}>
+                                <div className="col-12 images-recent">
+                                    <img src={Test} alt="" className="image-recent"></img>
+                                </div>
+                                <div className="col-12">
+                                    <h1>{val.judul}</h1>
+                                </div>
+                                <div className="col-12">
+                                    <p className="detail-recent">{val.detail}</p>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6 col-sm-6">
+                                        <p className="tanggal-recent">{val.tanggal}</p>
+                                    </div>
+                                    <div className="col-6 col-sm-6">
+                                        <Link to={`/news/${val.judul}`} className="link-recent">
+                                            <p className="read-recent">Read more {'>'}</p>
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    )
-                }
-                    
-            </Slider>
-        </>
+                        )
+                    }
+                </Slider>
+            </div>
+        </div>
     )
 }
 

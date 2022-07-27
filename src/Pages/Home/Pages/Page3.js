@@ -2,6 +2,8 @@ import React from "react";
 import bg from '../../../Assets/Page3/Page3.svg';
 import bgCover from '../../../Assets/Page3/Page3Cover.webp'
 import './Page1.css';
+import './Page3.css';
+import About from "./Components/AboutIfElse";
 
 const Page3 = () => {
 
@@ -9,8 +11,9 @@ const Page3 = () => {
         <>
         <div>
             <div className="w-100 text-light position-absolute p-1 p-lg-5" style={{zIndex:'1',height:'100vh',overflow:'hidden'}}>
-                <div className="bg-dark h-100" style={{opacity:'0.8',borderRadius:'24px',overflow:'hidden'}}>
-                    
+                <div className="h-100 page3 d-flex flex-column align-items-center gap-5" style={{opacity:'0.8',borderRadius:'24px',overflow:'hidden'}}>
+                    <h2 className="judul">ABOUT IF ELSE</h2>
+                    <About/>
                 </div>
             </div>
             <div className="w-100 d-flex justify-content-center" style={{height:('105vh'),backgroundSize:'cover',backgroundRepeat:"no-repeat",backgroundPosition:'center',zIndex:'-2',overflow:'hidden'}}>

@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import Home from './Pages/Home/Home';
 import {News} from './Pages/News/News';
+import Detail from './Pages/News/Detail/Detail';
 import FAQ from './Pages/FAQ/FAQ';
+import Narahubung from './Pages/FAQ/Narahubung/Narahubung'
 import Presence from './Pages/Presence/Presence';
 import Tasks from './Pages/Tasks/Tasks';
 import TasksDetail from './Pages/Tasks/Task-detail/Tasks-Detail'
@@ -38,10 +40,16 @@ root.render(
             <Route index element={<Navigate to={'home'} />} />
             <Route path='home' element={<Home />}/>
             <Route path="news" element={<News />} />
+            <Route path="news/:id" element={<Detail />}/>
             <Route path="faq" element={<FAQ />} />
+<<<<<<< HEAD
+            <Route path="narahubung" element={<Narahubung />} />
+            <Route path="task" element={<Tasks />} />
+=======
             <Route path="task" element={<Tasks />}>
               <Route path = ":id" element={<TasksDetail/>}/>
             </Route>
+>>>>>>> b44c632597cb14e8068aa182024010149c63711e
             <Route path='presence' element={<Presence/>}/>
             <Route path='login' element={<ProtectedLogin/>}/>
             <Route path='user' element={<ProtectedUser/>}>
