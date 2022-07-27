@@ -2,14 +2,15 @@ import React from "react";
 import bg from '../../../Assets/Page2/Page2.svg';
 import bgCover from '../../../Assets/Page2/Page2Cover.webp'
 import './Page1.css';
+import Recent from "../../News/Recent/Recent";
 
 const Page2 = () => {
 
     return(
         <>
             <div className="w-100 text-light position-absolute p-1 p-lg-5" style={{zIndex:'1',height:'100vh',overflow:'hidden'}}>
-                <div className="bg-dark h-100" style={{opacity:'0.8',borderRadius:'24px',overflow:'hidden'}}>
-                    
+                <div className="h-100" style={{opacity:'0.8',borderRadius:'24px',overflow:'hidden'}}>
+                    <Recent/>
                 </div>
             </div>
             <div 
