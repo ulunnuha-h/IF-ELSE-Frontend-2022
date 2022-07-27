@@ -3,7 +3,7 @@
     margin: 30px 0 20px 20px;
 }
 
-.question {
+.question-display {
     background-color: #732648;
     border-radius: 15px;
     padding: 12px 15px 0.1% 15px;
@@ -12,25 +12,22 @@
     cursor: pointer;
 }
 
-.question p {
+.question-display p {
     color: white;
     width: 94%;
 }
 
-.question .down {
+.question-display .nope {
     width: 30px;
     height: 17px;
-    transform: rotateY(180deg);
-    margin-top: auto;
-    margin-bottom: auto;
+    transition: transform .5s ease;
     color: white;
 }
 
-.question .up {
+.rotate {
+    transform: rotate(180deg);
     width: 30px;
     height: 17px;
-    margin-top: auto;
-    margin-bottom: auto;
     color: white;
 }
 

@@ -1,7 +1,6 @@
 import React from "react";
 import Display from "./Display/Display.js"
 import Contact from "./Contact/Contact.js"
-import './Style.css'
 
 const FAQ = () => {
     return (

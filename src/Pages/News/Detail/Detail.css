@@ -1,0 +1,139 @@
+.style-detail {
+    border: 1px solid;
+}
+
+.template-detail {
+    background-color: #732648;
+    width: 90%;
+    height: 2277px;
+    border-radius: 40px;
+    display: block;
+    margin: 55px auto 65px auto;
+    padding-top: 10px;
+}
+
+.judul-detail {
+    width: 90%;
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+    display: block;
+    margin: 32px auto 0 auto;
+}
+
+.tanggal-detail {
+    width: 90%;
+    color: white;
+    font-size: 15px;
+    font-weight: 100;
+    display: block;
+    margin: -10px auto 0 auto;
+}
+
+.image-detail {
+    width: 90%;
+    height: 90%;
+    display: block;
+    margin: 29px auto 0 auto;
+    border-radius: 24px;
+}
+
+.isi-detail {
+    width: 90%;
+    color: white;
+    font-size: 18px;
+    display: block;
+    margin: 32px auto 0 auto;
+}
+
+.another-detail {
+    color: white;
+    width: 90%;
+    display: block;
+    margin: 72px auto 0 auto;
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.contact-detail {
+    background-image: linear-gradient(to bottom, #521737, #732648, #92373B, #AD462F, #C15127, #D55C1E, #FF730C, #FFA42E);
+    width: 100%;
+    height: 495px;
+    display: block;
+    margin: 55px 0 0 12px;
+    border-radius: 20px 0 0 20px;
+    padding-top: 5px;
+    top: 130px;
+    position: sticky;
+}
+
+.icon-detail {
+    width: 50px;
+    height: 50px;
+    color: white;
+    display: block;
+    margin: 40% auto 0 auto;
+}
+
+@media only screen and (max-width: 1180px) {
+    .contact-detail {
+        height: 300px;
+    }
+
+    .icon-detail {
+        width: 35px;
+        height: 35px;
+    }
+} 
+
+@media only screen and (max-width: 1180px) {
+    .contact-detail {
+        width: 100%;
+        height: 335px;
+        margin-left: 13px;
+    }
+
+    .icon-detail {
+        width: 35px;
+        height: 35px;
+    }
+} 
+
+@media only screen and (max-width: 991px) {
+    .contact-detail {
+        width: 90%;
+        height: 100px;
+        border-radius: 20px;
+        margin: 5px auto 0 auto;
+    }
+
+    .icon-detail {
+        width: 50px;
+        height: 50px;
+        display: block;
+        margin: 30% auto 0 auto;
+    }
+} 
+
+@media only screen and (max-width: 460px) {
+    .template-detail {
+        margin-top: 30px;
+    }
+
+    .judul-detail {
+        font-size: 27px;
+        margin-top: 20px;
+    }
+
+    .tanggal-detail {
+        font-size: 12px;
+    }
+
+    .isi-detail {
+        font-size: 12px;
+    }
+
+    .another-detail {
+        font-size: 20px;
+    }
+} 

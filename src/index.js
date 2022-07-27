@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import Home from './Pages/Home/Home';
 import {News} from './Pages/News/News';
+import Detail from './Pages/News/Detail/Detail';
 import FAQ from './Pages/FAQ/FAQ';
+import Narahubung from './Pages/FAQ/Narahubung/Narahubung'
 import Presence from './Pages/Presence/Presence';
 import Tasks from './Pages/Tasks/Tasks';
 import Error404 from './Pages/404/404';
@@ -25,7 +27,9 @@ root.render(
           <Route path='/' element={<App/>}>
             <Route index element={<Home />} />
             <Route path="news" element={<News />} />
+            <Route path="news/:id" element={<Detail />}/>
             <Route path="faq" element={<FAQ />} />
+            <Route path="narahubung" element={<Narahubung />} />
             <Route path="task" element={<Tasks />} />
             <Route path='presence' element={<Presence/>}/>
             <Route path='login' element={<Login/>}/>
