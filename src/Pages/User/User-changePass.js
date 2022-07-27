@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
-import { Auth } from "../../Config/Auth";
+import { useAuth } from "../../Config/Auth";
 import { updateMahasiswaPass } from "../../Data/Mahasiswa";
 
 const UserChangePass = (props) => {
-    const userId = parseInt(useContext(Auth).getUserId());
+    const userId = useAuth().auth.id;
     const [old,setOld] = useState('');
     const [new1,setNew1] = useState('');
     const [new2,setNew2] = useState('');

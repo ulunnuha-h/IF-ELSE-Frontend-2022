@@ -1,12 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import './UserCard.css'
 import { motion } from "framer-motion";
 import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
-import { Auth } from "../../Config/Auth";
+import { useAuth } from "../../Config/Auth";
 
 const UserCard = () => {
-    const userId = parseInt(useContext(Auth).getUserId());
-    const userData = (getMahasiswaByUserId(userId) ? getMahasiswaByUserId(userId):{nickname : "tidak ada",about :"tidak ada", avatar : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"} );
+    const {auth} = useAuth();
+    const userId = auth.id;
+    const userData = (userId ? 
+        getMahasiswaByUserId(userId):
+        {
+            nickname : "tidak ada",
+            about :"tidak ada", 
+            avatar : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
+        });
 
     return(
         <motion.div 

@@ -4,8 +4,10 @@ import { getAllTask } from '../../Data/Task';
 import Task from './Task-small'
 import "./task-style.css"
 import { motion } from 'framer-motion';
+import { useAuth } from '../../Config/Auth';
 
 export default function Tasks() {
+    const {auth} = useAuth();
     const nav = useNavigate();
     const [side,setSide] = useState(false);
     const detailStyle = 'col-12 col-lg-9 p-0';
@@ -34,7 +36,7 @@ export default function Tasks() {
                         transition={{scale:{delay:0},delay:(idx*0.03)}} 
                         className='taskS mt-3 p-0'
                         style={{height:"fit-content"}}>                        
-                        <Task {...item} setSide={setSide}/>
+                        <Task {...item} setSide={setSide} auth={auth}/>
                     </motion.span>)}
             </div>
         </div>

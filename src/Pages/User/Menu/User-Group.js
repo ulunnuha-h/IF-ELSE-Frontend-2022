@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import PendampingCard from "../../../Components/PendampingCard/PendampingCard";
 import FriendCard from "../../../Components/FriendCard/FriendCard";
 import { motion } from "framer-motion";
-import { Auth } from "../../../Config/Auth";
+import { useAuth } from "../../../Config/Auth";
 import { getMahasiswaByUserId,getAllMahasiswaByGroup } from "../../../Data/Mahasiswa";
 
 const UserGroup = () => {
-    const userId = parseInt(useContext(Auth).getUserId());
+    const userId = useAuth().auth.id;
     const groupId = getMahasiswaByUserId(userId).group_id;
     const allMhs = (groupId ? getAllMahasiswaByGroup(groupId) : []);
 

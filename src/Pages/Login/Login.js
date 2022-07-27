@@ -1,22 +1,22 @@
-import React , { useContext, useState } from "react";
+import React , { useState } from "react";
 import './Login.css';
-import { Auth } from "../../Config/Auth";
+import { useAuth } from "../../Config/Auth";
 import { motion } from "framer-motion";
 import bg from "../../Assets/background.svg";
 import logo from "../../Assets/Logo/logo-ifelse.png"
 import {Form, InputGroup } from "react-bootstrap";
+import { postMahasiswaLogin } from "../../Data/Mahasiswa";
 
 const Login = () => {
     const [email,setEmail] = useState('');
     const [pass,setPass] = useState('');
-
     const [errorMsg,setErrorMsg] = useState('');
-
-    const auth = useContext(Auth);
+    const {setAuth} = useAuth();
 
     const login = () => {
-        // auth.signIn(email,pass);
-        setErrorMsg(auth.userLogin(email,pass));
+        const response = postMahasiswaLogin(email,pass);
+        if(response.success) setAuth({id : response?.id, token : response?.token, isLogged : true});
+        else setErrorMsg(response?.msg);
     }
     
     return(

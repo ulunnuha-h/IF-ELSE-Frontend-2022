@@ -7,6 +7,12 @@
     top : -350%;
 }
 
+.parallax-cover-2 {
+    top : -400%;
+    width: 100%;
+    overflow: hidden;
+}
+
 .parallax-cover-4 {
     top : -400%;
 }
@@ -24,6 +30,11 @@
     .parallax-cover {
         top : -300%;
     }
+
+    .parallax-cover-2 {
+        top : -450%;
+    }
+
     .parallax-cover-4 {
         top : -430%;
     }

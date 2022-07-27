@@ -469,10 +469,10 @@ const updateMahasiswaPass = (userId,old,new1,new2) => {
     else return "Password yang lama salah"
 }
 
-const checkEmailPass = (email,pass) => {
+const postMahasiswaLogin = (email,pass) => {
     let data = Mahasiswa.find(mhs => mhs.email === email && mhs.password === pass);
-    if(data) return {success : true , id:data.user_id}
-    else return {success : false};
+    if(data) return {success : true , id:data.user_id, token:'ajh38Jhadj39KnfAin3lOw8K8'}
+    else return {success : false, msg : 'NIM atau Password tidak ditemukan'};
 }
 
-export {getAllMahasiswa,getMahasiswaByUserId,updateMahasiswaGroup,getAllMahasiswaByGroup,checkEmailPass,updateMahasiswaData,updateMahasiswaPass};
+export {getAllMahasiswa,getMahasiswaByUserId,updateMahasiswaGroup,getAllMahasiswaByGroup,postMahasiswaLogin,updateMahasiswaData,updateMahasiswaPass};

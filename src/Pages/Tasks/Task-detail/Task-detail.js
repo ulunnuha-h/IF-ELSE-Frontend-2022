@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import { updateStudentTaskSubmission } from '../../../Data/StudentTask';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../Config/Auth';
 
 export default function Detail(props){
+    const {auth} = useAuth();
     const nav = useNavigate();
     const [inputUrl,setInputUrl] = useState('');
     const submitted = props.userData ? props.userData.Submission : '';
@@ -42,7 +44,7 @@ export default function Detail(props){
                             <pre style={{backgroundColor : "transparent"}}>{props.Description}</pre>
                         </div>
                     </div>
-                    {props.userData ?
+                    {auth.isLogged ?
                     <form onSubmit={e=> {e.preventDefault();submitting()}} className="taskD--formUser d-flex flex-column">
                         <h4>Input URL:</h4>
                         <div className="taskD--inputan row m-0 p-0 justify-content-between ">

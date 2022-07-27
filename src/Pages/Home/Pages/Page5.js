@@ -12,7 +12,7 @@ const Page5 = () => {
                     
                 </div>
             </div>
-            <div className="position-relative parallax-cover-5" style={{backgroundImage:`url(${bg})`}}>
+            <div className="position-relative parallax-cover-5" style={{backgroundImage:`url(${bg})`}} >
             </div>
         </div>
         </>

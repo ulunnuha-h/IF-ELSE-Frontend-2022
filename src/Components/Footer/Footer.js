@@ -1,14 +1,27 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import './Footer.css'
 import logo from '../../Assets/Logo/logo-ifelse.png';
 
 const Footer = () => {
+    const loc = useLocation().pathname;
     const nav = useNavigate();
 
     return(
         <div className="w-100 footer">
             <section style={{"height":"5px","background":"var(--color-4)"}}></section>
+            <button
+                className={loc.indexOf('home') !== -1 ? "position-absolute rounded text-white":"d-none"} 
+                style={{
+                    bottom : '10vh',
+                    left:'2vw',
+                    width:'50px',
+                    height:'50px',
+                    backgroundColor:'var(--color-1-p)',
+                    border:'0px'}} 
+                onClick={()=>window.scrollTo(0,0)}>
+                <i className="fa-solid fa-angle-up"></i>
+            </button>
             <div className="container-lg">
                 <div className="row row-cols-1 row-cols-md-3 p-3">
                     <div className="col d-flex flex-column justify-content-center">

@@ -3,10 +3,12 @@ import React, {useState} from "react";
 import { useOutletContext } from "react-router-dom";
 import { getMahasiswaByUserId,updateMahasiswaData } from "../../../Data/Mahasiswa";
 import { getKelompokNameById } from "../../../Data/Kelompok";
+import { useAuth } from "../../../Config/Auth";
 
 const UserProfile = () => {
-    const UserId = parseInt(localStorage.getItem('UserId'));
-    const userData = getMahasiswaByUserId(UserId) ? getMahasiswaByUserId(UserId) : {};
+    const {auth} = useAuth();
+    const UserId = auth.id;
+    const userData = UserId ? getMahasiswaByUserId(UserId) : {};
     const [editProfile,toggleEditProfile] = useOutletContext();
     const [nick,setNick] = useState(userData.nickname);
     const [address,setAddress] = useState(userData.address);

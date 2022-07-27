@@ -4,16 +4,17 @@ import { getStudentTaskByUserId } from '../../Data/StudentTask';
 
 export default function Task(props) {
     const nav = useNavigate();
-    const userId = localStorage.getItem('UserId') ? localStorage.getItem('UserId') : null;
-    let userData = {Submission : null};
-    if(userId) userData = getStudentTaskByUserId(parseInt(userId),props.ID);
+    const userData = props.auth.isLogged ? 
+        getStudentTaskByUserId(props.auth.id,props.ID):
+        {Submission : false};
+
     const handleDesc = (Desc) => {
         if(Desc.length > 80){
             return Desc.slice(0,80) + ' [...]';
         }
         else return Desc;
     }
-
+    
     return(
             <div className=" d-flex flex-row" onClick={()=>{props.setSide(true);nav(`${props.ID}`);window.scrollTo(0,0)}} style={{minHeight:'280px'}}>
                 <div className="taskS--jilid d-sm-flex flex-column position-relative justify-content-center d-none">

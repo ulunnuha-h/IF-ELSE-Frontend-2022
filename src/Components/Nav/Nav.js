@@ -1,15 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Nav.css'
 import pic from '../../Assets/Logo/logo-ifelse.png';
-import { Auth } from "../../Config/Auth";
+import { useAuth } from "../../Config/Auth";
 import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
 
 const Nav = () => {
     const nav = useNavigate();
     const loc = useLocation();
-    const auth = useContext(Auth);
-    const mhsData = getMahasiswaByUserId(parseInt(auth.getUserId())) ? getMahasiswaByUserId(parseInt(auth.getUserId())) : {Avatar : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'};
+    const {auth} = useAuth();
+    const mhsData = auth.id ? 
+        getMahasiswaByUserId(auth.id) : 
+        {Avatar : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'};
     let isMobile = (window.innerWidth < 576);
     let isHome = (loc.pathname.indexOf("home") !== -1 );
     let isProfile = (loc.pathname.indexOf("user") !== -1 );
@@ -79,7 +81,7 @@ const Nav = () => {
                 </li>
                 <li className="nav-item mt-4 d-block d-sm-none" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     {
-                        !localStorage.getItem('UserId') ? 
+                        !auth.isLogged ? 
                             <Link className="nav-link mobile-button d-block d-sm-none" to="login" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                                 <span className="nav-text">Login</span>
                             </Link> :
@@ -93,7 +95,7 @@ const Nav = () => {
                     Developed by IT x DDM IF ELSE &#169; 2022
                 </footer>
             </ul>
-            {!localStorage.getItem('UserId') ? 
+            {!auth.isLogged ? 
             <Link className="d-none d-sm-block" to="login" onClick={()=>{window.scrollTo(0,0)}}>
                 <button className="btn-navlogin">Login</button>
             </Link> :
