@@ -10,12 +10,16 @@ import { getStudentTaskByUserId } from '../../../Data/StudentTask';
 export default function Tasks() {
     const param = useParams();
     const details = getTaskById(parseInt(param.id));
+<<<<<<< Updated upstream
     const UserId = parseInt(useContext(Auth).getUserId());
     let userData = null;
     if(useContext(Auth).isLogged()){
         userData = getStudentTaskByUserId(UserId,parseInt(param.id));
     }
     
+=======
+
+>>>>>>> Stashed changes
     return(
         <motion.div 
             className='container-fluid d-flex flex-column justify-content-center m-0 p-0'
