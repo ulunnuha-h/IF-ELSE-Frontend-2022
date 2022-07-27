@@ -42,14 +42,9 @@ root.render(
             <Route path="news" element={<News />} />
             <Route path="news/:id" element={<Detail />}/>
             <Route path="faq" element={<FAQ />} />
-<<<<<<< HEAD
-            <Route path="narahubung" element={<Narahubung />} />
-            <Route path="task" element={<Tasks />} />
-=======
             <Route path="task" element={<Tasks />}>
               <Route path = ":id" element={<TasksDetail/>}/>
             </Route>
->>>>>>> b44c632597cb14e8068aa182024010149c63711e
             <Route path='presence' element={<Presence/>}/>
             <Route path='login' element={<ProtectedLogin/>}/>
             <Route path='user' element={<ProtectedUser/>}>
