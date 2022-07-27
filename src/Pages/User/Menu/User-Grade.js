@@ -7,8 +7,8 @@ const UserGrade = () => {
             initial={{y:50,opacity:0}} 
             animate={{y:0,opacity:1}} 
             transition={{type:"tween"}}
-            className="p-4 mx-3 rounded"
-            style={{"backgroundColor":"var(--color-1-p)","color":"white"}}>
+            className="p-4 mx-3"
+            style={{"backgroundColor":"var(--color-1-p)","color":"white","borderRadius":"12px"}}>
             <table className="user-grade w-100">
                 <thead style={{"borderBottom":"solid white 1px"}}>
                     <tr>

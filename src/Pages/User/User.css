@@ -4,11 +4,7 @@
     width: 30%;
     border-radius: 100px;
     border: 0px;
-    transition: 300ms;
-}
-
-.btn-toggle:hover{
-    background-color: var(--color-2-p);
+    padding: 0px;
 }
 
 .btn-toggle:disabled{
@@ -29,6 +25,28 @@
     color: white;
 }
 
+.btn-save,.btn-cancel{
+    background-color: transparent;
+    border: 0px;
+}
+
+.btn-cancel{
+    color: var(--color-1-p);
+    border: solid transparent 1px;
+    transition: 300ms;
+}
+
+.btn-cancel:hover{
+    border: solid var(--color-1-p) 1px;
+    border-radius: 100px;
+}
+
+.btn-save{
+    color: white;
+    background-color: var(--color-1-p);
+    border-radius: 100px;
+}
+
 .user-profile h5{
     color: var(--color-1-p);
 }
@@ -44,7 +62,7 @@
 }
 
 .user-profile input,textarea{
-    border: solid 2px gray;
+    border: solid 2px var(--color-1-p);
     width: 100%;
     font-size: 16px;
     padding: 12px 20px;

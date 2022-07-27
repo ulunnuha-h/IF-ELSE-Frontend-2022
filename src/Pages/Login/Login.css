@@ -1,7 +1,7 @@
 .login-page{
     box-sizing: content-box;
     height: calc(100vh - 76px);
-    padding-bottom: 50vh;
+    padding-bottom: 45vh;
     width: 90%;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .login-form label{
-    color: var(--color-1-p);
+    color: var(--color-1-p);    
 }
 
 .login-bg{
@@ -35,17 +35,20 @@
 }
 
 .login-btn{
-    background-color: var(--color-3);
+    background-color: var(--color-3)    ;
     border: 0px;
     border-radius: 100px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 300ms;
+}
+
+.login-btn:hover{       
+    filter: brightness(1.2);
 }
 
 .login-light{
     height:1000px;
     width: 1000px;
-    /* background-color: red; */
-    /* filter: brightness(0.9); */
     filter: opacity(0.6);
     background: radial-gradient(var(--color-3),transparent 70%);
     position: absolute; 

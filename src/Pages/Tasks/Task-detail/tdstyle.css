@@ -1,0 +1,114 @@
+.taskD--content {
+    background-color: var(--color-2-p);
+    border-radius: 12px;
+    color: var(--color-bg);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.taskD--inputan button,.taskD--inputan input {
+    box-sizing: border-box !important;
+}
+
+.taskD--content h1 {
+    font-family: 'Bebas Neue';
+    font-weight: 500;
+    font-size: 3.2rem;
+}
+
+.taskD--jilid {
+    gap: 6%;
+    left: 28px;
+}
+.taskD--elipse {
+    background-color: var(--color-1-p);
+    border-radius: 40px;
+    width: 60px;
+    height: 30px;
+}
+
+.taskD--isi p {
+    text-align: justify;
+}
+
+#bintang {
+    filter: brightness(0) saturate(100%) invert(92%) sepia(10%) saturate(120%) hue-rotate(306deg) brightness(104%) contrast(98%);
+}
+
+.taskD--content h4 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.taskD--inputan button:active {
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+/* @media (max-width: 767.98px) {
+    .taskD--elipse {
+        display: none;
+    }
+
+    .star-icon , #bintang {
+        margin-right: 50px;
+        width: 40px !important;
+    }
+
+    .taskD--content h1 {
+        font-size: 80px;
+        text-align: center;
+        width: 100% !important;
+        align-items: center;
+    }
+
+    .taskD--content h4 {
+        font-size: 17px;
+    }
+
+    .taskD--content p {
+        font-size: 10px;
+    }
+
+    .taskD--content article {
+        margin-left: 10px !important;
+    }
+
+    .taskD--inputan input {
+        box-sizing: border-box;
+        font-size: 10px;
+        height: 30px ;
+    }
+
+    .taskD--inputan button:first-of-type {
+        margin-left: 10px;
+    }
+
+    .taskD--inputan button {
+        margin-bottom: 20px;
+        margin-left: 10px;
+        font-size: 13px !important;
+        justify-content: center;
+        text-align: center;
+        height: 30px;
+        width: 120px !important;
+    }
+}
+
+@media (max-width: 350px) {
+    .taskD--inputan button:first-of-type {
+        margin-left: 10px;
+    }
+
+    .taskD--inputan button:last-of-type {
+        margin-left: -5px;
+    }
+
+    .taskD--inputan button {
+        margin-bottom: 20px;
+        font-size: 13px !important;
+        justify-content: center;
+        text-align: center;
+        height: 30px;
+        width: 120px !important;
+    }
+} */

@@ -1,23 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Nav.css'
 import pic from '../../Assets/Logo/logo-ifelse.png';
-import { Auth } from "../../Config/Auth";
+import { useAuth } from "../../Config/Auth";
+import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
 
 const Nav = () => {
     const nav = useNavigate();
-    const auth = useContext(Auth);
-    const [trans,setTrans] = useState(false);
-
     const loc = useLocation();
+    const {auth} = useAuth();
+    const mhsData = auth.id ? 
+        getMahasiswaByUserId(auth.id) : 
+        {Avatar : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'};
+    let isMobile = (window.innerWidth < 576);
+    let isHome = (loc.pathname.indexOf("home") !== -1 );
+    let isProfile = (loc.pathname.indexOf("user") !== -1 );
+    let [isTop,setIsTop] = useState(true);
+
+    const closeSidebar = () => {
+        const sidebar = document.getElementById('check');
+        sidebar.checked = false;
+    }
 
     const navStyle = {
         "transition":"100ms",
         "height":"76px",
-        "position":(loc.pathname.indexOf("user") !== -1? "fixed" : "sticky"),
-        "backgroundColor":(trans ? "":"var(--color-3)"),
-        "color":(trans ? "white":"var(--color-font)")
-    }
+        "position":((isHome || isProfile)? "fixed" : "sticky"),
+        "backgroundColor":((!isMobile && (isTop && (isHome || isProfile)) )? "":"var(--color-3)"),
+        "color":((isTop && isProfile) ? "white":"var(--color-font)")
+    }   
 
     const logoStyle = {
         "borderRadius":"50%",
@@ -26,26 +37,17 @@ const Nav = () => {
     }
 
     const navTextStyle = {
-        "color" : (trans ? "white":"var(--color-font)")
-    }
-
-    const cekNav = () => {
-        if(loc.pathname.indexOf("user") !== -1 && window.scrollY < 172 && window.innerWidth > 576) setTrans(true);
-        else setTrans(false);
+        "color" : ((isTop && isProfile) ? "white":"var(--color-font)")
     }
 
     window.addEventListener("scroll",()=>{
-        cekNav();
+        if(window.scrollY < 172) setIsTop(true);
+        else setIsTop(false);
     });
-
-    useEffect(()=>{
-        auth.cekLokal();
-        cekNav();
-    },[auth,trans,loc]);
 
     return(
         <nav className="navbar px-4 py-1 w-100" style={navStyle}>
-            <div className="nav-brand h-100 d-flex" onClick={()=>nav('/')}>
+            <div className="nav-brand h-100 d-flex" onClick={()=>{nav('/');closeSidebar()}}>
                 <img src={pic} alt='logo ifelse' className="h-100" style={logoStyle}></img>
                 <section className="d-flex flex-column justify-content-center">
                     <span className="m-0 mt-1 p-0 h5" style={{"fontWeight":"700"}}>IF ELSE</span>
@@ -58,32 +60,32 @@ const Nav = () => {
             </label>
             <ul className="navbar-nav">
                 <li className="nav-item mx-3">
-                    <Link className="nav-link" to="news">
+                    <Link className="nav-link" to="news" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                         <span className="nav-text" style={navTextStyle}>News</span>
                     </Link>
                 </li>
                 <li className="nav-item mx-3">
-                    <Link className="nav-link" to="faq">
+                    <Link className="nav-link" to="faq" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                         <span className="nav-text" style={navTextStyle}>FAQ</span>
                     </Link>
                 </li>
-                <li className="nav-item mx-3">
+                <li className="nav-item mx-3" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     <Link className="nav-link" to="task">
                         <span className="nav-text" style={navTextStyle}>Task</span>
                     </Link>
                 </li>
-                <li className="nav-item mx-3">
+                <li className="nav-item mx-3" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     <Link className="nav-link" to="presence">
                         <span className="nav-text" style={navTextStyle}>Presence</span>
                     </Link>
                 </li>
-                <li className="nav-item mt-4 d-block d-sm-none">
+                <li className="nav-item mt-4 d-block d-sm-none" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                     {
-                        !auth.isLogged() ? 
-                            <Link className="nav-link mobile-button d-block d-sm-none" to="login">
+                        !auth.isLogged ? 
+                            <Link className="nav-link mobile-button d-block d-sm-none" to="login" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                                 <span className="nav-text">Login</span>
                             </Link> :
-                            <Link className="nav-link mobile-button d-block d-sm-none" to="user">
+                            <Link className="nav-link mobile-button d-block d-sm-none" to="user" onClick={()=>{closeSidebar();window.scrollTo(0,0)}}>
                                 <span className="nav-text">Profile</span>
                             </Link>
                     }
@@ -93,14 +95,12 @@ const Nav = () => {
                     Developed by IT x DDM IF ELSE &#169; 2022
                 </footer>
             </ul>
-            {!auth.isLogged() ? 
-            <Link className="d-none d-sm-block" to="login">
+            {!auth.isLogged ? 
+            <Link className="d-none d-sm-block" to="login" onClick={()=>{window.scrollTo(0,0)}}>
                 <button className="btn-navlogin">Login</button>
             </Link> :
-            <Link className="d-none d-sm-block" to="user">
-                <div className="nav-user-icon">
-                    <img src={auth.getUserData().img} alt="propic" className="img-fluid"></img>
-                </div>
+            <Link className="d-none d-sm-block" to="user" onClick={()=>{window.scrollTo(0,0)}}>
+                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.avatar})`}} />
             </Link>
             }
             

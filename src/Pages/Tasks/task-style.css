@@ -1,28 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-* {
-    font-family: 'Poppins', sans-serif;
+.taskS {
+    max-width: 330px;
+    color: var(--color-bg);
+    cursor: pointer;
 }
 
 .content--task--small {
-    background-color: #D9D9D9;
-    border-radius: 24px;
-    height: 305px;
+    background-color: var(--color-2-p);
+    border-radius: 12px;
+    transition: 300ms;
 }
 
-.taskS {
-    width: 340px !important;
+.content--task--small:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #taskS--title {
     font-weight: 600;
-    size: 20px;
-    line-height: 30px;
 }
 
 #taskS--desc {
-    font-weight: 400;
-    height: 145px;
-    width: 255px;
     text-align: justify;
 }
 
@@ -30,7 +26,7 @@
     height: 25px;
     width: 161px;
     border-radius: 24px;
-    background-color: #B4B4B4;
+    background-color: #521737;
 }
 
 .taskS--date p {
@@ -38,14 +34,13 @@
     font-size: 14px;
 }
 
-.taskS--jilid {
-    margin-top: 25px;
-    gap: 24px;
+.taskS--jilid {    
+    gap: 18px;
     left: 20px;
 }
 .taskS--elipse {
-    background-color: #B4B4B4;
+    background-color: var(--color-1-p);
     border-radius: 24px;
-    width: 47px;
+    width: 40px;
     height: 21px;
 }

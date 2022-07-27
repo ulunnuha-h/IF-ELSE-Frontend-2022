@@ -1,92 +1,63 @@
-import React , { useContext, useState } from "react";
+import React , { useState } from "react";
 import './Login.css';
-import { Auth } from "../../Config/Auth";
-import { Navigate } from "react-router-dom";
+import { useAuth } from "../../Config/Auth";
 import { motion } from "framer-motion";
-import bg from "../../Assets/login-bg.jpg";
+import bg from "../../Assets/background.svg";
 import logo from "../../Assets/Logo/logo-ifelse.png"
+import {Form, InputGroup } from "react-bootstrap";
+import { postMahasiswaLogin } from "../../Data/Mahasiswa";
 
 const Login = () => {
     const [email,setEmail] = useState('');
     const [pass,setPass] = useState('');
-
     const [errorMsg,setErrorMsg] = useState('');
+    const {setAuth} = useAuth();
 
-    const auth = useContext(Auth);
-
-    const login = (event) => {
-        event.preventDefault();
-        auth.login(email,pass);
-        setErrorMsg(auth.errMsg);
+    const login = () => {
+        const response = postMahasiswaLogin(email,pass);
+        if(response.success) setAuth({id : response?.id, token : response?.token, isLogged : true});
+        else setErrorMsg(response?.msg);
     }
-
-    if(auth.isLogged()){
-        return <Navigate to='/user'></Navigate>
-    }
-    else return(
+    
+    return(
         <motion.div 
             animate={{opacity:1}} 
             initial={{opacity:0}} 
             className="login-page row m-auto container-lg">
             <div className="col-md-6 col-12 login-image d-flex align-items-center">
                 <div className="px-5 align-self-center m-4">
-                    <img src={logo} alt="logoifelse" className="img-fluid" style={{"borderRadius":"50%","backgroundColor":"var(--color-3)"}}></img>
+                    <motion.img initial={{scale:0.7}} animate={{scale:1}} transition={{type:"tween"}} src={logo} alt="logoifelse" className="img-fluid" style={{"borderRadius":"50%","backgroundColor":"var(--color-3)"}}></motion.img>
                 </div>
             </div>
             <div className="col-md-6 col-12 m-auto">
                 <div className=" d-flex h-100 flex-column ">
                         <h1 className="display-1 mx-4" style={{"fontFamily": "'Bebas Neue', cursive","color":"var(--color-1-p)"}}>Welcome !</h1>
-                        {errorMsg === '' ? null : 
-                        <div className="alert alert-danger" role="alert">
-                            <i className="fa-solid fa-triangle-exclamation me-3"></i>
-                            {errorMsg}
-                        </div>}
-                        <form className="login-form mx-4">
-                            <div className="mb-3">
-                                <label htmlFor="inputEmail" className="form-label ms-3 h5">Email</label>
-                                <div className="input-group flex-nowrap">
-                                    <input 
-                                        type="email" 
-                                        className="form-control login-input" 
-                                        placeholder="Email" 
-                                        aria-label="Email" 
-                                        aria-describedby="addon-wrapping" 
-                                        id="inputEmail" 
-                                        value={email}
-                                        onChange={(e)=>setEmail(e.target.value)}
-                                        required />
-                                    <span className="input-group-text login-input">
-                                        <i className="fa-solid fa-at"></i>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="inputPassword" className="form-label ms-3 h5">Password</label>
-                                <div className="input-group flex-nowrap">
-                                    <input 
-                                        type="password" 
-                                        className="form-control login-input" 
-                                        placeholder="Password" 
-                                        aria-label="Password" 
-                                        aria-describedby="addon-wrapping" 
-                                        id="inputPassword" 
-                                        value={pass}
-                                        onChange={(e)=>setPass(e.target.value)}
-                                        required />
-                                    <span className="input-group-text login-input">
-                                        <i className="fa-solid fa-lock"></i>
-                                    </span>
-                                </div>
-                            </div>                              
-                            <div className="w-100 d-flex justify-content-center">
-                                <button type="submit" className="login-btn mt-3 px-5 py-2" onClick={(e)=>login(e)}>
-                                    <motion.h5 whileHover={{scale:1.1}} className="m-0">LOGIN</motion.h5>
-                                </button>
-                            </div>
-                            
-                        </form>
                 </div>
+                {errorMsg !== '' ? 
+                <motion.div initial={{scale:0.5}} animate={{scale:1}} className="alert alert-danger p-2 w-75 mb-2 m-auto text-center">
+                    <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                    {errorMsg}
+                </motion.div>                    
+                 : null}
+                <Form className="login-form px-3 d-flex flex-column" onSubmit={e=>{e.preventDefault();login()}}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="ms-4 h5">Email</Form.Label>
+                        <InputGroup>
+                            <Form.Control className="login-input" placeholder="Email" type="email" value={email} onChange={e=>setEmail(e.target.value)} required/>
+                            <InputGroup.Text className="login-input"><i className="fa-solid fa-at"></i></InputGroup.Text>
+                        </InputGroup>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label className="ms-4 h5">Password</Form.Label>
+                        <InputGroup>
+                            <Form.Control className="login-input" placeholder="Password" type="password" value={pass} onChange={e=>setPass(e.target.value)} required/>
+                            <InputGroup.Text className="login-input"><i className="fa-solid fa-lock"></i></InputGroup.Text>
+                        </InputGroup>
+                    </Form.Group>
+                    <button className="login-btn px-5 py-2 align-self-center" type="submit">
+                        <h5 className="my-0">LOGIN</h5>
+                    </button>
+                </Form>
             </div>
             
             <div className="login-bg" style={{"backgroundImage":`url(${bg})`}}>

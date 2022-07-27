@@ -4,11 +4,22 @@
 
 *{
     font-family: 'Poppins', sans-serif;
-    /* transition-duration: 300ms; */
 }
 
 nav{
     z-index: 100;
+}
+
+pre{
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
 }
 
 :root{
