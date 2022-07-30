@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMahasiswaByUserId,updateMahasiswaGroup } from "../../../../Data/Mahasiswa";
@@ -6,12 +6,33 @@ import { getAllKelompok,getKelompokNameById} from "../../../../Data/Kelompok";
 
 const MahasiswaDetail = () => {
     const params = useParams();
-    const data = getMahasiswaByUserId(parseInt(params.id))
+    const [data,setData] = useState('');
+
+    useEffect(()=>{
+        getMahasiswaByUserId(parseInt(params.id)).then(res=>setData(res.data.data));
+    },[params.id])
+
+    const ubahGroupId = (group_id,user_id) => {
+        updateMahasiswaGroup(group_id,user_id).then(res=>console.log(res));
+    }
+
     const allKelompok = getAllKelompok();
     const [namaKel, setNamaKel] = useState(getKelompokNameById(data.group_id));
     const nav = useNavigate('');
 
-    return(
+
+
+    if(!data) return(
+        <>
+            <i className="fa-solid fa-arrow-left ms-4 mt-4 text-dark" onClick={()=>nav(-1)} style={{"cursor":"pointer"}}></i>
+            <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light row d-flex flex-lg-row flex-column-reverse">
+                <div className="w-100 p-3 d-flex justify-content-center">
+                    <div className="spinner-border" role="status"/>
+                </div>
+            </div>
+        </>
+        );
+    else return(
         <>
             <i className="fa-solid fa-arrow-left ms-4 mt-4 text-dark" onClick={()=>nav(-1)} style={{"cursor":"pointer"}}></i>
             <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light row d-flex flex-lg-row flex-column-reverse">        
@@ -46,8 +67,8 @@ const MahasiswaDetail = () => {
                                     {namaKel}
                                 </button>
                                 <ul className="dropdown-menu w-100">
-                                    {allKelompok.map((kelompok,idx) => <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup(kelompok.id,data.user_id))} key={idx}>{kelompok.kelompok}</li>)}
-                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>setNamaKel(updateMahasiswaGroup('',data.user_id))}>Mengkosong</li>
+                                    {allKelompok.map((kelompok,idx) => <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(kelompok.id,data.user_id)} key={idx}>{kelompok.kelompok}</li>)}
+                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(null,data.user_id)}>Mengkosong</li>
                                 </ul>
                             </div>
                         </section>

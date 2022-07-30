@@ -1,4 +1,6 @@
 import { getKelompokNameById } from "./Kelompok";
+import { baseUrl } from "../Config/Auth";
+import axios from "axios";
 
 const Mahasiswa = [
     {
@@ -419,17 +421,30 @@ const Mahasiswa = [
 	}
 ]
 
-const getAllMahasiswa = (key) => {
-    const filtered = Mahasiswa.filter(mhs => {
-        if(isNaN(parseInt(key))) return mhs.nama.toLowerCase().indexOf(key.toLowerCase()) !== -1;
-        else return mhs.nim.toString().indexOf(key) !== -1;
-    });
-    return filtered;
+const getAllMahasiswa = async (key) => {
+	try {
+		const result = await axios.post(`${baseUrl}/getall`,null,{params:{name:key,nim:''}});
+		return {...result.data,success:true};
+	} catch (error) {
+		return error;
+	}
+    // const filtered = Mahasiswa.filter(mhs => {
+    //     if(isNaN(parseInt(key))) return mhs.nama.toLowerCase().indexOf(key.toLowerCase()) !== -1;
+    //     else return mhs.nim.toString().indexOf(key) !== -1;
+    // });
+    // return {data : filtered, success : false};
 }
 
-const getMahasiswaByUserId = (UserId) => {
-    const data = Mahasiswa.find(mahasiswa => mahasiswa.user_id === UserId);
-    return data;
+const getMahasiswaByUserId = async (UserId) => {
+	try {
+		const result = await axios.get(`${baseUrl}/getbyuserid/${UserId}`);
+		return result;
+		
+	} catch (error) {
+		return error;
+	}
+    // const data = Mahasiswa.find(mahasiswa => mahasiswa.user_id === UserId);
+    // return data;
 }
 
 const getAllMahasiswaByGroup = (id) => {
@@ -437,15 +452,24 @@ const getAllMahasiswaByGroup = (id) => {
     return data;
 }
 
-const updateMahasiswaGroup = (id,user_id) => {
-    let name = "Tidak Ada Kelompok";
-    for (let i = 0; i < Mahasiswa.length; i++) {
-        if(Mahasiswa[i].user_id === user_id) {
-            Mahasiswa[i].group_id = id
-            name = getKelompokNameById(id);
-        };
-    }
-    return name;
+const updateMahasiswaGroup = async (group_id,user_id) => {
+	try {
+		const result = await axios.patch('https://ccd5-103-108-21-116.ngrok.io/updategroup/1',{
+			"group_id":"1",
+		});
+		console.log(result);
+		return result;
+	} catch (error) {
+		return JSON.stringify(error);
+	}
+    // let name = "Tidak Ada Kelompok";
+    // for (let i = 0; i < Mahasiswa.length; i++) {
+    //     if(Mahasiswa[i].user_id === parseInt( user_id)) {
+    //         Mahasiswa[i].group_id = id
+    //         name = getKelompokNameById(id);
+    //     };
+    // }
+    // return name;
 }
 
 const updateMahasiswaData = (user_id,newData) => {

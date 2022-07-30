@@ -20,6 +20,7 @@ const Login = () => {
     }
     
     return(
+        <main style={{backgroundColor:'#ba4b00',zIndex:'-1',backgroundImage:`url(${bg})`,backgroundSize:'100%',backgroundRepeat:'no-repeat'}}>
         <motion.div 
             animate={{opacity:1}} 
             initial={{opacity:0}} 
@@ -59,10 +60,8 @@ const Login = () => {
                     </button>
                 </Form>
             </div>
-            
-            <div className="login-bg" style={{"backgroundImage":`url(${bg})`}}>
-            </div>
         </motion.div>
+        </main>
     );
 }
 

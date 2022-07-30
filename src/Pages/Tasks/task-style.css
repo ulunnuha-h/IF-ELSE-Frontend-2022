@@ -44,3 +44,7 @@
     width: 40px;
     height: 21px;
 }
+
+#list{
+    height: fit-content;
+}

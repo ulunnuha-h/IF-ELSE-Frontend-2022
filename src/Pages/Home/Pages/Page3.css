@@ -1,27 +1,25 @@
-/*About*/
-.aboutUs {
+.page3-aboutUs {
     position: relative;
-    z-index: 5;
-    width: 1185px;
-    height: 345px;
     background-color: rgba(115, 38, 72, 0.5);
-    border-radius: 24px;
+    border-radius: 12px;
     text-align: justify;
-    padding: 50px 60px;
-    align-self: center;
+    font-size: 1.2em;
+    backdrop-filter: blur(5px) brightness(0.6);
+    cursor: default;
   }
   
-  .aboutUs p {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-  }
-  
-  .judul {
+  .page3-judul {
     font-family: 'Bebas Neue';
     font-weight: 700;
-    font-size: 96px;
+    font-size: 72px;
     line-height: 96px;
     color: #451400;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index:0;
   }
+
+@media (max-width:768px){
+  .page3-aboutUs {
+    font-size: 0.8em;
+  }
+}

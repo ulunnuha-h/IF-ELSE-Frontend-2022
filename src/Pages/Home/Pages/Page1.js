@@ -1,21 +1,29 @@
-import React from "react";
-import { useParallax} from "react-scroll-parallax";
+import React, { useEffect } from "react";
+import { useParallax, useParallaxController} from "react-scroll-parallax";
 import El1 from '../../../Assets/Parallax/1.svg'
-import El2 from '../../../Assets/Parallax/2.webp'
+import El2 from '../../../Assets/Parallax/2.svg'
 import El3 from '../../../Assets/Parallax/3.webp'
 import El4 from '../../../Assets/Parallax/4.webp'
 import El5 from '../../../Assets/Parallax/5.webp'
 import El6 from '../../../Assets/Parallax/6.webp'
 import El7 from '../../../Assets/Parallax/7.webp'
-import El8 from '../../../Assets/Parallax/8.webp'
+import El8 from '../../../Assets/Parallax/8.svg'
 import scroll from '../../../Assets/scroll.gif'
 import './Page1.css';
 import {ReactComponent as Logo} from '../../../Assets/Logo/logohome.svg'
+import { useLocation } from "react-router-dom";
 
-const Page1 = (props) => {
+const Page1 = () => {
     let isMobile = (window.innerWidth < 768);
+    const location = useLocation();
+    const parallaxController = useParallaxController();
 
-    const loaded = () => props.setLoading(false);
+    const updateController = () => parallaxController.update();
+
+    useEffect(() => {
+        updateController();
+    }, [location.pathname]);
+    
 
     const useParallaxSpeed = (start,end) => {
         const parallax = useParallax({
@@ -29,13 +37,14 @@ const Page1 = (props) => {
     return(  
     <>
         <div className='d-flex align-items-end justify-content-center parallax-wrapper'>
-            <img ref={useParallaxSpeed(0,800)} className='position-absolute' src={El1} alt="pic"></img>
-            <img ref={useParallaxSpeed(0,700)} className='position-absolute' src={El2} alt="pic"></img>
-            <img ref={useParallaxSpeed(0,600)} className='position-absolute' src={El3} alt="pic"></img>
-            <img ref={useParallaxSpeed(0,500)} className='position-absolute' src={El4} alt="pic"></img>
-            <img ref={useParallaxSpeed(0,400)} className='position-absolute' src={El5} alt="pic"></img>
-            <img ref={useParallaxSpeed(0,300)} className='position-absolute' src={El6} alt="pic"></img>
-            <img ref={useParallaxSpeed(0,200)} className='position-absolute' src={El7} alt="pic"></img>
+            <img ref={useParallaxSpeed(0,500)} className='position-absolute' src={El1} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,480)} className='position-absolute' src={El2} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,410)} className='position-absolute' src={El3} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,350)} className='position-absolute' src={El4} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,280)} className='position-absolute' src={El5} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,160)} className='position-absolute' src={El6} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,100)} className='position-absolute' src={El7} alt="pic" onLoad={updateController}></img>
+            <img className='position-absolute' src={El8} alt="pic"></img>
             <div className="align-self-start mx-lg-0 mx-5 mt-5 pt-5">
                 <Logo className="w-100"/>
                 <section className="d-flex align-items-center flex-column mt-5 explore">
@@ -44,9 +53,6 @@ const Page1 = (props) => {
                 </section>                
             </div>
         </div>        
-        <div className='parallax-cover-1'>
-            <img src={El8} alt='imgparallax' onLoad={loaded}></img>
-        </div>
     </> 
     );
 }

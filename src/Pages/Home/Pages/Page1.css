@@ -3,14 +3,6 @@
     overflow: hidden;
 }
 
-.parallax-wrapper .element{
-    background-size: cover;
-    background-position: center;
-    z-index: -3;
-    width: 100%;
-    height: 120vh;
-}
-
 .parallax-wrapper > img{
     z-index: -2;
     width: 100%;
@@ -18,7 +10,7 @@
 
 .parallax-cover-1 {
     height: 20vh;
-    bottom: 90vh;
+    bottom: 100vh;
     z-index: -2;
     position: relative;
     width: 100%;
@@ -26,22 +18,6 @@
 
 .parallax-cover-1 > img{
     width: 100%;
-}
-
-.parallax-cover-2 {
-    top : -400%;
-    width: 100%;
-    overflow: hidden;
-}
-
-.parallax-cover-4 {
-    top : -400%;
-}
-
-.parallax-cover-5 {
-    height:100vh;
-    background-repeat:no-repeat;
-    background-size:cover;
 }
 
 .explore img{
@@ -65,20 +41,5 @@
         display: flex;
         bottom: 0px;
         justify-content: center;
-    }
-
-    .parallax-cover {
-        top : -300%;
-    }
-
-    .parallax-cover-2 {
-        top : -450%;
-    }
-
-    .parallax-cover-4 {
-        top : -430%;
-    }
-    .parallax-cover-5 {
-        background-color:#df7200;
     }
 }

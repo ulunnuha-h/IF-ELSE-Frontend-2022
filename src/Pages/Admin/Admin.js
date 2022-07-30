@@ -23,7 +23,12 @@ const Admin = () => {
     else{
         return(
             <main className="admin row w-100 m-0 bg-secondary" style={{"height":"100vh"}}>
-                <motion.div animate={{x:0}} initial={{x:-500}} transition={{type:"tween",ease:"circOut"}} id="sidebar" className="col-md-3 col-12 p-0 h-100 aktif bg-dark text-light" >
+                <motion.div 
+                    animate={{x:0}} 
+                    initial={{x:-500}} 
+                    transition={{type:"tween",ease:"circOut"}} 
+                    id="sidebar" 
+                    className="col-md-2 col-12 p-0 h-100 aktif bg-dark text-light" >
                     <div className="d-flex justify-content-between align-items-center">
                     <div className="w-100 d-flex align-items-center">
                         <span style={{"width":"20%"}}>
@@ -49,7 +54,7 @@ const Admin = () => {
                 </motion.div>
                 <div
                     id="admin-content" 
-                    className="col-md-9 col-12 p-0 bg-secondary">
+                    className="col-md-10 col-12 p-0 bg-secondary">
                     <motion.nav animate={{y:0}} initial={{y:-200}} transition={{type:"tween",ease:"circOut"}} className="w-100 m-0 p-3 d-flex justify-content-between bg-dark text-light">
                         <span className="d-block d-md-none">
                             <i className="fa-solid fa-burger" onClick={()=>toggle()}></i>

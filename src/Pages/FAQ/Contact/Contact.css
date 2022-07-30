@@ -1,56 +1,29 @@
-/* .table {
-    background-color: #732648;
+.contact-table {
+    background-color: var(--color-2-p);
     width: 100%;
-    height: 325px;
-    top: 107px;
     position: sticky;
-    border-radius: 15px 0 0 15px;
+    border-radius: 12px;
     font-size: 21px;
-    margin: 30px 0 30px 12px;
-    padding-top: 20px;
-} */
-
-
-/* .table .image {
-    width: 160px;
-    height: 156px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-} */
+    top: 92px;
+}
 
 .text-contact {
     width: 100%;
-    font-size: 90%;
-    text-align: center;
-    margin: 30px 0 0 0;
-    color: white;
-}
-
-.button-contact p {
-    color: #451400;
-    font-weight: 700;
     text-align: center;
 }
 
 .button-contact {
-    background-color: #FFA42E;
-    border-radius: 15px;
-    width: 135px;
-    height: 30px;
+    color: var(--color-1-p);
+    font-weight: 700;
+    text-align: center;
+    background-color: var(--color-2-s);
+    border-radius: 12px;
     text-decoration: none;
-    display: block;
-    margin-top: 25px;
-    margin-left: auto;
-    margin-right: auto; 
-}
-
-.button-contact :hover {
-    color: #451400;
+    transition: 300ms;
 }
 
 @media only screen and (max-width: 991px) {
-    /* .table {
+    /* .contact-table {
         border-radius: 15px;
         width: 92.6%;
         margin-top: 0px;

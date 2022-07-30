@@ -14,9 +14,17 @@ nav{
     border: solid var(--color-1-p) 1px;
 }
 
-
-.nav-brand{
+.cursor-pointer{
     cursor: pointer;
+}
+
+.nav-brand span{
+    font-weight: 700;
+}
+
+.nav-brand img{
+    border-radius:50%;
+    background-color: var(--color-3);
 }
 
 nav span{
@@ -60,6 +68,10 @@ nav ul{
     border-radius: 100px;
     border: 0px;
     color: white;
+}
+
+.navbar-nav footer{
+    bottom: 100px;
 }
 
 @media(max-width : 576px){

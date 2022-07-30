@@ -16,7 +16,7 @@ export default function Task(props) {
     }
     
     return(
-            <div className=" d-flex flex-row" onClick={()=>{props.setSide(true);nav(`${props.ID}`);window.scrollTo(0,0)}} style={{minHeight:'280px'}}>
+            <div className=" d-flex flex-row mt-3" onClick={()=>{props.setSide(true);nav(`${props.ID}`);window.scrollTo(0,0)}} style={{minHeight:'280px'}}>
                 <div className="taskS--jilid d-sm-flex flex-column position-relative justify-content-center d-none">
                     <div className="taskS--elipse"></div>
                     <div className="taskS--elipse"></div>
