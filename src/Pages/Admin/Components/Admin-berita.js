@@ -19,7 +19,8 @@ const AdminBerita = () => {
                   <thead>
                     <tr>  
                       <th>No</th>
-                      <th>judul</th>
+                      <th>Judul</th>
+                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -27,7 +28,8 @@ const AdminBerita = () => {
                     {berita.map((berita,index)=>
                       <tr key={index}>
                         <td className="col-1">{berita.id}</td>
-                        <td>{berita.judul}</td>
+                        <td>{berita.title}</td>
+                        <td>{berita.is_published ? 'Published ✔️' : 'Archieved ❌'}</td>
                         <td className="col-2"><Button className="w-100" onClick={()=>nav(`edit/${berita.id}`)}>Edit</Button></td>
                       </tr>
                     )}

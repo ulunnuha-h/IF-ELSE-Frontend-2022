@@ -3,13 +3,15 @@ import { Button,Modal,Form } from "react-bootstrap";
 import { addTugas } from "../../../../Data/Penugasan";
 
 const TambahTugasModal = (props) =>{
-    const [judul,setJudul] = useState('');
-    const [deskripsi,setDeskripsi] = useState('');
-    const [ketentuan,setKetentuan] = useState('');
-    const [deadline,setDeadline] = useState('');
+    const [title,setTitle] = useState('');
+    const [description,setDescription] = useState('');
+    const [condition,setCondition] = useState('');
+    const [step,setStep] = useState('');
+    const [end_at,setEnd_at] = useState('');
+    const [input,setInput] = useState(0);
 
     const tambahTugas = () => {
-        addTugas({judul,deskripsi,ketentuan,deadline});
+        addTugas({title,description,condition,end_at});
     }
 
     return(
@@ -21,29 +23,46 @@ const TambahTugasModal = (props) =>{
         <Form onSubmit={e=>{
             e.preventDefault();
             tambahTugas();
-            setJudul('');
-            setDeskripsi('');
-            setKetentuan('');
-            setDeadline('');
+            setTitle('');
+            setDescription('');
+            setCondition('');
+            setEnd_at('');
             props.handleClose();
         }}>
         <Modal.Body>
             
                 <Form.Group className="mb-3">
                     <Form.Label>Judul</Form.Label>
-                    <Form.Control type="text" placeholder="Masukkan Judul" value={judul} onChange={(e)=>setJudul(e.target.value)} required/>
+                    <Form.Control type="text" placeholder="Masukkan judul" value={title} onChange={(e)=>setTitle(e.target.value)} required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Deskripsi</Form.Label>
-                    <Form.Control as="textarea" rows={3} placeholder="Masukkan Deskripsi" value={deskripsi} onChange={(e)=>setDeskripsi(e.target.value)} required/>
+                    <Form.Control as="textarea" rows={5} placeholder="Masukkan deskripsi tugas" value={description} onChange={(e)=>setDescription(e.target.value)} required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Ketentuan</Form.Label>
-                    <Form.Control as="textarea" rows={3} placeholder="Masukkan Ketentuan" value={ketentuan} onChange={(e)=>setKetentuan(e.target.value)} required/>
+                    <Form.Control as="textarea" rows={3} placeholder="Masukkan ketentuan tugas" value={condition} onChange={(e)=>setCondition(e.target.value)} required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
+                    <Form.Label>Cara</Form.Label>
+                    <Form.Control as="textarea" rows={3} placeholder="Masukkan cara mengerjakan tugas" value={step} onChange={(e)=>setStep(e.target.value)} required/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Jumlah link</Form.Label>
+                    <Form.Control type="number" min={0} max={2} placeholder="Masukkan jumlah input link" value={input} onChange={e=>setInput(parseInt(e.target.value))} required/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Jumlah link</Form.Label>
+                    <Form.Control type="text" placeholder="Masukkan jumlah input link" value={input} onChange={e=>setInput(parseInt(e.target.value))} required/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Jumlah link</Form.Label>
+                    <Form.Control type="text" placeholder="Masukkan jumlah input link" value={input} onChange={e=>setInput(parseInt(e.target.value))} required/>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
                     <Form.Label>Deadline</Form.Label>
-                    <Form.Control type="date" onChange={(e)=>setDeadline(e.target.valueAsDate)} required/>
+                    <Form.Control type="datetime-local" onChange={(e)=>setEnd_at(e.target.valueAsDate)} required/>
                 </Form.Group>
         </Modal.Body>
         <Modal.Footer>

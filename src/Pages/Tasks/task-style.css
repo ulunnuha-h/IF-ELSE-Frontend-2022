@@ -48,3 +48,25 @@
 #list{
     height: fit-content;
 }
+
+.side-task::-webkit-scrollbar {
+    width: 16px;
+}
+
+/* Track */
+.side-task::-webkit-scrollbar-track {
+  border-radius: 10px;
+  border: solid gray 1px;
+  margin-top: 16px;
+}
+ 
+/* Handle */
+.side-task::-webkit-scrollbar-thumb {
+  background: var(--color-2-p); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.side-task::-webkit-scrollbar-thumb:hover {
+  background: var(--color-1-p); 
+}

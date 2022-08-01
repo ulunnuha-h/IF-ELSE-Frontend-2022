@@ -2,10 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const NewsRecent = () => {
+const NewsRecent = (props) => {
     const nav = useNavigate();
-    const detailHandle = () => nav('1');
-    const croppedCapt = caption.slice(0,280) + '[...]';
+    const detailHandle = () => nav(`${props.id}`);
+    const croppedCapt = props.content.slice(0,218) + '[...]';
+    const isMobile = (window.innerWidth < 576);
 
     const bgColor = {backgroundColor : 'rgba(115, 38, 72, 0.8)'} 
 
@@ -17,22 +18,22 @@ const NewsRecent = () => {
             style={{cursor:'pointer'}}>
             <section className='w-100 row m-0' style={{aspectRatio:'9/4',borderRadius:'12px',...bgColor}}>
                 <div className='col-12 col-lg-8 p-lg-4 p-1'>
-                    <section className='bg-dark w-100 h-100' style={{backgroundImage:'url(https://placekitten.com/2160/1440)',backgroundSize:'cover',borderRadius:'6px',overflow:'hidden'}}>
+                    <section className='bg-dark w-100 h-100' style={{backgroundImage:`url(${props.image})`,backgroundSize:'cover',borderRadius:'6px',overflow:'hidden'}}>
                         <section className="w-100 h-100 d-flex align-items-end text-white p-lg-4 p-2" style={{background:'linear-gradient(transparent 60%, black 100%)',opacity:'0.8'}}>
-                            <h2>Judul Berita</h2>
+                            <span className={isMobile ? 'h6' : 'h2'}>{props.title}</span>
                         </section>
                     </section>
                 </div>
                 <div className='col-4 p-4 ps-0 d-none d-lg-block'>
                     <section className='w-100 h-100 text-white d-flex flex-column justify-content-between' style={{boxSizing:'border-box'}}>
                         <section>
-                            <h3>Judul Berita</h3>
+                            <h4 className="m-0">{props.title}</h4>
                             <pre style={{backgroundColor:'transparent'}}>
                                 {croppedCapt}
                             </pre>
                         </section>                            
                         <section className="d-flex justify-content-between">
-                            <span>30 Desember 2022</span>
+                            <span>{props.published_at}</span>
                         </section>
                     </section>
                 </div>

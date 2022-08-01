@@ -1,6 +1,6 @@
 import React from "react";
 import About from "./Components/AboutIfElse";
-import bg from '../../../Assets/Page3/Desert3.webp'
+import bg from '../../../Assets/Page3/Desert3.svg'
 
 const Page3 = () => {
 

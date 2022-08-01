@@ -1,39 +1,40 @@
 const StudentTask = [{
-    ID : 1,
-    UserId : 1,
-    Data : [
+    id : 1,
+    user_id : 1,
+    data : [
 	{
-        TaskId : 1,
-	    Submission : '',
-	    SubmittedAt :'20 Agustus 2021'
+        task_id : 1,
+	    submission : null,
+	    submitted_at :'20 Agustus 2021'
     },
     {
-        TaskId : 2,
-	    Submission : 'url.com',
-	    SubmittedAt :'20 Agustus 2021'
+        task_id : 2,
+	    submission : 'url.com',
+	    submitted_at :'20 Agustus 2021'
     },
     {
-        TaskId : 3,
-	    Submission : '',
-	    SubmittedAt :'20 Agustus 2021'
+        task_id : 3,
+	    submission : '',
+	    submitted_at :'20 Agustus 2021'
     },
     {
-        TaskId : 4,
-	    Submission : 'https://drive.google.com/drive/u/0/my-drive',
-	    SubmittedAt :'20 Agustus 2021'
+        task_id : 4,
+	    submission : 'https://drive.google.com/drive/u/0/my-drive',
+	    submitted_at :'20 Agustus 2021'
     },]   
 }]
 
-const getStudentTaskByUserId = (UserId,TaskId) => {
-    const data1 = StudentTask.find(task=>task.UserId === UserId);
-    const data2 = data1.Data.find(data=>data.TaskId === TaskId);    
+const getStudentTaskByUserId = (UserId,task_id) => {
+    const data1 = StudentTask.find(task=>task.user_id === UserId);
+    const data2 = data1.data.find(data=>data.task_id === task_id);    
     return data2;
 }
 
-const updateStudentTaskSubmission = (UserId,TaskId,Url) => {
-    const idx1 = StudentTask.findIndex(task => task.ID === UserId);
-    const idx2 = StudentTask[idx1].Data.findIndex(data => data.TaskId === TaskId);
-    StudentTask[idx1].Data[idx2].Submission = Url;
+const updateStudentTasksubmission = (UserId,task_id,data) => {
+    console.log(UserId,task_id,data);
+    const idx1 = StudentTask.findIndex(task => task.id === UserId);
+    const idx2 = StudentTask[idx1].data.findIndex(data => data.task_id === task_id);
+    StudentTask[idx1].data[idx2].submission = data;
 }
 
-export {getStudentTaskByUserId,updateStudentTaskSubmission};
+export {getStudentTaskByUserId,updateStudentTasksubmission};

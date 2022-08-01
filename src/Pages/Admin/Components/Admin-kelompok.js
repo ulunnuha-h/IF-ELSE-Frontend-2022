@@ -11,7 +11,7 @@ const AdminKelompok = () => {
     const [key,setKey] = useState('');
     const [DataMahasiswa,setDataMahasiswa] = useState({}); 
     const DataKelompok = getAllKelompok();
-    const pageCount = Math.ceil(DataMahasiswa.length/10);
+    const [pageCount,setPageCount] = useState(1);
     const [tambah,setTambah] = useState(false);
     const [pageNum,setPageNum] = useState(0);
     const pageHandler = ({selected}) => {
@@ -22,7 +22,12 @@ const AdminKelompok = () => {
         setPageNum(0);
         setDataMahasiswa({data:{result:[]},success:false});
         getAllMahasiswa(key).then(res => setDataMahasiswa(res));
+        // setDataMahasiswa(getAllMahasiswa(key));
     },[key]);
+
+    useEffect(()=>{
+        if(DataMahasiswa.success)setPageCount(Math.ceil(DataMahasiswa.data.result.length/10));
+    },[DataMahasiswa])
 
     return(
         <>
@@ -54,7 +59,7 @@ const AdminKelompok = () => {
             </Table>
         </div>
         <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">  
-            <h3>List Semua Maba imut</h3>
+            <h3>List Data Mahasiswa</h3>
             <section className="mb-3 d-flex align-items-center">
                 <input className="w-100" placeholder="Cari berdasarkan nim atau nama..." value={key} onChange={e=>setKey(e.target.value)}></input>
                 <i className="fa-solid fa-magnifying-glass mx-2"></i>
@@ -89,7 +94,7 @@ const AdminKelompok = () => {
             }
             <ReactPaginate 
                 pageCount={pageCount}
-                containerClassName="pagination dark"
+                containerClassName="pagination"
                 previousClassName="page-item"
                 previousLinkClassName="page-link"
                 nextClassName="page-item"

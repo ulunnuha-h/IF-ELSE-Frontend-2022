@@ -19,8 +19,8 @@ export default function Tasks() {
         <main style={{backgroundColor:'#ba4b00',backgroundImage:`url(${Bg})`,backgroundSize:'100%',backgroundRepeat:'no-repeat'}}>
         <div className='container-lg row mx-auto px-0' style={{minHeight:'100vh',zIndex:'0'}}>
             <div className={side ? (detailStyle) : (detailStyle + ' d-none')} id='detail'>
-                <div className='position-sticky' style={{top:"76px",height:"calc(100vh - 76px)"}}>
-                    <section className='h-100' style={{overflowY:"auto"}}>
+                <div className='position-sticky ' style={{top:"76px",height:"calc(100vh - 76px)"}}>
+                    <section className='h-100 side-task' style={{overflowY:"auto"}}>
                         <Outlet/>
                         <section className='d-flex justify-content-end pe-3'>
                             <span className='px-3 py-2 rounded mb-3 text-light' style={{backgroundColor:"var(--color-2-p)",cursor:"pointer"}} onClick={()=>{setSide(false);nav('')}}>Close <i className="fa-solid fa-arrow-right-to-bracket"></i></span>
@@ -31,7 +31,7 @@ export default function Tasks() {
             <div className={side ? listStyle + ' col-4 d-lg-block d-none' : listStyle + ' col-12' } id='list'>
                 {arrayTask.map((item,idx)=>
                     <motion.span 
-                        key={item.ID} 
+                        key={item.id} 
                         initial={{y:50,opacity:0}} 
                         animate={{y:0,opacity:1}} 
                         whileHover={{scale:1.02}} 

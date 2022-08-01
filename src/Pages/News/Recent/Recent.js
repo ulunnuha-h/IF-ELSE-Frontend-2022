@@ -5,9 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewsRecent from './News-recent.js';
 import { motion } from 'framer-motion';
+import { getBeritaTerbaru } from '../../../Data/Berita';
 
-class Recent extends React.Component {
-  render() {
+const Recent = () => {
+
+    const allData = getBeritaTerbaru();
+
     const settings = {
         dots: true,   
         infinite: true,
@@ -19,19 +22,16 @@ class Recent extends React.Component {
     };
 
     return (
-      <motion.div 
-        className='mt-3 mx-2' 
-        initial={{opacity:0,scale:0.9}} 
-        whileInView={{opacity:1,scale:1}}
-        transition={{type:'tween',ease:'circOut'}}>
-        <Slider {...settings}>
-            <NewsRecent/>
-            <NewsRecent/>
-            <NewsRecent/>
-        </Slider>
-      </motion.div>
-    );
-  }
+        <motion.div 
+            className='mt-3 mx-2' 
+            initial={{opacity:0,scale:0.9}} 
+            whileInView={{opacity:1,scale:1}}
+            transition={{type:'tween',ease:'circOut'}}>
+            <Slider {...settings}>
+                {allData.map(data => <NewsRecent key={data.id} {...data} />)}                
+            </Slider>
+        </motion.div>
+    );  
 }
 
 

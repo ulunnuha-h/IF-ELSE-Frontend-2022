@@ -77,8 +77,8 @@ const Nav = () => {
                     </Link>
                 </li>
                 <li className="nav-item mx-3" onClick={closeSidebar}>
-                    <Link className="nav-link" to="presence">
-                        <span className="nav-text" style={navTextStyle}>Presence</span>
+                    <Link className="nav-link" to="event">
+                        <span className="nav-text" style={navTextStyle}>Event</span>
                     </Link>
                 </li>
                 <li className="nav-item mt-4 d-block d-sm-none" onClick={closeSidebar}>

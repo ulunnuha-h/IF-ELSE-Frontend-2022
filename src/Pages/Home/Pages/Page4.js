@@ -1,5 +1,5 @@
 import React from "react";
-import SunLogo from '../../../Assets/Page4/Logo.webp';
+import SunLogo from '../../../Assets/Page4/Logo1.webp';
 import bg from '../../../Assets/Page4/Desert4.svg'
 import './Page1.css';
 import './Page4.css';

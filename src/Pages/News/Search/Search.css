@@ -110,6 +110,21 @@
     color:#451400;
 }
 
+.news-pagination .page-item .active{
+    background-color: var(--color-1-p);
+    box-shadow: none;
+    border-color: var(--color-2-p);
+    color: white;
+}
+
+.news-pagination .page-link{
+    color: var(--color-2-p);
+}
+
+.news-pagination .page-item .disabled{
+    color: gray;
+}
+
 /* @media only screen and (max-width: 1110px) {
     .images-search {
         width: 106.4%;

@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMahasiswaByUserId,updateMahasiswaGroup } from "../../../../Data/Mahasiswa";
 import { getAllKelompok,getKelompokNameById} from "../../../../Data/Kelompok";
+import axios from "axios";
 
 const MahasiswaDetail = () => {
     const params = useParams();
@@ -10,14 +11,39 @@ const MahasiswaDetail = () => {
 
     useEffect(()=>{
         getMahasiswaByUserId(parseInt(params.id)).then(res=>setData(res.data.data));
+        // setData(getMahasiswaByUserId(parseInt(params.id)));
     },[params.id])
 
-    const ubahGroupId = (group_id,user_id) => {
-        updateMahasiswaGroup(group_id,user_id).then(res=>console.log(res));
+    const [namaKel, setNamaKel] = useState(getKelompokNameById(data.group_id));
+
+    useEffect(()=>{
+        // setNamaKel(getKelompokNameById(data.group_id));
+    },[data]);
+
+    useEffect(()=>{
+        ubahGroupId("1","1")
+    });
+
+    const ubahGroupId = async (group_id,user_id) => {
+
+        const data = {
+            "group_id":"1"
+        }
+
+        await axios.put(`https://1272-103-108-20-77.ngrok.io/mahasiswa/1`,data)
+        .then(res => console.log(res)).catch(err => console.log(err));
+        // try {
+        //     const result = 
+        //     console.log(result)
+        // } catch (error) {
+        //     console.log(error)
+        // }
+        // updateMahasiswaGroup(group_id,user_id);
+        // setNamaKel(updateMahasiswaGroup(group_id,user_id));
     }
 
     const allKelompok = getAllKelompok();
-    const [namaKel, setNamaKel] = useState(getKelompokNameById(data.group_id));
+    
     const nav = useNavigate('');
 
 
@@ -67,8 +93,8 @@ const MahasiswaDetail = () => {
                                     {namaKel}
                                 </button>
                                 <ul className="dropdown-menu w-100">
-                                    {allKelompok.map((kelompok,idx) => <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(kelompok.id,data.user_id)} key={idx}>{kelompok.kelompok}</li>)}
-                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(null,data.user_id)}>Mengkosong</li>
+                                    {/* <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId("1","1")}>Seven Wind</li> */}
+                                    {/* <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(null,data.user_id)}>Mengkosong</li> */}
                                 </ul>
                             </div>
                         </section>

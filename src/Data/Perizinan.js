@@ -1,53 +1,81 @@
 const Perizinan = [
         {
-            isOpen : false, 
+            agenda_id:1, 
             data : [
             {
-                nama : "Hanif Ulunnuha Hidayat",
-                kepentingan : "Mabar"
+                student_id : 1,
+                nama : 'Hanif Ulunnuha Hidayat',
+                nim : 215150200111019,
+                group_id : 1,
+                surat : "link.com"
             },
             {
-                nama : "Steven Mantep",
-                kepentingan : "Lupa kalo ada rangkaian"    
+                student_id : 2,
+                nama : 'Buggy Maulana',
+                nim : 215150200111022,
+                group_id : 1,
+                surat : "link.com"
             }]
         },
-        {   
-            isOpen : true, 
-            data :[
+        {
+            agenda_id:2, 
+            data : [
             {
-                nama : "Zero Wanwan Cece",
-                kepentingan : "Belom sarapan, jadi tadi pagi saya masih nyari nasi bungkus di pasar, soalnya pasarnya beda kabupaten jadi saya menghabiskan waktu 10 jam buat ke pasar"
+                student_id : 1,
+                nama : 'Hanif Ulunnuha Hidayat',
+                nim : 215150200111019,
+                group_id : 1,
+                surat : "link.com"
             },
             {
-                nama : "Steven Mantep",
-                kepentingan : "Lupa kalo ada rangkaian"    
+                student_id : 2,
+                nama : 'Buggy Mabarata',
+                nim : 215150200111022,
+                group_id : 1,
+                surat : "link.com"
             }]
         },
-        {   
-            isOpen : false, 
-            data :[
+        {
+            agenda_id:3, 
+            data : [
             {
-                nama : "Zero Wanwan Cece",
-                kepentingan : "ngapel lantai rumah"
+                student_id : 1,
+                nama : 'Hanif Ulunnuha Hidayat',
+                nim : 215150200111019,
+                group_id : 1,
+                surat : "link.com"
             },
             {
-                nama : "Steven Mantep",
-                kepentingan : "Lupa kalo belom mandi"    
+                student_id : 2,
+                nama : 'Buggy Sup',
+                nim : 215150200111022,
+                group_id : 1,
+                surat : "link.com"
             }]
-        }
+        },
+        {
+            agenda_id:4, 
+            data : [
+            {
+                student_id : 1,
+                nama : 'Hanif Ulunnuha Hidayat',
+                nim : 215150200111019,
+                group_id : 1,
+                surat : "link.com"
+            },
+            {
+                student_id : 2,
+                nama : 'Buggy D. Clown',
+                nim : 215150200111022,
+                group_id : 1,
+                surat : "link.com"
+            }]
+        },
 ]
 
-const getPerizinanDay = (day) => {
-    return Perizinan[day-1];
+const getPerizinanByRangkaian = (id) => {
+    const data = Perizinan.find(val => val.agenda_id === id);
+    return data.data;
 }
 
-const getPerizinanDayDetail = (day,idx) => {
-    return Perizinan[day-1].data[idx];
-}
-
-const togglePerizinanDay = (day) => {
-    Perizinan[day-1].isOpen = !Perizinan[day-1].isOpen;
-    return Perizinan[day-1].isOpen;
-}
-
-export {getPerizinanDay,getPerizinanDayDetail,togglePerizinanDay};
+export {getPerizinanByRangkaian};

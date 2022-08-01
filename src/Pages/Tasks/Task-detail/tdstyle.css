@@ -12,7 +12,7 @@
 .taskD--content h1 {
     font-family: 'Bebas Neue';
     font-weight: 500;
-    font-size: 2.2rem;
+    font-size: 2.8em;
 }
 
 .taskD--jilid {
@@ -42,6 +42,11 @@
 .taskD--inputan button:active {
     transform: scale(0.8);
     transition: transform 0.3s ease;
+}
+
+.task-submitted{
+    font-size: 12px;
+    color: var(--color-1-s);
 }
 
 /* @media (max-width: 767.98px) {

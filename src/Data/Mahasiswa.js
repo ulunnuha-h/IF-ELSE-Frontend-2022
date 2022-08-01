@@ -432,18 +432,23 @@ const getAllMahasiswa = async (key) => {
     //     if(isNaN(parseInt(key))) return mhs.nama.toLowerCase().indexOf(key.toLowerCase()) !== -1;
     //     else return mhs.nim.toString().indexOf(key) !== -1;
     // });
-    // return {data : filtered, success : false};
+    // return {data :{ result : filtered}, success : true};
 }
 
 const getMahasiswaByUserId = async (UserId) => {
+
+	// let result = '';
+	// await fetch(`${baseUrl}/getbyuserid/${UserId}`).then((response) => response.json()).then((data) => result = data);
+	// return result;
+
 	try {
-		const result = await axios.get(`${baseUrl}/getbyuserid/${UserId}`);
+		const result = await axios.get(`${baseUrl}/mahasiswa/${UserId}`);
 		return result;
-		
 	} catch (error) {
 		return error;
 	}
     // const data = Mahasiswa.find(mahasiswa => mahasiswa.user_id === UserId);
+	// console.log(data);
     // return data;
 }
 
@@ -453,20 +458,45 @@ const getAllMahasiswaByGroup = (id) => {
 }
 
 const updateMahasiswaGroup = async (group_id,user_id) => {
-	try {
-		const result = await axios.patch('https://ccd5-103-108-21-116.ngrok.io/updategroup/1',{
-			"group_id":"1",
-		});
-		console.log(result);
-		return result;
-	} catch (error) {
-		return JSON.stringify(error);
-	}
+	fetch(`${baseUrl}/updategroup/1`, {
+    method: "PUT", // or "PUT" with the url changed to, e.g "https://reqres.in/api/users/2"
+    headers: {
+        'Content-type': 'application/json'
+    },
+    body: JSON.stringify(
+        { group_id: "1"}
+    ).then(res => res.json())
+	.then(data => console.log(data))
+	.catch(error => console.log(error))
+});
+	// await fetch(`${baseUrl}/updategroup/1`, {
+	//   method: 'PUT', // or 'PUT'
+	//   headers: {
+	//     'Content-Type': 'application/json',
+	//   },
+	//   body: JSON.stringify({"group_id":"1"}),
+	// })
+	// .then((response) => response.json())
+	// .then((data) => {
+	//   console.log('Success:', data);
+	// })
+	// .catch((error) => {
+	//   console.error('Error:', error);
+	// });
+	// try {
+	// 	const result = await axios.put(`${baseUrl}/updategroup/1`,{
+	// 		"group_id":1,
+	// 	},{content});
+	// 	console.log(result);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }
     // let name = "Tidak Ada Kelompok";
     // for (let i = 0; i < Mahasiswa.length; i++) {
     //     if(Mahasiswa[i].user_id === parseInt( user_id)) {
-    //         Mahasiswa[i].group_id = id
-    //         name = getKelompokNameById(id);
+    //         Mahasiswa[i].group_id = group_id
+    //         name = getKelompokNameById(group_id);
     //     };
     // }
     // return name;
