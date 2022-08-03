@@ -1,14 +1,44 @@
+import { updateStudentTaskData,deleteStudentTaskData } from "./StudentTask";
+
 const Tasks = [
     {
-        id:1,
+        id:91238741,
         title:"Discover Your Journey (DISNEY)",
-        description:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni est ipsa ab ratione iste a quis cupiditate laboriosam cumque? Porro?",
-        condition:'Bawa anak kucing sebanyak 2',
-        start_at:"30 September 2022",
-        end_at:"1 Novermber 2022",
-        is_published: true,
+        description:`
+Halo Informatics 👋🏻
+Sebagai seorang mahasiswa tentunya kalian harus lebih mengenal diri kalian dan juga mulai merancang kehidupan perkuliahan seperti apa yang ingin kalian jalani. Nah, untuk membantu kalian, telah disediakan penugasan DISNEY (Discover Your Journey), yaitu pembuatan video yang berisi perkenalan dan deskripsi diri yang didapatkan dari hasil tes kepribadian melalui website di bawah ini 👇👇
+
+https://www.16personalities.com/id/tes-kepribadian
+
+Setelah itu, lanjut dengan penjelasan mengenai alasan masuk Teknik Informatika UB serta target-target yang ingin dicapai sesuai dengan roadmap yang telah dibuat. Roadmap tersebut digambar di kertas, PPT atau platform lainnya yang di dalamnya berisi target jangka pendek dan jangka panjang.
+.
+Masih belum paham sepenuhnya? Jangan khawatir, kami telah menyediakan contoh pengerjaannya di postingan video kami. Untuk ketentuan beserta tata cara penugasan terdapat di website IF ELSE 2021. Simak baik-baik ya!
+
+Untuk info lebih lanjut mengenai DISNEY bisa diakses pada Website IF ELSE 2021 👇
+
+http://ifelse.filkom.ub.ac.id/
+
+Untuk info lebih lanjut tetap pantau terus linimasa dan sosial media kami di
+
+LINE : @ifelsefilkomub
+INSTAGRAM : ifelsefilkomub
+YOUTUBE : IF ELSE FILKOM UB
+WEBSITE : ifelse.filkom.ub.ac.id
+
+==================================
+Departemen Pengembangan Sumber Daya Manusia
+Eksekutif Mahasiswa Informatika UB 2021
+Kabinet Lentera
+
+#ifelse2021
+#SatuPaduInformatika
+#KnowYourHomeGrowYourZone
+#BeFearlessToExploreLoveBringsYouHome`,
+        condition:'Buat Video yang menarik',
+        step :'Rekam, Edit, Upload',
+        end_at:"2022-09-07T23:59",
         fields: [
-            "URL tugas tiktok"
+            "Link Instagram"
         ]
     }
 ]
@@ -19,8 +49,24 @@ const getTaskById = (id)=> {
 }
 
 const getAllTask = () => {
-    const data = Tasks.filter(val => val.is_published);
-    return data;
+    return Tasks;
 }
 
-export {getTaskById,getAllTask};
+const addTask = (newTask) => {
+    const id = Date.now();
+    Tasks.push({id,...newTask})
+    updateStudentTaskData(id);
+}
+
+const deleteTask = (id) => {
+    const idx = Tasks.findIndex(task => task.id === id);
+    Tasks.splice(idx,1);
+    deleteStudentTaskData(id);
+}
+
+const editTask = (id,newTask) => {
+    const idx = Tasks.findIndex(task => task.id === id);
+    Tasks[idx] = {id,...newTask};
+}
+
+export {getTaskById,getAllTask,addTask,editTask,deleteTask};

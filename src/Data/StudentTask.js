@@ -3,25 +3,10 @@ const StudentTask = [{
     user_id : 1,
     data : [
 	{
-        task_id : 1,
+        task_id : 91238741,
 	    submission : null,
-	    submitted_at :'20 Agustus 2021'
-    },
-    {
-        task_id : 2,
-	    submission : 'url.com',
-	    submitted_at :'20 Agustus 2021'
-    },
-    {
-        task_id : 3,
-	    submission : '',
-	    submitted_at :'20 Agustus 2021'
-    },
-    {
-        task_id : 4,
-	    submission : 'https://drive.google.com/drive/u/0/my-drive',
-	    submitted_at :'20 Agustus 2021'
-    },]   
+	    submitted_at : ''
+    }]   
 }]
 
 const getStudentTaskByUserId = (UserId,task_id) => {
@@ -31,10 +16,27 @@ const getStudentTaskByUserId = (UserId,task_id) => {
 }
 
 const updateStudentTasksubmission = (UserId,task_id,data) => {
-    console.log(UserId,task_id,data);
     const idx1 = StudentTask.findIndex(task => task.id === UserId);
     const idx2 = StudentTask[idx1].data.findIndex(data => data.task_id === task_id);
     StudentTask[idx1].data[idx2].submission = data;
+    StudentTask[idx1].data[idx2].submitted_at = Date().toString();
 }
 
-export {getStudentTaskByUserId,updateStudentTasksubmission};
+const updateStudentTaskData = (task_id) => {
+    for (let i = 0; i < StudentTask.length; i++) {
+        StudentTask[i].data.push({task_id,submission:null,submitted_at:''});
+    }    
+}
+
+const deleteStudentTaskData = (task_id) => {
+    for (let i = 0; i < StudentTask.length; i++) {
+        for (let j = 0; j < StudentTask[i].data.length; j++) {
+            if(StudentTask[i].data[j].task_id === task_id){
+                StudentTask[i].data.splice(j,1);
+            }
+        }
+    }    
+    console.log(StudentTask);
+}
+
+export {getStudentTaskByUserId,updateStudentTasksubmission,updateStudentTaskData,deleteStudentTaskData};

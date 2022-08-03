@@ -31,19 +31,19 @@ function Detail() {
                         <h1 className="judul-detail">{data.title}</h1>
                     </section>
                     <span className="tanggal-detail">{data.published_at}</span>
-                    <div style={{backgroundImage:`url(${data.image})`,aspectRatio:'16/9',backgroundSize:'cover'}} alt="" className="bg-dark image-detail my-3"/>
+                    <div style={{backgroundImage:`url(${data.image})`,aspectRatio:'16/9',backgroundSize:'cover',backgroundPosition:'center'}} alt="" className="image-detail my-3"/>
                     <pre className="isi-detail">
                         {data.content}
                     </pre>
                     <hr></hr>
                     <h4 className="text-light">Recent News</h4>
                     <div className="row row-cols-1 row-cols-lg-2">
-                        {beritaTerbaru.map(berita => <SmallDetail {...berita}/>)}
+                        {beritaTerbaru.map((berita,idx) => <SmallDetail key={idx} {...berita}/>)}
                     </div>
                 </motion.div>
                 <div className="col-4 px-4 mt-3 d-none d-lg-block">
                     <h4 style={{color:'var(--color-font)'}}>Recent News</h4>
-                    {beritaTerbaru.map(berita => <SmallDetail {...berita}/>)}
+                    {beritaTerbaru.map((berita,idx) => <SmallDetail key={idx} {...berita}/>)}
                 </div>
             </div>
         </main>

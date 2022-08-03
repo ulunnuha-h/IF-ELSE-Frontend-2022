@@ -8,6 +8,8 @@ export default function Task(props) {
         getStudentTaskByUserId(props.auth.id,props.id):
         {submission : null};
 
+    console.log(props.auth);
+
     const handleDesc = (Desc) => {
         if(Desc.length > 80){
             return Desc.slice(0,80) + ' [...]';

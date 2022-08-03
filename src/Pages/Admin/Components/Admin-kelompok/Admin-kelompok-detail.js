@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { getKelompokById, getKelompokNameById,deleteKelompok } from "../../../../Data/Kelompok";
@@ -8,12 +8,20 @@ import KelompokDeleteWarning from "./Admin-kelompok-deleteWarning";
 
 const KelompokDetail = () => {
     const params = useParams();
-    const data = getKelompokById(parseInt(params.kelompokId));
+    const data = getKelompokById(params.kelompokId);
     const [edit,setEdit] = useState(false);
     const [warn,setWarn] = useState(false);
-    const groupLink = `https://${data.link}`;
+    const groupLink = `lnk.com`;
     const nav = useNavigate();
-    const mahasiswaData = getAllMahasiswaByGroup(data.id);
+    const [mahasiswaData,setMahasiswaData] = useState(null);
+    
+
+    useEffect(()=>{
+        getAllMahasiswaByGroup(data.id).then(res => {
+            console.log(res.data.data);
+            setMahasiswaData(res.data.data);
+        })
+    },[data.id])
 
     const deleteHandler = () => {
         if(mahasiswaData.length === 0) {
@@ -23,7 +31,8 @@ const KelompokDetail = () => {
         else setWarn(true);
     }
 
-    const showAllMahasiswa = mahasiswaData.map((dataMhs,idx) => {
+
+    const showAllMahasiswa = (mahasiswaData !== null ? mahasiswaData.map((dataMhs,idx) => {
             return(
                 <tr key={idx}>
                     <td className="py-3 col-1">{dataMhs.nim}</td>
@@ -32,7 +41,8 @@ const KelompokDetail = () => {
                     <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`../kelompok/mahasiswa/${dataMhs.user_id}`)}>Detail</button></td>
                 </tr>
             );
-        });
+        }) : null
+    );
 
     return(
         <>
@@ -41,7 +51,7 @@ const KelompokDetail = () => {
                 onClick={()=>nav(-1)}
                 style={{"cursor":"pointer"}}
                 ></i>
-            <EditKelompok edit={edit} setEdit={setEdit} id={parseInt(params.kelompokId)}/>
+            <EditKelompok edit={edit} setEdit={setEdit} id={params.kelompokId}/>
             <KelompokDeleteWarning warn={warn} setWarn={setWarn}/>
             <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
                 <div className="d-flex justify-content-between align-items-start">
@@ -71,6 +81,8 @@ const KelompokDetail = () => {
                 </div>
             </div>
             <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
+            {mahasiswaData !== null ?
+            <>
                 <h3>Data Mahasiswa</h3>
                 <Table striped bordered hover responsive variant="dark">
                 <thead>
@@ -85,6 +97,11 @@ const KelompokDetail = () => {
                     {showAllMahasiswa}
                 </tbody>
                 </Table>
+            </> :
+            <div className="w-100 p-3 d-flex justify-content-center">
+                    <div className="spinner-border" role="status"/>
+            </div>
+            }
             </div>
         </>
     );

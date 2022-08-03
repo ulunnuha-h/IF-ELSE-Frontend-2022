@@ -84,7 +84,7 @@ const Nav = () => {
                 <li className="nav-item mt-4 d-block d-sm-none" onClick={closeSidebar}>
                     {
                         !auth.isLogged ? 
-                            <Link className="nav-link mobile-button d-block d-sm-none" to="login" onClick={closeSidebar}>
+                            <Link className="nav-link mobile-button d-block d-sm-none" to="mahasiswa/login" onClick={closeSidebar}>
                                 <span className="nav-text">Login</span>
                             </Link> :
                             <Link className="nav-link mobile-button d-block d-sm-none" to="user" onClick={closeSidebar}>
@@ -98,7 +98,7 @@ const Nav = () => {
                 </footer>
             </ul>
             {!auth.isLogged ? 
-            <Link className="d-none d-sm-block" to="login" onClick={closeSidebar}>
+            <Link className="d-none d-sm-block" to="mahasiswa/login" onClick={closeSidebar}>
                 <button className="btn-navlogin">Login</button>
             </Link> :
             <Link className="d-none d-sm-block" to="user" onClick={closeSidebar}>

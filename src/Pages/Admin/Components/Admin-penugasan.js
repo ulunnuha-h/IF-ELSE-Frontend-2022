@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/esm/Table";
-import { getAllTugas } from "../../../Data/Penugasan";
+import { getAllTask } from "../../../Data/Task";
 import TambahTugasModal from "./Admin-penugasan/Admin-penugasan-tambah";
 import EditTugas from "./Admin-penugasan/Admin-penugasan-edit";
 
 const AdminPenugasan = () => {
-    const tugas = getAllTugas();
+    const tugas = getAllTask();
     const [tambah,setTambah] = useState(false);
     const handleTambah = () => setTambah(false);
     const [edit,setEdit] = useState(false);
@@ -29,9 +29,8 @@ const AdminPenugasan = () => {
             <Table striped bordered hover responsive variant="dark">
                   <thead>
                     <tr>  
+                      <th>ID</th>
                       <th>Judul</th>
-                      <th>Deskripsi</th>
-                      <th>Ketentuan</th>
                       <th>Batas Akhir</th>
                       <th>Aksi</th>
                     </tr>
@@ -39,11 +38,10 @@ const AdminPenugasan = () => {
                   <tbody>
                     {tugas.map((tugas,idx)=>
                     <tr key={idx}>
-                      <td>{tugas.judul}</td>
-                      <td>{tugas.deskripsi}</td>
-                      <td>{tugas.ketentuan}</td>
-                      <td>{tugas.deadline.toLocaleDateString()}</td>
-                      <td><Button className="w-100" onClick={()=>showEdit(tugas.id)}>Edit</Button></td>
+                      <td className="col-1">{idx+1}</td>
+                      <td>{tugas.title}</td>
+                      <td className="col-2">{tugas.end_at}</td>
+                      <td className="col-1"><Button className="w-100" onClick={()=>showEdit(tugas.id)}>Edit</Button></td>
                     </tr>
                     )}
                   </tbody>

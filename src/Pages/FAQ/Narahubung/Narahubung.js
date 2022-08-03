@@ -2,10 +2,12 @@ import React from 'react'
 import './Narahubung.css'
 import Logo from "../../../Assets/Logo/logo-ifelse.png"
 import CP from "./Cp"
+import Bg from '../../../Assets/background.svg'
 
 function Narahubung() {
     return (
-        <div className="container narahubung-style">
+        <main className='pb-5' style={{backgroundColor:'#ba4b00',zIndex:'-1',backgroundImage:`url(${Bg})`,backgroundSize:'100%',backgroundRepeat:'no-repeat'}}>
+        <div className="container-lg narahubung-style">
             <div className="row">
                 <div className="col-12 col-sm-6">
                     <img src={Logo} alt="" className="logo-narahubung"></img>
@@ -19,8 +21,8 @@ function Narahubung() {
                 </div>
                 <div className="col-12">
                     {
-                        CP && CP.map((val) =>
-                            <div className="row cp-narahubung">
+                        CP && CP.map((val,idx) =>
+                            <div key={idx} className="row cp-narahubung">
                                 <div className="col-2">
                                     {val.icon}
                                 </div>
@@ -33,6 +35,7 @@ function Narahubung() {
                 </div>
             </div>
         </div>
+        </main>
     )
 }
 

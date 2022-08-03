@@ -14,6 +14,7 @@ const AdminKelompok = () => {
     const [pageCount,setPageCount] = useState(1);
     const [tambah,setTambah] = useState(false);
     const [pageNum,setPageNum] = useState(0);
+    const [err,setErr] = useState(null);
     const pageHandler = ({selected}) => {
         setPageNum(selected);
     }
@@ -21,13 +22,24 @@ const AdminKelompok = () => {
     useEffect(()=>{
         setPageNum(0);
         setDataMahasiswa({data:{result:[]},success:false});
-        getAllMahasiswa(key).then(res => setDataMahasiswa(res));
+        getAllMahasiswa(key).then(res => {
+            if(res.success)
+                setDataMahasiswa(res)
+            else
+                setErr(res.message);
+        });
         // setDataMahasiswa(getAllMahasiswa(key));
     },[key]);
 
     useEffect(()=>{
         if(DataMahasiswa.success)setPageCount(Math.ceil(DataMahasiswa.data.result.length/10));
     },[DataMahasiswa])
+
+    if(err !== null) return(
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
+            {err} :(
+        </div>
+    );
 
     return(
         <>

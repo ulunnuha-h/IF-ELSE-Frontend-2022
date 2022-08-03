@@ -4,42 +4,29 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getMahasiswaByUserId,updateMahasiswaGroup } from "../../../../Data/Mahasiswa";
 import { getAllKelompok,getKelompokNameById} from "../../../../Data/Kelompok";
 import axios from "axios";
+import { baseUrl } from "../../../../Config/Auth";
 
 const MahasiswaDetail = () => {
-    const params = useParams();
+    const userId = parseInt(useParams().id);
     const [data,setData] = useState('');
+    const [namaKel, setNamaKel] = useState();
 
     useEffect(()=>{
-        getMahasiswaByUserId(parseInt(params.id)).then(res=>setData(res.data.data));
-        // setData(getMahasiswaByUserId(parseInt(params.id)));
-    },[params.id])
+        getMahasiswaByUserId(userId).then(res=>{
+            console.log(res);
+            setData(res.data.data)
+            setNamaKel(getKelompokNameById(res.data.data.group_id));
+        });        
+    },[userId])
 
-    const [namaKel, setNamaKel] = useState(getKelompokNameById(data.group_id));
-
-    useEffect(()=>{
-        // setNamaKel(getKelompokNameById(data.group_id));
-    },[data]);
-
-    useEffect(()=>{
-        ubahGroupId("1","1")
-    });
-
-    const ubahGroupId = async (group_id,user_id) => {
-
-        const data = {
-            "group_id":"1"
-        }
-
-        await axios.put(`https://1272-103-108-20-77.ngrok.io/mahasiswa/1`,data)
-        .then(res => console.log(res)).catch(err => console.log(err));
-        // try {
-        //     const result = 
-        //     console.log(result)
-        // } catch (error) {
-        //     console.log(error)
-        // }
-        // updateMahasiswaGroup(group_id,user_id);
-        // setNamaKel(updateMahasiswaGroup(group_id,user_id));
+    const ubahGroupId = (group_id,user_id) => {
+        setNamaKel(null);
+        updateMahasiswaGroup(group_id,user_id)
+        .then(res =>{
+            let newGroupId = res.data.data.group_id;
+            if(newGroupId === null) newGroupId = undefined;
+            setNamaKel(getKelompokNameById(newGroupId));
+        } );
     }
 
     const allKelompok = getAllKelompok();
@@ -58,6 +45,7 @@ const MahasiswaDetail = () => {
             </div>
         </>
         );
+    
     else return(
         <>
             <i className="fa-solid fa-arrow-left ms-4 mt-4 text-dark" onClick={()=>nav(-1)} style={{"cursor":"pointer"}}></i>
@@ -90,11 +78,18 @@ const MahasiswaDetail = () => {
                             <span className="col-lg-3 col-12">Kelompok</span>
                             <div className="dropdown col-lg-9 col-12 p-0">
                                 <button className="btn btn-secondary dropdown-toggle py-1 w-100 justify-content-between d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {namaKel}
+                                    {namaKel !== null ? namaKel : 
+                                        <span>
+                                            Loading
+                                            <span class="spinner-border spinner-border-sm ms-1" role="status" aria-hidden="true"/>
+                                        </span>
+                                    }
                                 </button>
                                 <ul className="dropdown-menu w-100">
-                                    {/* <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId("1","1")}>Seven Wind</li> */}
-                                    {/* <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(null,data.user_id)}>Mengkosong</li> */}
+                                    {allKelompok.map((val,idx) => 
+                                        <li key={idx} className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(val.id,data.user_id)}>{val.kelompok}</li>
+                                    )}
+                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(null,data.user_id)}>Mengkosong</li>
                                 </ul>
                             </div>
                         </section>

@@ -11,7 +11,7 @@ const News = () => {
                 <div className="col-12">
                     <Recent></Recent>
                 </div>
-                <div className="col-12">
+                <div className="col-12 p-0">
                     <Search></Search>
                 </div>
         </div>

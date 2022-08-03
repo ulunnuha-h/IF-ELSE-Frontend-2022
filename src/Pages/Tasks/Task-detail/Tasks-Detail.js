@@ -55,7 +55,7 @@ export default function Tasks() {
                         <h1 className="col-lg-6 col-12 m-0 p-0 text-center text-lg-start text-break">{details.title}</h1>
                         <div className="taskD--deadline flex-column col-lg-5 col-12">
                             <h4>Deadline:</h4>
-                            <p className='m-0'>{details.end_at}, at 23:59 WIB</p>
+                            <p className='m-0'>{details.end_at}</p>
                         </div>
                         <div className='star-icon align-self-start col-1 p-0 d-lg-block d-none'>
                             <img src={require("./images/Star.png")} alt="star1" style={{filter : done? 'none':''}} className="star m-0" id="bintang"/>
@@ -79,6 +79,10 @@ export default function Tasks() {
                         <div className="taskD--detail">
                             <h4>Ketentuan :</h4>
                             <pre style={{backgroundColor : "transparent"}}>{details.condition}</pre>
+                        </div>
+                        <div className="taskD--detail">
+                            <h4>Cara :</h4>
+                            <pre style={{backgroundColor : "transparent"}}>{details.step}</pre>
                         </div>
                     </div>
                     {auth.isLogged ?

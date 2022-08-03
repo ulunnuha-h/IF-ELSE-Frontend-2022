@@ -24,9 +24,11 @@ import AdminRangkaian from './Pages/Admin/Components/Admin-rangkaian';
 import KelompokDetail from './Pages/Admin/Components/Admin-kelompok/Admin-kelompok-detail';
 import MahasiswaDetail from './Pages/Admin/Components/Admin-kelompok/Admin-mahasiswa-detail';
 import TambahBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-tambah';
-import { ProtectedUser,ProtectedLogin } from './Config/Protected';
+import { ProtectedUser,LoginRoute } from './Config/Protected';
 import EditBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-edit';
 import { RangkaianList } from './Pages/Admin/Components/Admin-rangkaian/Admin-rangkaian-list';
+import LoginForm from './Pages/Login/Login-form';
+import RegisterForm from './Pages/Login/Register-form';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -44,7 +46,10 @@ root.render(
               <Route path = ":id" element={<TasksDetail/>}/>
             </Route>
             <Route path='event' element={<Event/>}/>
-            <Route path='login' element={<ProtectedLogin/>}/>
+            <Route path='mahasiswa' element={<LoginRoute/>}>
+                <Route path='login' element={<LoginForm/>}/>
+                <Route path='register' element={<RegisterForm/>}/>
+            </Route>
             <Route path='user' element={<ProtectedUser/>}>
                 <Route index element={<UserProfile/>}/>
                 <Route path='group' element={<UserGroup/>}/>
@@ -52,7 +57,6 @@ root.render(
             </Route>
           </Route>
           <Route path='*' element={<Error404/>}/>
-          
           <Route path='/admin$' element={<Admin/>}>
             <Route index element={<AdminDashboard/>}/>
             <Route path='kelompok' element={<AdminKelompok/>}/>

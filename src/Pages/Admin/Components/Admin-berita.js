@@ -9,7 +9,7 @@ const AdminBerita = () => {
   const berita = getAllBerita();
 
     return(
-        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light" style={{minHeight:'100vh'}}>
             <div className="d-flex justify-content-between mb-3">
                 <h3 className="m-0">List Berita</h3>
                 <button className="btn btn-primary" onClick={()=>nav('baru')}>Tambah berita</button>
@@ -27,7 +27,7 @@ const AdminBerita = () => {
                   <tbody>
                     {berita.map((berita,index)=>
                       <tr key={index}>
-                        <td className="col-1">{berita.id}</td>
+                        <td className="col-1">{index + 1}</td>
                         <td>{berita.title}</td>
                         <td>{berita.is_published ? 'Published ✔️' : 'Archieved ❌'}</td>
                         <td className="col-2"><Button className="w-100" onClick={()=>nav(`edit/${berita.id}`)}>Edit</Button></td>

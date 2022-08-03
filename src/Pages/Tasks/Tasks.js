@@ -17,7 +17,7 @@ export default function Tasks() {
 
     return(
         <main style={{backgroundColor:'#ba4b00',backgroundImage:`url(${Bg})`,backgroundSize:'100%',backgroundRepeat:'no-repeat'}}>
-        <div className='container-lg row mx-auto px-0' style={{minHeight:'100vh',zIndex:'0'}}>
+        <div className='container-xxl row mx-auto px-0' style={{minHeight:'100vh',zIndex:'0'}}>
             <div className={side ? (detailStyle) : (detailStyle + ' d-none')} id='detail'>
                 <div className='position-sticky ' style={{top:"76px",height:"calc(100vh - 76px)"}}>
                     <section className='h-100 side-task' style={{overflowY:"auto"}}>

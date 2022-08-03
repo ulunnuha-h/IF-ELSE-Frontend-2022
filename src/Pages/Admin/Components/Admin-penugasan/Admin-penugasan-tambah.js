@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button,Modal,Form } from "react-bootstrap";
-import { addTugas } from "../../../../Data/Penugasan";
+import { addTask } from "../../../../Data/Task";
 
 const TambahTugasModal = (props) =>{
     const [title,setTitle] = useState('');
@@ -9,9 +9,19 @@ const TambahTugasModal = (props) =>{
     const [step,setStep] = useState('');
     const [end_at,setEnd_at] = useState('');
     const [input,setInput] = useState(0);
+    const [label1,setLabel1] = useState('');
+    const [label2,setLabel2] = useState('');
 
-    const tambahTugas = () => {
-        addTugas({title,description,condition,end_at});
+    const resetAll = () => {
+        setTitle('');setDescription('');setCondition('');
+        setStep('');setEnd_at('');setInput('');setLabel1('');setLabel2('');
+    }
+
+    const tambahTugas = () => { 
+        const fields = [];
+        if(input > 0) fields.push(label1);
+        if(input > 1) fields.push(label2);
+        addTask({title,description,condition,step,end_at,fields});
     }
 
     return(
@@ -23,10 +33,7 @@ const TambahTugasModal = (props) =>{
         <Form onSubmit={e=>{
             e.preventDefault();
             tambahTugas();
-            setTitle('');
-            setDescription('');
-            setCondition('');
-            setEnd_at('');
+            resetAll();
             props.handleClose();
         }}>
         <Modal.Body>
@@ -37,7 +44,7 @@ const TambahTugasModal = (props) =>{
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Deskripsi</Form.Label>
-                    <Form.Control as="textarea" rows={5} placeholder="Masukkan deskripsi tugas" value={description} onChange={(e)=>setDescription(e.target.value)} required/>
+                    <Form.Control as="textarea" rows={20} placeholder="Masukkan deskripsi tugas" value={description} onChange={(e)=>setDescription(e.target.value)} required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Ketentuan</Form.Label>
@@ -51,18 +58,18 @@ const TambahTugasModal = (props) =>{
                     <Form.Label>Jumlah link</Form.Label>
                     <Form.Control type="number" min={0} max={2} placeholder="Masukkan jumlah input link" value={input} onChange={e=>setInput(parseInt(e.target.value))} required/>
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Jumlah link</Form.Label>
-                    <Form.Control type="text" placeholder="Masukkan jumlah input link" value={input} onChange={e=>setInput(parseInt(e.target.value))} required/>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Jumlah link</Form.Label>
-                    <Form.Control type="text" placeholder="Masukkan jumlah input link" value={input} onChange={e=>setInput(parseInt(e.target.value))} required/>
-                </Form.Group>
+                {input > 0 && <Form.Group className="mb-3">
+                    <Form.Label>Label link 1</Form.Label>
+                    <Form.Control type="text" placeholder="Masukkan label link 1" value={label1} onChange={e=>setLabel1(e.target.value)} required/>
+                </Form.Group>}
+                { input > 1 && <Form.Group className="mb-3">
+                    <Form.Label>Label link 2</Form.Label>
+                    <Form.Control type="text" placeholder="Masukkan label link 2" value={label2} onChange={e=>setLabel2(e.target.value)} required/>
+                </Form.Group>}
 
                 <Form.Group className="mb-3">
                     <Form.Label>Deadline</Form.Label>
-                    <Form.Control type="datetime-local" onChange={(e)=>setEnd_at(e.target.valueAsDate)} required/>
+                    <Form.Control type="datetime-local" value={end_at} onChange={(e)=>setEnd_at(e.target.value)} required/>
                 </Form.Group>
         </Modal.Body>
         <Modal.Footer>

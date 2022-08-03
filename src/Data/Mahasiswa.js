@@ -422,8 +422,13 @@ const Mahasiswa = [
 ]
 
 const getAllMahasiswa = async (key) => {
+	let name = '';
+	let nim = '';
+	if(isNaN(key)) name = key;
+	else nim = key;
+
 	try {
-		const result = await axios.post(`${baseUrl}/getall`,null,{params:{name:key,nim:''}});
+		const result = await axios.post(`${baseUrl}/api/index`,null,{params:{name,nim}});
 		return {...result.data,success:true};
 	} catch (error) {
 		return error;
@@ -436,71 +441,36 @@ const getAllMahasiswa = async (key) => {
 }
 
 const getMahasiswaByUserId = async (UserId) => {
-
-	// let result = '';
-	// await fetch(`${baseUrl}/getbyuserid/${UserId}`).then((response) => response.json()).then((data) => result = data);
-	// return result;
-
 	try {
-		const result = await axios.get(`${baseUrl}/mahasiswa/${UserId}`);
+		const result = await axios.get(`${baseUrl}/api/mahasiswa/${UserId}`);
 		return result;
 	} catch (error) {
 		return error;
 	}
-    // const data = Mahasiswa.find(mahasiswa => mahasiswa.user_id === UserId);
-	// console.log(data);
+}
+
+const getAllMahasiswaByGroup = async (id) => {
+	try {
+		const result = await axios.get(`${baseUrl}/api/group/${id}`);
+		return result;
+	} catch (error) {
+		return error;
+	}
+    // const data = Mahasiswa.filter(mahasiswa => mahasiswa.group_id === id);
     // return data;
 }
 
-const getAllMahasiswaByGroup = (id) => {
-    const data = Mahasiswa.filter(mahasiswa => mahasiswa.group_id === id);
-    return data;
-}
-
 const updateMahasiswaGroup = async (group_id,user_id) => {
-	fetch(`${baseUrl}/updategroup/1`, {
-    method: "PUT", // or "PUT" with the url changed to, e.g "https://reqres.in/api/users/2"
-    headers: {
-        'Content-type': 'application/json'
-    },
-    body: JSON.stringify(
-        { group_id: "1"}
-    ).then(res => res.json())
-	.then(data => console.log(data))
-	.catch(error => console.log(error))
-});
-	// await fetch(`${baseUrl}/updategroup/1`, {
-	//   method: 'PUT', // or 'PUT'
-	//   headers: {
-	//     'Content-Type': 'application/json',
-	//   },
-	//   body: JSON.stringify({"group_id":"1"}),
-	// })
-	// .then((response) => response.json())
-	// .then((data) => {
-	//   console.log('Success:', data);
-	// })
-	// .catch((error) => {
-	//   console.error('Error:', error);
-	// });
-	// try {
-	// 	const result = await axios.put(`${baseUrl}/updategroup/1`,{
-	// 		"group_id":1,
-	// 	},{content});
-	// 	console.log(result);
-	// 	return result;
-	// } catch (error) {
-	// 	return error;
-	// }
-    // let name = "Tidak Ada Kelompok";
-    // for (let i = 0; i < Mahasiswa.length; i++) {
-    //     if(Mahasiswa[i].user_id === parseInt( user_id)) {
-    //         Mahasiswa[i].group_id = group_id
-    //         name = getKelompokNameById(group_id);
-    //     };
-    // }
-    // return name;
-}
+	console.log(group_id);
+	try {
+		const result = await axios.patch(`${baseUrl}/api/mahasiswa/${user_id}`,{
+			"group_id" :  `${group_id}`
+		});
+		return result;
+	} catch (error) {
+		return error;
+	}
+};
 
 const updateMahasiswaData = (user_id,newData) => {
     const idx = Mahasiswa.findIndex(mhs => mhs.user_id === user_id);

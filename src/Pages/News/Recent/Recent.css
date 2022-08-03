@@ -15,6 +15,10 @@
     margin: 50px 0 10px 65px;
 }
 
+.slide-recent{
+    height: 480px;
+}
+
 .images-recent {
     width: 105.36%;
     object-fit: cover;
@@ -69,4 +73,10 @@
 
 .link-recent :hover {
     color:white;
+}
+
+@media (max-width:760px){
+    .slide-recent{
+        height: 210px;
+    }
 }

@@ -16,8 +16,8 @@ const NewsRecent = (props) => {
             transition={{type:'tween',ease:'circOut'}}
             onClick={detailHandle} 
             style={{cursor:'pointer'}}>
-            <section className='w-100 row m-0' style={{aspectRatio:'9/4',borderRadius:'12px',...bgColor}}>
-                <div className='col-12 col-lg-8 p-lg-4 p-1'>
+            <section className='slide-recent row m-0' style={{borderRadius:'12px',...bgColor}}>
+                <div className='col-12 col-lg-8 p-lg-3 p-1'>
                     <section className='bg-dark w-100 h-100' style={{backgroundImage:`url(${props.image})`,backgroundSize:'cover',borderRadius:'6px',overflow:'hidden'}}>
                         <section className="w-100 h-100 d-flex align-items-end text-white p-lg-4 p-2" style={{background:'linear-gradient(transparent 60%, black 100%)',opacity:'0.8'}}>
                             <span className={isMobile ? 'h6' : 'h2'}>{props.title}</span>
