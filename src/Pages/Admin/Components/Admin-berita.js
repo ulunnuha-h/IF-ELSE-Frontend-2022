@@ -9,7 +9,7 @@ const AdminBerita = () => {
   const berita = getAllBerita();
 
     return(
-        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light" style={{minHeight:'100vh'}}>
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded" style={{minHeight:'100vh'}}>
             <div className="d-flex justify-content-between mb-3">
                 <h3 className="m-0">List Berita</h3>
                 <button className="btn btn-primary" onClick={()=>nav('baru')}>Tambah berita</button>

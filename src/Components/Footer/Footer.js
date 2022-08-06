@@ -59,7 +59,7 @@ const Footer = () => {
                                     <i className="fa-brands fa-instagram-square"></i>
                                     <i className="fa-solid fa-square-envelope"></i>
                                     <i className="fa-solid fa-square-phone"></i>
-                                    <i className="fa-solid fa-square"></i>
+                                    <i className="fa-solid fa-square" onClick={()=>nav('admin$')}></i>
                                 </div>
                             </div>
                         </section>

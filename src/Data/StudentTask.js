@@ -6,8 +6,67 @@ const StudentTask = [{
         task_id : 91238741,
 	    submission : null,
 	    submitted_at : ''
-    }]   
-}]
+    }] 
+},{
+    id : 2,
+    user_id : 2,
+    data : [
+	{
+        task_id : 91238741,
+	    submission : null,
+	    submitted_at : ''
+    }] 
+},{
+    id : 3,
+    user_id : 3,
+    data : [
+	{
+        task_id : 91238741,
+	    submission : null,
+	    submitted_at : ''
+    }] 
+},{
+    id : 4,
+    user_id : 4,
+    data : [
+	{
+        task_id : 91238741,
+	    submission : null,
+	    submitted_at : ''
+    }] 
+},{
+    id : 5,
+    user_id : 5,
+    data : [
+	{
+        task_id : 91238741,
+	    submission : null,
+	    submitted_at : ''
+    }] 
+},{
+    id : 6,
+    user_id : 6,
+    data : [
+	{
+        task_id : 91238741,
+	    submission : null,
+	    submitted_at : ''
+    }] 
+},{
+    id : 7,
+    user_id : 7,
+    data : [
+	{
+        task_id : 91238741,
+	    submission : null,
+	    submitted_at : ''
+    }] 
+}
+]
+
+const getAllStudenTaskByUserId = (userId) => {
+    return StudentTask.find(stu => stu.user_id === userId);
+}
 
 const getStudentTaskByUserId = (UserId,task_id) => {
     const data1 = StudentTask.find(task=>task.user_id === UserId);
@@ -39,4 +98,4 @@ const deleteStudentTaskData = (task_id) => {
     console.log(StudentTask);
 }
 
-export {getStudentTaskByUserId,updateStudentTasksubmission,updateStudentTaskData,deleteStudentTaskData};
+export {getStudentTaskByUserId,updateStudentTasksubmission,updateStudentTaskData,deleteStudentTaskData,getAllStudenTaskByUserId};

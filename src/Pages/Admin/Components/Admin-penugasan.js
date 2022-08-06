@@ -19,7 +19,7 @@ const AdminPenugasan = () => {
     }
 
     return(
-        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light h-100">
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light h-100 rounded">
             <TambahTugasModal show={tambah} handleClose={handleTambah}/>
             {edit ? <EditTugas show={edit} handleClose={handleEdit} id={id}/> : null}
             <div className="d-flex justify-content-between mb-3">

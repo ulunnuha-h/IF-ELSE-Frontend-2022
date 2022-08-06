@@ -37,7 +37,7 @@ const RegisterForm = () => {
     return(
         <>
                 <div className=" d-flex h-100 flex-column mt-5 mt-lg-0">
-                        <h1 className="display-3 m-auto" style={{"fontFamily": "'Bebas Neue', cursive","color":"var(--color-1-p)"}}>Register Account</h1>
+                        <h1 className="display-3 text-center" style={{"fontFamily": "'Bebas Neue', cursive","color":"var(--color-1-p)"}}>Register Account</h1>
                 </div>
                 {errorMsg !== '' ? 
                 <motion.div initial={{scale:0.5}} animate={{scale:1}} className="alert alert-danger p-2 w-75 mb-2 m-auto text-center">
@@ -45,7 +45,7 @@ const RegisterForm = () => {
                     {errorMsg}
                 </motion.div>                    
                  : null}
-                <Form className="login-form px-0 px-lg-3 d-flex flex-column" onSubmit={registering}>
+                <Form className="login-form px-0 d-flex flex-column" onSubmit={registering}>
                     <Table className="register-table px-0 mx-0">
                     <tbody>
                         <tr>

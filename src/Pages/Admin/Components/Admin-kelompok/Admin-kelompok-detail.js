@@ -17,10 +17,12 @@ const KelompokDetail = () => {
     
 
     useEffect(()=>{
-        getAllMahasiswaByGroup(data.id).then(res => {
-            console.log(res.data.data);
-            setMahasiswaData(res.data.data);
-        })
+        // getAllMahasiswaByGroup(data.id).then(res => {
+        //     console.log(res.data.data);
+        //     setMahasiswaData(res.data.data);
+        // })
+
+        setMahasiswaData(getAllMahasiswaByGroup(data.id));
     },[data.id])
 
     const deleteHandler = () => {
@@ -53,7 +55,7 @@ const KelompokDetail = () => {
                 ></i>
             <EditKelompok edit={edit} setEdit={setEdit} id={params.kelompokId}/>
             <KelompokDeleteWarning warn={warn} setWarn={setWarn}/>
-            <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
+            <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
                 <div className="d-flex justify-content-between align-items-start">
                     <section>
                         <h3 className="m-0">Kelompok {data.kelompok}</h3>
@@ -80,7 +82,7 @@ const KelompokDetail = () => {
                     </section>
                 </div>
             </div>
-            <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
+            <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
             {mahasiswaData !== null ?
             <>
                 <h3>Data Mahasiswa</h3>

@@ -1,5 +1,6 @@
 import React from "react";
-import SunLogo from '../../../Assets/Page4/Logo1.webp';
+import SunLogo from '../../../Assets/Page4/Sun.svg';
+import logo from '../../../Assets/Logo/logo-ifelse.png'
 import bg from '../../../Assets/Page4/Desert4.svg'
 import './Page1.css';
 import './Page4.css';
@@ -17,15 +18,12 @@ const Page4 = () => {
                     <div className="col-lg-5 col-12 d-flex justify-content-center align-items-center p-0">
                         <Philosophy/>
                     </div>
-                    <div className="col-7 d-none d-lg-block pb-5 mb-5">
-                        <motion.img 
-                            initial={{opacity:0,scale:0.7}} 
+                    <div className="position-relative col-7 d-none d-lg-flex justify-content-center align-items-center pb-5 mb-5" style={{backgroundImage:`url(${SunLogo})`,backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        <motion.img initial={{opacity:0,scale:0.7}} 
                             whileInView={{opacity:1,scale:1}} 
-                            transition={{duration:0.5,type:'tween',ease:'circOut',delay:0.1}} 
-                            className="img-fluid position-relative" 
-                            src={SunLogo} 
-                            alt='logo-ifelse' 
-                            style={{aspectRatio:'1/1',zIndex:2}}/>
+                            transition={{duration:0.5,type:'tween',ease:'circOut',delay:0.1}}  
+                            src={logo} 
+                            style={{width:'40%',zIndex:'2'}}/>
                     </div>
                 </div>
             </div>

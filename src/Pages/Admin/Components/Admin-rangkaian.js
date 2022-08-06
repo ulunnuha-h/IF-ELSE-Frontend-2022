@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {Outlet, useNavigate, useParams} from "react-router-dom";
 
 const cursor = {
@@ -14,9 +14,9 @@ const AdminRangkaian = () => {
     const navStyle = (id) => (id === rangkaian ? "nav-link active" : "nav-link");
 
     return(
-        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light h-100">
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light h-100 rounded">
             <div className="d-flex justify-content-between mb-3">
-                <h3 className="m-0">List Rangkaian</h3>
+                <h3 className="m-0">List Perizinan</h3>
             </div>
             <ul className="nav nav-tabs mb-2">
                 {idRangkaian.map((id,idx) => 

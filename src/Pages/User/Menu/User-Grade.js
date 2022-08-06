@@ -1,7 +1,25 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useAuth } from "../../../Config/Auth";
+import { getStudenMarkById } from "../../../Data/Marking";
+import { getAgendaById } from "../../../Data/Agenda";
 
 const UserGrade = () => {
+    const userId = useAuth().auth.id;
+    const data = getStudenMarkById(userId).data;
+    
+    const list = data.map((dat,idx)=>{
+        const namaRangakaian = getAgendaById(dat.agenda_id).title;
+
+        return(
+            <tr key={idx}>
+                <th scope="row">{idx+1}</th>
+                <td>{namaRangakaian}</td>
+                <td>{dat.mark === null ? "Belum dinilai" : dat.mark}</td>
+            </tr>
+        );
+    })
+
     return(
         <motion.div 
             initial={{y:50,opacity:0}} 
@@ -12,22 +30,13 @@ const UserGrade = () => {
             <table className="user-grade w-100">
                 <thead style={{"borderBottom":"solid white 1px"}}>
                     <tr>
-                        <th scope="col-1">No.</th>
-                        <th scope="col-12">Task Name</th>
-                        <th scope="col-1">Grade</th>
+                        <th scope="col-1">No</th>
+                        <th scope="col-12">Nama Rangkaian</th>
+                        <th scope="col-1">Nilai</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
+                    {list}
                 </tbody>
             </table>
         </motion.div>
