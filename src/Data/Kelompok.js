@@ -9,7 +9,7 @@ const Kelompok = [{
 
 const addKelompok = (kelompok,link,pendamping,line,img) => {
     Kelompok.push({
-        id : Date.now(),
+        id : Date.now().toString(),
         kelompok,
         link,
         pendamping,
