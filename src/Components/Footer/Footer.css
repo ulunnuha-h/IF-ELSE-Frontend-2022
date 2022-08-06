@@ -8,6 +8,7 @@
 
 .footer-link{
     cursor: pointer;
+    width: fit-content;
 }
 
 .footer-link:hover{

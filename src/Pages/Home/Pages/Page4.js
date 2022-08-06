@@ -23,7 +23,7 @@ const Page4 = () => {
                             whileInView={{opacity:1,scale:1}} 
                             transition={{duration:0.5,type:'tween',ease:'circOut',delay:0.1}}  
                             src={logo} 
-                            style={{width:'40%',zIndex:'2'}}/>
+                            style={{width:'250px',zIndex:'2'}}/>
                     </div>
                 </div>
             </div>

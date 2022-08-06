@@ -38,7 +38,7 @@ root.render(
           <Route path='/' element={<App/>}>
             <Route index element={<Navigate to={'home'} />} />
             <Route path='home' element={<Home />}/>
-            <Route path="news" element={<News />}/>
+            <Route path="news" element={<News/>}/>
             <Route path='news/:id' element={<Detail />}/>
             <Route path="faq" element={<FAQ />} />
             <Route path="narahubung" element={<Narahubung />} />

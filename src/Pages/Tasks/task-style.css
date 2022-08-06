@@ -8,7 +8,7 @@
     background-color: var(--color-2-p);
     border-radius: 12px;
     transition: 300ms;
-    max-width: 330px;
+    max-width: 290px;
 }
 
 .content--task--small:hover {
@@ -70,4 +70,13 @@
 /* Handle on hover */
 .side-task::-webkit-scrollbar-thumb:hover {
   background: var(--color-1-p); 
+}
+
+@media (max-width:768px){
+    .side-task::-webkit-scrollbar {
+        display: none;
+    }
+    .content--task--small {
+        max-width: 330px;
+    }
 }
