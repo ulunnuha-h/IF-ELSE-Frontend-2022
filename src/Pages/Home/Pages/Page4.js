@@ -1,35 +1,33 @@
 import React from "react";
-import bg from '../../../Assets/Page4/Page4.svg';
-import SunLogo from '../../../Assets/Page4/Logo.svg';
-import bgCover from '../../../Assets/Page4/Page4Cover.webp'
+import SunLogo from '../../../Assets/Page4/Sun.svg';
+import logo from '../../../Assets/Logo/logo-ifelse.png'
+import bg from '../../../Assets/Page4/Desert4.svg'
 import './Page1.css';
 import './Page4.css';
 import Philosophy from "./Components/Philoshopy";
+import { motion } from "framer-motion";
 
 const Page4 = () => {
 
     return(
-        <>
-        <div>
-            <div className="w-100 text-light position-absolute p-1 p-lg-5" style={{zIndex:'1',height:'100vh',overflow:'hidden'}}>
-                <div className="h-100 d-flex flex-column align-items-center" style={{borderRadius:'24px',overflow:'hidden'}}>
-                    <h2 className="judul">LOGO PHILOSOPHY</h2>
-                    <div className="d-flex the-filosofi">
+        <main className="d-flex align-items-end pt-5" style={{background:'linear-gradient(#9C2E00,#D46500)'}}>
+            <section className="position-absolute h-100 w-100" style={{left:'0',backgroundImage:`url(${bg})`,backgroundSize:'cover',zIndex:0,backgroundPosition:'center'}}/>
+            <div className="container-lg">
+                <h2 className="judul text-center">LOGO PHILOSOPHY</h2>
+                <div className="the-filosofi row m-0">
+                    <div className="col-lg-5 col-12 d-flex justify-content-center align-items-center p-0">
                         <Philosophy/>
-                        <img src={SunLogo}alt='logo-ifelse'/>
+                    </div>
+                    <div className="position-relative col-7 d-none d-lg-flex justify-content-center align-items-center pb-5 mb-5" style={{backgroundImage:`url(${SunLogo})`,backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        <motion.img initial={{opacity:0,scale:0.7}} 
+                            whileInView={{opacity:1,scale:1}} 
+                            transition={{duration:0.5,type:'tween',ease:'circOut',delay:0.1}}  
+                            src={logo} 
+                            style={{width:'250px',zIndex:'2'}}/>
                     </div>
                 </div>
             </div>
-            <div className="w-100 d-flex justify-content-center" style={{height:('105vh'),backgroundSize:'cover',backgroundRepeat:"no-repeat",backgroundPosition:'center',zIndex:'-2',overflow:'hidden'}}>
-                <img src={bg} alt='imgparallax' style={{zIndex:'0',width:'100vw'}}></img>
-            </div>
-            <div style={{height:'30vh',zIndex:'0'}}>
-                <div className={'position-relative w-100 d-flex justify-content-center parallax-cover-4'} style={{overflowX:'hidden'}} >
-                    <img style={{minWidth:'1280px'}} src={bgCover} alt='imgparallax'></img>
-                </div>
-            </div>
-        </div>
-        </>
+        </main>
     );
 }
 

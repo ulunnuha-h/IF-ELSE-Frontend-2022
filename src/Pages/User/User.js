@@ -7,15 +7,27 @@ import { useAuth } from "../../Config/Auth";
 import { motion } from "framer-motion";
 import bg from "../../Assets/user-bg.jpg";
 import UserChangePass from "./User-changePass";
+import { getStudenMarkById } from "../../Data/Marking";
 
 const User = () => {
     const nav = useNavigate();
     const [show, setShow] = useState(false);
     const [editProfile,setEditProfile] = useState(false);
-    const {setAuth} = useAuth();
+    const {auth,setAuth} = useAuth();
+
+    const percentage = 3 + getStudenMarkById(auth.id).data.reduce((tot,dat)=>{
+        if(dat.mark !== null) return tot + 23;
+        else return tot;
+    },0);
+
     const toggleEditProfile = () => {
         setEditProfile(!editProfile);
         nav('/user');
+    }
+
+    const progres = {
+        background: `linear-gradient(90deg, var(--color-1-p) ${percentage}%,gray ${percentage}%)`,
+        color :'lightgray'
     }
 
     const logout = () => {
@@ -46,7 +58,7 @@ const User = () => {
                         className="col-md-4 d-flex flex-column align-items-center"
                         style={{"position":"relative","bottom":"135px"}}>
                         <UserCard/>
-                        <button className="btn-toggle w-75 mt-3 py-3 px-5 disabled" disabled>Print Certificate</button>       
+                        <button className="btn-toggle w-75 mt-3 py-3 px-5" style={progres} disabled>Print Certificate</button>       
                         <motion.button {...buttonHover} className="btn-toggle w-75 mt-3 py-3 px-5" style={editProfile ? {"color":"var(--color-1-s)"} : {}}  onClick={()=>toggleEditProfile()}>Edit Profile</motion.button>
                         <motion.button {...buttonHover} className="btn-toggle w-75 mt-3 py-3 px-5" onClick={()=>handleShow()}>Change Password</motion.button>
                         <UserChangePass handleClose={handleClose} show={show}/>

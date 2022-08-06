@@ -1,44 +1,79 @@
 .parallax-wrapper {
-    height:135vh;
-    box-sizing: border-box;
-}
-
-.parallax-cover {
-    top : -350%;
-}
-
-.parallax-cover-2 {
-    top : -400%;
-    width: 100%;
+    height:130vh;
     overflow: hidden;
 }
 
-.parallax-cover-4 {
-    top : -400%;
+.parallax-wrapper > img{
+    z-index: -2;
+    width: 100%;
 }
 
-.parallax-cover-5 {
-    height:100vh;
-    background-repeat:no-repeat;
-    background-size:cover;
+.parallax-cover-1 {
+    height: 20vh;
+    bottom: 100vh;
+    z-index: -2;
+    position: relative;
+    width: 100%;
+} 
+
+.parallax-cover-1 > img{
+    width: 100%;
+}
+
+.explore h5,.explore i{
+    color: var(--color-font);
+}
+
+@keyframes reveal {
+    0% {filter:blur(5px) opacity(0);transform: scale(1.2);}
+    100%{filter: blur(0px) opacity(1);transform: scale(1);}
+}
+
+@keyframes exploreMotion {
+    0%   {margin-top: 5px;}
+    50%  {margin-top: 15px;}
+    100% {margin-top: 5px;}
+  }
+
+.logo-home{
+    animation-name: reveal;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+.explore{
+    filter: opacity(0);
+    animation-name: reveal;
+    animation-delay: 3s;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+.explore i {
+    animation-name: exploreMotion;
+    animation-duration: 1.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 @media (max-width: 768px){
     .parallax-wrapper {
-        height:100vh;
-    }
-    .parallax-cover {
-        top : -300%;
+        background-image: url('../../../Assets/Parallax/responsiveBg.svg');
     }
 
-    .parallax-cover-2 {
-        top : -450%;
+    .parallax-wrapper > img{
+        height: 80vh;
+        width: auto;
+        display: none;
     }
 
-    .parallax-cover-4 {
-        top : -430%;
-    }
-    .parallax-cover-5 {
-        background-color:#df7200;
+    .parallax-cover-1 {
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        bottom: 0px;
+        justify-content: center;
     }
 }

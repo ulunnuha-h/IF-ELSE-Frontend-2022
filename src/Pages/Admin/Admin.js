@@ -23,7 +23,12 @@ const Admin = () => {
     else{
         return(
             <main className="admin row w-100 m-0 bg-secondary" style={{"height":"100vh"}}>
-                <motion.div animate={{x:0}} initial={{x:-500}} transition={{type:"tween",ease:"circOut"}} id="sidebar" className="col-md-3 col-12 p-0 h-100 aktif bg-dark text-light" >
+                <motion.div 
+                    animate={{x:0}} 
+                    initial={{x:-500}} 
+                    transition={{type:"tween",ease:"circOut"}} 
+                    id="sidebar" 
+                    className="col-md-2 col-12 p-0 h-100 aktif bg-dark text-light" >
                     <div className="d-flex justify-content-between align-items-center">
                     <div className="w-100 d-flex align-items-center">
                         <span style={{"width":"20%"}}>
@@ -41,7 +46,7 @@ const Admin = () => {
                         <span className="px-2 d-flex align-items-center">Humas<hr className="mx-3 w-100"></hr></span>
                         <li className="nav-item  p-3" onClick={()=>{nav('berita');toggle()}}><i className="fa-solid fa-newspaper me-2"></i>Berita</li>
                         <span className="px-2 d-flex align-items-center">QE<hr className="mx-3 w-100"></hr></span>
-                        <li className="nav-item p-3" onClick={()=>{nav('rangkaian/perizinan/1');toggle()}}><i className="fa-solid fa-calendar me-2"></i>Rangkaian</li>
+                        <li className="nav-item p-3" onClick={()=>{nav('rangkaian/1');toggle()}}><i className="fa-solid fa-calendar me-2"></i>Perizinan</li>
                         <li className="nav-item p-3" onClick={()=>{nav('penugasan');toggle()}}><i className="fa-solid fa-thumbtack me-2"></i>Penugasan</li>
                         <span className="px-2 d-flex align-items-center">Pendamping<hr className="mx-3 w-100"></hr></span>
                         <li className="nav-item p-3" onClick={()=>{nav('kelompok');toggle()}}><i className="fa-solid fa-people-group me-2"></i>Kelompok</li>
@@ -49,7 +54,7 @@ const Admin = () => {
                 </motion.div>
                 <div
                     id="admin-content" 
-                    className="col-md-9 col-12 p-0 bg-secondary">
+                    className="col-md-10 col-12 p-0 bg-secondary">
                     <motion.nav animate={{y:0}} initial={{y:-200}} transition={{type:"tween",ease:"circOut"}} className="w-100 m-0 p-3 d-flex justify-content-between bg-dark text-light">
                         <span className="d-block d-md-none">
                             <i className="fa-solid fa-burger" onClick={()=>toggle()}></i>

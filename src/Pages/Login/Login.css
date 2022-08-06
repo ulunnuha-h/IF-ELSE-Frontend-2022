@@ -35,7 +35,7 @@
 }
 
 .login-btn{
-    background-color: var(--color-3)    ;
+    background-color: var(--color-3);
     border: 0px;
     border-radius: 100px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -58,8 +58,27 @@
 
 .login-btn h5{
     font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
+    font-weight: 900;
     background: linear-gradient(90deg, #521737 0%, #AD462F 50%, #FFA42E 100%);
     background-clip: text;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.register-link {
+    font-size: 14px;
+    color: lightgray;
+}
+
+.register-link a{
+    color: var(--color-2-s);
+}
+
+.register-table td{
+    color: var(--color-1-p);
+    font-weight: 500;
+    font-size: 18px;
+    padding: 4px 4px;
+    border: none;   
 }

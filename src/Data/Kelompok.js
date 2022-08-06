@@ -1,6 +1,6 @@
 const Kelompok = [{
-    id : 998212986,
-    kelompok : 'SevenWind',
+    id : "1",
+    kelompok : 'Seven Wind',
     link : "ikusoooo.com",
     pendamping : "Hatake Kakashi",
     line : "hehe",

@@ -4,8 +4,10 @@ import './index.css';
 import App from './App';
 import Home from './Pages/Home/Home';
 import {News} from './Pages/News/News';
+import Detail from './Pages/News/Detail/Detail';
 import FAQ from './Pages/FAQ/FAQ';
-import Presence from './Pages/Presence/Presence';
+import Narahubung from './Pages/FAQ/Narahubung/Narahubung'
+import Event from './Pages/Event/Event';
 import Tasks from './Pages/Tasks/Tasks';
 import TasksDetail from './Pages/Tasks/Task-detail/Tasks-Detail'
 import Error404 from './Pages/404/404';
@@ -22,12 +24,11 @@ import AdminRangkaian from './Pages/Admin/Components/Admin-rangkaian';
 import KelompokDetail from './Pages/Admin/Components/Admin-kelompok/Admin-kelompok-detail';
 import MahasiswaDetail from './Pages/Admin/Components/Admin-kelompok/Admin-mahasiswa-detail';
 import TambahBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-tambah';
-import { ProtectedUser,ProtectedLogin } from './Config/Protected';
+import { ProtectedUser,LoginRoute } from './Config/Protected';
 import EditBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-edit';
-import ListPerizinan from './Pages/Admin/Components/Admin-rangkaian/Admin-perizinan-list';
-import ListPendataan from './Pages/Admin/Components/Admin-rangkaian/Admin-pendataan-list';
-import Perizinan from './Pages/Admin/Components/Admin-rangkaian/Admin-perizinan';
-import Pendataan from './Pages/Admin/Components/Admin-rangkaian/Admin-pendataan';
+import { RangkaianList } from './Pages/Admin/Components/Admin-rangkaian/Admin-rangkaian-list';
+import LoginForm from './Pages/Login/Login-form';
+import RegisterForm from './Pages/Login/Register-form';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -37,13 +38,18 @@ root.render(
           <Route path='/' element={<App/>}>
             <Route index element={<Navigate to={'home'} />} />
             <Route path='home' element={<Home />}/>
-            <Route path="news" element={<News />} />
+            <Route path="news" element={<News/>}/>
+            <Route path='news/:id' element={<Detail />}/>
             <Route path="faq" element={<FAQ />} />
+            <Route path="narahubung" element={<Narahubung />} />
             <Route path="task" element={<Tasks />}>
               <Route path = ":id" element={<TasksDetail/>}/>
             </Route>
-            <Route path='presence' element={<Presence/>}/>
-            <Route path='login' element={<ProtectedLogin/>}/>
+            <Route path='event' element={<Event/>}/>
+            <Route path='mahasiswa' element={<LoginRoute/>}>
+                <Route path='login' element={<LoginForm/>}/>
+                <Route path='register' element={<RegisterForm/>}/>
+            </Route>
             <Route path='user' element={<ProtectedUser/>}>
                 <Route index element={<UserProfile/>}/>
                 <Route path='group' element={<UserGroup/>}/>
@@ -57,19 +63,14 @@ root.render(
             <Route path='kelompok/:kelompokId' element={<KelompokDetail/>}/>
             <Route path='kelompok/mahasiswa/:id' element={<MahasiswaDetail/>}/>
             <Route path='rangkaian' element={<AdminRangkaian/>}>
-              <Route path='perizinan' element={<Perizinan/>}>
-                <Route path=':rangkaian' element={<ListPerizinan/>}/>
-              </Route>      
-              <Route path='pendataan' element={<Pendataan/>}>
-                <Route path=':rangkaian' element={<ListPendataan/>}/>
-              </Route>
+              <Route path=':id' element={<RangkaianList/>}/>
             </Route>
             <Route path='berita' element={<AdminBerita/>}/>
             <Route path='berita/baru' element={<TambahBerita/>}/>
             <Route path='berita/edit/:id' element={<EditBerita/>}/>
             <Route path='penugasan' element={<AdminPenugasan/>}/>
           </Route>
-          </Routes>
+        </Routes>  
       </BrowserRouter>
   </React.StrictMode>
 );

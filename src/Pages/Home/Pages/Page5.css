@@ -1,35 +1,26 @@
 .rangkaian {
-    Width: 418px;
-    Height:471px;
-    background-color: rgba(115, 38, 72, 0.5);;
-    border-radius: 40px;
+    background-color: rgba(115, 38, 72, 0.7);
+    backdrop-filter: blur(5px) brightness(0.5);
+    border-radius: 12px;
     overflow: hidden;
-    gap: 10px;
-    margin-top: -20px;
+    min-height: 440px;
+    width: 320px;
   }
   
-  .rangkaian img {
-    width: 418px;
-    height:267px;
-  }
-  
-  .rangkaian h2 {
+  .rangkaian h3 {
     font-weight: 800;
-    font-size: 30px;
-    line-height: 44px;
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
   
   .rangkaian p {
-    margin: -13px 41px;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 29px;
+    font-weight: 400;
     text-align: justify;
   }
-  
-  .swiper {
-    padding: 30px;
-    width: 100%;
-    z-index: 5;
+
+  .mySwiper{
+    cursor: grab;
+  }
+
+  .mySwiper:active{
+    cursor: grabbing;
   }

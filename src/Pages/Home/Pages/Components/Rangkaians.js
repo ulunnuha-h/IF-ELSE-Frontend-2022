@@ -1,21 +1,31 @@
 import React from "react";
-import dataRangkaian from "../Data/DataRangkaian";
-import Rangkaian from "./Rangkaian";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import Rangkaian from './Rangkaian';
+import { getAllAgenda } from "../../../../Data/Agenda";
 
-export default function Rangkaians() {
-    const rangkaian = dataRangkaian.map(item=>
-    <div className="swiper-slide container-fluid d-flex justify-content-center gap-5">    
-        <Rangkaian 
-            key = {item.id}
-            {...item}
-        />
-    </div>
+import "swiper/css";
+import "swiper/css/pagination";
+import '../Page5.css'
+
+const swiperClass ='w-auto mx-1 mx-lg-3';
+
+export default function App() {
+    const dataRangkaian = getAllAgenda();
+    const sliderItem = dataRangkaian.map(data=>
+        <SwiperSlide key={data.id} className={swiperClass}><Rangkaian {...data}/></SwiperSlide>
     )
     return (
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                {rangkaian}
-            </div>
-        </div>
-    )
+        <>
+            <Swiper
+                slidesPerView={"auto"}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper d-flex">
+            {sliderItem}
+            </Swiper>
+        </>
+    );
 }

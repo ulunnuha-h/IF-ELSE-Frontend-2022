@@ -8,6 +8,7 @@
     background-color: var(--color-2-p);
     border-radius: 12px;
     transition: 300ms;
+    max-width: 290px;
 }
 
 .content--task--small:hover {
@@ -43,4 +44,39 @@
     border-radius: 24px;
     width: 40px;
     height: 21px;
+}
+
+#list{
+    height: fit-content;
+}
+
+.side-task::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+.side-task::-webkit-scrollbar-track {
+  border-radius: 10px;
+  border: solid gray 1px;
+  margin-top: 16px;
+}
+ 
+/* Handle */
+.side-task::-webkit-scrollbar-thumb {
+  background: var(--color-2-p); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.side-task::-webkit-scrollbar-thumb:hover {
+  background: var(--color-1-p); 
+}
+
+@media (max-width:768px){
+    .side-task::-webkit-scrollbar {
+        display: none;
+    }
+    .content--task--small {
+        max-width: 330px;
+    }
 }

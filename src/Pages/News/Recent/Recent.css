@@ -1,88 +1,82 @@
-.contentt {
-    margin: 30px 0 0 100px;
-    background-color: #732648;
+.recent {
+    width: 60%;
+    height: 1000px;
+    margin: 0 auto;
+    border: 1px solid;
+}
+
+.news-recent {
+    height: 810px;
+    color: #FCF4F5;
     border-radius: 50px;
-    width: 758px;
-    height: 450px;
+    background: #732648;
+    max-width: 80%;
+
+    margin: 50px 0 10px 65px;
 }
 
-.gambar {
-    position: absolute;
-    border-radius: 40px;
-    width: 380px;
-    height: 357px;
-    margin: 49.96px 0 48.41px 40px;
+.slide-recent{
+    height: 520px;
 }
 
-.frame {
-    color: white;
+.images-recent {
+    width: 105.36%;
+    object-fit: cover;
 }
 
-.slick-slide > div {
-    margin: 0 17px;
+.image-recent {
+    width: 95%;
+    border-radius: 50px 50px 0px 0px;
 }
 
-.slick-list {
-    margin: 0 -17px;
-}
-
-.frame h1 {
-    width: Hug (300px);
-    height: Hug (38px);
+.news-recent h1 {
+    width: 90%;
+    height: 45.31px;
     font-weight: 700;
     font-size: 25px;
     display: flex;
     align-items: center;
-    text-align: center;
-    position: absolute;
 
-    margin: 70px 275px 442.96px 450px;
+    margin: 20px 0 0 4%;
 }
 
-.frame p {
-    position: absolute;
+.news-recent p {
+    font-size: 12px;
 }
 
-.detailRecent {
-    width: 450px;
-    height: 220px;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 25px;
-    text-align: justify;
+.detail-recent {
+    border: 1px solid white;
+    width: 92%;
+    height: 260px;
     overflow: hidden;
-
-    margin: 120px 63px 70.96px 450px;
-}
-
-.frame .tanggalRecent {
-    width: Hug (97px);
-    height: Hug (31.57px);
-    font-style: normal;
     font-weight: 400;
-    font-size: 13px;
+    
     line-height: 30px;
-    display: flex;
-    align-items: center;
+    text-align: justify;
 
-    margin: 380px 0 0 450px;
+    margin: 10px 0 0 4%;
 }
 
-.readRecent {
-    width: Hug (94px);
-    height: Hug (31.57px);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 30px;
-
-    margin: 380px 0 0 815px;
+.tanggal-recent {
+    margin: 10px 0 0 9%;
 }
 
-.linkRecent {
+.read-recent {
+    text-align: right;
+    margin: 10px 10% 0 0;
+}
+
+.link-recent {
+    text-decoration: none;
     color:white;
 }
 
-.linkRecent :hover {
+.link-recent :hover {
     color:white;
+}
+
+@media (max-width:760px){
+    .slide-recent{
+        height: 210px;
+    }
 }

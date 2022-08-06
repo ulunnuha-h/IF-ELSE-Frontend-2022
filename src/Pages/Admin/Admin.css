@@ -21,7 +21,7 @@
 }
 
 #sidebar .nav-item:active{
-    color: var(--color-2-p);
+    color: var(--color-2-s);
 }
 
 #admin-content{
@@ -32,6 +32,17 @@
 #admin-content nav{
     position:sticky;
     top: 0;
+}
+
+.shortcut{
+    color: white;
+    cursor: pointer;
+    transition: 300ms;    
+}
+
+.shortcut:hover{
+    color: var(--color-2-s);
+    transform: translateY(-10px);
 }
 
 @media(max-width : 768px){

@@ -7,11 +7,6 @@
     padding: 0px;
 }
 
-.btn-toggle:disabled{
-    background: linear-gradient(90deg, var(--color-1-p) 5%,gray 5%);
-    color: lightgray;
-}
-
 .btn-logout{
     border-radius: 100px;
     background-color: transparent;

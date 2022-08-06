@@ -1,0 +1,137 @@
+.template-detail {
+    background-color: var(--color-2-p);
+    border-radius: 12px;
+}
+
+.judul-detail {
+    color: white;
+    font-weight: 700;
+    font-size: 3em;
+    line-height: 56px;
+    font-family: 'Bebas Neue';
+    height: fit-content;
+}
+
+.tanggal-detail {
+    color: white;
+}
+
+.image-detail {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.isi-detail {
+    background-color: transparent;
+    color: white;
+}
+
+.another-detail {
+    color: white;
+    background: var(--color-2-p);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.another-detail:hover {
+    background-color: var(--color-1-p);
+}
+
+.another-detail span{
+    font-size: small;
+}
+
+.contact-detail {
+    background-image: linear-gradient(to bottom, #521737, #732648, #92373B, #AD462F, #C15127, #D55C1E, #FF730C, #FFA42E);
+    top: 120px;
+    border-radius: 0px 24px 24px 0px;
+    position: fixed;
+    height: auto;
+}
+
+.contact-detail a{
+    color: white;
+    font-size: xx-large;
+    transition: 300ms;
+}
+
+.contact-detail a:hover{
+    transform: scale(1.2);
+}
+
+.breadcrumb-link{
+    color: var(--color-2-p);
+    text-decoration: none;
+    transition: 300ms;
+}
+
+.breadcrumb-link:hover{
+    color: var(--color-1-p);
+    font-weight: 500;
+}
+
+/* @media only screen and (max-width: 1180px) {
+    .contact-detail {
+        height: 300px;
+    }
+
+    .icon-detail {
+        width: 35px;
+        height: 35px;
+    }
+} 
+
+@media only screen and (max-width: 1180px) {
+    .contact-detail {
+        width: 100%;
+        height: 335px;
+        margin-left: 13px;
+    }
+
+    .icon-detail {
+        width: 35px;
+        height: 35px;
+    }
+} 
+
+@media only screen and (max-width: 991px) {
+    .contact-detail {
+        width: 90%;
+        height: 100px;
+        border-radius: 20px;
+        margin: 5px auto 0 auto;
+    }
+
+    .icon-detail {
+        width: 50px;
+        height: 50px;
+        display: block;
+        margin: 30% auto 0 auto;
+    }
+} 
+
+@media only screen and (max-width: 460px) {
+    .template-detail {
+        margin-top: 30px;
+    }
+
+    .judul-detail {
+        font-size: 27px;
+        margin-top: 20px;
+    }
+
+    .tanggal-detail {
+        font-size: 12px;
+    }
+
+    .isi-detail {
+        font-size: 12px;
+    }
+
+    .another-detail {
+        font-size: 20px;
+    }
+}  */

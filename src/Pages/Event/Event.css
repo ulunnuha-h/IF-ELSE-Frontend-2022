@@ -1,0 +1,82 @@
+.event-container{
+    min-height: 100vh;
+    background-color:#ba4b00;
+    z-index:-1;
+    background-size:100%;
+    background-repeat:no-repeat;
+}
+
+.event-container h5{
+    color: #451400;
+    font-weight: 600;
+}
+
+.event-switch{
+    color: #451400;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.event-title h1, .event-title h3{
+    font-family: 'Bebas Neue';
+    font-weight: 700;
+    color: #451400;
+}   
+
+.event-title h1{
+    font-size: 64px;
+}
+
+.event-title h3{
+    font-size: 42px;
+}
+
+.event-title span{
+    color: #451400;
+    font-weight: 600;
+}
+
+.event-input{
+    color: white;
+    border-radius: 6px;
+    border: solid white 1px;
+    padding: 8px;
+}
+
+.event-input::-webkit-file-upload-button{
+    border: 0px;
+    border-radius: 3px;
+    transition: 300ms;
+    color: var(--color-1-p);
+}
+
+.event-input::-webkit-file-upload-button:hover{
+    background-color: lightgray;
+}
+
+.event-input ~ button{
+    background-color: #FFC359;
+    border: none;
+    border-radius: 100px;
+    transition: 300ms;
+}
+
+.event-input ~ button:hover{
+    background-color: var(--color-3);
+}
+
+.event-hastag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    color: var(--color-1-s);
+}
+
+.event-box{
+    margin-top: 8px;
+    background-color: rgba(115, 38, 72, 0.8);
+    box-sizing: border-box;
+    border-radius: 12px;
+    backdrop-filter: blur(5px) brightness(0.6);
+}
