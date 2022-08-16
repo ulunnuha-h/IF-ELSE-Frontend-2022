@@ -51,7 +51,7 @@ const editBerita = (id,newBerita) => {
     const idx = Berita.findIndex(berita=>berita.id === id);
     Berita[idx].title = newBerita.title;
     Berita[idx].content = newBerita.content;
-    
+    Berita[idx].image = URL.createObjectURL(newBerita.image);
 }
 
 const getAllBerita = (key) => {

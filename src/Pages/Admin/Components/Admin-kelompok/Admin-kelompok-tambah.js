@@ -11,16 +11,32 @@ const TambahKelompok = (props) => {
     const [line,setLine] = useState('');
     const [img,setImg] = useState('');
 
+    const [loading,setLoading] = useState(false);
+
+    const tambahKelompok = () => {
+        const form = new FormData();
+        form.append("group_name",kelompok);
+        form.append("line_group",link);
+        form.append("companion_name",pendamping);
+        form.append("id_line",line);
+        form.append("file",img);
+        setLoading(true);
+        addKelompok(form).then(() =>{
+            setLoading(false);
+            props.setTambah(false);
+        });
+    }
+
     return(
         <>
         <Modal show={props.tambah} onHide={()=>props.setTambah(false)} centered backdrop="static">
             <Modal.Header closeButton className="bg-dark text-white" closeVariant="white">
                 <Modal.Title>Tambah Qelompok</Modal.Title>
             </Modal.Header>
+            { !loading ? 
             <Form onSubmit={e=>{
                     e.preventDefault();
-                    addKelompok(kelompok,link,pendamping,line,img)
-                    props.setTambah(false);
+                    tambahKelompok();
                 }}>
                 <Modal.Body>
                     <Form.Group className="mb-3">
@@ -41,7 +57,7 @@ const TambahKelompok = (props) => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Upload foto pendamping</Form.Label>
-                        <Form.Control type="file" required onChange={e=>setImg(e.target.value)}/>
+                        <Form.Control type="file" required onChange={e=>setImg(e.target.files[0])}/>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
@@ -52,7 +68,11 @@ const TambahKelompok = (props) => {
                     Save Changes
                 </Button>
             </Modal.Footer>
-            </Form>
+            </Form> :
+            <div className="w-100 p-3 d-flex justify-content-center">
+                Uploading <div className="spinner-border" role="status"/>
+            </div>
+            }
         </Modal>
         </>
     );

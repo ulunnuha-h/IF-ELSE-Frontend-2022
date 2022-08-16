@@ -15,7 +15,7 @@ const UserChangePass = (props) => {
     }
 
     return(
-        <Modal show={props.show} onHide={props.handleClose} centered backdrop="static" style={{"backdropFilter":"blur(10px)"}}>
+        <Modal show={props.editPass} onHide={props.handleClosePass} centered backdrop="static" style={{"backdropFilter":"blur(10px)"}}>
         <Modal.Header style={{"backgroundColor":"var(--color-1-p)","color":"white"}}>
           <Modal.Title>Change Password</Modal.Title>
         </Modal.Header>
@@ -41,8 +41,8 @@ const UserChangePass = (props) => {
                 {msg}
             </div> : null}
         <Modal.Footer>
-            <button className="btn-cancel py-2 px-4" onClick={props.handleClose}>Cancel</button>
-            <button className="btn-save py-2 px-5" onClick={()=>{handleChange();if(msg === 'sukses') props.handleClose();}}>Save</button>
+            <button className="btn-cancel py-2 px-4" onClick={props.handleClosePass}>Cancel</button>
+            <button className="btn-save py-2 px-5" onClick={()=>{handleChange()}}>Save</button>
         </Modal.Footer>
       </Modal>
     );

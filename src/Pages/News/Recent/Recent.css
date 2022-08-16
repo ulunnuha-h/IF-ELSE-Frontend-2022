@@ -11,12 +11,11 @@
     border-radius: 50px;
     background: #732648;
     max-width: 80%;
-
     margin: 50px 0 10px 65px;
 }
 
 .slide-recent{
-    height: 520px;
+    aspect-ratio: 2/1;
 }
 
 .images-recent {
@@ -77,6 +76,6 @@
 
 @media (max-width:760px){
     .slide-recent{
-        height: 210px;
+        aspect-ratio: 7/5;
     }
 }

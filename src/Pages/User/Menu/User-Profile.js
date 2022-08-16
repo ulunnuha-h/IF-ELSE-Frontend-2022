@@ -13,10 +13,11 @@ const UserProfile = () => {
     const [nick,setNick] = useState(userData.nickname);
     const [address,setAddress] = useState(userData.address);
     const [line,setLine] = useState(userData.line);
+    const [wa,setWa] = useState(userData.whatsapp);
     const [about,setAbout] = useState(userData.about);    
 
     const editUser = () => {
-        updateMahasiswaData(userData.user_id,{nickName : nick, address,idLine : line, aboutMe : about});
+        updateMahasiswaData(userData.user_id,{nickName : nick, address,idLine : line, aboutMe : about,whatsapp : wa});
     }
 
     return(
@@ -32,6 +33,8 @@ const UserProfile = () => {
             <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.address}</motion.section>
             <h5>ID Line</h5>
             <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.line}</motion.section>
+            <h5>Whatsapp</h5>
+            <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{userData.whatsapp}</motion.section>
             <h5>Group Name</h5>
             <motion.section initial={{opacity:0,scale:0.5}} whileInView={{opacity:1,scale:1}} className="mb-3">{getKelompokNameById(userData.group_id)}</motion.section>
         </div>:
@@ -42,6 +45,8 @@ const UserProfile = () => {
             <input maxLength="50" type="text" placeholder="Address" className="mb-3" value={address} onChange={(e)=>setAddress(e.target.value)}/>
             <h5>ID Line</h5>
             <input maxLength="20" type="text" placeholder="ID Line" className="mb-3" value={line} onChange={(e)=>setLine(e.target.value)}/>
+            <h5>Whatsapp</h5>
+            <input maxLength="20" type="text" placeholder="Whatsapp" className="mb-3" value={wa} onChange={(e)=>setWa(e.target.value)}/>
             <h5>About me <span style={{"fontSize":"12px"}}>({160 - about.length} Character left)</span></h5>
             <textarea 
                 style={{"height":"100px","resize":"none"}} 

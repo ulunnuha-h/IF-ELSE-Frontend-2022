@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 
-export const baseUrl = 'https://51e3-103-108-20-120.ngrok.io';
+export const baseUrl = 'https://8e0f-103-108-20-80.ngrok.io';
 
 const AuthContext = React.createContext({});
 

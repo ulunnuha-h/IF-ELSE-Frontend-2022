@@ -1,3 +1,6 @@
+import axios from "axios";
+import { baseUrl } from "../Config/Auth";
+
 const Kelompok = [{
     id : "1",
     kelompok : 'Seven Wind',
@@ -7,35 +10,55 @@ const Kelompok = [{
     img : "https://placekitten.com/680/715"
 }]
 
-const addKelompok = (kelompok,link,pendamping,line,img) => {
-    Kelompok.push({
-        id : Date.now().toString(),
-        kelompok,
-        link,
-        pendamping,
-        line,
-        img
-    })
+const addKelompok = async (form) => {
+    try {
+        const res = await axios.post(`${baseUrl}/api/group`,form,{
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }});
+        return res;
+    } catch (error) {
+        return error;
+    }
 }
 
-const deleteKelompok = (id) => {
-    const idx = Kelompok.findIndex(klmpk => klmpk.id === id);
-    Kelompok.splice(idx,1);
+const deleteKelompok = async (id) => {
+    try {
+        const res = await axios.delete(`${baseUrl}/api/group/${id}`);
+        return res;
+    } catch (error) {
+        return error;
+    }
 }
 
-const updateKelompok = (id,newKelompok) => {
-    const idx = Kelompok.indexOf(kel => kel.id === id);
-    console.log(idx);
-    Kelompok[idx] = newKelompok;
+const updateKelompok = async (id,updatedKelompok) => {
+    try {
+        const res = await axios.patch(`${baseUrl}/api/group/${id}`,updatedKelompok,{
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }});
+        return res;
+    } catch (error) {
+        return error;
+    }
 }
 
-const getAllKelompok = () => {
-    return Kelompok;
+const getAllKelompok = async () => {
+    try {
+        const res = await axios.get(`${baseUrl}/api/group`);
+        return res.data;
+    } catch (error) {
+        return error;
+    }
 }
 
-const getKelompokById = (id) => {
-    const data = Kelompok.find(kelompok => kelompok.id === id);
-    return data;
+const getKelompokById = async (id) => {
+    try {
+        const res = await axios.get(`${baseUrl}/api/group/${id}`);
+        return res.data;
+    } catch (error) {
+        return error;
+    }
 }
 
 const getKelompokNameById = (id) => {

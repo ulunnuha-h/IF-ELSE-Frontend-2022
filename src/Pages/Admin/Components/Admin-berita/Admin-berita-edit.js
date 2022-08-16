@@ -8,9 +8,19 @@ const EditBerita = () => {
     const dataBerita = getBeritaById(idBerita);
     const [content,setContent] = useState(dataBerita.content);
     const [title,setTitle] = useState(dataBerita.title);
-    const [image,setImage] = useState(dataBerita.image);
+    const [preview,setPreview] = useState(dataBerita.image);
+    const [image,setImage] = useState('');
     const [is_published,setIs_published] = useState(dataBerita.is_published);
     const nav = useNavigate();
+
+    const changeImage = e => {
+        const fsize = Math.round((e.target.files[0].size / 1024));
+        if(fsize > 1000) alert("Gambarnya kebesaran, maks 1MB");
+        else{
+            setImage(e.target.files[0]);
+            setPreview(URL.createObjectURL(e.target.files[0]));
+        }
+    }
 
     const togglePublished = () => setIs_published(togglePublishedBerita(idBerita));
 
@@ -35,10 +45,10 @@ const EditBerita = () => {
                 <Form.Group className="mb-3" controlId="formBasicFile">
                     <Form.Label>Gambar</Form.Label>
                     <div className="w-75 m-auto my-2 border border-light">
-                        {image !== '' ? <div style={{backgroundImage:`url(${image})`,aspectRatio:'16/9',backgroundSize:'cover'}} alt="editberita"/>
+                        {preview !== '' ? <div style={{backgroundImage:`url(${preview})`,aspectRatio:'16/9',backgroundSize:'cover'}} alt="editberita"/>
                          : null}
                     </div>
-                    <Form.Control type="file" onChange={e=>setImage(e.target.files[0])}/>
+                    <Form.Control type="file" onChange={changeImage}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasiccontent">
                     <Form.Label>Konten</Form.Label>

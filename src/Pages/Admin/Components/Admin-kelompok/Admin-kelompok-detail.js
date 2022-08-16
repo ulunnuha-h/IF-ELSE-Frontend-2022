@@ -7,40 +7,41 @@ import EditKelompok from "./Admin-kelompok-edit";
 import KelompokDeleteWarning from "./Admin-kelompok-deleteWarning";
 
 const KelompokDetail = () => {
-    const params = useParams();
-    const data = getKelompokById(params.kelompokId);
+    const kelompokId = useParams().kelompokId;
+    const [data,setData] = useState([]);
     const [edit,setEdit] = useState(false);
     const [warn,setWarn] = useState(false);
     const groupLink = `lnk.com`;
     const nav = useNavigate();
-    const [mahasiswaData,setMahasiswaData] = useState(null);
-    
+    const [mahasiswaData,setMahasiswaData] = useState([]);
 
     useEffect(()=>{
-        // getAllMahasiswaByGroup(data.id).then(res => {
-        //     console.log(res.data.data);
-        //     setMahasiswaData(res.data.data);
-        // })
-
-        setMahasiswaData(getAllMahasiswaByGroup(data.id));
-    },[data.id])
+        getKelompokById(kelompokId)
+        .then(res =>
+            {
+                setData(res.data);
+                setMahasiswaData(res.data.Student);
+            });
+    },[])
+    
+    if(!data) return <h1>No data</h1>;
 
     const deleteHandler = () => {
         if(mahasiswaData.length === 0) {
-            deleteKelompok(data.id);
+            deleteKelompok(kelompokId).then(res => alert(res.data.message));
             nav(-1);
         }
         else setWarn(true);
     }
 
 
-    const showAllMahasiswa = (mahasiswaData !== null ? mahasiswaData.map((dataMhs,idx) => {
+    const showAllMahasiswa = (mahasiswaData !== [] ? mahasiswaData.map((dataMhs,idx) => {
             return(
                 <tr key={idx}>
                     <td className="py-3 col-1">{dataMhs.nim}</td>
                     <td className="py-3">{dataMhs.nama}</td>
                     <td className="py-3">{getKelompokNameById(dataMhs.group_id)}</td>
-                    <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`../kelompok/mahasiswa/${dataMhs.user_id}`)}>Detail</button></td>
+                    <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`../kelompok/mahasiswa/${dataMhs.id}`)}>Detail</button></td>
                 </tr>
             );
         }) : null
@@ -53,13 +54,13 @@ const KelompokDetail = () => {
                 onClick={()=>nav(-1)}
                 style={{"cursor":"pointer"}}
                 ></i>
-            <EditKelompok edit={edit} setEdit={setEdit} id={params.kelompokId}/>
+            <EditKelompok edit={edit} setEdit={setEdit} id={kelompokId}/>
             <KelompokDeleteWarning warn={warn} setWarn={setWarn}/>
             <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
                 <div className="d-flex justify-content-between align-items-start">
                     <section>
-                        <h3 className="m-0">Kelompok {data.kelompok}</h3>
-                        <span>Link group  <a href={groupLink} target="blank">{data.link}</a></span>
+                        <h3 className="m-0">Kelompok {data.group_name}</h3>
+                        <span>Link group  <a href={groupLink} target="blank">{data.line_group}</a></span>
                     </section>
                     <section className="d-flex flex-column-reverse flex-lg-row">
                         <button className="btn btn-danger px-3 m-1" onClick={()=>deleteHandler()}>Delete</button>
@@ -68,16 +69,16 @@ const KelompokDetail = () => {
                 </div>
                 <hr></hr>
                 <div className="row px-3 justify-content-between">
-                    <div className="col-3 bg-warning rounded h-100" style={{aspectRatio:"1/1",backgroundImage:`url(${data.img})`,backgroundSize:"cover"}}/>
+                    <div className="col-3 bg-warning rounded h-100" style={{aspectRatio:"1/1",backgroundImage:`url(${data.link_foto})`,backgroundSize:"cover"}}/>
                     <section className="col-8 col-lg-9">
                         <h5>Pendamping</h5>
                         <section className="row my-2">
                             <span className="col-lg-2 col-12">Nama</span>
-                            <span className="col-lg-auto col-12 bg-secondary rounded">{data.pendamping}</span>
+                            <span className="col-lg-auto col-12 bg-secondary rounded">{data.companion_name}</span>
                         </section>
                         <section className="row my-2">
                             <span className="col-lg-2 col-12">Line</span>
-                            <span className="col-lg-auto col-12 bg-secondary rounded">{data.line}</span>
+                            <span className="col-lg-auto col-12 bg-secondary rounded">{data.id_line}</span>
                         </section>
                     </section>
                 </div>
