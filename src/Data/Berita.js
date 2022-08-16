@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { baseUrl } from "../Config/Auth";
+import { useNavigate } from "react-router-dom";
+
 let Berita = [{
     id : 1234124,
     title : 'SELAMAT HARI RAYA IDUL ADHA 1443 H',
@@ -33,34 +38,59 @@ Kabinet Bratacahya
 ]
 
 const addBerita = (newBerita) => {
-    const now = Date().toString();
-    Berita.push({id : Date.now() , ...newBerita,published_at:now,is_published:true});
+    // const now = Date().toString();
+    // Berita.push({id : Date.now() , ...newBerita,published_at:now,is_published:true});
+
+    axios.post(baseUrl, {
+        newBerita
+    })
 }
 
-const deleteBerita = (id) => {
-    const idx = Berita.findIndex(berita=>berita.id === id);
-    Berita.splice(idx,1);
+const deleteBerita = id => {
+    // const idx = Berita.findIndex(berita=>berita.id === id);
+    // Berita.splice(idx,1);
+
+    axios.delete(`${baseUrl}/api/${id}`);
 }
 
 const getBeritaById = (id) => {
     const beritaById = Berita.find(berita => berita.id === id);
     return beritaById;
+
+    // try {
+	// 	const result = await axios.get(`${baseUrl}/${id}`);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }
 }
 
 const editBerita = (id,newBerita) => {
-    const idx = Berita.findIndex(berita=>berita.id === id);
-    Berita[idx].title = newBerita.title;
-    Berita[idx].content = newBerita.content;
-    
+    // const idx = Berita.findIndex(berita=>berita.id === id);
+    // Berita[idx].title = newBerita.title;
+    // Berita[idx].content = newBerita.content;
+
+    axios.put(`${baseUrl}/${id}`, {
+        newBerita
+    })
 }
 
-const getAllBerita = (key) => {
+const getAllBerita =  (key) => {
+    // try {
+    //     const result = await axios.get(`${baseUrl}/api/news/${key}`);
+    //     return result;
+    // } catch (error) {
+    //     return error
+    // }
+
     if(key === undefined) return Berita;
     const filtered = Berita.filter(data => data.title.toLowerCase().indexOf(key.toLowerCase()) !== -1);
     return filtered;
 }
 
 const getBeritaTerbaru = () => {
+
+
     const filtered = Berita.filter(data => data.is_published === true);
     return filtered.slice(0,4);
 }
