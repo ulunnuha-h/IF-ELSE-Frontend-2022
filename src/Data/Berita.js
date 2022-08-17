@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../Config/Auth";
-import { useNavigate } from "react-router-dom";
 
 let Berita = [{
     id : 1234124,
@@ -37,59 +35,90 @@ Kabinet Bratacahya
 
 ]
 
-const addBerita = (newBerita) => {
+const addBerita = async (newBerita) => {
     // const now = Date().toString();
     // Berita.push({id : Date.now() , ...newBerita,published_at:now,is_published:true});
 
-    axios.post(baseUrl, {
-        newBerita
-    })
+    const formData = new FormData();
+    formData.append("Judul", newBerita.title);
+    formData.append("Gambar", newBerita.image);
+    formData.append("Konten", newBerita.content);
+
+    console.log([...formData])
+
+    try {
+        const result = await axios.post(`${baseUrl}/api/admin/news`, formData)
+        console.log(result);
+    } catch (error) {
+        return error;
+    }
 }
 
-const deleteBerita = id => {
+const deleteBerita = async (id) => {
     // const idx = Berita.findIndex(berita=>berita.id === id);
     // Berita.splice(idx,1);
 
-    axios.delete(`${baseUrl}/api/${id}`);
+    try {
+        const result = await axios.delete(`${baseUrl}/api/admin/news/${id}`);
+        return result
+    } catch (error) {
+		return error;
+	}
 }
 
-const getBeritaById = (id) => {
-    const beritaById = Berita.find(berita => berita.id === id);
-    return beritaById;
+const getBeritaById = async (id) => {
+    // const beritaById = Berita.find(berita => berita.id === id);
+    // return beritaById;
 
-    // try {
-	// 	const result = await axios.get(`${baseUrl}/${id}`);
-	// 	return result;
-	// } catch (error) {
-	// 	return error;
-	// }
+    try {
+		const result = await axios.get(`${baseUrl}/api/admin/news/${id}`);
+		return result;
+	} catch (error) {
+		return error;
+	}
 }
 
-const editBerita = (id,newBerita) => {
+const editBerita = async (id,newBerita) => {
+    const formData = new FormData();
+    formData.set("Judul", newBerita.title);
+    formData.set("Gambar", newBerita.image);
+    formData.set("Konten", newBerita.content);
+
+    console.log([...formData])
+
+    try {
+        const result = await axios.put(`${baseUrl}/api/admin/news/${id}`, formData)
+        return result;
+    } catch (error) {
+        return error;
+    }
+
     // const idx = Berita.findIndex(berita=>berita.id === id);
     // Berita[idx].title = newBerita.title;
     // Berita[idx].content = newBerita.content;
-
-    axios.put(`${baseUrl}/${id}`, {
-        newBerita
-    })
+    // Berita[idx].image = URL.createObjectURL(newBerita.image);
 }
 
-const getAllBerita =  (key) => {
+const getAllBerita = async () => {
+    try {
+        const result = await axios.get(`${baseUrl}/api/admin/news`);
+        return result;
+    } catch (error) {
+        return error
+    }
+
+    // if(key === undefined) return Berita;
+    // const filtered = Berita.filter(data => data.title.toLowerCase().indexOf(key.toLowerCase()) !== -1);
+    // return filtered;
+}
+
+const getBeritaTerbaru = (key) => {
     // try {
-    //     const result = await axios.get(`${baseUrl}/api/news/${key}`);
+    //     const result = await axios.get(`${baseUrl}/api/admin/news`);
     //     return result;
     // } catch (error) {
     //     return error
     // }
-
-    if(key === undefined) return Berita;
-    const filtered = Berita.filter(data => data.title.toLowerCase().indexOf(key.toLowerCase()) !== -1);
-    return filtered;
-}
-
-const getBeritaTerbaru = () => {
-
 
     const filtered = Berita.filter(data => data.is_published === true);
     return filtered.slice(0,4);

@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="w-100 footer">
             <section style={{"height":"5px","background":"var(--color-4)"}}></section>
             <button
-                className={loc.indexOf('home') !== -1 ? "position-absolute rounded text-white":"d-none"} 
+                className={loc.indexOf('home') !== -1 ? "position-absolute rounded text-white d-none d-lg-block":"d-none"} 
                 style={{
                     bottom : '10vh',
                     left:'2vw',
@@ -37,7 +37,7 @@ const Footer = () => {
                     <div className="col d-flex justify-content-center">
                         <section>
                             <h3 style={{"fontFamily":"'Montserrat', sans-serif","fontWeight":"bold"}}>Get Started</h3>
-                            <div className="h-75 d-flex flex-column justify-content-between">
+                            <div className="h-75 d-flex flex-column justify-content-between align-items-center align-items-lg-start">
                                 <span className="footer-link" onClick={()=> nav("/")}>Home</span>
                                 <span className="footer-link" onClick={()=> nav("news")}>News</span>
                                 <span className="footer-link" onClick={()=> nav("faq")}>FAQ</span>

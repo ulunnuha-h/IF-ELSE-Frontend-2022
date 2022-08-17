@@ -1,10 +1,13 @@
 .parallax-wrapper {
-    height:130vh;
+    height:135vh;
     overflow: hidden;
+    width: 100%;
+    position: relative;
+    background:linear-gradient( #f5c878,#f57300,#f59d00);;
 }
 
 .parallax-wrapper > img{
-    z-index: -2;
+    z-index: 0;
     width: 100%;
 }
 
@@ -37,9 +40,10 @@
 
 .logo-home{
     animation-name: reveal;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
+    animation-delay: 0.3s;
 }
 
 .explore{
@@ -60,7 +64,9 @@
 
 @media (max-width: 768px){
     .parallax-wrapper {
-        background-image: url('../../../Assets/Parallax/responsiveBg.svg');
+        background-image: url('../../../Assets/Parallax/responsiveBg.webp');
+        background-position: bottom;
+        background-size: cover;
     }
 
     .parallax-wrapper > img{
@@ -75,5 +81,11 @@
         display: flex;
         bottom: 0px;
         justify-content: center;
+    }
+    .logo-home{
+        scale: 0.6;
+    }
+    .parallax-wrapper {
+        height: 100vh;
     }
 }

@@ -6,6 +6,10 @@ import { useAuth } from "../../Config/Auth";
 import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
 import _debounce from "lodash/debounce";
 
+const logoStyle = {
+    height : '72px'
+}
+
 const Nav = () => {
     const nav = useNavigate();
     const loc = useLocation();
@@ -27,7 +31,7 @@ const Nav = () => {
     const navHome = () => nav('/');
 
     const navStyle = useMemo(()=>{return{
-        "zIndex":'11',
+        "zIndex":'12',
         "transition":"100ms",
         "height":"76px",
         "position":((isHome || isProfile)? "fixed" : "sticky"),
@@ -50,7 +54,7 @@ const Nav = () => {
     return(
         <nav className="navbar px-4 py-1 w-100" style={navStyle}>
             <div className="nav-brand cursor-pointer h-100 d-flex" onClick={navHome}>
-                <img src={pic} alt='logo ifelse' className="h-100 me-2"></img>
+                <img src={pic} alt='logo ifelse' className="me-2" style={logoStyle}></img>
                 <section className="d-flex flex-column justify-content-center">
                     <span className="m-0 mt-1 p-0 h5">IF ELSE</span>
                     <span className="m-0 p-0 h4">2022</span>

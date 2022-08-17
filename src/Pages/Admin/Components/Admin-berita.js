@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/esm/Table";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,13 @@ import { getAllBerita } from "../../../Data/Berita";
 
 const AdminBerita = () => {
   const nav = useNavigate();
-  const berita = getAllBerita();
+  const [berita, setBerita] = useState([]);
+
+  useEffect(() => {
+    getAllBerita().then((resp) =>
+      setBerita(resp.data.data)
+    );
+  }, [])
 
     return(
         <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded" style={{minHeight:'100vh'}}>

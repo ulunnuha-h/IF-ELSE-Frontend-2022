@@ -4,13 +4,14 @@ import { getAllMahasiswa } from "../../../Data/Mahasiswa";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
 import TambahKelompok from "./Admin-kelompok/Admin-kelompok-tambah";
-import { getAllKelompok,getKelompokNameById } from "../../../Data/Kelompok";
+import { addKelompok, getAllKelompok,getKelompokNameById } from "../../../Data/Kelompok";
+import axios from "axios";
 
 const AdminKelompok = () => {
     const nav = useNavigate();
     const [key,setKey] = useState('');
-    const [DataMahasiswa,setDataMahasiswa] = useState({}); 
-    const DataKelompok = getAllKelompok();
+    const [DataMahasiswa,setDataMahasiswa] = useState([]); 
+    const [DataKelompok,setDataKelompok] = useState([]);
     const [pageCount,setPageCount] = useState(1);
     const [tambah,setTambah] = useState(false);
     const [pageNum,setPageNum] = useState(0);
@@ -18,6 +19,15 @@ const AdminKelompok = () => {
     const pageHandler = ({selected}) => {
         setPageNum(selected);
     }
+
+    useEffect(()=>{
+        getAllKelompok().then(res => {
+            if(!res.message) setDataKelompok(res.data);
+            else{
+                setErr(res.message);
+            }
+        });
+    },[])
 
     useEffect(()=>{
         // setPageNum(0);
@@ -36,8 +46,8 @@ const AdminKelompok = () => {
     },[DataMahasiswa])
 
     if(err !== null) return(
-        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light">
-            {err} :(
+        <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
+            <h1>{err} :(</h1>
         </div>
     );
 
@@ -62,8 +72,8 @@ const AdminKelompok = () => {
                     {DataKelompok.map((data,idx)=>
                         <tr key={idx}>
                             <td className="py-3">{data.id}</td>
-                            <td className="py-3">{data.kelompok}</td>
-                            <td className="py-3">{data.pendamping}</td>
+                            <td className="py-3">{data.group_name}</td>
+                            <td className="py-3">{data.companion_name}</td>
                             <td><button className="btn btn-primary w-100" onClick={()=>nav(`${data.id}`)}>Detail</button></td>
                         </tr>
                     )}

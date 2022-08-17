@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { Form,Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { addBerita } from "../../../../Data/Berita";
@@ -7,8 +7,15 @@ const TambahBerita = () => {
     const [content,setContent] = useState('');
     const [title,setTitle] = useState('');
     const [image,setImage] = useState('');
-    console.log(image);
     const nav = useNavigate();
+
+    const changeImage = e => {
+        const fsize = Math.round((e.target.files[0].size / 1024));
+        if(fsize > 1000) alert("Gambarnya kebesaran, maks 1MB");
+        else{
+            setImage(e.target.files[0]);
+        }
+    }
 
     return(
         <>
@@ -26,15 +33,15 @@ const TambahBerita = () => {
             }}>
                 <Form.Group className="mb-3" controlId="formBasicTitle">
                     <Form.Label>Judul</Form.Label>
-                    <Form.Control type="text" placeholder="Masukkan title..." value={title} onChange={e=>setTitle(e.target.value)} required/>
+                    <Form.Control type="text" placeholder="Masukkan Judul..." value={title} onChange={e=>setTitle(e.target.value)} required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicFile">
                     <Form.Label>Gambar</Form.Label>
                     <div className="w-75 m-auto my-2 border border-light">
-                    {image !== '' ? <div style={{backgroundImage:`url(${image})`,aspectRatio:'16/9',backgroundSize:'cover'}} alt="editberita"/>
+                        {image !== '' ? <div style={{backgroundImage:`url(${URL.createObjectURL(image)})`,aspectRatio:'16/9',backgroundSize:'cover'}} alt="editberita"/>
                          : null}
                     </div>
-                    <Form.Control type="file" onChange={e=>setImage(URL.createObjectURL(e.target.files[0]))} required/>
+                    <Form.Control type="file" onChange={changeImage} required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasiccontent">
                     <Form.Label>Konten</Form.Label>
