@@ -1,4 +1,6 @@
 import { updateStudentTaskData,deleteStudentTaskData } from "./StudentTask";
+import axios from "axios";
+import { baseUrl } from "../Config/Auth";
 
 const Tasks = [
     {
@@ -43,16 +45,34 @@ Kabinet Lentera
     }
 ]
 
-const getTaskById = (id)=> {
-    const task = Tasks.find(task=> task.id === id);
-    return task;
+const getTaskById = async(id)=> {
+    try {
+		const result = await axios.get(`${baseUrl}/api/admin/task/${id}`);
+		return result;
+	} catch (error) {
+		return error;
+	}
+    // const task = Tasks.find(task=> task.id === id);
+    // return task;
 }
 
-const getAllTask = () => {
-    return Tasks;
+const getAllTask = async() => {
+    try {
+		const result = await axios.get(`${baseUrl}/api/admin/task`);
+		return result;
+	} catch (error) {
+		return error;
+	}
+    // return Tasks;
 }
 
 const addTask = (newTask) => {
+    // try {
+	// 	const result = await axios.post(`${baseUrl}/api/admin/task/${id}`);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }
     const id = Date.now();
     Tasks.push({id,...newTask})
     updateStudentTaskData(id);
@@ -62,9 +82,21 @@ const deleteTask = (id) => {
     const idx = Tasks.findIndex(task => task.id === id);
     Tasks.splice(idx,1);
     deleteStudentTaskData(id);
+    // try {
+	// 	const result = await axios.delete(`${baseUrl}/api/admin/task/${id}`);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }
 }
 
 const editTask = (id,newTask) => {
+    // try {
+	// 	const result = await axios.put(`${baseUrl}/api/admin/task/${id}`);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }
     const idx = Tasks.findIndex(task => task.id === id);
     Tasks[idx] = {id,...newTask};
 }

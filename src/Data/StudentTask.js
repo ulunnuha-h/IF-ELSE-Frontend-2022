@@ -1,3 +1,7 @@
+import axios from "axios";
+import { useState } from "react";
+import { baseUrl } from "../Config/Auth";
+
 const StudentTask = [{
     id : 1,
     user_id : 1,
@@ -64,17 +68,50 @@ const StudentTask = [{
 }
 ]
 
-const getAllStudenTaskByUserId = (userId) => {
-    return StudentTask.find(stu => stu.user_id === userId);
+// const [studentData,setStudentData] = useState([])
+
+// const getStudentData = async() => {
+//     try {
+//       const res = await axios.get(`${baseUrl}/api/studentTasks/${UserId}`);
+//       setStudentData(res.data)
+//     } catch(error) {
+//       console.log(error)
+//     }
+//   }
+
+// useEffect(()=>{
+//     getStudentData();
+//   },[deleteContact])
+
+const getAllStudenTaskByUserId = async (userId) => {
+    try {
+		const result = await axios.get(`${baseUrl}/api/admin/task/${userId}`);
+		return result;
+	} catch (error) {
+		return error;
+	}
+    // return StudentTask.find(stu => stu.user_id === userId);
 }
 
 const getStudentTaskByUserId = (UserId,task_id) => {
-    const data1 = StudentTask.find(task=>task.user_id === UserId);
-    const data2 = data1.data.find(data=>data.task_id === task_id);    
-    return data2;
+    // try {
+	// 	const result = await axios.get(`${baseUrl}/api/admin/task/${id}`);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }
+    // const data1 = StudentTask.find(task=>task.user_id === UserId);
+    // const data2 = data1.data.find(data=>data.task_id === task_id);    
+    // return data2;
 }
 
 const updateStudentTasksubmission = (UserId,task_id,data) => {
+    // try {
+	// 	const result = await axios.put(`${baseUrl}/api/admin/task/${id}`);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }
     const idx1 = StudentTask.findIndex(task => task.id === UserId);
     const idx2 = StudentTask[idx1].data.findIndex(data => data.task_id === task_id);
     StudentTask[idx1].data[idx2].submission = data;
@@ -84,7 +121,15 @@ const updateStudentTasksubmission = (UserId,task_id,data) => {
 const updateStudentTaskData = (task_id) => {
     for (let i = 0; i < StudentTask.length; i++) {
         StudentTask[i].data.push({task_id,submission:null,submitted_at:''});
-    }    
+    }
+    // try {
+	// 	const result = await axios.patch(`${baseUrl}/api/admin/task/${task_id}`,{
+	// 		"task_id" :  `${task_id}`
+	// 	});
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }    
 }
 
 const deleteStudentTaskData = (task_id) => {
@@ -95,6 +140,12 @@ const deleteStudentTaskData = (task_id) => {
             }
         }
     }    
+    // try {
+	// 	const result = await axios.delete(`${baseUrl}/api/studentTasks/${task_id}`);
+	// 	return result;
+	// } catch (error) {
+	// 	return error;
+	// }    
     console.log(StudentTask);
 }
 

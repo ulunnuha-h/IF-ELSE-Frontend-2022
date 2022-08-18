@@ -6,12 +6,15 @@ import TambahTugasModal from "./Admin-penugasan/Admin-penugasan-tambah";
 import EditTugas from "./Admin-penugasan/Admin-penugasan-edit";
 
 const AdminPenugasan = () => {
-    const tugas = getAllTask();
+    const [tugas,setTugas] = useState([]);
     const [tambah,setTambah] = useState(false);
     const handleTambah = () => setTambah(false);
     const [edit,setEdit] = useState(false);
     const handleEdit = () => setEdit(false);
     const [id,setId] = useState();
+
+    useEffect(()=>{
+    getAllTask().then(res => setTugas(res.data.data));},[])
 
     const showEdit = (inputId)=>{
       setId(inputId);
@@ -40,7 +43,7 @@ const AdminPenugasan = () => {
                     <tr key={idx}>
                       <td className="col-1">{idx+1}</td>
                       <td>{tugas.title}</td>
-                      <td className="col-2">{tugas.end_at}</td>
+                      <td className="col-2">{tugas.deadline}</td>
                       <td className="col-1"><Button className="w-100" onClick={()=>showEdit(tugas.id)}>Edit</Button></td>
                     </tr>
                     )}
