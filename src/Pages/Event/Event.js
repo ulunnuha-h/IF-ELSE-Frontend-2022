@@ -51,11 +51,11 @@ const Event = () => {
                     <i className="fa-solid fa-circle-arrow-right event-switch" onClick={nextHandler}/>
                 </section>
                 <hr></hr>
-                <section className="row">
+                <section className="row flex-column-reverse d-flex flex-lg-row">
                     {data.is_published ? 
                     <div className="col-12 col-lg-9 row p-0 m-auto">
                         <div className="p-0">
-                            <div className="d-flex flex-column align-items-center p-4 event-box mx-2">
+                            <div className="d-flex flex-column align-items-center p-lg-4 py-3 event-box mx-2">
                                 <h2 className="text-white">PERIZINAN</h2>
                                 <Ketentuan/>
                                 <Alur/>
@@ -64,20 +64,20 @@ const Event = () => {
                                     <h5 className="text-white m-0">UPLOAD SURAT PERIZINAN</h5>
                                 </div>
                                 { auth.isLogged ?
-                                <form className="d-flex align-items-center justify-content-center mb-5 mt-3">
+                                <form className="d-flex align-items-center justify-content-center my-4">
                                     <input className="event-input w-100 me-3" name="perizinan" type="file"/>
                                     <button type="submit" className="px-4 py-2">
                                         <SubmitBtn className="m-0 p-0 w-100"/>
                                     </button>
                                 </form> : 
-                                <div className="row p-0 m-0">
-                                    <div className="alert alert-warning w-100 m-auto mt-5">
+                                <div className="row p-2 m-2">
+                                    <div className="alert alert-warning w-100 m-auto">
                                         <i className="fa-solid fa-triangle-exclamation me-2"></i>
                                         Silakan login terlebih dahulu sebelum melakukan submit surat perizinan
                                     </div>
                                 </div>
                                 }
-                                <section className="row my-3">
+                                <section className="row p-2">
                                     <i className="fa-solid fa-hashtag col-2 event-hastag p-0"/>
                                     <section className="col-10 p-0 text-white text-justify">
                                         Perizinan diisi ketika tidak bisa mengikuti rangkaian acara (diisi sebelum rangkaian acara)
@@ -93,10 +93,13 @@ const Event = () => {
                         </div>
                     </div>
                     }
-                    <div className="col-12 col-lg-3 d-flex flex-container flex-column align-items-center">
+                    <div className="col-12 col-lg-3 d-flex flex-container flex-column align-items-center py-3">
                         <h5 className="mt-1">Download</h5>
-                        <button className="btn-toggle w-100 py-2 my-2">
+                        <button className="btn-toggle w-auto py-2 px-4 my-2">
                             Surat Perizinan <i className="fa-solid fa-circle-down"/>
+                        </button>
+                        <button className="btn-toggle w-auto py-2 px-4 my-2">
+                            Buku Panduan <i className="fa-solid fa-circle-down"/>
                         </button>
                     </div>
                 </section>

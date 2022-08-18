@@ -11,7 +11,7 @@ import { getStudenMarkById } from "../../Data/Marking";
 
 const User = () => {
     const nav = useNavigate();
-    const [show, setShow] = useState(false);
+    const [editPass, setEditPass] = useState(false);
     const [editProfile,setEditProfile] = useState(false);
     const {auth,setAuth} = useAuth();
 
@@ -34,8 +34,8 @@ const User = () => {
         setAuth({isLogged: false});
     }
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClosePass = () => setEditPass(false);
+    const handleEditPass = () => setEditPass(true);
 
     const buttonHover = {
         whileHover : { backgroundColor : "var(--color-2-p)" },
@@ -60,8 +60,8 @@ const User = () => {
                         <UserCard/>
                         <button className="btn-toggle w-75 mt-3 py-3 px-5" style={progres} disabled>Print Certificate</button>       
                         <motion.button {...buttonHover} className="btn-toggle w-75 mt-3 py-3 px-5" style={editProfile ? {"color":"var(--color-1-s)"} : {}}  onClick={()=>toggleEditProfile()}>Edit Profile</motion.button>
-                        <motion.button {...buttonHover} className="btn-toggle w-75 mt-3 py-3 px-5" onClick={()=>handleShow()}>Change Password</motion.button>
-                        <UserChangePass handleClose={handleClose} show={show}/>
+                        <motion.button {...buttonHover} className="btn-toggle w-75 mt-3 py-3 px-5" onClick={()=>handleEditPass()}>Change Password</motion.button>
+                        <UserChangePass handleClosePass={handleClosePass} editPass={editPass}/>
                         <hr className="w-75 my-3"></hr>
                         <button className="btn-logout w-75 py-3 px-5 mb-0" onClick={()=>{logout()}}>Log out</button>
                     </section>

@@ -1,0 +1,16 @@
+.profile-image-input{
+    border: solid var(--color-1-p) 2px;
+    color: var(--color-1-p);
+}
+
+.profile-image-input::-webkit-file-upload-button{
+    color: white;
+    background-color: var(--color-1-s);
+    border: 0px;
+    border-radius: 3px;
+    transition: 300ms;
+}
+
+.profile-image-input::-webkit-file-upload-button:hover{
+    background-color: var(--color-2-s);
+}

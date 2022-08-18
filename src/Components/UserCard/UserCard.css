@@ -20,9 +20,19 @@
 }
 
 .user-image{
-    overflow: hidden;
     height: 160px;
     aspect-ratio: 1/1;
     border-radius: 100px;
     background-color: var(--color-2-p);
+}
+
+.user-image .edit-image{
+    background-color: var(--color-1-s);
+    border-radius: 100px;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.user-image .edit-image:hover{
+    background-color: var(--color-2-s);
 }

@@ -82,6 +82,10 @@ const MahasiswaDetail = () => {
                             <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.address}</span>
                         </section>
                         <section className="row  my-2">
+                            <span className="col-lg-3 col-12">ID Line</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.line}</span>
+                        </section>
+                        <section className="row  my-2">
                             <span className="col-lg-3 col-12">Whatsapp</span>
                             <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.whatsapp}</span>
                         </section>
@@ -97,9 +101,9 @@ const MahasiswaDetail = () => {
                                     }
                                 </button>
                                 <ul className="dropdown-menu w-100">
-                                    {allKelompok.map((val,idx) => 
+                                    {/* {allKelompok.map((val,idx) => 
                                         <li key={idx} className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(val.id,data.user_id)}>{val.kelompok}</li>
-                                    )}
+                                    )} */}
                                     <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(null,data.user_id)}>Mengkosong</li>
                                 </ul>
                             </div>

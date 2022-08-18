@@ -1,16 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { getKelompokById,updateKelompok } from "../../../../Data/Kelompok";
 
 const EditKelompok = (props) => {
-    const data = getKelompokById(props.id);
-    const [kelompok,setKelompok] = useState(data.kelompok);
-    const [link,setLink] = useState(data.link);
-    const [pendamping,setPendamping] = useState(data.pendamping);
-    const [line,setLine] = useState(data.line);
+    const kelompokId = props.id;
+    const [data,setData] = useState([]);
+    const [kelompok,setKelompok] = useState('');
+    const [link,setLink] = useState('');
+    const [pendamping,setPendamping] = useState('');
+    const [line,setLine] = useState('');
     const [img,setImg] = useState('');
+
+
+    useEffect(()=>{
+        getKelompokById(kelompokId)
+        .then(res =>
+            {
+                setData(res.data);
+            });
+    },[])
+
+    useEffect(()=>{
+        setKelompok(data.group_name);
+        setLink(data.line_group);
+        setPendamping(data.companion_name);
+        setLine(data.id_line);
+        setImg(data.file)
+    },[data])
+
+    const updatingKelompok = () => {
+        const form = new FormData();
+        form.append("group_name",kelompok);
+        form.append("line_group",link);
+        form.append("companion_name",pendamping);
+        form.append("id_line",line);
+        form.append("file",img);
+        updateKelompok(data.id,form).then(res=> console.log(res));
+    }
 
     return(
         <>
@@ -20,7 +48,7 @@ const EditKelompok = (props) => {
             </Modal.Header>
             <Form onSubmit={e=>{
                     e.preventDefault();
-                    updateKelompok(data.id,{kelompok,link,pendamping,line,img})
+                    updatingKelompok();
                     props.setEdit(false);
                 }}>
                 <Modal.Body>
@@ -42,7 +70,7 @@ const EditKelompok = (props) => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Upload foto pendamping</Form.Label>
-                        <Form.Control type="file" required onChange={e=>setImg(e.target.value)}/>
+                        <Form.Control type="file" onChange={e=>setImg(e.target.files[0])}/>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>

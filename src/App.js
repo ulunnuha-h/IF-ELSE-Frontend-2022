@@ -6,16 +6,16 @@ import { AuthProvider } from './Config/Auth.js';
 
 
 function App() {
-  return (
-    <>
-      <AuthProvider>
-        <Nav/>
-        <Outlet/>
-        <Footer/>
-      </AuthProvider>
-    </>
-    
-  );
+    return (
+        <>
+            <AuthProvider>
+                <Nav/>
+                <Outlet/>            
+                <Footer/>
+            </AuthProvider>
+        </>
+
+    );
 } 
 
 export default App;

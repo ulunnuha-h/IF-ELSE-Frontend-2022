@@ -162,6 +162,7 @@ const updateMahasiswaData = (user_id,newData) => {
     Mahasiswa[idx].address = newData.address;
     Mahasiswa[idx].line = newData.idLine;
     Mahasiswa[idx].about = newData.aboutMe;
+    Mahasiswa[idx].whatsapp = newData.whatsapp;
 }
 
 const updateMahasiswaPass = (userId,old,new1,new2) => {

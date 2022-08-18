@@ -31,3 +31,13 @@
   .filosofi p {
     font-weight: 500;
   }
+
+@media (max-width : 768px){
+  .filosofi p {
+    font-size: 12px;
+  }
+
+  .filosofi {
+    min-height: 590px;
+  }
+}

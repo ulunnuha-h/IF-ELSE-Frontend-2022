@@ -21,7 +21,7 @@ const TambahTugasModal = (props) =>{
         const fields = [];
         if(input > 0) fields.push(label1);
         if(input > 1) fields.push(label2);
-        addTask({title,description,condition,step,end_at,fields});
+        addTask({title,description,condition,step,deadline:end_at,jumlah_link:input,links:fields}).then(res=>console.log(res));
     }
 
     return(

@@ -52,8 +52,6 @@ const getTaskById = async(id)=> {
 	} catch (error) {
 		return error;
 	}
-    // const task = Tasks.find(task=> task.id === id);
-    // return task;
 }
 
 const getAllTask = async() => {
@@ -63,42 +61,33 @@ const getAllTask = async() => {
 	} catch (error) {
 		return error;
 	}
-    // return Tasks;
 }
 
-const addTask = (newTask) => {
-    // try {
-	// 	const result = await axios.post(`${baseUrl}/api/admin/task/${id}`);
-	// 	return result;
-	// } catch (error) {
-	// 	return error;
-	// }
-    const id = Date.now();
-    Tasks.push({id,...newTask})
-    updateStudentTaskData(id);
+const addTask = async(newTask) => {
+    try {
+		const result = await axios.post(`${baseUrl}/api/admin/task`, newTask);
+		return result;
+	} catch (error) {
+		return error;
+	}
 }
 
-const deleteTask = (id) => {
-    const idx = Tasks.findIndex(task => task.id === id);
-    Tasks.splice(idx,1);
-    deleteStudentTaskData(id);
-    // try {
-	// 	const result = await axios.delete(`${baseUrl}/api/admin/task/${id}`);
-	// 	return result;
-	// } catch (error) {
-	// 	return error;
-	// }
+const deleteTask = async(id) => {
+    try {
+		const result = await axios.delete(`${baseUrl}/api/admin/task/${id}`);
+		return result;
+	} catch (error) {
+		return error;
+	}
 }
 
-const editTask = (id,newTask) => {
-    // try {
-	// 	const result = await axios.put(`${baseUrl}/api/admin/task/${id}`);
-	// 	return result;
-	// } catch (error) {
-	// 	return error;
-	// }
-    const idx = Tasks.findIndex(task => task.id === id);
-    Tasks[idx] = {id,...newTask};
+const editTask = async(id,newTask) => {
+    try {
+		const result = await axios.patch(`${baseUrl}/api/admin/task/${id}`,newTask);
+		return result;
+	} catch (error) {
+		return error;
+	}
 }
 
 export {getTaskById,getAllTask,addTask,editTask,deleteTask};

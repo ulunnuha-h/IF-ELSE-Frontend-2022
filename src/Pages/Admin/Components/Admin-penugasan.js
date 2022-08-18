@@ -14,7 +14,7 @@ const AdminPenugasan = () => {
     const [id,setId] = useState();
 
     useEffect(()=>{
-    getAllTask().then(res => setTugas(res.data.data));},[])
+    getAllTask().then(res => setTugas(res.data.data));},[edit,tambah])
 
     const showEdit = (inputId)=>{
       setId(inputId);
@@ -41,7 +41,7 @@ const AdminPenugasan = () => {
                   <tbody>
                     {tugas.map((tugas,idx)=>
                     <tr key={idx}>
-                      <td className="col-1">{idx+1}</td>
+                      <td className="col-1">{tugas.id}</td>
                       <td>{tugas.title}</td>
                       <td className="col-2">{tugas.deadline}</td>
                       <td className="col-1"><Button className="w-100" onClick={()=>showEdit(tugas.id)}>Edit</Button></td>

@@ -133,15 +133,15 @@ const updateStudentTaskData = (task_id) => {
 }
 
 const deleteStudentTaskData = (task_id) => {
-    for (let i = 0; i < StudentTask.length; i++) {
-        for (let j = 0; j < StudentTask[i].data.length; j++) {
-            if(StudentTask[i].data[j].task_id === task_id){
-                StudentTask[i].data.splice(j,1);
-            }
-        }
-    }    
+    // for (let i = 0; i < StudentTask.length; i++) {
+    //     for (let j = 0; j < StudentTask[i].data.length; j++) {
+    //         if(StudentTask[i].data[j].task_id === task_id){
+    //             StudentTask[i].data.splice(j,1);
+    //         }
+    //     }
+    // }    
     // try {
-	// 	const result = await axios.delete(`${baseUrl}/api/studentTasks/${task_id}`);
+	// 	const result = await axios.delete(`${baseUrl}/api/admin/studentTasks/${task_id}`);
 	// 	return result;
 	// } catch (error) {
 	// 	return error;
