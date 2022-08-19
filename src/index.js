@@ -16,7 +16,7 @@ import MahasiswaDetail from './Pages/Admin/Components/Admin-kelompok/Admin-mahas
 import TambahBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-tambah';
 import { ProtectedUser,LoginRoute } from './Config/Protected';
 import EditBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-edit';
-import { RangkaianList } from './Pages/Admin/Components/Admin-rangkaian/Admin-rangkaian-list';
+import { PerizinanList } from './Pages/Admin/Components/Admin-rangkaian/Admin-perizinan-list';
 import LoginForm from './Pages/Login/Login-form';
 import RegisterForm from './Pages/Login/Register-form';
 import Loading from './Components/Loading/Loading';
@@ -83,9 +83,7 @@ root.render(
             <Route path='kelompok' element={<AdminKelompok/>}/>
             <Route path='kelompok/:kelompokId' element={<KelompokDetail/>}/>
             <Route path='kelompok/mahasiswa/:id' element={<MahasiswaDetail/>}/>
-            <Route path='rangkaian' element={<AdminRangkaian/>}>
-              <Route path=':id' element={<RangkaianList/>}/>
-            </Route>
+            <Route path='rangkaian' element={<AdminRangkaian/>}/>
             <Route path='berita' element={<AdminBerita/>}/>
             <Route path='berita/baru' element={<TambahBerita/>}/>
             <Route path='berita/edit/:id' element={<EditBerita/>}/>

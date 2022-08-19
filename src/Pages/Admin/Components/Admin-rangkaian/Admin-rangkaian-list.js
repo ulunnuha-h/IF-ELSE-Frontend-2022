@@ -1,50 +1,93 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import { Button,Table } from "react-bootstrap";
-import { getPerizinanByRangkaian } from "../../../../Data/Perizinan";
-import { getKelompokNameById } from "../../../../Data/Kelompok";
-import { getAgendaStatus, updateAgendaStatus } from "../../../../Data/Agenda";
+import { getAllAgenda } from "../../../../Data/Agenda";
+import RangkaianTambah from "./Admin-rangkaian-tambah";
+import RangkaianEdit from "./Admin-rangkaian-edit";
+import Modal from 'react-bootstrap/Modal';
 
 const RangkaianList = () => {
-    const rangkaian = parseInt(useParams().id);
-    const data = getPerizinanByRangkaian(rangkaian);
-    const [status,setStatus] = useState({});
-    const handleStatus = () => setStatus(updateAgendaStatus(rangkaian));
+    const [agenda,setAgenda] = useState(getAllAgenda());
+    const [tambah,setTambah] = useState(false);
 
-    useEffect(()=>{
-        setStatus(getAgendaStatus(rangkaian));
-    },[rangkaian])
+    const [warn,setWarn] = useState(false);
+    const [edit,setEdit] = useState(false);
+
+    const [delId,setDelId] = useState();
+    const [editId,setEditId] = useState();
+
+    const handleDelete = id => {
+        setDelId(id);
+        setWarn(true);
+        console.log(id);
+    }
+
+    const handleEdit = id => {
+        setEditId(id);
+        setEdit(true);
+    }
 
     return(
         <>
-            <div className="mb-3 d-flex justify-content-between align-items-center">
-                <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked={status} onChange={handleStatus}/>
-                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{status ? "Dibuka" : "Ditutup"}</label>
-                </div>
-            </div>
-            <Table striped bordered hover responsive variant="dark">
-                    <thead>
-                    <tr>  
-                        <th>Nama</th>
-                        <th>NIM</th>
-                        <th>Kelompok</th>
-                        <th>Aksi</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {data.map((val,idx) => 
+        <RangkaianEdit {...{editId,setEditId,edit,setEdit}}/>
+        <DeleteWarning {...{delId,setDelId,warn,setWarn}}/>
+        <RangkaianTambah {...{tambah,setTambah}}/>
+        <div className="d-flex justify-content-between mb-3">
+            <h3 className="m-0">List Rangkaian</h3>
+            <Button onClick={()=>setTambah(true)}><i className="fa-solid fa-plus me-1"></i>Tambah</Button>
+        </div>
+            <Table striped bordered hover responsive variant="dark" className="text-center">
+                <thead>
+                <tr>  
+                    <th>ID</th>
+                    <th className="text-start">Nama Rangkaian</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Berakhir</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                {agenda.map((val,idx) => 
                     <tr key={idx}>
-                        <td className="col-4">{val.nama}</td>
-                        <td className="col-3">{val.nim}</td>
-                        <td className="col-3">{getKelompokNameById(val.group_id)}</td>
-                        <td className="col-2"><Button className="w-100">Lihat Surat</Button></td>
+                        <td>{val.id}</td>
+                        <td className="col-6 text-start">{val.title}</td>
+                        <td>{val.start_at}</td>
+                        <td>{val.end_at}</td>
+                        <td>
+                            <Button className="mx-1" variant="secondary" onClick={()=>handleEdit(val.id)}>
+                                <i className="fa-solid fa-pen-to-square"></i>
+                            </Button>
+                            <Button className="mx-1" variant="danger" onClick={()=>handleDelete(val.id)}>
+                                <i className="fa-solid fa-trash"></i>
+                            </Button>
+                        </td>
                     </tr>
-                    )}
-                    </tbody>
+                )}
+                </tbody>
             </Table>
         </>
     );
 }
 
-export {RangkaianList};
+export default RangkaianList;
+
+
+const DeleteWarning = (props) => {
+    return(
+        <Modal show={props.warn} onHide={()=>props.setWarn(false)} centered backdrop="static">
+            <Modal.Header closeButton className="bg-danger text-white" closeVariant="white">
+                <Modal.Title>Warning !</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                Apakah Anda yakin untuk menghapus rangkaian ini ?
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={()=>props.setWarn(false)}>
+                    Gajadi :(
+                </Button>
+                <Button variant="primary">
+                    Yakin
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}

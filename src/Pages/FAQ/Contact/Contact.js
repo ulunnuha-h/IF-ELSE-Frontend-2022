@@ -6,8 +6,7 @@ import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt';
 
 function Contact() {
-    return (
-        <Tilt tiltReverse={true} tiltMaxAngleX={0} tiltMaxAngleY={10}>
+    return (        
         <motion.div 
             initial={{rotateY:90,opacity:0}}
             animate={{rotateY:0,opacity:1}}
@@ -21,7 +20,6 @@ function Contact() {
                 <p className='m-0'>Contact Us</p>
             </Link>
         </motion.div>
-        </Tilt>
     )
 }
 

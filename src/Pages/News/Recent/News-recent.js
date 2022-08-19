@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const NewsRecent = (props) => {
     const nav = useNavigate();
     const detailHandle = () => nav(`${props.id}`);
-    const croppedCapt = props.content.slice(0,218) + '[...]';
+    const croppedCapt = props.content.slice(0,380) + '[...]';
     const isMobile = (window.innerWidth < 576);
 
     const bgColor = {backgroundColor : 'rgba(115, 38, 72, 0.8)'} 

@@ -24,13 +24,15 @@ const AdminPenugasan = () => {
             {edit ? <EditTugas show={edit} handleClose={handleEdit} id={id}/> : null}
             <div className="d-flex justify-content-between mb-3">
                 <h3 className="m-0">List Penugasan</h3>
-                <button className="btn btn-primary" onClick={()=>setTambah(true)}>Tambah tugas</button>
+                <button className="btn btn-primary" onClick={()=>setTambah(true)}>
+                  <i className="fa-solid fa-plus me-1"/>Tambah
+                </button>
             </div>
-            <Table striped bordered hover responsive variant="dark">
+            <Table striped bordered hover responsive variant="dark" className="text-center">
                   <thead>
                     <tr>  
                       <th>ID</th>
-                      <th>Judul</th>
+                      <th className="text-start">Judul</th>
                       <th>Batas Akhir</th>
                       <th>Aksi</th>
                     </tr>
@@ -38,10 +40,14 @@ const AdminPenugasan = () => {
                   <tbody>
                     {tugas.map((tugas,idx)=>
                     <tr key={idx}>
-                      <td className="col-1">{idx+1}</td>
-                      <td>{tugas.title}</td>
-                      <td className="col-2">{tugas.end_at}</td>
-                      <td className="col-1"><Button className="w-100" onClick={()=>showEdit(tugas.id)}>Edit</Button></td>
+                      <td>{idx+1}</td>
+                      <td className="col-8 text-start">{tugas.title}</td>
+                      <td>{tugas.end_at}</td>
+                      <td>
+                        <Button onClick={()=>showEdit(tugas.id)} variant="secondary">
+                          <i className="fa-solid fa-pen-to-square me-2"/>Edit
+                        </Button>
+                      </td>
                     </tr>
                     )}
                   </tbody>
