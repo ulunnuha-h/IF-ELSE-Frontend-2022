@@ -27,3 +27,15 @@ const Login = () => {
 }
 
 export default Login;
+export {LoginLoading};
+
+const LoginLoading = () => {
+    return(
+        <span className="d-flex align-items-center">
+            LOADING
+            <div className="spinner-border spinner-border-sm mx-1" role="status" style={{color:"#FFA42E"}}>
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </span>
+    )
+}

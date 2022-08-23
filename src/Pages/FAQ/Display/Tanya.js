@@ -20,10 +20,6 @@ const tanya = [
         jawaban: "Silakan melaporkan kepada Pendamping masing-masing kelompok disertai dengan bukti pendukung"
     },
     {
-        pertanyaan: "Apa itu Pendataan?",
-        jawaban: "Pendataan adalah layanan untuk Mahasiswa Baru/Pemutihan Teknik Informatika 2022 jika mengalami kendala jaringan (pemadaman listrik, bencana alam, dan sebagainya) atau teknis (kamera atau mikrofon tidak berfungsi dengan baik dan semacamnya). Pendataan ini dibuka H-2 hingga rangkaian dimulai di setiap rangkaian IF ELSE 2022."
-    }, 
-    {
         pertanyaan: "Apa itu Perizinan?",
         jawaban: "Perizinan adalah layanan untuk Mahasiswa Baru/Pemutihan Teknik Informatika 2022 yang ingin mengajukan perizinan tidak mengikuti rangkaian sesuai dengan Ketentuan Perizinan IF ELSE 2021. Perizinan dibuka H-2 hingga H+3 di setiap rangkaian IF ELSE 2022."
     }, 

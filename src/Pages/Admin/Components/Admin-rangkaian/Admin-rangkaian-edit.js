@@ -1,22 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { getAgendaById } from "../../../../Data/Agenda";
+import { editAgenda, getAgendaById } from "../../../../Data/Agenda";
 
 const RangkaianEdit = (props) => {
-    const data = getAgendaById(props.editId);
     const [title,setTitle] = useState('');
     const [content,setContent] = useState('');
     const [image,setImage] = useState('');
-    const [start_at,setStart_at] = useState();
+    const [start_at,setStart_at] = useState('');
     const [end_at,setEnd_at] = useState('');
 
-    const handleAdd = e => {
-        e.preventDefault();
-        console.log({
-            title,content,image,start_at,end_at
+    useEffect(()=>{
+        if(typeof props.editId !== "undefined")
+        getAgendaById(props.editId)
+        .then(res=>{
+            setTitle(res.data?.title || '');
+            setContent(res.data?.content || '');
+            setStart_at(res.data?.start_at || '');
+            setEnd_at(res.data?.end_at || '');
         })
+    },[props.editId])
+
+    const handleEdit = e => {
+        e.preventDefault();
+        editAgenda(props.editId,{title,content,image,start_at,end_at})
+        .then(() => {
+            alert("Perubahan berhasil disimpan");
+            props.setEdit(false)
+            window.location.reload();
+        });
     }
 
     return(
@@ -24,7 +37,7 @@ const RangkaianEdit = (props) => {
             <Modal.Header closeButton className="bg-dark text-white" closeVariant="white">
                 <Modal.Title>Edit Rangkaian</Modal.Title>
             </Modal.Header>
-            <Form onSubmit={handleAdd}>
+            <Form onSubmit={handleEdit}>
                 <Modal.Body>
                     <Form.Group className="mb-3">
                         <Form.Label>Nama Rangkaian</Form.Label>
@@ -36,7 +49,7 @@ const RangkaianEdit = (props) => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Illustrasi Rangkaian</Form.Label>
-                        <Form.Control type="file" required onChange={e=>setImage(e.target.files[0])}/>
+                        <Form.Control type="file" onChange={e=>setImage(e.target.files[0])}/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Tanggal Mulai</Form.Label>
@@ -48,7 +61,7 @@ const RangkaianEdit = (props) => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={()=>props.setTambah(false)}>
+                <Button variant="secondary" onClick={()=>props.setEdit(false)}>
                     Gajadi :(
                 </Button>
                 <Button variant="primary" type="submit">

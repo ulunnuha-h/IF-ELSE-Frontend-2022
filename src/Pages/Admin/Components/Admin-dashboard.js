@@ -20,7 +20,7 @@ const AdminDashboard = () => {
                 <section className="mb-3" onClick={()=>nav('rangkaian')}>
                     <div className="bg-dark p-3 rounded shortcut">
                         <i className="fa-solid fa-calendar h1"/>
-                        <h5 className="m-0">Perizinan</h5>
+                        <h5 className="m-0">Rangkaian</h5>
                     </div>
                 </section>
                 <section className="mb-3" onClick={()=>nav('penugasan')}>

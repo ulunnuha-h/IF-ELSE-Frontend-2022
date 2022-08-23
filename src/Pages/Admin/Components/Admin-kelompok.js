@@ -4,8 +4,9 @@ import { getAllMahasiswa } from "../../../Data/Mahasiswa";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
 import TambahKelompok from "./Admin-kelompok/Admin-kelompok-tambah";
-import { addKelompok, getAllKelompok,getKelompokNameById } from "../../../Data/Kelompok";
-import axios from "axios";
+import { getAllKelompok } from "../../../Data/Kelompok";
+import _debounce from "lodash/debounce";
+import LoadingSpinner from "../../../Components/Loading/LoadingSpinner";
 
 const AdminKelompok = () => {
     const nav = useNavigate();
@@ -16,38 +17,34 @@ const AdminKelompok = () => {
     const [tambah,setTambah] = useState(false);
     const [pageNum,setPageNum] = useState(0);
     const [err,setErr] = useState(null);
+    const [loading,setLoading] = useState(true);
     const pageHandler = ({selected}) => {
         setPageNum(selected);
     }
 
     useEffect(()=>{
         getAllKelompok().then(res => {
-            if(!res.message) setDataKelompok(res.data);
-            else{
-                setErr(res.message);
-            }
+            if(!res?.success) setErr(res.message);
+            else if(res?.data !== null)setDataKelompok(res.data);
         });
-    },[])
+    },[tambah])
+
+    const getMahasiswaData = _debounce(()=>getAllMahasiswa(pageNum,10,key).then(res => {  
+        if(res.data){         
+            setPageCount(Math.ceil(res.length/10));
+            setDataMahasiswa(res.data);
+            setLoading(false);
+        } else setErr(res.response.data.message);
+    }),500);
 
     useEffect(()=>{
-        // setPageNum(0);
-        // setDataMahasiswa({data:{result:[]},success:false});
-        // getAllMahasiswa(key).then(res => {
-        //     if(res.success)
-        //         setDataMahasiswa(res)
-        //     else
-        //         setErr(res.message);
-        // });
-        setDataMahasiswa(getAllMahasiswa(key));
-    },[key]);
-
-    useEffect(()=>{
-        if(DataMahasiswa.success)setPageCount(Math.ceil(DataMahasiswa.data.result.length/10));
-    },[DataMahasiswa])
+        setLoading(true);
+        getMahasiswaData();
+    },[key,pageNum]);
 
     if(err !== null) return(
         <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
-            <h1>{err} :(</h1>
+            <h1>{err}</h1>
         </div>
     );
 
@@ -57,15 +54,21 @@ const AdminKelompok = () => {
         <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
             <section className="d-flex justify-content-between mb-3">
                 <h3>List Kelompok</h3>
-                <button className="btn btn-primary" onClick={()=>setTambah(true)}>Tambah Kelompok</button>
+                <button className="btn btn-primary" onClick={()=>setTambah(true)}>
+                    <i className="fa-solid fa-plus me-1"/>Tambah
+                </button>
             </section>
+            {
+            loading ? 
+            <LoadingSpinner/>
+            :
             <Table striped bordered hover responsive variant="dark">
                 <thead>
                     <tr>  
                     <th className="col-1">ID</th>
                     <th>Nama Kelompok</th>
                     <th>Pendamping</th>
-                    <th className="col-1">Aksi</th>
+                    <th className="col-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,11 +77,16 @@ const AdminKelompok = () => {
                             <td className="py-3">{data.id}</td>
                             <td className="py-3">{data.group_name}</td>
                             <td className="py-3">{data.companion_name}</td>
-                            <td><button className="btn btn-primary w-100" onClick={()=>nav(`${data.id}`)}>Detail</button></td>
+                            <td className="text-center">
+                                <button className="btn btn-info" onClick={()=>nav(`${data.id}`)}>
+                                    <i className="fa-solid fa-circle-info"></i> Detail
+                                </button>
+                            </td>
                         </tr>
                     )}
                 </tbody>
             </Table>
+            }
         </div>
         <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">  
             <h3>List Data Mahasiswa</h3>
@@ -86,7 +94,7 @@ const AdminKelompok = () => {
                 <input className="w-100" placeholder="Cari berdasarkan nim atau nama..." value={key} onChange={e=>setKey(e.target.value)}></input>
                 <i className="fa-solid fa-magnifying-glass mx-2"></i>
             </section>           
-            {DataMahasiswa.success ?
+            {!loading ?
             <Table striped bordered hover responsive variant="dark">
                     <thead>
                     <tr>
@@ -97,22 +105,24 @@ const AdminKelompok = () => {
                     </tr>
                     </thead>
                     <tbody>
-                        {DataMahasiswa.data.result.slice(pageNum*10,(pageNum*10)+10).map((data,idx)=>{
+                        {DataMahasiswa.map((data,idx)=>{
                             return(
                                 <tr key={idx}>
                                     <td className="py-3 col-1">{data.nim}</td>
-                                    <td className="py-3">{data.nama}</td>
-                                    <td className="py-3">{getKelompokNameById(data.group_id)}</td>
-                                    <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`mahasiswa/${data.user_id}`)}>Detail</button></td>
+                                    <td className="py-3">{data.name}</td>
+                                    <td className="py-3">{data.group_name}</td>
+                                    <td className="col-2 text-center">
+                                        <button className="btn btn-info" onClick={()=>nav(`mahasiswa/${data.id}`)}>
+                                            <i className="fa-solid fa-circle-info"></i> Detail
+                                        </button>
+                                    </td>
                                 </tr>
                             );
                         })}
                     </tbody>
             </Table>
             :
-            <div className="w-100 p-3 d-flex justify-content-center">
-                <div className="spinner-border" role="status"/>
-            </div>
+            <LoadingSpinner/>
             }
             <ReactPaginate 
                 pageCount={pageCount}

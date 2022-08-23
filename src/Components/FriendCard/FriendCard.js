@@ -4,12 +4,8 @@ import FriendCardBig from "./FriendCard-Big";
 import { AnimatePresence } from "framer-motion";
 
 const FriendCard = (props) => {
-    const data = (props.data ? props.data : {Name : "tidak ada",
-    Nickname : "tidak ada",
-    Address : "tidak ada",
-    Line : "tidak ada",
-    Avatar : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png",
-    About : 'tidak ada'})
+    const data = props?.data;
+    console.log(data);
     const [pop,setPop] = useState(true);
 
     const toggle = () => {
@@ -22,7 +18,7 @@ const FriendCard = (props) => {
                 <div className="front d-flex flex-column align-items-center justify-content-center">
                     <div className="profile-pic" style={{backgroundImage:`url(${data.avatar})`,backgroundSize:"cover"}}>
                     </div>
-                    <h3>{data.nickname}</h3>
+                    <h3 className="mx-2 text-center">{data.nickname}</h3>
                 </div>
                 <div className="back d-flex flex-column justify-content-center">
                     <h6>{data.nama}</h6>

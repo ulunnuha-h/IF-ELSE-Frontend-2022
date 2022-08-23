@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button,Modal,Form } from "react-bootstrap";
 import { addTask } from "../../../../Data/Task";
+import LoadingSpinner from "../../../../Components/Loading/LoadingSpinner";
 
 const TambahTugasModal = (props) =>{
     const [title,setTitle] = useState('');
@@ -11,17 +12,26 @@ const TambahTugasModal = (props) =>{
     const [input,setInput] = useState(0);
     const [label1,setLabel1] = useState('');
     const [label2,setLabel2] = useState('');
+    const [loading,setLoading] = useState(false);
 
     const resetAll = () => {
         setTitle('');setDescription('');setCondition('');
-        setStep('');setEnd_at('');setInput('');setLabel1('');setLabel2('');
+        setStep('');setEnd_at('');setInput(0);setLabel1('');setLabel2('');
     }
 
-    const tambahTugas = () => { 
+    const tambahTugas = e => { 
+        setLoading(true);
+        e.preventDefault();
         const fields = [];
         if(input > 0) fields.push(label1);
         if(input > 1) fields.push(label2);
-        addTask({title,description,condition,step,end_at,fields});
+        addTask({title,description,condition,step,deadline:end_at,jumlah_link:input,links:fields})
+        .then(()=>{
+            resetAll();
+            setLoading(false);
+            alert("Berhasil menambahkan tugas baru");
+            props.handleClose();
+        });
     }
 
     return(
@@ -30,14 +40,8 @@ const TambahTugasModal = (props) =>{
         <Modal.Header closeButton className="bg-dark text-light" closeVariant="white">
             <Modal.Title>Tambah Tugas</Modal.Title>
         </Modal.Header>
-        <Form onSubmit={e=>{
-            e.preventDefault();
-            tambahTugas();
-            resetAll();
-            props.handleClose();
-        }}>
+        <Form onSubmit={tambahTugas}>
         <Modal.Body>
-            
                 <Form.Group className="mb-3">
                     <Form.Label>Judul</Form.Label>
                     <Form.Control type="text" placeholder="Masukkan judul" value={title} onChange={(e)=>setTitle(e.target.value)} required/>
@@ -74,7 +78,7 @@ const TambahTugasModal = (props) =>{
         </Modal.Body>
         <Modal.Footer>
             <Button variant="secondary" onClick={props.handleClose}>Gajadi :(</Button>
-            <Button variant="primary" type="submit">Simpan</Button>
+            <Button variant="primary" type="submit">{ loading ? <LoadingSpinner/> : "Simpan"}</Button>
         </Modal.Footer>
         </Form>
     </Modal>

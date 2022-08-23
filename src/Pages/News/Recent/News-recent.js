@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { toLocalDate } from "../../../Config/Converter";
 
 const NewsRecent = (props) => {
     const nav = useNavigate();
-    const detailHandle = () => nav(`${props.id}`);
-    const croppedCapt = props.content.slice(0,380) + '[...]';
+    const detailHandle = () => nav(`/news/${props.id}`);
+    const croppedCapt = ( props.content.length > 380 ? props.content.slice(0,380) + '[...]' : props.content);
     const isMobile = (window.innerWidth < 576);
 
     const bgColor = {backgroundColor : 'rgba(115, 38, 72, 0.8)'} 
@@ -27,13 +28,13 @@ const NewsRecent = (props) => {
                 <div className='col-4 p-4 ps-0 d-none d-lg-block'>
                     <section className='w-100 h-100 text-white d-flex flex-column justify-content-between' style={{boxSizing:'border-box'}}>
                         <section>
-                            <h4 className="m-0">{props.title}</h4>
+                            <h4 className="m-0 mb-2">{props.title}</h4>
                             <pre style={{backgroundColor:'transparent'}}>
                                 {croppedCapt}
                             </pre>
                         </section>                            
                         <section className="d-flex justify-content-between">
-                            <span>{props.published_at}</span>
+                            <span>{toLocalDate(props.updated_at)}</span>
                         </section>
                     </section>
                 </div>
@@ -43,25 +44,3 @@ const NewsRecent = (props) => {
 }
 
 export default NewsRecent;
-
-let caption = `Takbir berkumandang, pertanda hari kemenangan telah datang.
-
-Halo Informatics 👋🏻!
-
-Kami segenap keluarga besar IF ELSE 2022 mengucapkan Selamat Hari Raya Idul Adha 1443 H.
-Semangat berkurban untuk kita semua. Semoga Idul Adha tahun ini Allah SWT memberikan banyak keberkahan dan menjadi pengingat untuk memperkuat keimanan dan kemanusiaan kita. Selamat Hari Raya Idul Adha 🙏.
-
-Pantau terus linimasa kami!
-LINE : @ifelsefilkomub
-INSTAGRAM : @ifelsefilkomub
-YOUTUBE : ifelse.filkom.ub.ac.id/youtube
-WEB : ifelse.filkom.ub.ac.id
-
-==========================================
-Departemen Pengembangan Sumber Daya Manusia
-Eksekutif Mahasiswa Informatika UB 2022
-Kabinet Bratacahya
-#MakeANewStoryWithYourNewFamily
-#ifelse2022
-#BersatuDalamCahaya
-#SatuPaduInformatika`;

@@ -40,7 +40,7 @@
 }
 
 .news-search-img{
-    background-size: 100%;
+    background-size: cover;
     background-position: center;
     transition: 300ms;
     background-color: transparent;
@@ -59,9 +59,7 @@
 }
 
 .news-search:hover .news-search-img{
-    background-size: 110%;
-    background-blend-mode: multiply;
-    background-color: gray;
+    background-blend-mode: soft-light;
 }
 
 .news-search:hover .news-search-p{

@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table,Modal,Form } from "react-bootstrap";
-import { getStudenMarkById,updateStudentMark } from "../../../../Data/Marking";
+import { updateStudentMark } from "../../../../Data/Marking";
 
 const NilaiMahasiswa = (props) => {
-    const data = getStudenMarkById(props.userId).data;
+    const data = props.Marking;
     const [nilai,setNilai] = useState(false);
     const [dataNilai,setDataNilai] = useState(0);
+    const [agendaId,setAgendaId] = useState(0);
+    const [userId,setUserId] = useState(0);
 
     const openDetail = (idx) => {
-        setDataNilai(data[idx]);
+        setDataNilai(data[idx].mark);
+        setAgendaId(data[idx].agenda_id);
+        setUserId(props.userId);
         setNilai(true);
     }
     
     const list = data.map((dat,idx) => {
         return (
             <tr key={idx}>
-                <td>{dat.agenda_id}</td>
+                <td>{dat.Agenda.title}</td>
                 <td>{dat.mark === null ? "Belum diatur" : dat.mark}</td>
                 <td className="col-2">
                     <button className="btn btn-primary" onClick={()=>openDetail(idx)}>Atur Nilai</button>
@@ -26,7 +30,7 @@ const NilaiMahasiswa = (props) => {
 
     return(
         <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
-            <DetailNilai {...{nilai,setNilai,dataNilai}} userId={props.userId}/>
+            <DetailNilai {...{nilai,setNilai,dataNilai,agendaId,userId}}/>
             <h3>Nilai Mahasiswa Terkait</h3>
             <hr></hr>
             <Table striped bordered hover responsive variant="dark">
@@ -49,13 +53,24 @@ export default NilaiMahasiswa;
 
 const DetailNilai = (props) => {
     const handleClose = () => props.setNilai(false); 
-    const [nilai,setNilai]  = useState(0);
+    const [nilai,setNilai]  = useState();
+    const [agendaId,setAgendaId] = useState();
+    const [userId,setUserId] = useState();
+
+    useEffect(()=>{
+        setNilai(props.dataNilai);
+        setAgendaId(props.agendaId);
+        setUserId(props.userId);
+    },[props])
 
     const saveNilai = e => {
         e.preventDefault();
-        updateStudentMark(props.dataNilai.agenda_id,props.userId,nilai);
-        setNilai(0);
-        handleClose();
+        updateStudentMark(agendaId,userId,nilai)
+        .then(res => {
+            alert("Update nilai berhasil");
+            handleClose();
+            window.location.reload();
+        })
     }
 
     return(

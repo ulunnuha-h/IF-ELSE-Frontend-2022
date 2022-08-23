@@ -1,72 +1,100 @@
-import { updateStudentTaskData,deleteStudentTaskData } from "./StudentTask";
+import axios from "axios";
+import { baseUrl ,getToken, getUserToken } from "../Config/Auth";
 
-const Tasks = [
-    {
-        id:91238741,
-        title:"Discover Your Journey (DISNEY)",
-        description:`
-Halo Informatics 👋🏻
-Sebagai seorang mahasiswa tentunya kalian harus lebih mengenal diri kalian dan juga mulai merancang kehidupan perkuliahan seperti apa yang ingin kalian jalani. Nah, untuk membantu kalian, telah disediakan penugasan DISNEY (Discover Your Journey), yaitu pembuatan video yang berisi perkenalan dan deskripsi diri yang didapatkan dari hasil tes kepribadian melalui website di bawah ini 👇👇
+const getTaskById = async (id)=> {
+    try {
+		const result = await axios.get(`${baseUrl}/api/task/${id}`);
+		return result.data;
+	} catch (error) {
+		return error;
+	}
+}
 
-https://www.16personalities.com/id/tes-kepribadian
+const getAdminTaskById = async (id)=> {
+    try {
+		const result = await axios.get(`${baseUrl}/api/admin/task/${id}`);
+		return result.data;
+	} catch (error) {
+		return error;
+	}
+}
 
-Setelah itu, lanjut dengan penjelasan mengenai alasan masuk Teknik Informatika UB serta target-target yang ingin dicapai sesuai dengan roadmap yang telah dibuat. Roadmap tersebut digambar di kertas, PPT atau platform lainnya yang di dalamnya berisi target jangka pendek dan jangka panjang.
-.
-Masih belum paham sepenuhnya? Jangan khawatir, kami telah menyediakan contoh pengerjaannya di postingan video kami. Untuk ketentuan beserta tata cara penugasan terdapat di website IF ELSE 2021. Simak baik-baik ya!
+const getAdminAllTask = async() => {
+    try {
+		const result = await axios.get(`${baseUrl}/api/admin/task`,{
+			headers : {Authorization : getToken()}
+		});
+		return result.data;
+	} catch (error) {
+		return error;
+	}
+}
 
-Untuk info lebih lanjut mengenai DISNEY bisa diakses pada Website IF ELSE 2021 👇
+const getAllTask = async() => {
+    try {
+		const result = await axios.get(`${baseUrl}/api/task`);
+		return result.data;
+	} catch (error) {
+		return error;
+	}
+}
 
-http://ifelse.filkom.ub.ac.id/
+const addTask = async (newTask) => {
+    try {
+		const result = await axios.post(`${baseUrl}/api/admin/task`, newTask,{
+			headers : {Authorization : getToken()}
+		});
+		return result.data;
+	} catch (error) {
+		return error;
+	}
+}
 
-Untuk info lebih lanjut tetap pantau terus linimasa dan sosial media kami di
+const deleteTask = async(id) => {
+    try {
+		const result = await axios.delete(`${baseUrl}/api/admin/task/${id}`,{
+			headers : {Authorization: getToken()}
+		});
+		return result.data;
+	} catch (error) {
+		return error;
+	}
+}
 
-LINE : @ifelsefilkomub
-INSTAGRAM : ifelsefilkomub
-YOUTUBE : IF ELSE FILKOM UB
-WEBSITE : ifelse.filkom.ub.ac.id
+const editTask = async(id,newTask) => {
+    try {
+		const result = await axios.patch(`${baseUrl}/api/admin/task/${id}`,newTask,{
+			headers : {Authorization: getToken()}
+		});
+		return result;
+	} catch (error) {
+		return error;
+	}
+}
 
-==================================
-Departemen Pengembangan Sumber Daya Manusia
-Eksekutif Mahasiswa Informatika UB 2021
-Kabinet Lentera
+const submitTask = async (task_id,links) => {
+	try {
+		const result = await axios.patch(`${baseUrl}/api/task`,{
+			"id" : task_id,
+			links
+		},{
+			headers : {Authorization: getUserToken()}
+		});
+		return result;
+	} catch (error) {
+		return error;
+	}
+}
 
-#ifelse2021
-#SatuPaduInformatika
-#KnowYourHomeGrowYourZone
-#BeFearlessToExploreLoveBringsYouHome`,
-        condition:'Buat Video yang menarik',
-        step :'Rekam, Edit, Upload',
-        end_at:"2022-09-07T23:59",
-        fields: [
-            "Link Instagram"
-        ]
+const getSubmissionData = async (task_id) => {
+	try {
+        const res = await axios.get(`${baseUrl}/api/profile`,{
+            headers : {Authorization : getUserToken()}
+        });
+        return res.data.student_task.filter(task => task.task_id === task_id);
+    } catch (error) {
+        return error;
     }
-]
-
-const getTaskById = (id)=> {
-    const task = Tasks.find(task=> task.id === id);
-    return task;
 }
 
-const getAllTask = () => {
-    return Tasks;
-}
-
-const addTask = (newTask) => {
-    const id = Date.now();
-    Tasks.push({id,...newTask})
-    updateStudentTaskData(id);
-}
-
-const deleteTask = (id) => {
-    const idx = Tasks.findIndex(task => task.id === id);
-    Tasks.splice(idx,1);
-    deleteStudentTaskData(id);
-}
-
-const editTask = (id,newTask) => {
-    const idx = Tasks.findIndex(task => task.id === id);
-    Tasks[idx] = {id,...newTask};
-}
-
-export {getTaskById,getAllTask,addTask,editTask,deleteTask};
+export {getTaskById,getAdminTaskById,getAllTask,getAdminAllTask,addTask,editTask,deleteTask,submitTask,getSubmissionData};

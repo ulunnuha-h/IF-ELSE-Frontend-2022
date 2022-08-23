@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Table } from "react-bootstrap";
-import { getKelompokById, getKelompokNameById,deleteKelompok } from "../../../../Data/Kelompok";
-import { getAllMahasiswaByGroup } from "../../../../Data/Mahasiswa";
+import { getKelompokById,deleteKelompok } from "../../../../Data/Kelompok";
 import EditKelompok from "./Admin-kelompok-edit";
 import KelompokDeleteWarning from "./Admin-kelompok-deleteWarning";
 
@@ -11,7 +10,6 @@ const KelompokDetail = () => {
     const [data,setData] = useState([]);
     const [edit,setEdit] = useState(false);
     const [warn,setWarn] = useState(false);
-    const groupLink = `lnk.com`;
     const nav = useNavigate();
     const [mahasiswaData,setMahasiswaData] = useState([]);
 
@@ -20,16 +18,19 @@ const KelompokDetail = () => {
         .then(res =>
             {
                 setData(res.data);
-                setMahasiswaData(res.data.Student);
+                if(res.data.Student !== null) setMahasiswaData(res.data.Student);
             });
-    },[])
+    },[kelompokId])
     
     if(!data) return <h1>No data</h1>;
 
     const deleteHandler = () => {
         if(mahasiswaData.length === 0) {
-            deleteKelompok(kelompokId).then(res => alert(res.data.message));
-            nav(-1);
+            deleteKelompok(kelompokId)
+            .then(() => {
+                alert("Kelompok berhasil dihapus")
+                nav(-1);
+            });
         }
         else setWarn(true);
     }
@@ -39,9 +40,13 @@ const KelompokDetail = () => {
             return(
                 <tr key={idx}>
                     <td className="py-3 col-1">{dataMhs.nim}</td>
-                    <td className="py-3">{dataMhs.nama}</td>
-                    <td className="py-3">{getKelompokNameById(dataMhs.group_id)}</td>
-                    <td className="col-1"><button className="btn btn-primary w-100" onClick={()=>nav(`../kelompok/mahasiswa/${dataMhs.id}`)}>Detail</button></td>
+                    <td className="py-3 text-start">{dataMhs.name}</td>
+                    <td className="py-3">{dataMhs.group_name}</td>
+                    <td className="col-2 text-center">
+                        <button className="btn btn-info" onClick={()=>nav(`../kelompok/mahasiswa/${dataMhs.id}`)}>
+                            <i className="fa-solid fa-circle-info"></i> Detail
+                        </button>
+                    </td>
                 </tr>
             );
         }) : null
@@ -60,16 +65,16 @@ const KelompokDetail = () => {
                 <div className="d-flex justify-content-between align-items-start">
                     <section>
                         <h3 className="m-0">Kelompok {data.group_name}</h3>
-                        <span>Link group  <a href={groupLink} target="blank">{data.line_group}</a></span>
+                        <span>Link group  <a href={`//${data.line_group}`} target="blank">{data.line_group}</a></span>
                     </section>
                     <section className="d-flex flex-column-reverse flex-lg-row">
-                        <button className="btn btn-danger px-3 m-1" onClick={()=>deleteHandler()}>Delete</button>
-                        <button className="btn btn-primary px-4 m-1" onClick={()=>setEdit(true)}>Edit</button>
+                        <button className="btn btn-danger m-1" onClick={()=>deleteHandler()}><i className="fa-solid fa-trash"></i> Delete</button>
+                        <button className="btn btn-secondary m-1" onClick={()=>setEdit(true)}><i className="fa-solid fa-pen-to-square"/> Edit</button>
                     </section>
                 </div>
                 <hr></hr>
                 <div className="row px-3 justify-content-between">
-                    <div className="col-3 bg-warning rounded h-100" style={{aspectRatio:"1/1",backgroundImage:`url(${data.link_foto})`,backgroundSize:"cover"}}/>
+                    <div className="col-3 rounded h-100" style={{aspectRatio:"1/1",backgroundImage:`url(${data.link_foto})`,backgroundSize:"cover"}}/>
                     <section className="col-8 col-lg-9">
                         <h5>Pendamping</h5>
                         <section className="row my-2">
@@ -91,7 +96,7 @@ const KelompokDetail = () => {
                 <thead>
                     <tr>  
                         <th>NIM</th>
-                        <th>Nama Kelompok</th>
+                        <th className="text-start">Nama Kelompok</th>
                         <th>Kelompok</th>
                         <th>Aksi</th>
                     </tr>

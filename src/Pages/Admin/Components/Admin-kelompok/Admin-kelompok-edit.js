@@ -18,16 +18,17 @@ const EditKelompok = (props) => {
         getKelompokById(kelompokId)
         .then(res =>
             {
+                console.log(res);
                 setData(res.data);
             });
     },[])
 
     useEffect(()=>{
-        setKelompok(data.group_name);
-        setLink(data.line_group);
-        setPendamping(data.companion_name);
-        setLine(data.id_line);
-        setImg(data.file)
+        setKelompok(data?.group_name);
+        setLink(data?.line_group);
+        setPendamping(data?.companion_name);
+        setLine(data?.id_line);
+        setImg(data?.file)
     },[data])
 
     const updatingKelompok = () => {
@@ -37,7 +38,10 @@ const EditKelompok = (props) => {
         form.append("companion_name",pendamping);
         form.append("id_line",line);
         form.append("file",img);
-        updateKelompok(data.id,form).then(res=> console.log(res));
+        updateKelompok(data.id,form).then(()=>{
+            alert("Perubahan berhasil disimpan !");
+            window.location.reload()
+        } );
     }
 
     return(

@@ -38,10 +38,10 @@ const Footer = () => {
                         <section>
                             <h3 style={{"fontFamily":"'Montserrat', sans-serif","fontWeight":"bold"}}>Get Started</h3>
                             <div className="h-75 d-flex flex-column justify-content-between align-items-center align-items-lg-start">
-                                <span className="footer-link" onClick={()=> nav("/")}>Home</span>
-                                <span className="footer-link" onClick={()=> nav("news")}>News</span>
-                                <span className="footer-link" onClick={()=> nav("faq")}>FAQ</span>
-                                <span className="footer-link" onClick={()=> nav("task")}>Task</span>
+                                <span className="footer-link" onClick={()=> {nav("/");window.scroll(0,0)}}>Home</span>
+                                <span className="footer-link" onClick={()=> {nav("news");;window.scroll(0,0)}}>News</span>
+                                <span className="footer-link" onClick={()=> {nav("faq");;window.scroll(0,0)}}>FAQ</span>
+                                <span className="footer-link" onClick={()=> {nav("task");;window.scroll(0,0)}}>Task</span>
                             </div>
                         </section>
                     </div>
@@ -54,12 +54,10 @@ const Footer = () => {
                                 <span>Universitas Brawijaya</span>
                                 <span>Jl. Veteran No. 8 Malang, Indonesia</span>
                                 <div className="link-icon">
-                                    <i className="fa-brands fa-line "></i>
-                                    <i className="fa-brands fa-whatsapp-square"></i>
-                                    <i className="fa-brands fa-instagram-square"></i>
-                                    <i className="fa-solid fa-square-envelope"></i>
-                                    <i className="fa-solid fa-square-phone"></i>
-                                    <i className="fa-solid fa-square" onClick={()=>nav('admin$')}></i>
+                                    <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=yls8148q" target="blank"><i className="fa-brands fa-line "/></a>
+                                    <a href="https://wa.me/message/3IB7ZNIUYCIHA1" target="blank"><i className="fa-brands fa-whatsapp-square"/></a>
+                                    <a href="https://www.instagram.com/ifelsefilkomub/" target="blank"><i className="fa-brands fa-instagram-square"/></a>
+                                    <a href="https://www.youtube.com/channel/UCaAZt3JB9xgqj7xRosdtsig" target="blank"><i className="fa-brands fa-youtube-square"/></a>
                                 </div>
                             </div>
                         </section>

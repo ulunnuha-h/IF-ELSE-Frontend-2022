@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { updateMahasiswaPicture } from "../../Data/Mahasiswa";
 import './UpdatePicture.css';
+import LoadingSpinner from "../Loading/LoadingSpinner";
 
 const UpdatePicture = (props) => {
     const handleClose = () => props.setEditPicture(false);
     const [file,setFile] = useState();
     const [max,setMax] = useState(false);
-    const [preview,setPreview] = useState();
+    const [preview,setPreview] = useState('');
+    const [loading,setLoading] = useState(false);
 
-    const updating = e =>{        
+    const updating = e =>{
+        setLoading(true);
         e.preventDefault();
         if(max) alert("Gambarnya kebesaran maszehh");
         else{
-            console.log(file);
-            setPreview('');
-            setFile('');
-            handleClose();
+            updateMahasiswaPicture(file)
+            .then(() => {
+                setPreview('');
+                setFile('');
+                setLoading(false);
+                handleClose();
+                window.location.reload();
+            });
         }
     }
 
@@ -42,15 +50,13 @@ const UpdatePicture = (props) => {
                 Gambarnya kebesaran, max 500kb
             </div>
             : 
-            <img src={preview}>
-
-            </img>}
+            (preview !== '' ? <img src={preview} alt="preview"/> : null)}
             <label htmlFor="propic" className="mt-3">Upload Image</label>
             <input className="profile-image-input p-2 rounded w-100" type="file" name="propic" required onChange={uploading}/>
         </Modal.Body>
         <Modal.Footer>
-            <button className="btn-cancel py-2 px-4" onClick={handleClose} type="button">Gajadi :(</button>
-            <button className="btn-save py-2 px-5" type="submit">Save</button>
+            <button className="btn-cancel py-2 px-4" onClick={handleClose} type="button">Cancel</button>
+            <button disabled={loading} className="btn-save py-2 px-4" type="submit">{loading ? <>Uploading <LoadingSpinner/></> : "Save"}</button>
         </Modal.Footer>
         </form>
     </Modal>

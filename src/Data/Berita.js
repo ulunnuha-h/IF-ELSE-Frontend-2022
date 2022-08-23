@@ -1,74 +1,95 @@
-let Berita = [{
-    id : 1234124,
-    title : 'SELAMAT HARI RAYA IDUL ADHA 1443 H',
-    content : `
-Takbir berkumandang, pertanda hari kemenangan telah datang.
-    
-Halo Informatics 👋🏻!
+import axios from "axios";
+import { baseUrl,getToken} from "../Config/Auth";
 
-Kami segenap keluarga besar IF ELSE 2022 mengucapkan Selamat Hari Raya Idul Adha 1443 H.
-Semangat berkurban untuk kita semua. Semoga Idul Adha tahun ini Allah SWT memberikan banyak keberkahan dan menjadi pengingat untuk memperkuat keimanan dan kemanusiaan kita. Selamat Hari Raya Idul Adha 🙏.
-
-Pantau terus linimasa kami!
-LINE : @ifelsefilkomub
-INSTAGRAM : @ifelsefilkomub
-YOUTUBE : ifelse.filkom.ub.ac.id/youtube
-WEB : ifelse.filkom.ub.ac.id
-
-==========================================
-Departemen Pengembangan Sumber Daya Manusia
-Eksekutif Mahasiswa Informatika UB 2022
-Kabinet Bratacahya
-#MakeANewStoryWithYourNewFamily
-#ifelse2022
-#BersatuDalamCahaya
-#SatuPaduInformatika`,
-    image : 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
-    published_at : '12 Agustus 2006',
-    is_published : true,
-    created_at : "12 Agustus 2006",
-    updated_at : "13 Agustus 2006"
+const getAdminAllBerita = async () => {
+    try {
+        const res = await axios.get(`${baseUrl}/api/admin/news`, {
+            headers: {Authorization : getToken()}
+            })
+        return res.data;
+    } catch (error) {
+        return error;
+    }
 }
 
-]
+const addBerita = async (newBerita) => {
+    const formData = new FormData();
+    formData.append("title", newBerita.title);
+    formData.append("image", newBerita.image);
+    formData.append("content", newBerita.content);
 
-const addBerita = (newBerita) => {
-    const now = Date().toString();
-    Berita.push({id : Date.now() , ...newBerita,published_at:now,is_published:true});
+    try {
+        const result = await axios.post(`${baseUrl}/api/admin/news`, formData, {
+            headers: {
+                Authorization : getToken(),
+                'Content-Type': 'multipart/form-data'
+            }
+            })
+        return result.data;
+    } catch (error) {
+        return error;
+    }
 }
 
-const deleteBerita = (id) => {
-    const idx = Berita.findIndex(berita=>berita.id === id);
-    Berita.splice(idx,1);
+const editBerita = async (id,newBerita) => {
+    const formData = new FormData();
+    formData.append("title", newBerita.title);
+    if(newBerita.image !== "") formData.append("image", newBerita.image);
+    formData.append("content", newBerita.content);
+    formData.append("is_published", newBerita.is_published);
+
+    try {
+        const result = await axios.patch(`${baseUrl}/api/admin/news/${id}`, formData ,{
+            headers: {
+                Authorization : getToken()
+            }
+        })
+        return result;
+    } catch (error) {
+        return error;
+    }
 }
 
-const getBeritaById = (id) => {
-    const beritaById = Berita.find(berita => berita.id === id);
-    return beritaById;
+const deleteBerita = async (id) => {
+    try {
+        const result = await axios.delete(`${baseUrl}/api/admin/news/${id}`,{
+            headers : {
+                Authorization : getToken()
+            }
+        });
+        return result
+    } catch (error) {
+		return error;
+	}
 }
 
-const editBerita = (id,newBerita) => {
-    const idx = Berita.findIndex(berita=>berita.id === id);
-    Berita[idx].title = newBerita.title;
-    Berita[idx].content = newBerita.content;
-    Berita[idx].image = URL.createObjectURL(newBerita.image);
+const getBeritaById = async (id) => {
+    try {
+		const result = await axios.get(`${baseUrl}/api/news/${id}`);
+		return result.data;
+	} catch (error) {
+		return error;
+	}
 }
 
-const getAllBerita = (key) => {
-    if(key === undefined) return Berita;
-    const filtered = Berita.filter(data => data.title.toLowerCase().indexOf(key.toLowerCase()) !== -1);
-    return filtered;
+const getAllBerita = async (key) => {
+    try {
+        const result = await axios.post(`${baseUrl}/api/news`,null,{
+            params:{q:key}
+        });
+        return result.data;
+    } catch (error) {
+        return error
+    }
 }
 
-const getBeritaTerbaru = () => {
-    const filtered = Berita.filter(data => data.is_published === true);
-    return filtered.slice(0,4);
+const getBeritaTerbaru = async () => {
+    try {
+        const result = await axios.get(`${baseUrl}/api/latest-news`);
+        return result.data;
+    } catch (error) {
+        return error
+    }
 }
 
-const togglePublishedBerita = (id) => {
-    const idx = Berita.findIndex(data => data.id === id);
-    Berita[idx].is_published = !Berita[idx].is_published;
-    return Berita[idx].is_published;
-}
-
-export {addBerita,getAllBerita,getBeritaById,editBerita,deleteBerita,getBeritaTerbaru,togglePublishedBerita};
+export {addBerita,getAllBerita,getBeritaById,editBerita,deleteBerita,getBeritaTerbaru,getAdminAllBerita};

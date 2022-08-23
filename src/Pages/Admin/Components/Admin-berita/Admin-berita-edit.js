@@ -1,17 +1,49 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { Form,Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBeritaById,editBerita,deleteBerita,togglePublishedBerita } from "../../../../Data/Berita";
+import { getBeritaById,editBerita,deleteBerita} from "../../../../Data/Berita";
+import LoadingSpinner from "../../../../Components/Loading/LoadingSpinner";
 
 const EditBerita = () => {
     const idBerita = parseInt(useParams().id);
-    const dataBerita = getBeritaById(idBerita);
-    const [content,setContent] = useState(dataBerita.content);
-    const [title,setTitle] = useState(dataBerita.title);
-    const [preview,setPreview] = useState(dataBerita.image);
+    const [content,setContent] = useState('');
+    const [title,setTitle] = useState('');
+    const [preview,setPreview] = useState('');
     const [image,setImage] = useState('');
-    const [is_published,setIs_published] = useState(dataBerita.is_published);
+    const [is_published,setIs_published] = useState(false);
+    const [loading,setLoading] = useState(false);
     const nav = useNavigate();
+
+    useEffect(() => {
+        getBeritaById(idBerita).then((res) => {
+            setTitle(res.data?.title || " ");
+            setContent(res.data?.content || " ");
+            setPreview(res.data?.image || " ");
+            setIs_published(res.data?.is_published || false);
+        })
+    }, [idBerita])
+
+    const handleEdit = e => {
+        setLoading(true);
+        e.preventDefault();
+        editBerita(idBerita,{title,image,content,is_published})
+        .then(()=>{
+            setTitle('');
+            setImage('');
+            setContent('');
+            setLoading(false);
+            alert("Berita berhasil diupdate")
+            nav('/admin$-ifelse/berita')
+        })
+        ;
+    }
+
+    const handleDelete = id => {
+        deleteBerita(id).then(()=>{
+            nav(-1);
+            alert('Berita telah terhapus maszeh');
+        })
+    }
 
     const changeImage = e => {
         const fsize = Math.round((e.target.files[0].size / 1024));
@@ -22,7 +54,7 @@ const EditBerita = () => {
         }
     }
 
-    const togglePublished = () => setIs_published(togglePublishedBerita(idBerita));
+    const togglePublished = () => setIs_published(!is_published);
 
     return(
         <>
@@ -30,14 +62,7 @@ const EditBerita = () => {
         <div className="bg-dark m-2 p-3 m-md-4 p-md-4 text-light rounded">
             <h3>Edit Berita</h3>
             <hr></hr>
-            <Form className="px-0 px-md-5" onSubmit={e=>{
-                e.preventDefault();
-                editBerita(idBerita,{title,image,content});
-                setTitle('');
-                setImage('');
-                setContent('');
-                nav('/admin$/berita')
-            }}>
+            <Form className="px-0 px-md-5" onSubmit={handleEdit}>
                 <Form.Group className="mb-3" controlId="formBasicTitle">
                     <Form.Label>Judul</Form.Label>
                     <Form.Control type="text" placeholder="Masukkan title..." value={title} onChange={e=>setTitle(e.target.value)} required/>
@@ -63,8 +88,8 @@ const EditBerita = () => {
                     </span>
                     <span className="col-6 justify-content-end d-flex p-0">
                         <Button className="w-auto mx-2" variant="secondary" onClick={()=>nav('/admin$/berita')}>Gajadi :(</Button>
-                        <Button className="w-auto mx-2" variant="danger" onClick={()=>{nav(-1);deleteBerita(idBerita)}}>Hapus</Button>
-                        <Button className="w-auto mx-2" type="submit">Simpan</Button>
+                        <Button className="w-auto mx-2" variant="danger" onClick={()=>handleDelete(idBerita)}>Hapus</Button>
+                        <Button className="w-auto mx-2" type="submit">{loading ? <LoadingSpinner/> : "Simpan"}</Button>
                     </span>
                 </section>
             </Form>

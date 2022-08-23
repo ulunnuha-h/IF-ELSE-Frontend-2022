@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button,Table } from "react-bootstrap";
-import { getAllAgenda } from "../../../../Data/Agenda";
+import { getAdminAllAgenda,deleteAgenda } from "../../../../Data/Agenda";
 import RangkaianTambah from "./Admin-rangkaian-tambah";
 import RangkaianEdit from "./Admin-rangkaian-edit";
 import Modal from 'react-bootstrap/Modal';
+import LoadingSpinner from "../../../../Components/Loading/LoadingSpinner";
 
 const RangkaianList = () => {
-    const [agenda,setAgenda] = useState(getAllAgenda());
+    const [agenda,setAgenda] = useState([]);
     const [tambah,setTambah] = useState(false);
 
     const [warn,setWarn] = useState(false);
@@ -15,10 +16,18 @@ const RangkaianList = () => {
     const [delId,setDelId] = useState();
     const [editId,setEditId] = useState();
 
+    const [loading,setLoading] = useState(true);
+
+    useEffect(()=>{
+        getAdminAllAgenda().then(res =>{
+            if(res?.data !== null) setAgenda(res.data);
+            setLoading(false);
+        })
+    },[tambah,warn])
+
     const handleDelete = id => {
         setDelId(id);
         setWarn(true);
-        console.log(id);
     }
 
     const handleEdit = id => {
@@ -26,16 +35,18 @@ const RangkaianList = () => {
         setEdit(true);
     }
 
+    if(loading) return(<LoadingSpinner/>)
+
     return(
         <>
         <RangkaianEdit {...{editId,setEditId,edit,setEdit}}/>
-        <DeleteWarning {...{delId,setDelId,warn,setWarn}}/>
+        <DeleteWarning {...{delId,warn,setWarn}}/>
         <RangkaianTambah {...{tambah,setTambah}}/>
         <div className="d-flex justify-content-between mb-3">
             <h3 className="m-0">List Rangkaian</h3>
             <Button onClick={()=>setTambah(true)}><i className="fa-solid fa-plus me-1"></i>Tambah</Button>
         </div>
-            <Table striped bordered hover responsive variant="dark" className="text-center">
+            {agenda == null ? <h1>No data</h1> : <Table striped bordered hover responsive variant="dark" className="text-center">
                 <thead>
                 <tr>  
                     <th>ID</th>
@@ -63,7 +74,7 @@ const RangkaianList = () => {
                     </tr>
                 )}
                 </tbody>
-            </Table>
+            </Table>}
         </>
     );
 }
@@ -72,6 +83,13 @@ export default RangkaianList;
 
 
 const DeleteWarning = (props) => {
+    const handleDelete = () => {
+        deleteAgenda(props.delId)
+        .then(res => console.log(res));
+        alert("Rangkaian berhasil dihapus")
+        props.setWarn(false);
+    }
+
     return(
         <Modal show={props.warn} onHide={()=>props.setWarn(false)} centered backdrop="static">
             <Modal.Header closeButton className="bg-danger text-white" closeVariant="white">
@@ -84,7 +102,7 @@ const DeleteWarning = (props) => {
                 <Button variant="secondary" onClick={()=>props.setWarn(false)}>
                     Gajadi :(
                 </Button>
-                <Button variant="primary">
+                <Button variant="primary" onClick={handleDelete}>
                     Yakin
                 </Button>
             </Modal.Footer>

@@ -1,43 +1,62 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Modal,Form,Button } from "react-bootstrap";
 import { getTaskById,editTask,deleteTask} from "../../../../Data/Task";
+import LoadingSpinner from "../../../../Components/Loading/LoadingSpinner";
 
 const EditTugas = (props) => {
-    const tugas = getTaskById(props.id);
-    const [title,setTitle] = useState(tugas.title);
-    const [description,setDescription] = useState(tugas.description);
-    const [condition,setCondition] = useState(tugas.condition);
-    const [step,setStep] = useState(tugas.step);
-    const [end_at,setEnd_at] = useState(tugas.end_at);
-    const [input,setInput] = useState(tugas.fields.length);
-    const [label1,setLabel1] = useState(tugas.fields[0]);
-    const [label2,setLabel2] = useState(tugas.fields[1]);
+    const [title,setTitle] = useState("");
+    const [description,setDescription] = useState("");
+    const [condition,setCondition] = useState("");
+    const [step,setStep] = useState("");
+    const [end_at,setEnd_at] = useState("");
+    const [input,setInput] = useState("");
+    const [label1,setLabel1] = useState("");
+    const [label2,setLabel2] = useState("");
+    const [loading,setLoading] = useState(false);
 
     const resetAll = () => {
         setTitle('');setDescription('');setCondition('');
-        setStep('');setEnd_at('');setInput('');setLabel1('');setLabel2('');
+        setStep('');setEnd_at('');setInput(0);setLabel1('');setLabel2('');
     }
+    
+    useEffect(()=>{
+        getTaskById(props.id).then(res => {
+            setTitle(res.data?.title || "")
+            setDescription(res.data?.description || "")
+            setCondition(res.data?.condition || "")
+            setStep(res.data?.step || "")
+            setEnd_at(res.data?.deadline || "")
+            setInput(res.data?.jumlah_link || 0)
+            setLabel1(res.data.Links[0]?.title || "")
+            setLabel2(res.data.Links[1]?.title || "")
+        });},[props.id])
 
-    const editTugas = () => { 
+    const editHandler = e => { 
+        setLoading(true);
+        e.preventDefault();
         const fields = [];
         if(input > 0) fields.push(label1);
         if(input > 1) fields.push(label2);
-        console.log(fields);
-        editTask(props.id,{title,description,condition,step,end_at,fields});
+        editTask(props.id,{title,description,condition,step,deadline:end_at,jumlah_link:input,links:fields})
+        .then(()=>{
+            resetAll();
+            setLoading(false);
+            alert("Perubahan berhasil disimpan");
+            props.handleClose();
+        });
     }
+
+    const handleDelete = id => {
+        deleteTask(id).then(() => {props.handleClose()})
+    } 
 
     return(
         <Modal show={props.show} onHide={props.handleClose} backdrop="static" centered size="lg">
         <Modal.Header closeButton className="bg-dark text-light" closeVariant="white">
             <Modal.Title>Edit Tugas</Modal.Title>
         </Modal.Header>
-        <Form onSubmit={e=>{
-            e.preventDefault();
-            editTugas();
-            resetAll();
-            props.handleClose();
-        }}>
+        <Form onSubmit={editHandler}>
         <Modal.Body>
                 <Form.Group className="mb-3">
                     <Form.Label>Judul</Form.Label>
@@ -73,9 +92,9 @@ const EditTugas = (props) => {
                 </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="danger" onClick={()=>{props.handleClose();deleteTask(props.id)}}>Hapus</Button>
+            <Button variant="danger" onClick={()=>{handleDelete(props.id)}}>Hapus</Button>
             <Button variant="secondary" onClick={props.handleClose}>Gajadi :(</Button>
-            <Button type="submit" variant="primary" >Simpan</Button>
+            <Button type="submit" variant="primary" >{loading ? <LoadingSpinner/> : "Simpan"}</Button>
         </Modal.Footer>
         </Form>
     </Modal>

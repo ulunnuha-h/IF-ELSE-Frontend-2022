@@ -75,7 +75,7 @@ root.render(
             </Route>
           </Route>
           <Route path='*' element={<Error404/>}/>
-          <Route path='/admin$' element={
+          <Route path='/admin$-ifelse' element={
             <Suspense fallback={<AdminLoading/>}>
               <Admin/>
             </Suspense>}>

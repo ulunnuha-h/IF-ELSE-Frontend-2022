@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet} from "react-router-dom";
 import UserCard from "../../Components/UserCard/UserCard";
 import { useNavigate } from "react-router-dom";
 import './User.css';
-import { useAuth } from "../../Config/Auth";
 import { motion } from "framer-motion";
 import bg from "../../Assets/user-bg.jpg";
 import UserChangePass from "./User-changePass";
-import { getStudenMarkById } from "../../Data/Marking";
+import { getMahasiswaProfile } from "../../Data/Mahasiswa";
 
 const User = () => {
     const nav = useNavigate();
     const [editPass, setEditPass] = useState(false);
     const [editProfile,setEditProfile] = useState(false);
-    const {auth,setAuth} = useAuth();
+    const [data,setData] = useState('');
+    const [loading,setLoading] = useState(true);
 
-    const percentage = 3 + getStudenMarkById(auth.id).data.reduce((tot,dat)=>{
-        if(dat.mark !== null) return tot + 23;
-        else return tot;
-    },0);
+    useEffect(()=>{
+        getMahasiswaProfile().then(res => {
+            setData(res.data);
+            setLoading(false);
+        });
+    },[])
+
+    const percentage = 3 
+    // + getStudenMarkById(auth.id).data.reduce((tot,dat)=>{
+    //     if(dat.mark !== null) return tot + 23;
+    //     else return tot;
+    // },0)
+    ;
 
     const toggleEditProfile = () => {
         setEditProfile(!editProfile);
@@ -31,7 +40,8 @@ const User = () => {
     }
 
     const logout = () => {
-        setAuth({isLogged: false});
+        localStorage.removeItem('token');
+        nav('/');
     }
 
     const handleClosePass = () => setEditPass(false);
@@ -52,12 +62,17 @@ const User = () => {
     return(
         <motion.div initial={{scale:1.1,opacity:0.5}} animate={{scale:1,opacity:1}} exit={{opacity:0}} transition={{type:"tween"}} className="user-base">
             <motion.header initial={{height:105}} animate={{height:250}} exit={{height:0}} transition={{type:"tween",ease:"easeInOut",duration:0.6}} className="user-bg" style={{"backgroundImage":`url(${bg})`}}></motion.header>
+            {loading ?
+            <div style={{minHeight : '100vh'}} className="d-flex justify-content-center p-5">
+                <span className="profile-loader"/>
+            </div>
+            :
             <div className="container-lg">
                 <div className="row">
                     <section 
                         className="col-md-4 d-flex flex-column align-items-center"
                         style={{"position":"relative","bottom":"135px"}}>
-                        <UserCard/>
+                        <UserCard data={data}/>
                         <button className="btn-toggle w-75 mt-3 py-3 px-5" style={progres} disabled>Print Certificate</button>       
                         <motion.button {...buttonHover} className="btn-toggle w-75 mt-3 py-3 px-5" style={editProfile ? {"color":"var(--color-1-s)"} : {}}  onClick={()=>toggleEditProfile()}>Edit Profile</motion.button>
                         <motion.button {...buttonHover} className="btn-toggle w-75 mt-3 py-3 px-5" onClick={()=>handleEditPass()}>Change Password</motion.button>
@@ -72,10 +87,11 @@ const User = () => {
                             <motion.button {...toggleHover} transition={{scale:{delay:0.2}}} className="btn-toggle p-2" onClick={()=>nav("grade")}>Grade</motion.button>
                         </div>
                         <hr className="my-4"></hr>
-                            <Outlet context={[editProfile,toggleEditProfile]}/>
+                            <Outlet context={[editProfile,toggleEditProfile,data]}/>
                     </section>
                 </div>
             </div>
+            }
         </motion.div>
     );
 }

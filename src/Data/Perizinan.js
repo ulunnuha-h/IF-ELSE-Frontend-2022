@@ -1,81 +1,29 @@
-const Perizinan = [
-        {
-            agenda_id:1, 
-            data : [
-            {
-                student_id : 1,
-                nama : 'Hanif Ulunnuha Hidayat',
-                nim : 215150200111019,
-                group_id : 1,
-                surat : "link.com"
-            },
-            {
-                student_id : 2,
-                nama : 'Buggy Maulana',
-                nim : 215150200111022,
-                group_id : 1,
-                surat : "link.com"
-            }]
-        },
-        {
-            agenda_id:2, 
-            data : [
-            {
-                student_id : 1,
-                nama : 'Hanif Ulunnuha Hidayat',
-                nim : 215150200111019,
-                group_id : 1,
-                surat : "link.com"
-            },
-            {
-                student_id : 2,
-                nama : 'Buggy Mabarata',
-                nim : 215150200111022,
-                group_id : 1,
-                surat : "link.com"
-            }]
-        },
-        {
-            agenda_id:3, 
-            data : [
-            {
-                student_id : 1,
-                nama : 'Hanif Ulunnuha Hidayat',
-                nim : 215150200111019,
-                group_id : 1,
-                surat : "link.com"
-            },
-            {
-                student_id : 2,
-                nama : 'Buggy Sup',
-                nim : 215150200111022,
-                group_id : 1,
-                surat : "link.com"
-            }]
-        },
-        {
-            agenda_id:4, 
-            data : [
-            {
-                student_id : 1,
-                nama : 'Hanif Ulunnuha Hidayat',
-                nim : 215150200111019,
-                group_id : 1,
-                surat : "link.com"
-            },
-            {
-                student_id : 2,
-                nama : 'Buggy D. Clown',
-                nim : 215150200111022,
-                group_id : 1,
-                surat : "link.com"
-            }]
-        },
-]
+import axios from "axios";
+import { baseUrl,getToken,getUserToken } from "../Config/Auth";
 
-const getPerizinanByRangkaian = (id) => {
-    const data = Perizinan.find(val => val.agenda_id === id);
-    return data.data;
+const getPerizinanByRangkaian = async (id) => {
+    try {
+        const res = await axios.get(`${baseUrl}/api/admin/perizinan/${id}`,{
+            headers:{Authorization : getToken()}
+        })
+        return res.data;
+    } catch (error) {
+        return error;
+    }
 }
 
-export {getPerizinanByRangkaian};
+const postPerizinan = async (id,link) => {
+    try {
+        const res = await axios.post(`${baseUrl}/api/perizinan`,{
+            "agenda_id":id,
+            "link_surat":link
+        },{
+            headers : {Authorization : getUserToken()}
+        })
+        return res;
+    } catch (error) {
+        return error;
+    }
+}
+
+export {getPerizinanByRangkaian,postPerizinan};

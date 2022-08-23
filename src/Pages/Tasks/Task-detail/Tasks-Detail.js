@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import "./tdstyle.css"
-import { getTaskById } from '../../../Data/Task'
+import { getSubmissionData, getTaskById } from '../../../Data/Task'
 import { motion } from 'framer-motion';
-import { getStudentTaskByUserId } from '../../../Data/StudentTask';
 import TaskAlert from './Tasks-Detail-Alert';
-import { useAuth } from '../../../Config/Auth';
+import { toLocalDate } from '../../../Config/Converter';
 
 const detailMotion = {
     initial:{opacity:0,y:-100},
@@ -13,31 +12,53 @@ const detailMotion = {
 }
 
 export default function Tasks() {
-    const {auth} = useAuth();
     const param = useParams();
 
     const taskId = parseInt(param.id);
-    const userId = auth.id;
 
-    const details = getTaskById(taskId);
-    const userData = auth.isLogged ? getStudentTaskByUserId(userId,taskId) : null ;
+    const [details,setDetails] = useState({});
+    const [userData, setUserData] = useState([]);
+    const [loading,setLoading] = useState(false);
+
+    useEffect(()=>{
+        setLoading(true);
+        getTaskById(taskId)
+        .then(res => {
+            setDetails(res.data)
+            setLoading(false);
+        });
+        if(localStorage.getItem('token') !== null){
+            setLoading(true);
+            getSubmissionData(taskId)
+            .then(res => {
+                setUserData(res);
+                setLoading(false);
+                console.log(res);
+            });
+        }
+    },[taskId])
     
     const [input1,setInput1] = useState('');
     const handleInput1 = (e) => setInput1(e.target.value);
     const [input2,setInput2] = useState('');
     const handleInput2 = (e) => setInput2(e.target.value);
-    const done = auth.isLogged ? userData.submission !== null : false;
+    const done = userData[0]?.link.length !== 0 ;
 
     const [alert,setAlert] = useState(false);
     const [submitted,setSubmitted] = useState([]);
 
     const submitting = (e) => {
         e.preventDefault();
-        if(details.fields.length > 0) setSubmitted([input1]);
-        if(details.fields.length > 1) setSubmitted([input1,input2]);
-        console.log(details.fields.length,submitted.length);
+        if(details.jumlah_link > 0) setSubmitted([input1]);
+        if(details.jumlah_link > 1) setSubmitted([input1,input2]);
     }
     
+    if(loading) return(
+        <div style={{minHeight : '100vh'}} className="d-flex justify-content-center p-5">
+            <span className="profile-loader"/>
+        </div>
+    );
+
     return(
         <motion.div {...detailMotion} className='container-fluid d-flex flex-column justify-content-center m-0 p-0'>
             <div className="taskD d-flex flex-row m-lg-3 m-2">
@@ -55,20 +76,20 @@ export default function Tasks() {
                         <h1 className="col-lg-6 col-12 m-0 p-0 text-center text-lg-start text-break">{details.title}</h1>
                         <div className="taskD--deadline flex-column col-lg-5 col-12">
                             <h4>Deadline:</h4>
-                            <p className='m-0'>{details.end_at}</p>
+                            <p className='m-0'>{toLocalDate(details.deadline)}</p>
                         </div>
                         <div className='star-icon align-self-start col-1 p-0 d-lg-block d-none'>
-                            <img src={require("./images/Star.png")} alt="star1" style={{filter : done? 'none':''}} className="star m-0" id="bintang"/>
+                            <img src={require("./images/Star.png")} alt="star1" style={{filter : 'none'}} className="star m-0" id="bintang"/>
                         </div>
                     </header>
-                    {done ? 
+                    {done && userData.length !== 0? 
                     <section>
                         <div className="alert alert-info mb-3">
                         <i className="fa-solid fa-circle-info me-2"/>
-                            Terimaksih anda sudah melakukan submit
+                            Terima kasih Anda sudah melakukan submit!
                         </div>    
-                        {userData.submission.map((data,idx) => <section>Link {idx + 1} : {data}</section>)}
-                        {"Disubmit pada "+userData.submitted_at}
+                        {userData.map((data,idx) => <section key={idx}>{data.label_link} : {data.link}</section>)}
+                        {toLocalDate(userData[0]?.time)}
                     </section> :
                     <>
                     <div className="taskD--isi">
@@ -85,18 +106,18 @@ export default function Tasks() {
                             <pre style={{backgroundColor : "transparent"}}>{details.step}</pre>
                         </div>
                     </div>
-                    {auth.isLogged ?
+                    {localStorage.getItem('token') !== null ?
                     <form className="taskD--formUser d-flex flex-column" onSubmit={submitting}>
-                    { details.fields.length > 0 ?
+                    { details.jumlah_link > 0 ?
                     <>
                         <h4>Input URL:</h4>
                         <div className="taskD--inputan m-0 p-0 d-flex flex-column">
-                            <label htmlFor='input1'>{details.fields[0]}</label>
+                            <label htmlFor='input1'>{details.Links[0].title}</label>
                             <input type="text" name="input1" className="rounded border-0 px-2 py-1" placeholder="Input Url ..." value={input1} onChange={handleInput1} required/>
                             <span className='mb-3 task-submitted'>Submitted link : {submitted[0]}</span>
-                            { details.fields.length > 1 ?
+                            { details.jumlah_link > 1 ?
                                 <>
-                                    <label htmlFor='input2'>{details.fields[1]}</label>
+                                    <label htmlFor='input2'>{details.Links[1].title}</label>
                                     <input name="input2" className="rounded border-0 px-2 py-1" placeholder="Input Url ..." value={input2} onChange={handleInput2} required/>
                                     <span className='mb-3 task-submitted'>Submitted link : {submitted[1]}</span>
                                 </> : null
@@ -104,8 +125,12 @@ export default function Tasks() {
                         </div>
                     </> : null}
                     <section className='align-self-end mt-1 taskD--inputan'>
-                        { details.fields.length > 0 ? <button className='px-3 py-1 border-0 mx-1 rounded'>Submit</button> : null}
-                        <button disabled={submitted.length !== details.fields.length} type='button' className='px-3 py-1 border-0 mx-1 rounded' onClick={()=>setAlert(true)}>Mark as Done</button>
+                        { details.jumlah_link > 0 ? 
+                        <>
+                            <button className='px-3 py-1 border-0 mx-1 rounded'>Submit</button> 
+                            <button disabled={submitted.length !== details.jumlah_link} type='button' className='px-3 py-1 border-0 mx-1 rounded' onClick={()=>setAlert(true)}>Mark as Done</button>
+                        </>
+                        : null}
                     </section>
                     </form>:
                     <div className="alert alert-warning m-auto">
@@ -117,7 +142,7 @@ export default function Tasks() {
                 </article>
             </div>
         </div>
-        <TaskAlert {...{alert,setAlert,submitted,taskId,userId}}/>
+        <TaskAlert {...{alert,setAlert,submitted,taskId}}/>
         </motion.div>
     )
 }

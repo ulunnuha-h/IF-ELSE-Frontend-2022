@@ -15,7 +15,7 @@
     text-align: justify;
     backdrop-filter: blur(5px) brightness(0.6);
     max-width: 520px;
-    min-height: 660px;
+    min-height: 550px;
     color: white;
   }
   
@@ -38,6 +38,6 @@
   }
 
   .filosofi {
-    min-height: 590px;
+    min-height: 500px;
   }
 }

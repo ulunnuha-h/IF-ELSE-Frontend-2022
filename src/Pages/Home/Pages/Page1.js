@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useParallax, useParallaxController} from "react-scroll-parallax";
-import El1 from '../../../Assets/Parallax/1.webp'
 import Layer1 from '../../../Assets/Parallax/Layer1.svg';
 import El2 from '../../../Assets/Parallax/2.svg'
 import El3 from '../../../Assets/Parallax/3.svg'
@@ -20,8 +19,8 @@ const Page1 = () => {
     const updateController = () => parallaxController.update();
 
     useEffect(() => {
-        updateController();
-    }, [location.pathname]);
+        parallaxController.update();
+    }, [location.pathname,parallaxController]);
     
 
     const useParallaxSpeed = (start,end) => {
@@ -36,11 +35,11 @@ const Page1 = () => {
     return(  
     <>
         <div className='d-flex align-items-end justify-content-center parallax-wrapper'>
-            <img ref={useParallaxSpeed(0,450)} className='position-absolute parallax-layer' src={Layer1} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,375)} className='position-absolute parallax-layer' src={El2} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,300)} className='position-absolute parallax-layer' src={El3} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,225)} className='position-absolute parallax-layer' src={El4} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,150)} className='position-absolute parallax-layer' src={El5} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,475)} className='position-absolute parallax-layer' src={Layer1} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,400)} className='position-absolute parallax-layer' src={El2} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,325)} className='position-absolute parallax-layer' src={El3} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,250)} className='position-absolute parallax-layer' src={El4} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,175)} className='position-absolute parallax-layer' src={El5} alt="pic" onLoad={updateController}></img>
             <img className='position-absolute' src={El8} alt="pic"></img>
             <div className="d-flex align-self-start flex-column justify-content-center mx-0 mt-5 pt-5">
                 <span style={{backgroundImage:`url(${logo})`,height:'248px',width:'495px'}} className='logo-home'/>

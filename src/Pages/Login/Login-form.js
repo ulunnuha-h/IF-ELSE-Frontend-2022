@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import {Form, InputGroup } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { useAuth } from "../../Config/Auth";
 import { postMahasiswaLogin } from "../../Data/Mahasiswa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginLoading } from "./Login";
 
 const LoginForm = () => {
+    const nav = useNavigate();
     const [email,setEmail] = useState('');
     const [pass,setPass] = useState('');
     const [errorMsg,setErrorMsg] = useState('');
-    const {setAuth} = useAuth();
+    const [loading,setLoading] = useState(false);
 
     const login = () => {
-        const response = postMahasiswaLogin(email,pass);
-        if(response.success) setAuth({id : response?.id, token : response?.token, isLogged : true});
-        else setErrorMsg(response?.msg);
+        setLoading(true);
+        postMahasiswaLogin(email,pass)
+        .then(res => {
+            if(res.success) {
+                localStorage.setItem('token',res.data.token);
+                nav('/user');
+            }else setErrorMsg(res.response.data.message);
+            setLoading(false);
+        });
     }
 
     return(
@@ -44,7 +51,7 @@ const LoginForm = () => {
                         </InputGroup>
                     </Form.Group>
                     <button className="login-btn px-5 py-2 align-self-center" type="submit">
-                        <h5 className="my-0">LOGIN</h5>
+                        <h5 className="my-0">{ loading ? <LoginLoading/> :"LOGIN"}</h5>
                     </button>
                     <span className="text-center mt-4 register-link">Tidak punya akun ? tidak apa apa, tinggal <Link to="/mahasiswa/register">Register</Link> </span>
                 </Form>

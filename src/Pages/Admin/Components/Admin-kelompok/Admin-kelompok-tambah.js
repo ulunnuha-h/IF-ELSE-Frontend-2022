@@ -13,7 +13,8 @@ const TambahKelompok = (props) => {
 
     const [loading,setLoading] = useState(false);
 
-    const tambahKelompok = () => {
+    const tambahKelompok = e => {
+        e.preventDefault();
         const form = new FormData();
         form.append("group_name",kelompok);
         form.append("line_group",link);
@@ -34,10 +35,7 @@ const TambahKelompok = (props) => {
                 <Modal.Title>Tambah Qelompok</Modal.Title>
             </Modal.Header>
             { !loading ? 
-            <Form onSubmit={e=>{
-                    e.preventDefault();
-                    tambahKelompok();
-                }}>
+            <Form onSubmit={tambahKelompok}>
                 <Modal.Body>
                     <Form.Group className="mb-3">
                         <Form.Label>Nama Kelompok</Form.Label>
@@ -65,12 +63,12 @@ const TambahKelompok = (props) => {
                     Close
                 </Button>
                 <Button variant="primary" type="submit">
-                    Save Changes
+                    Save
                 </Button>
             </Modal.Footer>
             </Form> :
-            <div className="w-100 p-3 d-flex justify-content-center">
-                Uploading <div className="spinner-border" role="status"/>
+            <div className="w-100 p-3 d-flex justify-content-center align-items-center">
+                Uploading <div className="mx-2 spinner-border spinner-border-sm" role="status"/>
             </div>
             }
         </Modal>

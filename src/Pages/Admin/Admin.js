@@ -6,12 +6,12 @@ import './Admin.css';
 import { motion } from "framer-motion";
 
 const Admin = () => {
-    const [log,setLog] = useState(true);
     const nav = useNavigate();
-    
-    const login = () => {
-        setLog(!log);
-    }
+
+    const logOut = () =>  {
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('user');
+    };
 
     const toggle = () => {
         const side = document.getElementById("sidebar");
@@ -19,7 +19,7 @@ const Admin = () => {
         else side.classList.add("aktif");
     }
 
-    if(!log) return <AdminLogin login={login}/>;
+    if(localStorage.getItem('adminToken') == null) return <AdminLogin/>;
     else{
         return(
             <main className="admin row w-100 m-0 bg-secondary" style={{"height":"100vh"}}>
@@ -60,9 +60,9 @@ const Admin = () => {
                             <i className="fa-solid fa-burger" onClick={()=>toggle()}></i>
                         </span>
                         <span className="d-none d-md-block">
-                            Halo, Admin !
+                            Halo, {localStorage.getItem('user') || ''} !
                         </span>
-                        <span className="logout" onClick={()=>{nav('');login();}}>
+                        <span className="logout" onClick={()=>{nav('');logOut()}}>
                             <i className="fa-solid fa-right-from-bracket me-1"></i>
                             Logout
                         </span>

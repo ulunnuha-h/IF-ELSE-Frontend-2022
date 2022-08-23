@@ -37,21 +37,10 @@
 }
 
 .event-input{
-    color: white;
-    border-radius: 6px;
+    background-color: var(--color-1-p);
     border: solid white 1px;
-    padding: 8px;
-}
-
-.event-input::-webkit-file-upload-button{
-    border: 0px;
-    border-radius: 3px;
-    transition: 300ms;
-    color: var(--color-1-p);
-}
-
-.event-input::-webkit-file-upload-button:hover{
-    background-color: lightgray;
+    border-radius: 12px;
+    color: white;
 }
 
 .event-input ~ button{

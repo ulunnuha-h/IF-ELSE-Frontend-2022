@@ -1,43 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMahasiswaByUserId,updateMahasiswaGroup,deleteMahasiswa } from "../../../../Data/Mahasiswa";
-import { getAllKelompok,getKelompokNameById} from "../../../../Data/Kelompok";
+import { getAllKelompok} from "../../../../Data/Kelompok";
 import TugasMahasiswa from "./Admin-mahasiswa-tugas";
 import NilaiMahasiswa from "./Admin-mahasiswa-nilai";
 import { Modal } from "react-bootstrap";
 
 const MahasiswaDetail = () => {
+    const nav = useNavigate();
     const userId = parseInt(useParams().id);
     const [data,setData] = useState('');
-    const [namaKel, setNamaKel] = useState('');
+    const [namaKel, setNamaKel] = useState(true);
     const [del,setDel] = useState(false);
+    const [allKelompok,setAllKelompok] = useState([]);
+    const [task,setTask] = useState([]);
 
     useEffect(()=>{
-        // getMahasiswaByUserId(userId).then(res=>{
-        //     setData(res.data.data)
-        // });
-        setData(getMahasiswaByUserId(userId));
-    },[userId])
+        getMahasiswaByUserId(userId).then(res => {
+            setData(res.data);
+            setTask(res.student_task);
+        });
+        getAllKelompok().then(res =>{
+            if(res.data !== null )setAllKelompok(res.data)
+        });
+    },[userId,namaKel])
 
-    useEffect(()=>{
-        setNamaKel(getKelompokNameById(data.group_id));
-    },[data])
 
-    const ubahGroupId = (group_id,user_id) => {
-        // setNamaKel(null);
-        // updateMahasiswaGroup(group_id,user_id)
-        // .then(res =>{
-        //     let newGroupId = res.data.data.group_id;
-        //     if(newGroupId === null) newGroupId = undefined;
-        //     setNamaKel(getKelompokNameById(newGroupId));
-        // } );
-        const newGroup = getKelompokNameById(updateMahasiswaGroup(group_id,userId));
-        setNamaKel(newGroup);
+    const ubahGroupId = (group_id) => {
+        setNamaKel(false);
+        updateMahasiswaGroup(group_id,userId)
+        .then(() => setNamaKel(true));
     }
-
-    const allKelompok = getAllKelompok();
-    
-    const nav = useNavigate();
 
     if(!data) return(
         <>
@@ -67,7 +60,7 @@ const MahasiswaDetail = () => {
                     <section className="d-flex flex-column">
                         <section className="row my-2">
                             <span className="col-lg-3 col-12">Nama</span>
-                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.nama}</span>
+                            <span className="col-lg-9 col-12 bg-secondary py-1 rounded">{data.name}</span>
                         </section>
                         <section className="row  my-2">
                             <span className="col-lg-3 col-12">Nama Panggilan</span>
@@ -93,18 +86,17 @@ const MahasiswaDetail = () => {
                             <span className="col-lg-3 col-12">Kelompok</span>
                             <div className="dropdown col-lg-9 col-12 p-0">
                                 <button className="btn btn-secondary dropdown-toggle py-1 w-100 justify-content-between d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {namaKel !== null ? namaKel : 
+                                    {namaKel ? data.group_name : 
                                         <span>
                                             Loading
-                                            <span class="spinner-border spinner-border-sm ms-1" role="status" aria-hidden="true"/>
+                                            <span className="spinner-border spinner-border-sm ms-1" role="status" aria-hidden="true"/>
                                         </span>
                                     }
                                 </button>
                                 <ul className="dropdown-menu w-100">
-                                    {/* {allKelompok.map((val,idx) => 
-                                        <li key={idx} className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(val.id,data.user_id)}>{val.kelompok}</li>
-                                    )} */}
-                                    <li className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(null,data.user_id)}>Mengkosong</li>
+                                    {allKelompok.map((val,idx) => 
+                                        <li key={idx} className="dropdown-item" style={{cursor:"pointer"}} onClick={()=>ubahGroupId(val.id)}>{val.group_name}</li>
+                                    )}
                                 </ul>
                             </div>
                         </section>
@@ -119,8 +111,8 @@ const MahasiswaDetail = () => {
                     </div>
                 </div>
             </div>
-            <TugasMahasiswa userId={userId}/>
-            <NilaiMahasiswa userId={userId}/>
+            <TugasMahasiswa StudentTask={task}/>
+            <NilaiMahasiswa Marking={data.Marking} userId={userId}/>
         </>
     );
 }
@@ -131,9 +123,12 @@ const DeleteMahasiswa = (props) => {
     const handleClose = () => props.setDel(false); 
     const nav = useNavigate();
     const delStudent = () => {
-        deleteMahasiswa(props.userId);
-        handleClose();
-        nav(-1);
+        deleteMahasiswa(props.userId)
+        .then(res => {
+            console.log(res)
+            handleClose();
+            nav(-1);
+        });
     }
 
     return(

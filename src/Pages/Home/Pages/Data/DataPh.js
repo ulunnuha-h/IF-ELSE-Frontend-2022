@@ -14,7 +14,7 @@ const dataFilosofi = [
         id: 2,
         logo:logo2,
         filosofi:'Sinergi',
-        desc:"Sinergi  berasal dari bahasa Yunani, yaitu “synergos” yang berarti bekerja bersama-sama. IF ELSE 2022 bertujuan membangun pondasi agar mahasiswa baru dapat bersinergi di lingkungan program studi Teknik Informatika.Sinergi  berasal dari bahasa Yunani, yaitu “synergos” yang berarti bekerja bersama-sama. IF ELSE 2022 bertujuan membangun pondasi agar mahasiswa baru dapat bersinergi di lingkungan program studi Teknik Informatika."
+        desc:"Sinergi  berasal dari bahasa Yunani, yaitu “synergos” yang berarti bekerja bersama-sama. IF ELSE 2022 bertujuan membangun pondasi agar mahasiswa baru dapat bersinergi di lingkungan program studi Teknik Informatika."
     },
 
     {

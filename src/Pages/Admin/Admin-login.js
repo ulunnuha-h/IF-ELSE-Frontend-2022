@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import { Card,Form,Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { postMahasiswaLogin } from "../../Data/Mahasiswa";
 
-const AdminLogin = (props) => {
-
+const AdminLogin = () => {
+    const nav = useNavigate();
     const [errMsg,setErrMsg] = useState('');
     const [user,setUser] = useState('');
     const [pass,setPass] = useState('');
 
     const login = () => {
-        if(user ==='admin' && pass==='admin'){
-            setErrMsg('');
-            props.login();
-        }
-        else{
-            setErrMsg('Salah paswot woi !');
-        }
+        postMahasiswaLogin(user,pass)
+        .then(res => {
+            if(res.success){
+                setErrMsg('');
+                if(res.data.IsAdmin){
+                    localStorage.setItem('adminToken',res.data.token);
+                    localStorage.setItem('user',res.data.username);
+                    nav('');
+                }else{
+                    setErrMsg("Kamu bukan admin deck 🤬")
+                }
+                
+            } 
+            else {
+                setErrMsg(res.message);
+            }
+        });
     }
 
     return(
@@ -33,10 +44,9 @@ const AdminLogin = (props) => {
                 <Card.Body className="px-4">
                     <Form onSubmit={e=>{e.preventDefault();login()}}>
                         <Form.Group className="mb-3" controlId="formBasicTe xt">
-                            <Form.Label>Username</Form.Label>
+                            <Form.Label>Email</Form.Label>
                             <Form.Control type="text" placeholder="Username" value={user} onChange={(e)=>setUser(e.target.value)} required/>
                         </Form.Group>
-
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" value={pass} onChange={(e)=>setPass(e.target.value)} required/>
@@ -50,7 +60,6 @@ const AdminLogin = (props) => {
                     </Form>
                 </Card.Body>
             </Card>
-            <Link to="/">To homepage</Link>
         </div>
     );
 }

@@ -1,24 +1,18 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useAuth } from "../../../Config/Auth";
-import { getStudenMarkById } from "../../../Data/Marking";
-import { getAgendaById } from "../../../Data/Agenda";
+import { useOutletContext } from "react-router-dom";
 
 const UserGrade = () => {
-    const userId = useAuth().auth.id;
-    const data = getStudenMarkById(userId).data;
+    const [,,data] = useOutletContext();
     
-    const list = data.map((dat,idx)=>{
-        const namaRangakaian = getAgendaById(dat.agenda_id).title;
-
+    const list =( data.Marking ? data.Marking.map((dat,idx)=>{
         return(
             <tr key={idx}>
                 <th scope="row">{idx+1}</th>
-                <td>{namaRangakaian}</td>
-                <td>{dat.mark === null ? "Belum dinilai" : dat.mark}</td>
+                <td>{dat.Agenda.title}</td>
+                <td>{dat.mark === 0 ? "Belum dinilai" : dat.mark    }</td>
             </tr>
-        );
-    })
+        );}) : null )
 
     return(
         <motion.div 

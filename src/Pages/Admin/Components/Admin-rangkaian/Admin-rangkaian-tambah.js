@@ -2,19 +2,23 @@ import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { addAgenda } from "../../../../Data/Agenda";
 
 const RangkaianTambah = (props) => {
     const [title,setTitle] = useState('');
     const [content,setContent] = useState('');
     const [image,setImage] = useState('');
-    const [start_at,setStart_at] = useState();
+    const [start_at,setStart_at] = useState('');
     const [end_at,setEnd_at] = useState('');
 
     const handleAdd = e => {
         e.preventDefault();
-        console.log({
-            title,content,image,start_at,end_at
-        })
+        addAgenda({title,content,image,start_at,end_at})
+        .then(() => {
+            props.setTambah(false);
+            window.location.reload();
+            alert("Berhasil menambahkan rangkaian")
+        });
     }
 
     return(

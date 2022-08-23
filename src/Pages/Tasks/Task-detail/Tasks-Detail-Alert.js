@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { updateStudentTasksubmission } from '../../../Data/StudentTask';
+import { submitTask } from '../../../Data/Task';
 
 const TaskAlert = (props) => {
     const nav = useNavigate();
 
     const handleClose = () => props.setAlert(false);
     const handleSubmit = () => {
-    updateStudentTasksubmission(props.userId,props.taskId,props.submitted);
-    nav('');
-    props.setAlert(false);
+        submitTask(props.taskId,props.submitted)
+        .then(res => {
+            console.log(res);
+            nav('');
+            props.setAlert(false);
+            window.location.reload();
+        });
     }
 
     return (

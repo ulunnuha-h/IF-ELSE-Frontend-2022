@@ -1,26 +1,30 @@
-import React, { useState,useCallback, useMemo } from "react";
+import React, { useState,useCallback, useMemo, useEffect } from "react";
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Nav.css'
 import pic from '../../Assets/Logo/logo-ifelse.png';
-import { useAuth } from "../../Config/Auth";
-import { getMahasiswaByUserId } from "../../Data/Mahasiswa";
+import { getMahasiswaProfile } from "../../Data/Mahasiswa";
 import _debounce from "lodash/debounce";
 
 const logoStyle = {
-    height : '72px'
+    height : '68px'
 }
 
 const Nav = () => {
     const nav = useNavigate();
     const loc = useLocation();
-    const {auth} = useAuth();
-    const mhsData = auth.id ? 
-        getMahasiswaByUserId(auth.id) : 
-        {Avatar : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'};
+    const [mhsData,setMhsData] = useState({});
     const isMobile = (window.innerWidth < 576);
     const isHome = (loc.pathname.indexOf("home") !== -1 );
     const isProfile = (loc.pathname.indexOf("user") !== -1 );
     const [isTop,setIsTop] = useState(true);
+
+    useEffect(()=>{
+        if(localStorage.getItem('token') !== null)
+        getMahasiswaProfile()
+        .then(res => {
+            if(res.data !== null) setMhsData(res.data)
+        });
+    },[])
 
     const closeSidebar = () => {
         const sidebar = document.getElementById('check');
@@ -47,7 +51,7 @@ const Nav = () => {
         _debounce(() => {
             if(window.scrollY < 162) setIsTop(true);
             else setIsTop(false);
-        }, 150), []);
+        }, 25), []);
 
     document.addEventListener("scroll",cekScroll);
     
@@ -87,7 +91,7 @@ const Nav = () => {
                 </li>
                 <li className="nav-item mt-4 d-block d-sm-none" onClick={closeSidebar}>
                     {
-                        !auth.isLogged ? 
+                        localStorage.getItem('token') == null ? 
                             <Link className="nav-link mobile-button d-block d-sm-none" to="mahasiswa/login" onClick={closeSidebar}>
                                 <span className="nav-text">Login</span>
                             </Link> :
@@ -101,12 +105,12 @@ const Nav = () => {
                     Developed by IT x DDM IF ELSE &#169; 2022
                 </footer>
             </ul>
-            {!auth.isLogged ? 
+            {localStorage.getItem('token') == null ? 
             <Link className="d-none d-sm-block" to="mahasiswa/login" onClick={closeSidebar}>
                 <button className="btn-navlogin">Login</button>
             </Link> :
             <Link className="d-none d-sm-block" to="user" onClick={closeSidebar}>
-                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData.avatar})`}} />
+                <div className="nav-user-icon" style={{backgroundImage : `url(${mhsData?.avatar})`}} />
             </Link>
             }
             

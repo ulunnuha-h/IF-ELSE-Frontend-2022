@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Event.css';
 import Bg from '../../Assets/background.svg'
 import {ReactComponent as SubmitBtn} from '../../Assets/submit-btn.svg'
 import { motion } from "framer-motion";
 import { getAllAgenda } from "../../Data/Agenda";
-import { useAuth } from "../../Config/Auth";
+import { postPerizinan } from "../../Data/Perizinan";
 
 const titleMotion = {
     initial : {
@@ -23,19 +23,40 @@ const titleMotion = {
 }
 
 const Event = () => {
-    const agendaData = getAllAgenda();
-    const [agenda,setAgenda] = useState(1);
-    const data = agendaData[agenda-1];
+    const [agendaData,setAgendaData] = useState([]);
+    const [agenda,setAgenda] = useState(0);
+    const [data,setData] = useState({});
+    const [link,setLink] = useState('');
 
-    const {auth} = useAuth();
+    useEffect(()=>{
+        getAllAgenda()
+        .then(res => 
+            {
+                setAgendaData(res?.data);
+                setData(res?.data[0])
+            });
+    },[])
 
+    const agendaHandler = (idx) => {
+        setAgenda(idx);
+        setData(agendaData[idx]);
+    }
 
     const nextHandler = () => {
-        if(agenda < 4) setAgenda(agenda+1);
+        if(agenda < agendaData.length - 1) agendaHandler(agenda+1);
     }
 
     const prevHandler = () => {
-        if(agenda > 1) setAgenda(agenda-1);
+        if(agenda > 0) agendaHandler(agenda-1);
+    }
+
+    const perizinanHandler = e => {
+        e.preventDefault();
+        postPerizinan(data.id,link)
+        .then(() => {
+            alert("Perizinan telah terkirim");
+            window.location.reload();
+        });
     }
 
     return(
@@ -44,7 +65,7 @@ const Event = () => {
                 <section className="text-center mb-4 event-title d-flex justify-content-center align-items-center">
                     <i className="fa-solid fa-circle-arrow-left event-switch" onClick={prevHandler}/>
                     <div style={{width:'400px'}}>
-                        <h1 className="m-0">RANGKAIAN {agenda}</h1>
+                        <h1 className="m-0">RANGKAIAN {agenda + 1}</h1>
                         <h3 className="m-0">"{data.title}"</h3>
                         <span>{data.start_at} - {data.end_at}</span>
                     </div>
@@ -63,9 +84,9 @@ const Event = () => {
                                 <div className="mt-5 text-white mx-4">
                                     <h5 className="text-white m-0">UPLOAD SURAT PERIZINAN</h5>
                                 </div>
-                                { auth.isLogged ?
-                                <form className="d-flex align-items-center justify-content-center my-4">
-                                    <input className="event-input w-100 me-3" name="perizinan" type="file"/>
+                                { localStorage.getItem('token') !== null ?
+                                <form className="d-flex align-items-center justify-content-center my-4 w-75" onSubmit={perizinanHandler}>
+                                    <input className="event-input w-100 me-3 p-2" name="perizinan" type="text" placeholder=" Masukkan link" value={link} onChange={e=>setLink(e.target.value)}/>
                                     <button type="submit" className="px-4 py-2">
                                         <SubmitBtn className="m-0 p-0 w-100"/>
                                     </button>
@@ -77,7 +98,7 @@ const Event = () => {
                                     </div>
                                 </div>
                                 }
-                                <section className="row p-2">
+                                <section className="row p-2 m-auto">
                                     <i className="fa-solid fa-hashtag col-2 event-hastag p-0"/>
                                     <section className="col-10 p-0 text-white text-justify">
                                         Perizinan diisi ketika tidak bisa mengikuti rangkaian acara (diisi sebelum rangkaian acara)
@@ -96,7 +117,7 @@ const Event = () => {
                     <div className="col-12 col-lg-3 d-flex flex-container flex-column align-items-center py-3">
                         <h5 className="mt-1">Download</h5>
                         <button className="btn-toggle w-auto py-2 px-4 my-2">
-                            Surat Perizinan <i className="fa-solid fa-circle-down"/>
+                            <a href={linkSuratPerizinan} target="blank" className="text-white" style={{textDecoration:'none'}}>Surat Perizinan <i className="fa-solid fa-circle-down"/></a>
                         </button>
                         <button className="btn-toggle w-auto py-2 px-4 my-2">
                             Buku Panduan <i className="fa-solid fa-circle-down"/>
@@ -109,6 +130,8 @@ const Event = () => {
 }
 
 export default Event;
+
+const linkSuratPerizinan = 'https://docs.google.com/document/d/1d8FIuLX-ilJKAn4O9lJVBS5Xrvm2rzAt/edit?rtpof=true&sd=true';
 
 const Ketentuan = () => {
     return(
