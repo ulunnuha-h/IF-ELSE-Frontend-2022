@@ -96,7 +96,7 @@ const KelompokDetail = () => {
                 <thead>
                     <tr>  
                         <th>NIM</th>
-                        <th className="text-start">Nama Kelompok</th>
+                        <th className="text-start">Nama</th>
                         <th>Kelompok</th>
                         <th>Aksi</th>
                     </tr>

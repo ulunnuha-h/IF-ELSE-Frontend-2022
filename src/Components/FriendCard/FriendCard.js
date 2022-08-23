@@ -5,7 +5,6 @@ import { AnimatePresence } from "framer-motion";
 
 const FriendCard = (props) => {
     const data = props?.data;
-    console.log(data);
     const [pop,setPop] = useState(true);
 
     const toggle = () => {

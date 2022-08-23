@@ -51,7 +51,7 @@ const getAllKelompok = async () => {
 
 const getKelompokById = async (id) => {
     try {
-        const token = (getToken() !== null ? getToken() : getUserToken());
+        const token = (getToken() !== "Bearer null" ? getToken() : getUserToken());
         const res = await axios.get(`${baseUrl}/api/admin/group/${id}`,{
             headers : {Authorization : token}
         });

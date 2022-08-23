@@ -45,6 +45,18 @@
     transform: translateY(-10px);
 }
 
+.bg-gradient{
+    width: 100%;
+    height: 100vh;
+    animation: AnimateBG 5s ease infinite;
+}
+
+@keyframes AnimateBG { 
+    0%{background-color: #2A5470}
+    50%{background-color:#4C4177}
+    100%{background-color:#2A5470}
+  }
+
 @media(max-width : 768px){
     .admin #sidebar{
         overflow-y: auto;

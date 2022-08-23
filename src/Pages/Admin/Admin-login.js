@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card,Form,Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { postMahasiswaLogin } from "../../Data/Mahasiswa";
+import './Admin.css';
 
 const AdminLogin = () => {
     const nav = useNavigate();
@@ -30,7 +31,7 @@ const AdminLogin = () => {
     }
 
     return(
-        <div className="d-flex align-items-center flex-column justify-content-center bg-dark" style={{"height":"100vh"}}>
+        <div className="d-flex align-items-center flex-column justify-content-center bg-gradient">
             {errMsg === '' ? null : 
                     <span className="alert alert-danger" role="alert">
                     <i className="fa-solid fa-triangle-exclamation me-2"></i>

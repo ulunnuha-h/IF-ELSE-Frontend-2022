@@ -41,7 +41,8 @@ const User = () => {
 
     const logout = () => {
         localStorage.removeItem('token');
-        nav('/');
+        window.location.reload();
+        nav("/");
     }
 
     const handleClosePass = () => setEditPass(false);

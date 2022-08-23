@@ -2,21 +2,19 @@ import React, { useEffect, useState } from "react";
 import PendampingCard from "../../../Components/PendampingCard/PendampingCard";
 import FriendCard from "../../../Components/FriendCard/FriendCard";
 import { motion } from "framer-motion";
-import { useAuth } from "../../../Config/Auth";
-import { getMahasiswaByUserId } from "../../../Data/Mahasiswa";
 import { useOutletContext } from "react-router-dom";
 import { getKelompokById } from "../../../Data/Kelompok";
 
 const UserGroup = () => {
     const [,,data] = useOutletContext();
-    const [groupData,setGroupData] = useState('');
+    const [groupData,setGroupData] = useState({Student:[]});
     const [loading,setLoading] = useState(true);
 
     useEffect(()=>{
         if(data.group_id) {
             getKelompokById(data.group_id)
             .then(res => {
-                setGroupData(res.data);
+                setGroupData(res?.data);
                 setLoading(false);
             });
         };

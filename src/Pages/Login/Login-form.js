@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import {Form, InputGroup } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { postMahasiswaLogin } from "../../Data/Mahasiswa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LoginLoading } from "./Login";
 
-const LoginForm = () => {
-    const nav = useNavigate();
+const LoginForm = () => {    
     const [email,setEmail] = useState('');
     const [pass,setPass] = useState('');
     const [errorMsg,setErrorMsg] = useState('');
@@ -18,7 +17,7 @@ const LoginForm = () => {
         .then(res => {
             if(res.success) {
                 localStorage.setItem('token',res.data.token);
-                nav('/user');
+                window.location.reload();
             }else setErrorMsg(res.response.data.message);
             setLoading(false);
         });

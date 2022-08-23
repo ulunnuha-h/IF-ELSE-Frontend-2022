@@ -30,11 +30,11 @@ const AdminKelompok = () => {
     },[tambah])
 
     const getMahasiswaData = _debounce(()=>getAllMahasiswa(pageNum,10,key).then(res => {  
-        if(res.data){         
+        if(res?.data !== null){         
             setPageCount(Math.ceil(res.length/10));
-            setDataMahasiswa(res.data);
-            setLoading(false);
-        } else setErr(res.response.data.message);
+            setDataMahasiswa(res?.data);
+        } else if(res.response?.data.message) setErr(res.response?.data.message);
+        setLoading(false);
     }),500);
 
     useEffect(()=>{
