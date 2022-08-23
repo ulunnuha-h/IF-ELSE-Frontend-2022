@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 
-export const baseUrl = 'https://2f11-103-108-23-25.ngrok.io';
+export const baseUrl = 'https://api-ifelse.ub.ac.id';
 const AuthContext = React.createContext({});
 
 const getToken = () => {
