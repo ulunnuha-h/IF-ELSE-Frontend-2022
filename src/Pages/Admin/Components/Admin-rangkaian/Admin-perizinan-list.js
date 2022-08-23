@@ -35,7 +35,7 @@ const PerizinanList = (props) => {
         setAgendaLoad(true);
         getPerizinanByRangkaian(idRangkaian)
         .then(res => {
-            if(res.response?.status == 403){
+            if(res.response?.status === 403){
                 props.setErr(res.response.data.message);
             }
             else if (res?.data !== null)setData(res.data);
@@ -46,7 +46,7 @@ const PerizinanList = (props) => {
         });
         getAgendaById(idRangkaian)
         .then(res => setStatus(res.data?.is_published || ''));
-    },[idRangkaian])
+    },[idRangkaian,props])
 
     if(loading) return(<LoadingSpinner/>);
 

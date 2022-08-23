@@ -21,7 +21,7 @@ const EditKelompok = (props) => {
                 console.log(res);
                 setData(res.data);
             });
-    },[])
+    },[kelompokId])
 
     useEffect(()=>{
         setKelompok(data?.group_name);
