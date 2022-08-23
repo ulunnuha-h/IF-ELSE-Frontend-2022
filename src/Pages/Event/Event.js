@@ -120,7 +120,7 @@ const Event = () => {
                             <a href={linkSuratPerizinan} target="blank" className="text-white" style={{textDecoration:'none'}}>Surat Perizinan <i className="fa-solid fa-circle-down"/></a>
                         </button>
                         <button className="btn-toggle w-auto py-2 px-4 my-2">
-                            Buku Panduan <i className="fa-solid fa-circle-down"/>
+                            <a href={linkBukuPanduan} target="blank" className="text-white" style={{textDecoration:'none'}}>Buku Panduan <i className="fa-solid fa-circle-down"/></a>
                         </button>
                     </div>
                 </section>
@@ -132,6 +132,7 @@ const Event = () => {
 export default Event;
 
 const linkSuratPerizinan = 'https://docs.google.com/document/d/1d8FIuLX-ilJKAn4O9lJVBS5Xrvm2rzAt/edit?rtpof=true&sd=true';
+const linkBukuPanduan = 'https://drive.google.com/drive/u/1/folders/1KaULB9CwMeUSDXIfWJUc6Jd9KKVOumXT';
 
 const Ketentuan = () => {
     return(
