@@ -120,7 +120,7 @@ const Event = () => {
                             <a href={linkSuratPerizinan} target="blank" className="text-white" style={{textDecoration:'none'}}>Surat Perizinan <i className="fa-solid fa-circle-down"/></a>
                         </button>
                         <button className="btn-toggle w-auto py-2 px-4 my-2">
-                            <a href={linkBukuPanduan} target="blank" className="text-white" style={{textDecoration:'none'}}>Buku Panduan <i className="fa-solid fa-circle-down"/></a>
+                            <a href={linkBukuPanduan} target="blank" className="text-white" style={{textDecoration:'none'}}>Buku Saku <i className="fa-solid fa-circle-down"/></a>
                         </button>
                     </div>
                 </section>
