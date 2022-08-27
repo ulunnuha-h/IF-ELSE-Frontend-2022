@@ -18,6 +18,8 @@ const AdminKelompok = () => {
     const [pageNum,setPageNum] = useState(0);
     const [err,setErr] = useState(null);
     const [loading,setLoading] = useState(true);
+    const [groupLoad,setGroupLoad] = useState(true);
+
     const pageHandler = ({selected}) => {
         setPageNum(selected);
     }
@@ -25,7 +27,8 @@ const AdminKelompok = () => {
     useEffect(()=>{
         getAllKelompok().then(res => {
             if(!res?.success) setErr(res.message);
-            else if(res?.data !== null)setDataKelompok(res.data);
+            else if(res?.data !== null) setDataKelompok(res.data);
+            setGroupLoad(false);
         });
     },[tambah])
 
@@ -40,7 +43,13 @@ const AdminKelompok = () => {
     useEffect(()=>{
         setLoading(true);
         getMahasiswaData();
-    },[key,pageNum]);
+    },[pageNum]);
+
+    useEffect(()=>{
+        setLoading(true);
+        setPageNum(0);
+        getMahasiswaData();
+    },[key]);
 
     if(err !== null) return(
         <div className="m-2 p-3 m-md-4 p-md-4 bg-dark text-light rounded">
@@ -59,7 +68,7 @@ const AdminKelompok = () => {
                 </button>
             </section>
             {
-            loading ? 
+            groupLoad ? 
             <LoadingSpinner/>
             :
             <Table striped bordered hover responsive variant="dark">

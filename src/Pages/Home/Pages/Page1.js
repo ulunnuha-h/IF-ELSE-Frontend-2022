@@ -35,11 +35,11 @@ const Page1 = () => {
     return(  
     <>
         <div className='d-flex align-items-end justify-content-center parallax-wrapper'>
-            <img ref={useParallaxSpeed(0,475)} className='position-absolute parallax-layer' src={Layer1} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,400)} className='position-absolute parallax-layer' src={El2} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,325)} className='position-absolute parallax-layer' src={El3} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,250)} className='position-absolute parallax-layer' src={El4} alt="pic" onLoad={updateController}></img>
-            <img ref={useParallaxSpeed(0,175)} className='position-absolute parallax-layer' src={El5} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,500)} className='position-absolute parallax-layer' src={Layer1} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,425)} className='position-absolute parallax-layer' src={El2} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,350)} className='position-absolute parallax-layer' src={El3} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,275)} className='position-absolute parallax-layer' src={El4} alt="pic" onLoad={updateController}></img>
+            <img ref={useParallaxSpeed(0,200)} className='position-absolute parallax-layer' src={El5} alt="pic" onLoad={updateController}></img>
             <img className='position-absolute' src={El8} alt="pic"></img>
             <div className="d-flex align-self-start flex-column justify-content-center mx-0 mt-5 pt-5">
                 <span style={{backgroundImage:`url(${logo})`,height:'248px',width:'495px'}} className='logo-home'/>
