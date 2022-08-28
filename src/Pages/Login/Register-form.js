@@ -21,10 +21,10 @@ const RegisterForm = () => {
         setLoading(true);
         e.preventDefault();
         postMahasiswaRegister({name,username,email,nim,password})
-        .then(res => {
-            if(res.success) setSuccess(true);
+        .then(res => {            
+            if(res?.success) setSuccess(true);
             else{
-                setErrorMsg(res.message);
+                setErrorMsg(res.response.data?.message);
             }
             setLoading(false);
         });
@@ -50,7 +50,7 @@ const RegisterForm = () => {
                         <h1 className="display-3 text-center" style={{"fontFamily": "'Bebas Neue', cursive","color":"var(--color-1-p)"}}>Register Account</h1>
                 </div>
                 {errorMsg !== '' ? 
-                <motion.div initial={{scale:0.5}} animate={{scale:1}} className="alert alert-danger p-2 w-75 mb-2 m-auto text-center">
+                <motion.div initial={{scale:0.5}} animate={{scale:1}} className="alert alert-danger p-2 mb-2 m-auto text-center">
                     <i className="fa-solid fa-triangle-exclamation me-2"></i>
                     {errorMsg}
                 </motion.div>                    

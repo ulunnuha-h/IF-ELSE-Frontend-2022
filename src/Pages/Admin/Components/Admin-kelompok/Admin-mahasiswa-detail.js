@@ -125,7 +125,6 @@ const DeleteMahasiswa = (props) => {
     const delStudent = () => {
         deleteMahasiswa(props.userId)
         .then(res => {
-            console.log(res)
             handleClose();
             nav(-1);
         });

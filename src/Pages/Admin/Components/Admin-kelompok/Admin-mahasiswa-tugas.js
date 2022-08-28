@@ -63,7 +63,7 @@ const DetailTugas = (props) => {
             <Modal.Title>Link yang di submit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <a href={`//${props.detailData}`} target="blank">{props.detailData}</a>
+            <a href={`${props.detailData}`} target="blank">{props.detailData}</a>
         </Modal.Body>
       </Modal>
     );
