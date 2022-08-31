@@ -132,7 +132,7 @@ const Event = () => {
 export default Event;
 
 const linkSuratPerizinan = 'https://docs.google.com/document/d/1d8FIuLX-ilJKAn4O9lJVBS5Xrvm2rzAt/edit?rtpof=true&sd=true';
-const linkBukuPanduan = 'https://drive.google.com/drive/u/1/folders/1KaULB9CwMeUSDXIfWJUc6Jd9KKVOumXT';
+const linkBukuPanduan = 'https://drive.google.com/drive/u/1/folders/18jinygG_HFP6ulaeWsnG8_IiBTpYdE2A';
 
 const Ketentuan = () => {
     return(

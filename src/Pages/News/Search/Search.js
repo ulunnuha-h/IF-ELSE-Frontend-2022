@@ -52,7 +52,7 @@ function Search() {
                     </div>
                 </div>
             </div>
-            <div className="template-container row row-cols-lg-3 row-cols-md-2 rows-cols-1 mx-0 mt-5 px-1" style={{minHeight : '100px'}}>
+            <div className="template-container row row-cols-lg-3 row-cols-md-2 mx-0 mt-5 px-1" style={{minHeight : '100px'}}>
                 {loading ? 
                 <div className='w-100 d-flex justify-content-center mb-5'>
                     <LoadingSpinner/>

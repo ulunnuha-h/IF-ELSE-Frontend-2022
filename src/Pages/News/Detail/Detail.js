@@ -30,6 +30,7 @@ function Detail() {
                         <ol className="breadcrumb" >
                             <li className="breadcrumb-item"><Link className="breadcrumb-link" to='/home'>Home</Link></li>
                             <li className="breadcrumb-item"><Link className="breadcrumb-link" to='/news'>News</Link></li>
+                            <li className="breadcrumb-item" style={{cursor:'default'}}>{data.title}</li>
                         </ol>
                     </nav>
                 <motion.div 
@@ -39,7 +40,7 @@ function Detail() {
                     className="template-detail col-lg-8 col-12 p-4">
                     <section className="my-3 p-0 placeholder-glow">
                         {loading ?
-                        <h1 className="placeholder col-12 mb-3 p-0 bg-light"></h1>
+                        <h1 className="placeholder col-12 mb-3 p-0 bg-light">.</h1>
                         :<h1 className="judul-detail m-0 p-0">{data.title}</h1>
                         }
                     </section>

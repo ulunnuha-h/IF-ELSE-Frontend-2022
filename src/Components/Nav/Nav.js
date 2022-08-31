@@ -32,7 +32,10 @@ const Nav = () => {
         window.scrollTo(0,0);
     }
 
-    const navHome = () => nav('/');
+    const navHome = () => {
+        nav('/');
+        closeSidebar();
+    };
 
     const navStyle = useMemo(()=>{return{
         "zIndex":'12',

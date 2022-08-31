@@ -22,12 +22,7 @@ const User = () => {
         });
     },[])
 
-    const percentage = 3 
-    // + getStudenMarkById(auth.id).data.reduce((tot,dat)=>{
-    //     if(dat.mark !== null) return tot + 23;
-    //     else return tot;
-    // },0)
-    ;
+    const percentage = 3 ;
 
     const toggleEditProfile = () => {
         setEditProfile(!editProfile);
