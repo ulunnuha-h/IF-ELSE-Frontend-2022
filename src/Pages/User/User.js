@@ -17,7 +17,11 @@ const User = () => {
 
     useEffect(()=>{
         getMahasiswaProfile().then(res => {
-            setData(res.data);
+            if(res.data !== null) setData(res.data);
+            else{
+                localStorage.removeItem('token');
+                nav('/mahasiswa/login');
+            }
             setLoading(false);
         });
     },[])

@@ -33,7 +33,6 @@ export default function Tasks() {
             .then(res => {
                 setUserData(res);
                 setLoading(false);
-                console.log(res);
             });
         }
     },[taskId])

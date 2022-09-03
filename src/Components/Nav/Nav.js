@@ -23,6 +23,10 @@ const Nav = () => {
         getMahasiswaProfile()
         .then(res => {
             if(res.data !== null) setMhsData(res.data)
+            else{
+                localStorage.removeItem('token');
+                nav('/');
+            }
         });
     },[])
 
