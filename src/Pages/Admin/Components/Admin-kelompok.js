@@ -34,7 +34,7 @@ const AdminKelompok = () => {
 
     const getMahasiswaData = _debounce(()=>getAllMahasiswa(pageNum,10,key).then(res => {  
         if(res?.data !== null){         
-            setPageCount(Math.ceil(res.length/10));
+            setPageCount(Math.ceil((res.length - 4)/10));
             setDataMahasiswa(res?.data);
         } else if(res.response?.data.message) setErr(res.response?.data.message);
         setLoading(false);
