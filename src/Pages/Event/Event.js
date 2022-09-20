@@ -65,9 +65,9 @@ const Event = () => {
                 <section className="text-center mb-4 event-title d-flex justify-content-center align-items-center">
                     <i className="fa-solid fa-circle-arrow-left event-switch" onClick={prevHandler}/>
                     <div style={{width:'400px'}}>
-                        <h1 className="m-0">RANGKAIAN {agenda + 1}</h1>
+                        <h1 className="m-0">RANGKAIAN {agenda}</h1>
                         <h3 className="m-0">"{data.title}"</h3>
-                        <span>{data.start_at} - {data.end_at}</span>
+                        <span>{data.start_at} { data.start_at !== data.end_at ? ' - ' + data.end_at : '' }</span>
                     </div>
                     <i className="fa-solid fa-circle-arrow-right event-switch" onClick={nextHandler}/>
                 </section>

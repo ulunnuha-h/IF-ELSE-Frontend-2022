@@ -92,7 +92,7 @@ const PerizinanList = (props) => {
                         <td className="col-3">{val.nim}</td>
                         <td className="col-3">{val.group_name}</td>
                         <td className="col-2 text-center">
-                            <a href={`//${val.link_surat}`} target="blank">
+                            <a href={`${val.link_surat}`} target="blank">
                                 <Button>
                                     <i className="fa-solid fa-envelope-open me-2"/>Lihat Surat
                                 </Button>
