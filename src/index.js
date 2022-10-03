@@ -16,11 +16,11 @@ import MahasiswaDetail from './Pages/Admin/Components/Admin-kelompok/Admin-mahas
 import TambahBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-tambah';
 import { ProtectedUser,LoginRoute } from './Config/Protected';
 import EditBerita from './Pages/Admin/Components/Admin-berita/Admin-berita-edit';
-import { PerizinanList } from './Pages/Admin/Components/Admin-rangkaian/Admin-perizinan-list';
 import LoginForm from './Pages/Login/Login-form';
 import RegisterForm from './Pages/Login/Register-form';
 import Loading from './Components/Loading/Loading';
 import AdminLoading from './Components/Loading/AdminLoading';
+import Gallery from './Pages/Gallery/Gallery';
 const Event = React.lazy(()=>import('./Pages/Event/Event'));
 const Tasks = React.lazy(()=>import('./Pages/Tasks/Tasks'));
 const FAQ = React.lazy(()=>import('./Pages/FAQ/FAQ'));
@@ -40,6 +40,7 @@ root.render(
           <Route path='/' element={<App/>}>
             <Route index element={<Navigate to={'home'} />} />
             <Route path='home' element={<Home />}/>
+            <Route path='gallery' element={<Gallery />}/>
             <Route path="news" element={
               <Suspense fallback={<Loading/>}>
                 <News/>

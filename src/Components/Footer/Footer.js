@@ -42,6 +42,7 @@ const Footer = () => {
                                 <span className="footer-link" onClick={()=> {nav("news");;window.scroll(0,0)}}>News</span>
                                 <span className="footer-link" onClick={()=> {nav("faq");;window.scroll(0,0)}}>FAQ</span>
                                 <span className="footer-link" onClick={()=> {nav("task");;window.scroll(0,0)}}>Task</span>
+                                <span className="footer-link" onClick={()=> {nav("gallery");;window.scroll(0,0)}}>Gallery</span>
                             </div>
                         </section>
                     </div>

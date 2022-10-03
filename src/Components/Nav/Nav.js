@@ -96,6 +96,11 @@ const Nav = () => {
                         <span className="nav-text" style={navTextStyle}>Event</span>
                     </Link>
                 </li>
+                <li className="nav-item mx-3" onClick={closeSidebar}>
+                    <Link className="nav-link" to="gallery">
+                        <span className="nav-text" style={navTextStyle}>Gallery</span>
+                    </Link>
+                </li>
                 <li className="nav-item mt-4 d-block d-sm-none" onClick={closeSidebar}>
                     {
                         localStorage.getItem('token') == null ? 
