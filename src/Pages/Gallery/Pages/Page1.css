@@ -1,0 +1,58 @@
+.parallax-wrapper-gallery {
+    height:150vh;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.parallax-wrapper-gallery > video {
+    width: 100%;
+    height: 160vh;
+    object-fit: cover;
+    top: 0;
+    z-index: -1;
+}
+
+.bg-gallery {
+    background: linear-gradient(to top, rgba(245, 200, 120, 0.5), rgba(245, 115, 0, 0.5), rgba(245, 157, 0, 0.5));
+}
+
+.gallery h1 {
+    font-family: Bebas Neue;
+    font-size: 100px;
+}
+
+@keyframes reveal {
+    0% {filter:blur(5px) opacity(0);transform: scale(1.2);}
+    100%{filter: blur(0px) opacity(1);transform: scale(1);}
+}
+
+@keyframes galleryMotion {
+    0%   {margin-top: 5px;}
+    50%  {margin-top: 15px;}
+    100% {margin-top: 5px;}
+}
+
+.gallery {
+    filter: opacity(0);
+    animation-name: reveal;
+    animation-delay: 0.4s;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@media (max-width: 426px){
+    .gallery h1 {
+        scale: 0.7;
+    }
+
+    .sand-gallery {
+        height: 80vw;
+    }
+
+    .bg-gallery {
+        text-align: center;
+        justify-content: center;
+    }
+}

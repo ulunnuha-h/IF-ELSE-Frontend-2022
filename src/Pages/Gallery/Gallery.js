@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import Page1 from "./Pages/Page1";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 const Gallery = () => {
+    const [loading,setLoading] = useState(true);
+    setInterval(()=>{
+        setLoading(false);
+    },300)
+
+    const loadStyle = {
+        top : (loading ? 0 : "-100vh"),
+        zIndex : 10,
+        transition : "0.3s",
+        transitionTimingFunction : "ease-in",
+        backgroundColor : "var(--color-3)"
+    }
+
     return(
-        <main style={{height:'calc(100vh - 70px)'}} className="d-flex justify-content-center align-items-center">
-            <h1>Under Construction</h1>
-        </main>
-    )
+        <ParallaxProvider>
+            <Page1/>
+        </ParallaxProvider>
+    );
 }
 
 export default Gallery;

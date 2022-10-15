@@ -3,7 +3,7 @@
     overflow: hidden;
     width: 100%;
     position: relative;
-    background:linear-gradient( #f5c878,#f57300,#f59d00);;
+    background:linear-gradient( #f5c878,#f57300,#f59d00);
 }
 
 .parallax-wrapper > img{
