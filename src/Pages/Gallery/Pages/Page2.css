@@ -1,0 +1,26 @@
+.bg-coming {
+    background: linear-gradient(to top, rgba(195, 215, 180, 1), rgba(176, 207, 176, 1), rgba(176, 187, 150, 1), rgba(177, 155, 109, 1), rgba(166, 88, 37, 1), rgba(130, 38, 0, 1));
+}
+
+.rangkaian-gallery {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+.page2-gallery {
+    font-family: 'Bebas Neue';
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 96px;
+    color: #451400;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index:0;
+}
+
+@media (max-width: 426px){
+    .bg-page2-gallery {
+        background-position: center;
+    }
+}

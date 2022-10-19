@@ -36,7 +36,7 @@
     0%   {margin-top: 5px;}
     50%  {margin-top: 15px;}
     100% {margin-top: 5px;}
-  }
+}
 
 .logo-home{
     animation-name: reveal;
