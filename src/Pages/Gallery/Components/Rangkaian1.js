@@ -17,7 +17,7 @@ const Rangkaian1 = () => {
         <div className="container-G align-items center container">
             <h2>RANGKAIAN 1</h2>
             <p>"LIGHT UP THE TORCH, EXPLORE A WHOLE NEW WORLD"</p>
-            <div ClassName="d-flex row display">
+            <div className="d-flex row display">
                 {photo}
             </div>
         </div>)
