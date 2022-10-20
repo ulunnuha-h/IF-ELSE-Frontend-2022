@@ -19,8 +19,9 @@
     z-index:0;
 }
 
-@media (max-width: 426px){
+@media (max-width: 769px){
     .bg-page2-gallery {
         background-position: center;
+        min-height: 100vh;
     }
 }

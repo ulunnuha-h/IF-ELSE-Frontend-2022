@@ -17,9 +17,9 @@ const Page2 = () => {
                 <Bg className="position-absolute" style={{left:'0', zIndex:'1'}}/>
             </div>
 
-            <div className="pt-5 d-flex justify-content-center align-items-end bg-coming" style={{minHeight: '250vh'}}>
-                <section className="position-absolute h-100 w-100 bg-page2-gallery justify-content-center " style={{left:'0',backgroundImage:`url(${Bg2})`,backgroundSize:'cover'}}>
-                    <motion.h2 initial={{opacity:0,y:100}} whileInView={{opacity:1,y:0}} transition={{duration:0.3}} className="page2-gallery text-center " style={{zIndex:'1', marginTop:'20vh'}}>COMING SOON</motion.h2>
+            <div className="pt-5 d-flex justify-content-center align-items-end bg-coming" style={{minHeight: '300vh'}}>
+                <section className="position-absolute w-100 bg-page2-gallery justify-content-center" style={{left:'0',backgroundImage:`url(${Bg2})`,backgroundSize:'cover', minHeight: '180vh'}}>
+                    <motion.h2 initial={{opacity:0,y:100}} whileInView={{opacity:1,y:0}} transition={{duration:0.3}} className="page2-gallery text-center " style={{zIndex:'1', marginTop:'40vh'}}>COMING SOON</motion.h2>
                 </section>
             </div>
         </>
