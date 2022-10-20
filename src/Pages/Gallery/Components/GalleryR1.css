@@ -53,6 +53,10 @@
     padding: 12px 12px;
 }
 
+#the--photo:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1400px){
     .container-G h2 {
         font-size: 64px;
