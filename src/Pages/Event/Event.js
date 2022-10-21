@@ -166,8 +166,10 @@ const Alur = () => {
                 <li>Mahasiswa Teknik Informatika 2022 memilih rangkaian IF-ELSE 2022.</li>
                 <li>Mahasiswa Teknik Informatika 2022 menekan bagian perizinan.</li>
                 <li>Mahasiswa Teknik Informatika 2022 mengisi dan mengunggah Surat Izin IF ELSE 2022 disertai bukti pendukung yang dilampirkan pada  surat izin.</li>
-                <li>Mahasiswa Teknik Informatika 2022 menyerahkan Surat Izin IF ELSE 2022 secara offline dengan menyertakan bukti pendukung perizinan kepada Crisis Center IF-ELSE 2022</li>
-                <li>Perizinan secara online dibuka mulai H-1 sampai dengan H+3 rangkaian</li>
+                <li>Mahasiswa Teknik Informatika 2022 menyerahkan Surat Izin IF ELSE 2022 dengan menyertakan bukti pendukung perizinan</li>
+                <li>Surat izin dan Bukti Pendukung harus diserahkan secara offline dan online</li>
+                <li>Perizinan secara online dibuka mulai H-1 sampai dengan H+3 rangkaian pada web IF ELSE 2022</li>
+                <li>Perizinan secara offline dibuka mulai H-1 sampai dengan H+3 rangkaian pada Pendamping masing masing</li>
             </ol>
         </div>
     );

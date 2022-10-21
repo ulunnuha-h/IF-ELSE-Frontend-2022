@@ -19,7 +19,7 @@ function Detail() {
             setData(res.data);
             setLoading(false);
         });
-        getBeritaTerbaru().then(res => setBeritaTerbaru(res.data));
+        getBeritaTerbaru().then(res => setBeritaTerbaru(res.data.slice(0,4)));
     },[idBerita]);
 
     return(

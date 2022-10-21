@@ -14,7 +14,7 @@ const Recent = () => {
     useEffect(()=>{
         getBeritaTerbaru()
         .then(res =>{
-            if(res.data !== null)  setAllData(res.data);
+            if(res.data !== null)  setAllData(res.data.slice(0,4));
             setLoading(false);
         });
     },[])

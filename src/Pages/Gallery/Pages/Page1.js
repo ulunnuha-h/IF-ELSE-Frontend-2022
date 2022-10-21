@@ -31,7 +31,7 @@ const Page1 = () => {
     return(  
     <>
         <div className='d-flex align-items-end justify-content-left parallax-wrapper-gallery bg-gallery'>
-            <video src={videoBG} className='position-absolute videoGallery' autoPlay loop muted></video>
+            <video src={videoBG} className='position-fixed videoGallery' autoPlay loop muted></video>
             <img ref={useParallaxSpeed(0,200)} className='position-absolute parallax-layer sand-gallery' src={El5} alt="pic" onLoad={updateController}></img>
             <img className='position-absolute sand-gallery' src={El8} alt="pic"></img>
             <div className="d-flex align-self-start flex-column justify-content-left mx-5 mt-5 pt-5">
