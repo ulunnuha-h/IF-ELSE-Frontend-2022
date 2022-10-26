@@ -9,7 +9,7 @@ const NewsRecent = (props) => {
     const croppedCapt = ( props.content.length > 380 ? props.content.slice(0,380) + '[...]' : props.content);
     const isMobile = (window.innerWidth < 576);
 
-    const bgColor = {backgroundColor : 'rgba(115, 38, 72, 0.8)'} 
+    const bgColor = {backgroundColor : 'rgba(115, 38, 72, 1)'} 
 
     return(
         <motion.div 

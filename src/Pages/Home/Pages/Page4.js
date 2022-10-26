@@ -13,7 +13,7 @@ const isMobile = (window.innerWidth < 768);
 const Page4 = () => {
 
     const effect = useParallax({
-        scale:[1,1.2],
+        scale:[1,1.3],
         disabled: isMobile
     })
 
@@ -28,11 +28,13 @@ const Page4 = () => {
                         <Philosophy/>
                     </div>
                     <div ref={effect.ref} className="position-relative col-7 d-none d-lg-flex justify-content-center align-items-center pb-5 mb-5" style={{backgroundImage:`url(${SunLogo})`,backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
-                        <motion.img initial={{opacity:0,scale:0.7}} 
-                            whileInView={{opacity:1,scale:0.8}} 
+                        <motion.img initial={{opacity:0}} 
+                            whileInView={{opacity:1,scale:0.85}} 
                             transition={{duration:0.5,type:'tween',ease:'circOut',delay:0.1}}  
                             src={logo} 
-                            style={{width:'250px',zIndex:'2'}}/>
+                            style={{width:'250px',zIndex:'2'}}
+                            className="mt-3"
+                            />
                     </div>
                 </div>
             </div>

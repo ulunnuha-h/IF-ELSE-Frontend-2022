@@ -5,7 +5,7 @@ export default function Rangkaian(props) {
         <span className="rangkaian d-flex flex-column align-items-center text-white">
             <div style={{backgroundImage:`url(${props.image})`,aspectRatio:'8/5',backgroundSize:'cover',backgroundPosition:'center'}} className='w-100'/>
             <h3 className="mt-4 px-2 text-center">{props.title}</h3>
-            <p className="px-2 px-lg-4">{props.content}</p>
+            <p className="px-3 px-lg-4">{props.content}</p>
         </span>
     )
 }

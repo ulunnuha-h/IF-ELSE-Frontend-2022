@@ -68,9 +68,8 @@ const PerizinanList = (props) => {
             <Table striped bordered hover responsive variant="dark">
                     <thead>
                     <tr>  
-                        <th>Nama</th>
-                        <th>NIM</th>
-                        <th>Kelompok</th>
+                        <th>Nomor</th>
+                        <th>Link</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
@@ -88,9 +87,8 @@ const PerizinanList = (props) => {
                     </tr>
                     :data.map((val,idx) => 
                     <tr key={idx}>
-                        <td className="col-4">{val.name}</td>
-                        <td className="col-3">{val.nim}</td>
-                        <td className="col-3">{val.group_name}</td>
+                        <td className="">{idx+1}</td>
+                        <td className="col-10">{val.link_surat}</td>
                         <td className="col-2 text-center">
                             <a href={`${val.link_surat}`} target="blank">
                                 <Button>
