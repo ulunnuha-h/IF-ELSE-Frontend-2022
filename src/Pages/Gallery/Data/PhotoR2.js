@@ -1,4 +1,4 @@
-const photoR1 = [
+const photoR2 = [
     "https://i.imgur.com/NHZJy9Z.jpg",
     "https://i.imgur.com/ibxtWer.jpg",
     "https://i.imgur.com/jz7Hxmo.jpg",
@@ -20,4 +20,4 @@ const photoR1 = [
     "https://i.imgur.com/oWeJcYg.jpg",
     "https://i.imgur.com/Y864m0e.jpg"
 ];
-export default photoR1
+export default photoR2
