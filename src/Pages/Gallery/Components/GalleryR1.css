@@ -46,14 +46,11 @@
     background-color: #521737;
 }
 
-#the--photo {
-    object-fit: fill;
-    border-radius: 24px;
-    justify-content: center;
-    padding: 12px 12px;
+#photo-thumb {
+    border-radius: 12px;
 }
 
-#the--photo:hover {
+#photo-thumb:hover {
     cursor: pointer;
 }
 
@@ -75,6 +72,12 @@
 
     .container-G p {    
         font-size: 30px;
+    }
+    .container-G {
+        padding: 53px 8px 43px 8px;
+    }
+    .display::-webkit-scrollbar{
+        display: none;
     }
 }
 

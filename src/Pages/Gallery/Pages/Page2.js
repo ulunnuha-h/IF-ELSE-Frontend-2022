@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const Page2 = () => {
     return (
         <>
-            <div className="container-lg position-absolute rangkaian-gallery" style={{zIndex:'10', marginTop: '20vh'}} >
+            <div className="container-lg position-absolute rangkaian-gallery p-0" style={{zIndex:'10', marginTop: '20vh'}} >
                 <Rangkaian1/>
             </div>
 

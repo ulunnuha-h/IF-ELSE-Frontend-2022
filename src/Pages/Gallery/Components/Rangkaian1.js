@@ -1,18 +1,23 @@
 import React from "react";
 import './GalleryR1.css';
 import dataP from '../Data/PhotoR1'
-import { indexOf } from "lodash";
 
 const Rangkaian1 = () => {
-    const photo = dataP.map(item=>
-        <img key={indexOf(item)+1} 
-        alt='gallery-pics'
-        src={item}
-        id="the--photo" 
-        className="col-lg-4 col-md-6 col-sm-9 fancybox"
-        data-fancybox = 'gallery'
-        />
+    const photo = dataP.map((item,idx)=>
+        <a  data-fancybox = 'gallery' 
+            href={item}
+            className="col-lg-4 col-md-6 col-sm-9 py-2 px-lg-2 px-0"
+            key={idx}
+            >
+            <img
+            alt='thumbnail'
+            id="photo-thumb" 
+            src={require(`../../../Assets/r1-thumbnails/${idx+1}.jpg`)}
+            className="w-100"
+            />
+        </a>
     )
+    
     return(
         <div className="container-G align-items center container">
             <h2>RANGKAIAN 1</h2>

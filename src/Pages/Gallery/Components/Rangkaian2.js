@@ -1,11 +1,10 @@
 import React from "react";
 import './GalleryR2.css';
 import dataP from '../Data/PhotoR2'
-import { indexOf } from "lodash";
 
 const Rangkaian2 = () => {
-    const photo = dataP.map(item=>
-        <img key={indexOf(item)+1} 
+    const photo = dataP.map((item,idx)=>
+        <img key={idx} 
         alt='gallery-pics'
         src={item}
         id="the--photo" 
