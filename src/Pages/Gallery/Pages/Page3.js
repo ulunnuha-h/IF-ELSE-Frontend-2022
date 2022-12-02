@@ -4,6 +4,7 @@ import Pl1 from '../../../Assets/Gallery/Page3/1.svg'
 import { motion } from "framer-motion";
 import About from "../../Home/Pages/Components/AboutIfElse";
 import './Page3.css'
+import Rangkaian3 from "../Components/Rangkaian3";
 
 const Page3 = () => {
     return(
